@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageTransferDestinationRequest
@@ -16,6 +14,12 @@ public record ServerMessageTransferDestinationRequest
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "transfer-destination-request" is sent when the model is requesting transfer but destination is unknown.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "transfer-destination-request";
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

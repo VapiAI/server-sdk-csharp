@@ -1,12 +1,16 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ClientMessageTranscript
 {
+    /// <summary>
+    /// This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public required ClientMessageTranscriptType Type { get; set; }
+
     /// <summary>
     /// This is the role for which the transcript is for.
     /// </summary>

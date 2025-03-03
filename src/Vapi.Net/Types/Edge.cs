@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record Edge
@@ -15,6 +13,12 @@ public record Edge
 
     [JsonPropertyName("to")]
     public required string To { get; set; }
+
+    /// <summary>
+    /// This is for metadata you want to store on the edge.
+    /// </summary>
+    [JsonPropertyName("metadata")]
+    public object? Metadata { get; set; }
 
     public override string ToString()
     {

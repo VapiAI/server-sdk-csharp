@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ByoPhoneNumber
@@ -55,6 +53,12 @@ public record ByoPhoneNumber
     /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// This is the status of the phone number.
+    /// </summary>
+    [JsonPropertyName("status")]
+    public ByoPhoneNumberStatus? Status { get; set; }
 
     /// <summary>
     /// This is the name of the phone number. This is just for your own reference.

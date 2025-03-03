@@ -1,12 +1,16 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ClientMessageSpeechUpdate
 {
+    /// <summary>
+    /// This is the type of the message. "speech-update" is sent whenever assistant or user start or stop speaking.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "speech-update";
+
     /// <summary>
     /// This is the status of the speech update.
     /// </summary>

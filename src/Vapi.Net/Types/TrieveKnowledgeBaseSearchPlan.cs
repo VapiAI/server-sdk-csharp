@@ -1,12 +1,16 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record TrieveKnowledgeBaseSearchPlan
 {
+    /// <summary>
+    /// Specifies the number of top chunks to return. This corresponds to the `page_size` parameter in Trieve.
+    /// </summary>
+    [JsonPropertyName("topK")]
+    public double? TopK { get; set; }
+
     /// <summary>
     /// If true, stop words (specified in server/src/stop-words.txt in the git repo) will be removed. This will preserve queries that are entirely stop words.
     /// </summary>

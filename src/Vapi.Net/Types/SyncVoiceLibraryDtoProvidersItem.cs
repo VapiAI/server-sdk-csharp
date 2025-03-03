@@ -2,8 +2,6 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<SyncVoiceLibraryDtoProvidersItem>))]
@@ -29,6 +27,9 @@ public enum SyncVoiceLibraryDtoProvidersItem
 
     [EnumMember(Value = "neets")]
     Neets,
+
+    [EnumMember(Value = "neuphonic")]
+    Neuphonic,
 
     [EnumMember(Value = "openai")]
     Openai,

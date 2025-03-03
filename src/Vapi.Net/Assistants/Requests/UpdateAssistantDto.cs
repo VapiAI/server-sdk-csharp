@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record UpdateAssistantDto
@@ -45,12 +43,6 @@ public record UpdateAssistantDto
     /// </summary>
     [JsonPropertyName("firstMessageMode")]
     public UpdateAssistantDtoFirstMessageMode? FirstMessageMode { get; set; }
-
-    /// <summary>
-    /// When this is enabled, no logs, recordings, or transcriptions will be stored. At the end of the call, you will still receive an end-of-call-report message to store on your server. Defaults to false.
-    /// </summary>
-    [JsonPropertyName("hipaaEnabled")]
-    public bool? HipaaEnabled { get; set; }
 
     /// <summary>
     /// These are the messages that will be sent to your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-update,transfer-update,transcript,tool-calls,user-interrupted,voice-input. You can check the shape of the messages in ClientMessage schema.
@@ -156,6 +148,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("endCallPhrases")]
     public IEnumerable<string>? EndCallPhrases { get; set; }
 
+    [JsonPropertyName("compliancePlan")]
+    public CompliancePlan? CompliancePlan { get; set; }
+
     /// <summary>
     /// This is for metadata you want to store on the assistant.
     /// </summary>
@@ -237,6 +232,12 @@ public record UpdateAssistantDto
     /// </summary>
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
+
+    /// <summary>
+    /// This is a set of actions that will be performed on certain events.
+    /// </summary>
+    [JsonPropertyName("hooks")]
+    public IEnumerable<AssistantHooks>? Hooks { get; set; }
 
     public override string ToString()
     {

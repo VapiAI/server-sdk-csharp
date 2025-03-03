@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record JsonSchema
@@ -50,6 +48,24 @@ public record JsonSchema
     /// </summary>
     [JsonPropertyName("required")]
     public IEnumerable<string>? Required { get; set; }
+
+    /// <summary>
+    /// This is a regex that will be used to validate data in question.
+    /// </summary>
+    [JsonPropertyName("regex")]
+    public string? Regex { get; set; }
+
+    /// <summary>
+    /// This the value that will be used in filling the property.
+    /// </summary>
+    [JsonPropertyName("value")]
+    public string? Value { get; set; }
+
+    /// <summary>
+    /// This the target variable that will be filled with the value of this property.
+    /// </summary>
+    [JsonPropertyName("target")]
+    public string? Target { get; set; }
 
     /// <summary>
     /// This array specifies the allowed values that can be used to restrict the output of the model.

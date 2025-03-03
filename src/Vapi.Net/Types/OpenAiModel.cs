@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record OpenAiModel
@@ -52,9 +50,6 @@ public record OpenAiModel
     /// </summary>
     [JsonPropertyName("fallbackModels")]
     public IEnumerable<OpenAiModelFallbackModelsItem>? FallbackModels { get; set; }
-
-    [JsonPropertyName("semanticCachingEnabled")]
-    public bool? SemanticCachingEnabled { get; set; }
 
     /// <summary>
     /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.

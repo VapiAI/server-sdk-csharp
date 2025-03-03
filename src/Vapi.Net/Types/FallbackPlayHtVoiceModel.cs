@@ -2,8 +2,6 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<FallbackPlayHtVoiceModel>))]
@@ -17,4 +15,7 @@ public enum FallbackPlayHtVoiceModel
 
     [EnumMember(Value = "Play3.0-mini")]
     Play30Mini,
+
+    [EnumMember(Value = "PlayDialog")]
+    PlayDialog,
 }

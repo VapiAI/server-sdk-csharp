@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record TwilioVoicemailDetection
@@ -11,7 +9,7 @@ public record TwilioVoicemailDetection
     /// This is the provider to use for voicemail detection.
     /// </summary>
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "twilio";
 
     /// <summary>
     /// These are the AMD messages from Twilio that are considered as voicemail. Default is ['machine_end_beep', 'machine_end_silence'].

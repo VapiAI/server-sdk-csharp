@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net", "Vapi.Net\Vapi.Net.csproj", "{B99D6C0F-4A08-4F6E-8F39-ADE7F821FF67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net", "Vapi.Net\Vapi.Net.csproj", "{6586B53D-B956-4662-8F9B-474993193E39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net.Test", "Vapi.Net.Test\Vapi.Net.Test.csproj", "{E05772B8-D757-4469-AC47-9AAB88404340}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net.Test", "Vapi.Net.Test\Vapi.Net.Test.csproj", "{CAF72DE5-5EE2-4EA3-A10E-A767F0F975E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +16,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B99D6C0F-4A08-4F6E-8F39-ADE7F821FF67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B99D6C0F-4A08-4F6E-8F39-ADE7F821FF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B99D6C0F-4A08-4F6E-8F39-ADE7F821FF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B99D6C0F-4A08-4F6E-8F39-ADE7F821FF67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E05772B8-D757-4469-AC47-9AAB88404340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E05772B8-D757-4469-AC47-9AAB88404340}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E05772B8-D757-4469-AC47-9AAB88404340}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E05772B8-D757-4469-AC47-9AAB88404340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6586B53D-B956-4662-8F9B-474993193E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6586B53D-B956-4662-8F9B-474993193E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6586B53D-B956-4662-8F9B-474993193E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6586B53D-B956-4662-8F9B-474993193E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF72DE5-5EE2-4EA3-A10E-A767F0F975E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF72DE5-5EE2-4EA3-A10E-A767F0F975E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF72DE5-5EE2-4EA3-A10E-A767F0F975E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF72DE5-5EE2-4EA3-A10E-A767F0F975E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

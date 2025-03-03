@@ -1,7 +1,5 @@
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record LogsGetRequest
@@ -47,7 +45,7 @@ public record LogsGetRequest
     public double? Page { get; set; }
 
     /// <summary>
-    /// This is the sort order for pagination. Defaults to 'ASC'.
+    /// This is the sort order for pagination. Defaults to 'DESC'.
     /// </summary>
     public LogsGetRequestSortOrder? SortOrder { get; set; }
 

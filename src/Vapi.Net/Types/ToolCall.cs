@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ToolCall
@@ -11,7 +9,7 @@ public record ToolCall
     /// This is the type of tool the model called.
     /// </summary>
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "function";
 
     /// <summary>
     /// This is the function the model called.

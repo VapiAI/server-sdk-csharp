@@ -2,8 +2,6 @@ using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageConversationUpdate
@@ -17,6 +15,12 @@ public record ServerMessageConversationUpdate
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "conversation-update" is sent when an update is committed to the conversation history.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "conversation-update";
 
     /// <summary>
     /// This is the most up-to-date conversation history at the time the message is sent.

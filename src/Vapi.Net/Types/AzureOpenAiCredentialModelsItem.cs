@@ -2,13 +2,14 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<AzureOpenAiCredentialModelsItem>))]
 public enum AzureOpenAiCredentialModelsItem
 {
+    [EnumMember(Value = "gpt-4o-2024-08-06-ptu")]
+    Gpt4O20240806Ptu,
+
     [EnumMember(Value = "gpt-4o-2024-08-06")]
     Gpt4O20240806,
 

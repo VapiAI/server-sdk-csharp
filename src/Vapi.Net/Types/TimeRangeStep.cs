@@ -2,13 +2,14 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<TimeRangeStep>))]
 public enum TimeRangeStep
 {
+    [EnumMember(Value = "second")]
+    Second,
+
     [EnumMember(Value = "minute")]
     Minute,
 

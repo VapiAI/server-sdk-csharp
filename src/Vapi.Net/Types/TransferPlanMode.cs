@@ -2,8 +2,6 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<TransferPlanMode>))]
@@ -20,6 +18,9 @@ public enum TransferPlanMode
 
     [EnumMember(Value = "warm-transfer-say-summary")]
     WarmTransferSaySummary,
+
+    [EnumMember(Value = "warm-transfer-twiml")]
+    WarmTransferTwiml,
 
     [EnumMember(Value = "warm-transfer-wait-for-operator-to-speak-first-and-then-say-message")]
     WarmTransferWaitForOperatorToSpeakFirstAndThenSayMessage,

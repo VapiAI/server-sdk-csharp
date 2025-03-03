@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record Server
@@ -36,6 +34,12 @@ public record Server
     /// </summary>
     [JsonPropertyName("headers")]
     public object? Headers { get; set; }
+
+    /// <summary>
+    /// This is the backoff plan to use if the request fails.
+    /// </summary>
+    [JsonPropertyName("backoffPlan")]
+    public BackoffPlan? BackoffPlan { get; set; }
 
     public override string ToString()
     {

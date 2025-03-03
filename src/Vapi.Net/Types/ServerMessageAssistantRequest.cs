@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageAssistantRequest
@@ -16,6 +14,12 @@ public record ServerMessageAssistantRequest
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "assistant-request" is sent to fetch assistant configuration for an incoming call.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "assistant-request";
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

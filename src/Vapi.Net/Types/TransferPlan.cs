@@ -2,8 +2,6 @@ using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record TransferPlan
@@ -18,6 +16,7 @@ public record TransferPlan
     /// - `warm-transfer-say-summary`: The assistant dials the destination, provides a summary of the call to the destination party, connects the customer, and leaves the call.
     /// - `warm-transfer-wait-for-operator-to-speak-first-and-then-say-message`: The assistant dials the destination, waits for the operator to speak, delivers the `message` to the destination party, and then connects the customer.
     /// - `warm-transfer-wait-for-operator-to-speak-first-and-then-say-summary`: The assistant dials the destination, waits for the operator to speak, provides a summary of the call to the destination party, and then connects the customer.
+    /// - `warm-transfer-twiml`: The assistant dials the destination, executes the twiml instructions on the destination call leg, connects the customer, and leaves the call.
     ///
     /// @default 'blind-transfer'
     /// </summary>
@@ -40,6 +39,24 @@ public record TransferPlan
     /// </summary>
     [JsonPropertyName("sipVerb")]
     public object? SipVerb { get; set; }
+
+    /// <summary>
+    /// This is the TwiML instructions to execute on the destination call leg before connecting the customer.
+    ///
+    /// Usage:
+    /// - Used only when `mode` is `warm-transfer-twiml`.
+    /// - Supports only `Play`, `Say`, `Gather`, `Hangup` and `Pause` verbs.
+    /// - Maximum length is 4096 characters.
+    ///
+    /// Example:
+    /// ```
+    /// &lt;Say voice="alice" language="en-US"&gt;Hello, transferring a customer to you.&lt;/Say&gt;
+    /// &lt;Pause length="2"/&gt;
+    /// &lt;Say&gt;They called about billing questions.&lt;/Say&gt;
+    /// ```
+    /// </summary>
+    [JsonPropertyName("twiml")]
+    public string? Twiml { get; set; }
 
     /// <summary>
     /// This is the plan for generating a summary of the call to present to the destination party.

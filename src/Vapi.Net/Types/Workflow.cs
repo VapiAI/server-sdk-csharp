@@ -1,19 +1,12 @@
 using System.Text.Json.Serialization;
-using OneOf;
 using Vapi.Net.Core;
-
-#nullable enable
 
 namespace Vapi.Net;
 
 public record Workflow
 {
-    [JsonPropertyName("type")]
-    public required string Type { get; set; }
-
     [JsonPropertyName("nodes")]
-    public IEnumerable<OneOf<Say, Gather, object, CreateWorkflowDto>> Nodes { get; set; } =
-        new List<OneOf<Say, Gather, object, CreateWorkflowDto>>();
+    public IEnumerable<object> Nodes { get; set; } = new List<object>();
 
     [JsonPropertyName("id")]
     public required string Id { get; set; }

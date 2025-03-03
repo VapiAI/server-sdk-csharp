@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageVoiceRequest
@@ -16,6 +14,33 @@ public record ServerMessageVoiceRequest
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "voice-request" is sent when using `assistant.voice={ "type": "custom-voice" }`.
+    ///
+    /// Here is what the request will look like:
+    ///
+    /// POST https://{assistant.voice.server.url}
+    /// Content-Type: application/json
+    ///
+    /// {
+    ///   "messsage": {
+    ///     "type": "voice-request",
+    ///     "text": "Hello, world!",
+    ///     "sampleRate": 24000,
+    ///     ...other metadata about the call...
+    ///   }
+    /// }
+    ///
+    /// The expected response is 1-channel 16-bit raw PCM audio at the sample rate specified in the request. Here is how the response will be piped to the transport:
+    /// ```
+    /// response.on('data', (chunk: Buffer) =&gt; {
+    ///   outputStream.write(chunk);
+    /// });
+    /// ```
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "voice-request";
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

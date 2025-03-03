@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
-public record SemanticEdgeCondition
+public record LogicEdgeCondition
 {
-    [JsonPropertyName("matches")]
-    public IEnumerable<string>? Matches { get; set; }
+    [JsonPropertyName("liquid")]
+    public required string Liquid { get; set; }
 
     public override string ToString()
     {

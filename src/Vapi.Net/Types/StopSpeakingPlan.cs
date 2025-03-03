@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record StopSpeakingPlan
@@ -48,6 +46,20 @@ public record StopSpeakingPlan
     /// </summary>
     [JsonPropertyName("backoffSeconds")]
     public double? BackoffSeconds { get; set; }
+
+    /// <summary>
+    /// These are the phrases that will never interrupt the assistant, even if numWords threshold is met.
+    /// These are typically acknowledgement or backchanneling phrases.
+    /// </summary>
+    [JsonPropertyName("acknowledgementPhrases")]
+    public IEnumerable<string>? AcknowledgementPhrases { get; set; }
+
+    /// <summary>
+    /// These are the phrases that will always interrupt the assistant immediately, regardless of numWords.
+    /// These are typically phrases indicating disagreement or desire to stop.
+    /// </summary>
+    [JsonPropertyName("interruptionPhrases")]
+    public IEnumerable<string>? InterruptionPhrases { get; set; }
 
     public override string ToString()
     {

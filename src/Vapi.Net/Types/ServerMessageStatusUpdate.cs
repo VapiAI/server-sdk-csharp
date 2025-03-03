@@ -2,8 +2,6 @@ using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageStatusUpdate
@@ -17,6 +15,12 @@ public record ServerMessageStatusUpdate
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "status-update" is sent whenever the `call.status` changes.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "status-update";
 
     /// <summary>
     /// This is the status of the call.

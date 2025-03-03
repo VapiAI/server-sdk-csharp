@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageVoiceInput
@@ -16,6 +14,12 @@ public record ServerMessageVoiceInput
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "voice-input" is sent when a generation is requested from voice provider.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "voice-input";
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

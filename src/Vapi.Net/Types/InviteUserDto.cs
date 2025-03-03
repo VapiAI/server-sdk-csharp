@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record InviteUserDto
@@ -12,6 +10,9 @@ public record InviteUserDto
 
     [JsonPropertyName("role")]
     public required InviteUserDtoRole Role { get; set; }
+
+    [JsonPropertyName("redirectTo")]
+    public string? RedirectTo { get; set; }
 
     public override string ToString()
     {

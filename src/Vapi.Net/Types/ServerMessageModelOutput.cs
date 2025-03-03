@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageModelOutput
@@ -16,6 +14,12 @@ public record ServerMessageModelOutput
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "model-output" is sent as the model outputs tokens.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "model-output";
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

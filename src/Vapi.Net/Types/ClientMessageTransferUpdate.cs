@@ -1,12 +1,16 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ClientMessageTransferUpdate
 {
+    /// <summary>
+    /// This is the type of the message. "transfer-update" is sent whenever a transfer happens.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "transfer-update";
+
     /// <summary>
     /// This is the destination of the transfer.
     /// </summary>

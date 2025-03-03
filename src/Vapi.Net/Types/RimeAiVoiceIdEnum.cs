@@ -2,73 +2,11 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<RimeAiVoiceIdEnum>))]
 public enum RimeAiVoiceIdEnum
 {
-    [EnumMember(Value = "marsh")]
-    Marsh,
-
-    [EnumMember(Value = "bayou")]
-    Bayou,
-
-    [EnumMember(Value = "creek")]
-    Creek,
-
-    [EnumMember(Value = "brook")]
-    Brook,
-
-    [EnumMember(Value = "flower")]
-    Flower,
-
-    [EnumMember(Value = "spore")]
-    Spore,
-
-    [EnumMember(Value = "glacier")]
-    Glacier,
-
-    [EnumMember(Value = "gulch")]
-    Gulch,
-
-    [EnumMember(Value = "alpine")]
-    Alpine,
-
-    [EnumMember(Value = "cove")]
-    Cove,
-
-    [EnumMember(Value = "lagoon")]
-    Lagoon,
-
-    [EnumMember(Value = "tundra")]
-    Tundra,
-
-    [EnumMember(Value = "steppe")]
-    Steppe,
-
-    [EnumMember(Value = "mesa")]
-    Mesa,
-
-    [EnumMember(Value = "grove")]
-    Grove,
-
-    [EnumMember(Value = "rainforest")]
-    Rainforest,
-
-    [EnumMember(Value = "moraine")]
-    Moraine,
-
-    [EnumMember(Value = "wildflower")]
-    Wildflower,
-
-    [EnumMember(Value = "peak")]
-    Peak,
-
-    [EnumMember(Value = "boulder")]
-    Boulder,
-
     [EnumMember(Value = "abbie")]
     Abbie,
 
@@ -251,4 +189,70 @@ public enum RimeAiVoiceIdEnum
 
     [EnumMember(Value = "yadira")]
     Yadira,
+
+    [EnumMember(Value = "marsh")]
+    Marsh,
+
+    [EnumMember(Value = "bayou")]
+    Bayou,
+
+    [EnumMember(Value = "creek")]
+    Creek,
+
+    [EnumMember(Value = "brook")]
+    Brook,
+
+    [EnumMember(Value = "flower")]
+    Flower,
+
+    [EnumMember(Value = "spore")]
+    Spore,
+
+    [EnumMember(Value = "glacier")]
+    Glacier,
+
+    [EnumMember(Value = "gulch")]
+    Gulch,
+
+    [EnumMember(Value = "alpine")]
+    Alpine,
+
+    [EnumMember(Value = "cove")]
+    Cove,
+
+    [EnumMember(Value = "lagoon")]
+    Lagoon,
+
+    [EnumMember(Value = "tundra")]
+    Tundra,
+
+    [EnumMember(Value = "steppe")]
+    Steppe,
+
+    [EnumMember(Value = "mesa")]
+    Mesa,
+
+    [EnumMember(Value = "grove")]
+    Grove,
+
+    [EnumMember(Value = "rainforest")]
+    Rainforest,
+
+    [EnumMember(Value = "moraine")]
+    Moraine,
+
+    [EnumMember(Value = "wildflower")]
+    Wildflower,
+
+    [EnumMember(Value = "peak")]
+    Peak,
+
+    [EnumMember(Value = "boulder")]
+    Boulder,
+
+    [EnumMember(Value = "gypsum")]
+    Gypsum,
+
+    [EnumMember(Value = "zest")]
+    Zest,
 }

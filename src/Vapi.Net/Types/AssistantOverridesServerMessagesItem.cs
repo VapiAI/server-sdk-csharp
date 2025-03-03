@@ -2,8 +2,6 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<AssistantOverridesServerMessagesItem>))]
@@ -41,6 +39,9 @@ public enum AssistantOverridesServerMessagesItem
 
     [EnumMember(Value = "transcript")]
     Transcript,
+
+    [EnumMember(Value = "transcript[transcriptType='final']")]
+    TranscriptTranscriptTypeFinal,
 
     [EnumMember(Value = "tool-calls")]
     ToolCalls,

@@ -2,8 +2,6 @@ using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record TransferDestinationAssistant
@@ -84,6 +82,29 @@ public record TransferDestinationAssistant
     ///     user: Yes, please
     ///     assistant: how can i help?
     ///     user: i need help with my account
+    ///
+    /// - `swap-system-message-in-history-and-remove-transfer-tool-messages`: This replaces the original system message with the new assistant's system message on transfer and removes transfer tool messages from conversation history sent to the LLM.
+    ///
+    ///   Example:
+    ///
+    ///   Pre-transfer:
+    ///     system: assistant1 system message
+    ///     assistant: assistant1 first message
+    ///     user: hey, good morning
+    ///     assistant: how can i help?
+    ///     user: i need help with my account
+    ///     transfer-tool
+    ///     transfer-tool-result
+    ///     assistant: (destination.message)
+    ///
+    ///   Post-transfer:
+    ///     system: assistant2 system message
+    ///     assistant: assistant1 first message
+    ///     user: hey, good morning
+    ///     assistant: how can i help?
+    ///     user: i need help with my account
+    ///     assistant: (destination.message)
+    ///     assistant: assistant2 first message (or model generated if firstMessageMode is set to `assistant-speaks-first-with-model-generated-message`)
     ///
     /// @default 'rolling-history'
     /// </summary>

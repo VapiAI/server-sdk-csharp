@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record StepDestination
 {
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "step";
 
     /// <summary>
     /// This is an optional array of conditions that must be met for this destination to be triggered. If empty, this is the default destination that the step transfers to.

@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record Subscription
@@ -57,6 +55,18 @@ public record Subscription
     /// </summary>
     [JsonPropertyName("concurrencyLimitIncluded")]
     public required double ConcurrencyLimitIncluded { get; set; }
+
+    /// <summary>
+    /// This is the number of free phone numbers the subscription has
+    /// </summary>
+    [JsonPropertyName("phoneNumbersCounter")]
+    public double? PhoneNumbersCounter { get; set; }
+
+    /// <summary>
+    /// This is the maximum number of free phone numbers the subscription can have
+    /// </summary>
+    [JsonPropertyName("phoneNumbersIncluded")]
+    public double? PhoneNumbersIncluded { get; set; }
 
     /// <summary>
     /// This is the purchased add-on concurrency limit for the subscription.
@@ -140,16 +150,22 @@ public record Subscription
     public AutoReloadPlan? AutoReloadPlan { get; set; }
 
     /// <summary>
-    /// The number of minutes included in the subscription. Enterprise only.
+    /// The number of minutes included in the subscription.
     /// </summary>
     [JsonPropertyName("minutesIncluded")]
     public double? MinutesIncluded { get; set; }
 
     /// <summary>
-    /// The number of minutes used in the subscription. Enterprise only.
+    /// The number of minutes used in the subscription.
     /// </summary>
     [JsonPropertyName("minutesUsed")]
     public double? MinutesUsed { get; set; }
+
+    /// <summary>
+    /// This is the timestamp at which the number of monthly free minutes is scheduled to reset at.
+    /// </summary>
+    [JsonPropertyName("minutesUsedNextResetAt")]
+    public DateTime? MinutesUsedNextResetAt { get; set; }
 
     /// <summary>
     /// The per minute charge on minutes that exceed the included minutes. Enterprise only.

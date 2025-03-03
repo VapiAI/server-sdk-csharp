@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record MessagePlan
@@ -34,6 +32,14 @@ public record MessagePlan
     /// </summary>
     [JsonPropertyName("idleTimeoutSeconds")]
     public double? IdleTimeoutSeconds { get; set; }
+
+    /// <summary>
+    /// This is the message that the assistant will say if the call ends due to silence.
+    ///
+    /// If unspecified, it will hang up without saying anything.
+    /// </summary>
+    [JsonPropertyName("silenceTimeoutMessage")]
+    public string? SilenceTimeoutMessage { get; set; }
 
     public override string ToString()
     {

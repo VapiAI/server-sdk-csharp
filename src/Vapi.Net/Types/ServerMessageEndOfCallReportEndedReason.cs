@@ -2,15 +2,13 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<ServerMessageEndOfCallReportEndedReason>))]
 public enum ServerMessageEndOfCallReportEndedReason
 {
-    [EnumMember(Value = "assistant-not-invalid")]
-    AssistantNotInvalid,
+    [EnumMember(Value = "assistant-not-valid")]
+    AssistantNotValid,
 
     [EnumMember(Value = "assistant-not-provided")]
     AssistantNotProvided,
@@ -41,6 +39,9 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "assistant-said-end-call-phrase")]
     AssistantSaidEndCallPhrase,
+
+    [EnumMember(Value = "assistant-ended-call-with-hangup-task")]
+    AssistantEndedCallWithHangupTask,
 
     [EnumMember(Value = "assistant-forwarded-call")]
     AssistantForwardedCall,
@@ -111,11 +112,17 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "pipeline-error-smallest-ai-voice-failed")]
     PipelineErrorSmallestAiVoiceFailed,
 
+    [EnumMember(Value = "pipeline-error-neuphonic-voice-failed")]
+    PipelineErrorNeuphonicVoiceFailed,
+
     [EnumMember(Value = "pipeline-error-deepgram-transcriber-failed")]
     PipelineErrorDeepgramTranscriberFailed,
 
     [EnumMember(Value = "pipeline-error-gladia-transcriber-failed")]
     PipelineErrorGladiaTranscriberFailed,
+
+    [EnumMember(Value = "pipeline-error-speechmatics-transcriber-failed")]
+    PipelineErrorSpeechmaticsTranscriberFailed,
 
     [EnumMember(Value = "pipeline-error-assembly-ai-transcriber-failed")]
     PipelineErrorAssemblyAiTranscriberFailed,
@@ -198,6 +205,9 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "pipeline-error-xai-llm-failed")]
     PipelineErrorXaiLlmFailed,
 
+    [EnumMember(Value = "pipeline-error-mistral-llm-failed")]
+    PipelineErrorMistralLlmFailed,
+
     [EnumMember(Value = "pipeline-error-inflection-ai-llm-failed")]
     PipelineErrorInflectionAiLlmFailed,
 
@@ -251,6 +261,21 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "pipeline-error-xai-500-server-error")]
     PipelineErrorXai500ServerError,
+
+    [EnumMember(Value = "pipeline-error-mistral-400-bad-request-validation-failed")]
+    PipelineErrorMistral400BadRequestValidationFailed,
+
+    [EnumMember(Value = "pipeline-error-mistral-401-unauthorized")]
+    PipelineErrorMistral401Unauthorized,
+
+    [EnumMember(Value = "pipeline-error-mistral-403-model-access-denied")]
+    PipelineErrorMistral403ModelAccessDenied,
+
+    [EnumMember(Value = "pipeline-error-mistral-429-exceeded-quota")]
+    PipelineErrorMistral429ExceededQuota,
+
+    [EnumMember(Value = "pipeline-error-mistral-500-server-error")]
+    PipelineErrorMistral500ServerError,
 
     [EnumMember(Value = "pipeline-error-inflection-ai-400-bad-request-validation-failed")]
     PipelineErrorInflectionAi400BadRequestValidationFailed,

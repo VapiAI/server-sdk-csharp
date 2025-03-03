@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
-public record ProgrammaticEdgeCondition
+public record AiEdgeCondition
 {
-    [JsonPropertyName("booleanExpression")]
-    public string? BooleanExpression { get; set; }
+    [JsonPropertyName("matches")]
+    public IEnumerable<string> Matches { get; set; } = new List<string>();
 
     public override string ToString()
     {

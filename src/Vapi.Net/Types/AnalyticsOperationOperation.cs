@@ -2,8 +2,6 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<AnalyticsOperationOperation>))]
@@ -23,4 +21,7 @@ public enum AnalyticsOperationOperation
 
     [EnumMember(Value = "max")]
     Max,
+
+    [EnumMember(Value = "history")]
+    History,
 }

@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageEndOfCallReport
@@ -16,6 +14,12 @@ public record ServerMessageEndOfCallReport
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "end-of-call-report" is sent when the call ends and post-processing is complete.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "end-of-call-report";
 
     /// <summary>
     /// This is the reason the call ended. This can also be found at `call.endedReason` on GET /call/:id.

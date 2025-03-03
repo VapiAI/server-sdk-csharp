@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record AnalyticsQuery
@@ -11,7 +9,7 @@ public record AnalyticsQuery
     /// This is the table you want to query.
     /// </summary>
     [JsonPropertyName("table")]
-    public required string Table { get; set; }
+    public required AnalyticsQueryTable Table { get; set; }
 
     /// <summary>
     /// This is the list of columns you want to group by.

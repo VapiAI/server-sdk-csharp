@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record CreateGoogleCredentialDto
@@ -11,7 +9,7 @@ public record CreateGoogleCredentialDto
     /// This is the key for Gemini in Google AI Studio. Get it from here: https://aistudio.google.com/app/apikey
     /// </summary>
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "google";
 
     /// <summary>
     /// This is not returned in the API.

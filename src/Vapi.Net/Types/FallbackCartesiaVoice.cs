@@ -1,12 +1,16 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record FallbackCartesiaVoice
 {
+    /// <summary>
+    /// The ID of the particular voice you want to use.
+    /// </summary>
+    [JsonPropertyName("voiceId")]
+    public required string VoiceId { get; set; }
+
     /// <summary>
     /// This is the model that will be used. This is optional and will default to the correct model for the voiceId.
     /// </summary>
@@ -20,10 +24,10 @@ public record FallbackCartesiaVoice
     public FallbackCartesiaVoiceLanguage? Language { get; set; }
 
     /// <summary>
-    /// This is the provider-specific ID that will be used.
+    /// Experimental controls for Cartesia voice generation
     /// </summary>
-    [JsonPropertyName("voiceId")]
-    public required string VoiceId { get; set; }
+    [JsonPropertyName("experimentalControls")]
+    public CartesiaExperimentalControls? ExperimentalControls { get; set; }
 
     /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.

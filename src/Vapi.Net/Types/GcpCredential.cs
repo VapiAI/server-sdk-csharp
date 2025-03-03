@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record GcpCredential
 {
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "gcp";
 
     /// <summary>
     /// This is the unique identifier for the credential.

@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record OAuth2AuthenticationPlan
 {
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "oauth2";
 
     /// <summary>
     /// This is the OAuth2 URL.

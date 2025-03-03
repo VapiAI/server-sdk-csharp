@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record TextContent
 {
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "text";
 
     [JsonPropertyName("text")]
     public required string Text { get; set; }

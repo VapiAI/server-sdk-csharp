@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record OpenAiCredential
 {
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "openai";
 
     /// <summary>
     /// This is not returned in the API.

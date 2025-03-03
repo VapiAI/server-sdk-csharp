@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record CreateInflectionAiCredentialDto
@@ -11,7 +9,7 @@ public record CreateInflectionAiCredentialDto
     /// This is the api key for Pi in InflectionAI's console. Get it from here: https://developers.inflection.ai/keys, billing will need to be setup
     /// </summary>
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "inflection-ai";
 
     /// <summary>
     /// This is not returned in the API.

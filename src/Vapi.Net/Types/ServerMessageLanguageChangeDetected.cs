@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageLanguageChangeDetected
@@ -16,6 +14,12 @@ public record ServerMessageLanguageChangeDetected
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "language-change-detected" is sent when the transcriber is automatically switched based on the detected language.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "language-change-detected";
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

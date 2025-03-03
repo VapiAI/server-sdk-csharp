@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record Template
@@ -20,7 +18,7 @@ public record Template
     public TemplateVisibility? Visibility { get; set; }
 
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "tool";
 
     /// <summary>
     /// The name of the template. This is just for your own reference.

@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record CustomMessage
@@ -23,7 +21,7 @@ public record CustomMessage
     /// This is a custom message.
     /// </summary>
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "custom-message";
 
     /// <summary>
     /// This is the content that the assistant will say when this message is triggered.

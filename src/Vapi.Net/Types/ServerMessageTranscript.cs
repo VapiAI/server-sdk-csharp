@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageTranscript
@@ -16,6 +14,12 @@ public record ServerMessageTranscript
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public required ServerMessageTranscriptType Type { get; set; }
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

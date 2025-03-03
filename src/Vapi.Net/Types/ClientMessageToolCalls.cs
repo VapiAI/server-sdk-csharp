@@ -1,12 +1,16 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ClientMessageToolCalls
 {
+    /// <summary>
+    /// This is the type of the message. "tool-calls" is sent to call a tool.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
     /// <summary>
     /// This is the list of tools calls that the model is requesting along with the original tool configuration.
     /// </summary>

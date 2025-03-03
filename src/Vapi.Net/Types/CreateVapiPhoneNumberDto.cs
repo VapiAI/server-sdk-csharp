@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record CreateVapiPhoneNumberDto
@@ -19,12 +17,18 @@ public record CreateVapiPhoneNumberDto
     public object? FallbackDestination { get; set; }
 
     /// <summary>
+    /// This is the area code of the phone number to purchase.
+    /// </summary>
+    [JsonPropertyName("numberDesiredAreaCode")]
+    public string? NumberDesiredAreaCode { get; set; }
+
+    /// <summary>
     /// This is the SIP URI of the phone number. You can SIP INVITE this. The assistant attached to this number will answer.
     ///
     /// This is case-insensitive.
     /// </summary>
     [JsonPropertyName("sipUri")]
-    public required string SipUri { get; set; }
+    public string? SipUri { get; set; }
 
     /// <summary>
     /// This enables authentication for incoming SIP INVITE requests to the `sipUri`.

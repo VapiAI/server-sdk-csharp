@@ -2,8 +2,6 @@ using System;
 using System.Net.Http;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public partial class ClientOptions

@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record XAiCredential
@@ -11,7 +9,7 @@ public record XAiCredential
     /// This is the api key for Grok in XAi's console. Get it from here: https://console.x.ai
     /// </summary>
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "xai";
 
     /// <summary>
     /// This is not returned in the API.

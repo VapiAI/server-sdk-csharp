@@ -1,10 +1,8 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
+using global::System.Threading.Tasks;
 using Vapi.Net.Core;
-
-#nullable enable
 
 namespace Vapi.Net;
 
@@ -46,7 +44,7 @@ public partial class LogsClient
         return pager;
     }
 
-    public async Task LoggingControllerLogsDeleteQueryAsync(
+    public async global::System.Threading.Tasks.Task LoggingControllerLogsDeleteQueryAsync(
         LoggingControllerLogsDeleteQueryRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -77,17 +75,19 @@ public partial class LogsClient
         {
             _query["callId"] = request.CallId;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.BaseUrl,
-                Method = HttpMethod.Delete,
-                Path = "logs",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
+        var response = await _client
+            .MakeRequestAsync(
+                new RawClient.JsonApiRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Delete,
+                    Path = "logs",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
             return;
@@ -100,7 +100,7 @@ public partial class LogsClient
         );
     }
 
-    internal async Task<LogsPaginatedResponse> GetAsync(
+    private async Task<LogsPaginatedResponse> GetAsync(
         LogsGetRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -137,7 +137,7 @@ public partial class LogsClient
         }
         if (request.Page != null)
         {
-            _query["page"] = request.Page.ToString();
+            _query["page"] = request.Page.Value.ToString();
         }
         if (request.SortOrder != null)
         {
@@ -145,7 +145,7 @@ public partial class LogsClient
         }
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.CreatedAtGt != null)
         {
@@ -179,17 +179,19 @@ public partial class LogsClient
         {
             _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.BaseUrl,
-                Method = HttpMethod.Get,
-                Path = "logs",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
+        var response = await _client
+            .MakeRequestAsync(
+                new RawClient.JsonApiRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "logs",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {

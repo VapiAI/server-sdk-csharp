@@ -2,13 +2,23 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<GoogleModelModel>))]
 public enum GoogleModelModel
 {
+    [EnumMember(Value = "gemini-2.0-flash-thinking-exp")]
+    Gemini20FlashThinkingExp,
+
+    [EnumMember(Value = "gemini-2.0-pro-exp-02-05")]
+    Gemini20ProExp0205,
+
+    [EnumMember(Value = "gemini-2.0-flash")]
+    Gemini20Flash,
+
+    [EnumMember(Value = "gemini-2.0-flash-lite-preview-02-05")]
+    Gemini20FlashLitePreview0205,
+
     [EnumMember(Value = "gemini-2.0-flash-exp")]
     Gemini20FlashExp,
 

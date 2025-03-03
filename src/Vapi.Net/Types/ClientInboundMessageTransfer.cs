@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ClientInboundMessageTransfer
@@ -12,6 +10,12 @@ public record ClientInboundMessageTransfer
     /// </summary>
     [JsonPropertyName("destination")]
     public object? Destination { get; set; }
+
+    /// <summary>
+    /// This is the content to say.
+    /// </summary>
+    [JsonPropertyName("content")]
+    public string? Content { get; set; }
 
     public override string ToString()
     {

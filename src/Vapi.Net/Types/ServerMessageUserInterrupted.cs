@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessageUserInterrupted
@@ -16,6 +14,12 @@ public record ServerMessageUserInterrupted
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "user-interrupted" is sent when the user interrupts the assistant.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "user-interrupted";
 
     /// <summary>
     /// This is the ISO-8601 formatted timestamp of when the message was sent.

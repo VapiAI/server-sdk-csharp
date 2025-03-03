@@ -2,8 +2,6 @@ using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record Artifact
@@ -51,6 +49,12 @@ public record Artifact
     /// </summary>
     [JsonPropertyName("transcript")]
     public string? Transcript { get; set; }
+
+    /// <summary>
+    /// This is the packet capture url for the call. This is only available for `phone` type calls where phone number's provider is `vapi` or `byo-phone-number`.
+    /// </summary>
+    [JsonPropertyName("pcapUrl")]
+    public string? PcapUrl { get; set; }
 
     public override string ToString()
     {

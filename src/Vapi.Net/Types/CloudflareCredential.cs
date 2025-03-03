@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record CloudflareCredential
@@ -11,7 +9,7 @@ public record CloudflareCredential
     /// Credential provider. Only allowed value is cloudflare
     /// </summary>
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "cloudflare";
 
     /// <summary>
     /// Cloudflare Account Id.

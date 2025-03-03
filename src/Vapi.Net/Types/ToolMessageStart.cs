@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ToolMessageStart
@@ -18,6 +16,14 @@ public record ToolMessageStart
     /// </summary>
     [JsonPropertyName("contents")]
     public IEnumerable<TextContent>? Contents { get; set; }
+
+    /// <summary>
+    /// This is an optional boolean that if true, the tool call will only trigger after the message is spoken. Default is false.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("blocking")]
+    public bool? Blocking { get; set; }
 
     /// <summary>
     /// This is the content that the assistant says when this message is triggered.

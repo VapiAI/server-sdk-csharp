@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Vapi.Net.Core;
 
 /// <summary>
@@ -5,7 +7,7 @@ namespace Vapi.Net.Core;
 /// zero or more <see cref="Page{TItem}"/>s of items.
 /// </summary>
 /// <typeparam name="TItem">The type of items.</typeparam>
-public class Page<TItem>
+public class Page<TItem> : IEnumerable<TItem>
 {
     public Page(IReadOnlyList<TItem> items)
     {
@@ -16,4 +18,8 @@ public class Page<TItem>
     /// Gets the items in this <see cref="Page{TItem}"/>.
     /// </summary>
     public IReadOnlyList<TItem> Items { get; }
+
+    public IEnumerator<TItem> GetEnumerator() => Items.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => Items.GetEnumerator();
 }

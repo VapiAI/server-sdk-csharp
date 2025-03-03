@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record AssignmentMutation
@@ -17,7 +15,7 @@ public record AssignmentMutation
     /// This mutation assigns a new value to an existing or new variable.
     /// </summary>
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "assignment";
 
     /// <summary>
     /// This is the variable to assign a new value to.

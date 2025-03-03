@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record CreateComputerToolDto
@@ -31,13 +29,13 @@ public record CreateComputerToolDto
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public required string SubType { get; set; }
+    public string SubType { get; set; } = "computer_20241022";
 
     /// <summary>
     /// The name of the tool, fixed to 'computer'
     /// </summary>
     [JsonPropertyName("name")]
-    public required string Name { get; set; }
+    public string Name { get; set; } = "computer";
 
     /// <summary>
     /// The display width in pixels

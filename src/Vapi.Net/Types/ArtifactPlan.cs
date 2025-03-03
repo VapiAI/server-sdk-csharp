@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ArtifactPlan
@@ -12,7 +10,7 @@ public record ArtifactPlan
     ///
     /// Usage:
     /// - If you don't want to record the calls, set this to false.
-    /// - If you want to record the calls when `assistant.hipaaEnabled`, explicity set this to true and make sure to provide S3 or GCP credentials on the Provider Credentials page in the Dashboard.
+    /// - If you want to record the calls when `assistant.hipaaEnabled` (deprecated) or `assistant.compliancePlan.hipaaEnabled` explicity set this to true and make sure to provide S3 or GCP credentials on the Provider Credentials page in the Dashboard.
     ///
     /// You can find the recording at `call.artifact.recordingUrl` and `call.artifact.stereoRecordingUrl` after the call is ended.
     ///
@@ -30,6 +28,30 @@ public record ArtifactPlan
     /// </summary>
     [JsonPropertyName("videoRecordingEnabled")]
     public bool? VideoRecordingEnabled { get; set; }
+
+    /// <summary>
+    /// This determines whether the SIP packet capture is enabled. Defaults to true. Only relevant for `phone` type calls where phone number's provider is `vapi` or `byo-phone-number`.
+    ///
+    /// You can find the packet capture at `call.artifact.pcapUrl` after the call is ended.
+    ///
+    /// @default true
+    /// </summary>
+    [JsonPropertyName("pcapEnabled")]
+    public bool? PcapEnabled { get; set; }
+
+    /// <summary>
+    /// This is the path where the SIP packet capture will be uploaded. This is only used if you have provided S3 or GCP credentials on the Provider Credentials page in the Dashboard.
+    ///
+    /// If credential.s3PathPrefix or credential.bucketPlan.path is set, this will append to it.
+    ///
+    /// Usage:
+    /// - If you want to upload the packet capture to a specific path, set this to the path. Example: `/my-assistant-captures`.
+    /// - If you want to upload the packet capture to the root of the bucket, set this to `/`.
+    ///
+    /// @default '/'
+    /// </summary>
+    [JsonPropertyName("pcapS3PathPrefix")]
+    public string? PcapS3PathPrefix { get; set; }
 
     /// <summary>
     /// This is the plan for `call.artifact.transcript`. To disable, set `transcriptPlan.enabled` to false.

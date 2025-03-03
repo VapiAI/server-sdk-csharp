@@ -2,8 +2,6 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<AnalyticsOperationColumn>))]
@@ -38,4 +36,7 @@ public enum AnalyticsOperationColumn
 
     [EnumMember(Value = "duration")]
     Duration,
+
+    [EnumMember(Value = "concurrency")]
+    Concurrency,
 }

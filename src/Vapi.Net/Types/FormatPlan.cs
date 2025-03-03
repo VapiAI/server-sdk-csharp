@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record FormatPlan
@@ -46,6 +44,15 @@ public record FormatPlan
     /// </summary>
     [JsonPropertyName("replacements")]
     public IEnumerable<object>? Replacements { get; set; }
+
+    /// <summary>
+    /// List of formatters to apply. If not provided, all default formatters will be applied.
+    /// If provided, only the specified formatters will be applied.
+    /// Note: Some essential formatters like angle bracket removal will always be applied.
+    /// @default undefined
+    /// </summary>
+    [JsonPropertyName("formattersEnabled")]
+    public IEnumerable<FormatPlanFormattersEnabledItem>? FormattersEnabled { get; set; }
 
     public override string ToString()
     {

@@ -2,5 +2,5 @@ namespace Vapi.Net;
 
 public class VapiClientEnvironment
 {
-    public static string Default = "https://api.vapi.ai";
+    public const string Default = "https://api.vapi.ai";
 }

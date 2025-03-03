@@ -2,13 +2,14 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<GroqModelModel>))]
 public enum GroqModelModel
 {
+    [EnumMember(Value = "deepseek-r1-distill-llama-70b")]
+    DeepseekR1DistillLlama70B,
+
     [EnumMember(Value = "llama-3.3-70b-versatile")]
     Llama3370BVersatile,
 

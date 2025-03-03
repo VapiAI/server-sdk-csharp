@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record OpenAiFunctionParameters
@@ -11,7 +9,7 @@ public record OpenAiFunctionParameters
     /// This must be set to 'object'. It instructs the model to return a JSON object containing the function call properties.
     /// </summary>
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "object";
 
     /// <summary>
     /// This provides a description of the properties required by the function.

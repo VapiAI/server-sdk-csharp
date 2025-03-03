@@ -1,22 +1,21 @@
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public partial class VapiClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
-    public VapiClient(string token, ClientOptions? clientOptions = null)
+    public VapiClient(string? token = null, ClientOptions? clientOptions = null)
     {
         var defaultHeaders = new Headers(
             new Dictionary<string, string>()
             {
+                { "Authorization", $"Bearer {token}" },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/0.4.1" },
+                { "User-Agent", "Vapi.Net/0.5.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -38,6 +37,9 @@ public partial class VapiClient
         Files = new FilesClient(_client);
         Analytics = new AnalyticsClient(_client);
         Logs = new LogsClient(_client);
+        TestSuites = new TestSuitesClient(_client);
+        TestSuiteTests = new TestSuiteTestsClient(_client);
+        TestSuiteRuns = new TestSuiteRunsClient(_client);
     }
 
     public CallsClient Calls { get; init; }
@@ -59,4 +61,10 @@ public partial class VapiClient
     public AnalyticsClient Analytics { get; init; }
 
     public LogsClient Logs { get; init; }
+
+    public TestSuitesClient TestSuites { get; init; }
+
+    public TestSuiteTestsClient TestSuiteTests { get; init; }
+
+    public TestSuiteRunsClient TestSuiteRuns { get; init; }
 }

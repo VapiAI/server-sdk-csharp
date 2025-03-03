@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record S3Credential
@@ -11,7 +9,7 @@ public record S3Credential
     /// Credential provider. Only allowed value is s3
     /// </summary>
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "s3";
 
     /// <summary>
     /// AWS access key ID.

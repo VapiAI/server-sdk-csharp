@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record VonageCredential
@@ -14,7 +12,7 @@ public record VonageCredential
     public required string VonageApplicationPrivateKey { get; set; }
 
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "vonage";
 
     /// <summary>
     /// This is not returned in the API.

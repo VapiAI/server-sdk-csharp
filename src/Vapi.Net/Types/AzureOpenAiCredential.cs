@@ -1,14 +1,12 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record AzureOpenAiCredential
 {
     [JsonPropertyName("provider")]
-    public required string Provider { get; set; }
+    public string Provider { get; set; } = "azure-openai";
 
     [JsonPropertyName("region")]
     public required AzureOpenAiCredentialRegion Region { get; set; }

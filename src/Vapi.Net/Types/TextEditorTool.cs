@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record TextEditorTool
@@ -31,7 +29,7 @@ public record TextEditorTool
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public required string SubType { get; set; }
+    public string SubType { get; set; } = "text_editor_20241022";
 
     /// <summary>
     /// This is the unique identifier for the tool.
@@ -81,7 +79,7 @@ public record TextEditorTool
     /// The name of the tool, fixed to 'str_replace_editor'
     /// </summary>
     [JsonPropertyName("name")]
-    public required string Name { get; set; }
+    public string Name { get; set; } = "str_replace_editor";
 
     public override string ToString()
     {

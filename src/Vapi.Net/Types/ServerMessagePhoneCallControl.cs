@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
-#nullable enable
-
 namespace Vapi.Net;
 
 public record ServerMessagePhoneCallControl
@@ -16,6 +14,14 @@ public record ServerMessagePhoneCallControl
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "phone-call-control" is an advanced type of message.
+    ///
+    /// When it is requested in `assistant.serverMessages`, the hangup and forwarding responsibilities are delegated to your server. Vapi will no longer do the actual transfer and hangup.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "phone-call-control";
 
     /// <summary>
     /// This is the request to control the phone call.
