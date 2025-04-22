@@ -15,7 +15,7 @@ public partial class VapiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/0.5.0" },
+                { "User-Agent", "Vapi.Net/0.6.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -30,41 +30,41 @@ public partial class VapiClient
         Calls = new CallsClient(_client);
         Assistants = new AssistantsClient(_client);
         PhoneNumbers = new PhoneNumbersClient(_client);
-        Squads = new SquadsClient(_client);
-        KnowledgeBases = new KnowledgeBasesClient(_client);
-        Blocks = new BlocksClient(_client);
         Tools = new ToolsClient(_client);
         Files = new FilesClient(_client);
-        Analytics = new AnalyticsClient(_client);
-        Logs = new LogsClient(_client);
+        KnowledgeBases = new KnowledgeBasesClient(_client);
+        Workflow = new WorkflowClient(_client);
+        Squads = new SquadsClient(_client);
         TestSuites = new TestSuitesClient(_client);
         TestSuiteTests = new TestSuiteTestsClient(_client);
         TestSuiteRuns = new TestSuiteRunsClient(_client);
+        Analytics = new AnalyticsClient(_client);
+        Logs = new LogsClient(_client);
     }
 
-    public CallsClient Calls { get; init; }
+    public CallsClient Calls { get; }
 
-    public AssistantsClient Assistants { get; init; }
+    public AssistantsClient Assistants { get; }
 
-    public PhoneNumbersClient PhoneNumbers { get; init; }
+    public PhoneNumbersClient PhoneNumbers { get; }
 
-    public SquadsClient Squads { get; init; }
+    public ToolsClient Tools { get; }
 
-    public KnowledgeBasesClient KnowledgeBases { get; init; }
+    public FilesClient Files { get; }
 
-    public BlocksClient Blocks { get; init; }
+    public KnowledgeBasesClient KnowledgeBases { get; }
 
-    public ToolsClient Tools { get; init; }
+    public WorkflowClient Workflow { get; }
 
-    public FilesClient Files { get; init; }
+    public SquadsClient Squads { get; }
 
-    public AnalyticsClient Analytics { get; init; }
+    public TestSuitesClient TestSuites { get; }
 
-    public LogsClient Logs { get; init; }
+    public TestSuiteTestsClient TestSuiteTests { get; }
 
-    public TestSuitesClient TestSuites { get; init; }
+    public TestSuiteRunsClient TestSuiteRuns { get; }
 
-    public TestSuiteTestsClient TestSuiteTests { get; init; }
+    public AnalyticsClient Analytics { get; }
 
-    public TestSuiteRunsClient TestSuiteRuns { get; init; }
+    public LogsClient Logs { get; }
 }

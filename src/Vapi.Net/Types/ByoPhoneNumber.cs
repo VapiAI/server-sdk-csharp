@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -15,6 +16,12 @@ public record ByoPhoneNumber
     /// </summary>
     [JsonPropertyName("fallbackDestination")]
     public object? FallbackDestination { get; set; }
+
+    /// <summary>
+    /// This is the hooks that will be used for incoming calls to this phone number.
+    /// </summary>
+    [JsonPropertyName("hooks")]
+    public IEnumerable<PhoneNumberHookCallRinging>? Hooks { get; set; }
 
     /// <summary>
     /// This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.
@@ -108,6 +115,17 @@ public record ByoPhoneNumber
     [JsonPropertyName("credentialId")]
     public required string CredentialId { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

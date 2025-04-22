@@ -27,6 +27,7 @@ public record UpdateSquadDto
     [JsonPropertyName("membersOverrides")]
     public AssistantOverrides? MembersOverrides { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

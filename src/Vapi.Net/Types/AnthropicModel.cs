@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -40,10 +41,18 @@ public record AnthropicModel
     public string? KnowledgeBaseId { get; set; }
 
     /// <summary>
-    /// This is the Anthropic/Claude models that will be used.
+    /// The specific Anthropic/Claude model that will be used.
     /// </summary>
     [JsonPropertyName("model")]
     public required AnthropicModelModel Model { get; set; }
+
+    /// <summary>
+    /// Optional configuration for Anthropic's thinking feature.
+    /// Only applicable for claude-3-7-sonnet-20250219 model.
+    /// If provided, maxTokens must be greater than thinking.budgetTokens.
+    /// </summary>
+    [JsonPropertyName("thinking")]
+    public AnthropicThinkingConfig? Thinking { get; set; }
 
     /// <summary>
     /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
@@ -77,6 +86,17 @@ public record AnthropicModel
     [JsonPropertyName("numFastTurns")]
     public double? NumFastTurns { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

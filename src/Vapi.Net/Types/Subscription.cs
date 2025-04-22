@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -209,6 +210,36 @@ public record Subscription
     [JsonPropertyName("couponUsageLeft")]
     public string? CouponUsageLeft { get; set; }
 
+    /// <summary>
+    /// This is the invoice plan for the subscription.
+    /// </summary>
+    [JsonPropertyName("invoicePlan")]
+    public InvoicePlan? InvoicePlan { get; set; }
+
+    /// <summary>
+    /// This is the PCI enabled flag for the subscription. It determines whether orgs under this
+    /// subscription have the option to enable PCI compliance.
+    /// </summary>
+    [JsonPropertyName("pciEnabled")]
+    public bool? PciEnabled { get; set; }
+
+    /// <summary>
+    /// This is the ID for the Common Paper agreement outlining the PCI contract.
+    /// </summary>
+    [JsonPropertyName("pciCommonPaperAgreementId")]
+    public string? PciCommonPaperAgreementId { get; set; }
+
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -51,4 +51,7 @@ public enum AssistantClientMessagesItem
 
     [EnumMember(Value = "voice-input")]
     VoiceInput,
+
+    [EnumMember(Value = "workflow.node.started")]
+    WorkflowNodeStarted,
 }

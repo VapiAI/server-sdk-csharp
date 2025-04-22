@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
@@ -36,6 +37,7 @@ public record TransferPlan
     /// This specifies the SIP verb to use while transferring the call.
     /// - 'refer': Uses SIP REFER to transfer the call (default)
     /// - 'bye': Ends current call with SIP BYE
+    /// - 'dial': Uses SIP DIAL to transfer the call
     /// </summary>
     [JsonPropertyName("sipVerb")]
     public object? SipVerb { get; set; }
@@ -67,6 +69,17 @@ public record TransferPlan
     [JsonPropertyName("summaryPlan")]
     public SummaryPlan? SummaryPlan { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

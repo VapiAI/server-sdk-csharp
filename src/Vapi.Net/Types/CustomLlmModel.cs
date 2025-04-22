@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -60,6 +61,12 @@ public record CustomLlmModel
     public required string Url { get; set; }
 
     /// <summary>
+    /// This sets the timeout for the connection to the custom provider without needing to stream any tokens back. Default is 20 seconds.
+    /// </summary>
+    [JsonPropertyName("timeoutSeconds")]
+    public double? TimeoutSeconds { get; set; }
+
+    /// <summary>
     /// This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
     /// </summary>
     [JsonPropertyName("model")]
@@ -97,6 +104,17 @@ public record CustomLlmModel
     [JsonPropertyName("numFastTurns")]
     public double? NumFastTurns { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

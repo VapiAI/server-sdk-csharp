@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -6,10 +7,30 @@ namespace Vapi.Net;
 public record CreateOutboundCallDto
 {
     /// <summary>
+    /// This is used to issue batch calls to multiple customers.
+    ///
+    /// Only relevant for `outboundPhoneCall`. To call a single customer, use `customer` instead.
+    /// </summary>
+    [JsonPropertyName("customers")]
+    public IEnumerable<CreateCustomerDto>? Customers { get; set; }
+
+    /// <summary>
     /// This is the name of the call. This is just for your own reference.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
+
+    /// <summary>
+    /// This is the schedule plan of the call.
+    /// </summary>
+    [JsonPropertyName("schedulePlan")]
+    public SchedulePlan? SchedulePlan { get; set; }
+
+    /// <summary>
+    /// This is the transport of the call.
+    /// </summary>
+    [JsonPropertyName("transport")]
+    public object? Transport { get; set; }
 
     /// <summary>
     /// This is the assistant that will be used for the call. To use a transient assistant, use `assistant` instead.
@@ -73,6 +94,17 @@ public record CreateOutboundCallDto
     [JsonPropertyName("customer")]
     public CreateCustomerDto? Customer { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

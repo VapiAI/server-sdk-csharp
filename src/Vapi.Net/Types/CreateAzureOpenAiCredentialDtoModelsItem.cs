@@ -7,8 +7,8 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<CreateAzureOpenAiCredentialDtoModelsItem>))]
 public enum CreateAzureOpenAiCredentialDtoModelsItem
 {
-    [EnumMember(Value = "gpt-4o-2024-08-06-ptu")]
-    Gpt4O20240806Ptu,
+    [EnumMember(Value = "gpt-4o-2024-11-20")]
+    Gpt4O20241120,
 
     [EnumMember(Value = "gpt-4o-2024-08-06")]
     Gpt4O20240806,

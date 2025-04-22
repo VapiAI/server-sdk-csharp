@@ -1,25 +1,18 @@
 using NUnit.Framework;
 using Vapi.Net.Core;
-using SystemTask = System.Threading.Tasks.Task;
+using SystemTask = global::System.Threading.Tasks.Task;
 
 namespace Vapi.Net.Test.Core.Pagination;
 
 [TestFixture(Category = "Pagination")]
 public class GuidCursorTest
 {
-    [Test]
-    public async SystemTask CursorPagerShouldWorkWithGuidCursors()
-    {
-        var pager = CreatePager();
-        await AssertPager(pager);
-    }
-
     private static readonly Guid? Cursor1 = null;
     private static readonly Guid Cursor2 = new("00000000-0000-0000-0000-000000000001");
-    private static readonly Guid Cursor3 = new("00000000-0000-0000-0000-000000000001");
-    private Guid? _cursorCopy;
+    private static readonly Guid Cursor3 = new("00000000-0000-0000-0000-000000000002");
 
-    private Pager<object> CreatePager()
+    [Test]
+    public async SystemTask CursorPagerShouldWorkWithGuidCursors()
     {
         var responses = new List<Response>
         {
@@ -39,9 +32,15 @@ public class GuidCursorTest
                 Cursor = new() { Next = null },
             },
         }.GetEnumerator();
-        _cursorCopy = Cursor1;
-        Pager<object> pager = new CursorPager<Request, object?, Response, Guid?, object>(
-            new() { Cursor = Cursor1 },
+        var cursorCopy = Cursor1;
+        Pager<object> pager = await CursorPager<
+            Request,
+            object?,
+            Response,
+            Guid?,
+            object
+        >.CreateInstanceAsync(
+            new Request { Cursor = Cursor1 },
             null,
             (_, _, _) =>
             {
@@ -51,35 +50,31 @@ public class GuidCursorTest
             (request, cursor) =>
             {
                 request.Cursor = cursor;
-                _cursorCopy = cursor;
+                cursorCopy = cursor;
             },
             response => response?.Cursor?.Next,
             response => response?.Data?.Items?.ToList()
         );
-        return pager;
-    }
 
-    private async SystemTask AssertPager(Pager<object> pager)
-    {
         var pageEnumerator = pager.AsPagesAsync().GetAsyncEnumerator();
 
         // first page
         Assert.That(await pageEnumerator.MoveNextAsync(), Is.True);
         var page = pageEnumerator.Current;
         Assert.That(page.Items, Has.Count.EqualTo(2));
-        Assert.That(_cursorCopy, Is.EqualTo(Cursor1));
+        Assert.That(cursorCopy, Is.EqualTo(Cursor2));
 
         // second page
         Assert.That(await pageEnumerator.MoveNextAsync(), Is.True);
         page = pageEnumerator.Current;
         Assert.That(page.Items, Has.Count.EqualTo(1));
-        Assert.That(_cursorCopy, Is.EqualTo(Cursor2));
+        Assert.That(cursorCopy, Is.EqualTo(Cursor3));
 
         // third page
         Assert.That(await pageEnumerator.MoveNextAsync(), Is.True);
         page = pageEnumerator.Current;
         Assert.That(page.Items, Has.Count.EqualTo(0));
-        Assert.That(_cursorCopy, Is.EqualTo(Cursor3));
+        Assert.That(cursorCopy, Is.Null);
 
         // no more
         Assert.That(await pageEnumerator.MoveNextAsync(), Is.False);

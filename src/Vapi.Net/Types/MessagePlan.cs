@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -26,6 +27,14 @@ public record MessagePlan
     public double? IdleMessageMaxSpokenCount { get; set; }
 
     /// <summary>
+    /// This determines whether the idle message count is reset whenever the user speaks.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("idleMessageResetCountOnUserSpeechEnabled")]
+    public bool? IdleMessageResetCountOnUserSpeechEnabled { get; set; }
+
+    /// <summary>
     /// This is the timeout in seconds before a message from `idleMessages` is spoken. The clock starts when the assistant finishes speaking and remains active until the user speaks.
     ///
     /// @default 10
@@ -41,6 +50,17 @@ public record MessagePlan
     [JsonPropertyName("silenceTimeoutMessage")]
     public string? SilenceTimeoutMessage { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

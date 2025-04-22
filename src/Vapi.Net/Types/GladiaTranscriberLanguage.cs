@@ -127,9 +127,6 @@ public enum GladiaTranscriberLanguage
     [EnumMember(Value = "ja")]
     Ja,
 
-    [EnumMember(Value = "jp")]
-    Jp,
-
     [EnumMember(Value = "jv")]
     Jv,
 
@@ -187,8 +184,8 @@ public enum GladiaTranscriberLanguage
     [EnumMember(Value = "mn")]
     Mn,
 
-    [EnumMember(Value = "mymr")]
-    Mymr,
+    [EnumMember(Value = "my")]
+    My,
 
     [EnumMember(Value = "ne")]
     Ne,

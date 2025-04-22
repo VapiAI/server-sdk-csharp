@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -40,10 +41,10 @@ public record ServerMessageEndOfCallReport
     public IEnumerable<object>? Costs { get; set; }
 
     /// <summary>
-    /// This is the ISO-8601 formatted timestamp of when the message was sent.
+    /// This is the timestamp of when the message was sent in milliseconds since Unix Epoch.
     /// </summary>
     [JsonPropertyName("timestamp")]
-    public string? Timestamp { get; set; }
+    public double? Timestamp { get; set; }
 
     /// <summary>
     /// These are the artifacts from the call. This can also be found at `call.artifact` on GET /call/:id.
@@ -103,6 +104,17 @@ public record ServerMessageEndOfCallReport
     [JsonPropertyName("endedAt")]
     public DateTime? EndedAt { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

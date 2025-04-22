@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -70,6 +71,22 @@ public record DeepgramTranscriber
     public bool? MipOptOut { get; set; }
 
     /// <summary>
+    /// If set to true, this will cause deepgram to convert spoken numbers to literal numerals. For example, "my phone number is nine-seven-two..." would become "my phone number is 972..."
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("numerals")]
+    public bool? Numerals { get; set; }
+
+    /// <summary>
+    /// Transcripts below this confidence threshold will be discarded.
+    ///
+    /// @default 0.4
+    /// </summary>
+    [JsonPropertyName("confidenceThreshold")]
+    public double? ConfidenceThreshold { get; set; }
+
+    /// <summary>
     /// These keywords are passed to the transcription model to help it pick up use-case specific words. Anything that may not be a common word, like your company name, should be added here.
     /// </summary>
     [JsonPropertyName("keywords")]
@@ -94,6 +111,23 @@ public record DeepgramTranscriber
     [JsonPropertyName("endpointing")]
     public double? Endpointing { get; set; }
 
+    /// <summary>
+    /// This is the plan for voice provider fallbacks in the event that the primary voice provider fails.
+    /// </summary>
+    [JsonPropertyName("fallbackPlan")]
+    public FallbackTranscriberPlan? FallbackPlan { get; set; }
+
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

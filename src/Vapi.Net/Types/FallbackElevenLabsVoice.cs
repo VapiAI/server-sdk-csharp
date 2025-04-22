@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
@@ -37,6 +38,12 @@ public record FallbackElevenLabsVoice
     public bool? UseSpeakerBoost { get; set; }
 
     /// <summary>
+    /// Defines the speed for voice settings.
+    /// </summary>
+    [JsonPropertyName("speed")]
+    public double? Speed { get; set; }
+
+    /// <summary>
     /// Defines the optimize streaming latency for voice settings. Defaults to 3.
     /// </summary>
     [JsonPropertyName("optimizeStreamingLatency")]
@@ -49,6 +56,12 @@ public record FallbackElevenLabsVoice
     /// </summary>
     [JsonPropertyName("enableSsmlParsing")]
     public bool? EnableSsmlParsing { get; set; }
+
+    /// <summary>
+    /// Defines the auto mode for voice settings. Defaults to false.
+    /// </summary>
+    [JsonPropertyName("autoMode")]
+    public bool? AutoMode { get; set; }
 
     /// <summary>
     /// This is the model that will be used. Defaults to 'eleven_turbo_v2' if not specified.
@@ -68,6 +81,17 @@ public record FallbackElevenLabsVoice
     [JsonPropertyName("chunkPlan")]
     public ChunkPlan? ChunkPlan { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

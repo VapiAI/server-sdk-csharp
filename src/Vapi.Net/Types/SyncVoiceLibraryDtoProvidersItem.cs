@@ -7,6 +7,9 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<SyncVoiceLibraryDtoProvidersItem>))]
 public enum SyncVoiceLibraryDtoProvidersItem
 {
+    [EnumMember(Value = "vapi")]
+    Vapi,
+
     [EnumMember(Value = "11labs")]
     ElevenLabs,
 
@@ -22,11 +25,11 @@ public enum SyncVoiceLibraryDtoProvidersItem
     [EnumMember(Value = "deepgram")]
     Deepgram,
 
+    [EnumMember(Value = "hume")]
+    Hume,
+
     [EnumMember(Value = "lmnt")]
     Lmnt,
-
-    [EnumMember(Value = "neets")]
-    Neets,
 
     [EnumMember(Value = "neuphonic")]
     Neuphonic,
@@ -45,4 +48,7 @@ public enum SyncVoiceLibraryDtoProvidersItem
 
     [EnumMember(Value = "tavus")]
     Tavus,
+
+    [EnumMember(Value = "sesame")]
+    Sesame,
 }

@@ -28,7 +28,7 @@ public partial class TestSuiteRunsClient
         }
         if (request.SortOrder != null)
         {
-            _query["sortOrder"] = request.SortOrder.Value.Stringify();
+            _query["sortOrder"] = request.SortOrder.Value.ToString();
         }
         if (request.Limit != null)
         {
@@ -36,52 +36,55 @@ public partial class TestSuiteRunsClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = $"test-suite/{JsonUtils.SerializeAsString(testSuiteId)}/run",
+                    Path = string.Format(
+                        "test-suite/{0}/run",
+                        ValueConvert.ToPathParameterString(testSuiteId)
+                    ),
                     Query = _query,
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<TestSuiteRunsPaginatedResponse>(responseBody)!;
@@ -92,11 +95,14 @@ public partial class TestSuiteRunsClient
             }
         }
 
-        throw new VapiClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     public async Task<TestSuiteRun> TestSuiteRunControllerCreateAsync(
@@ -107,12 +113,15 @@ public partial class TestSuiteRunsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
-                    Path = $"test-suite/{JsonUtils.SerializeAsString(testSuiteId)}/run",
+                    Path = string.Format(
+                        "test-suite/{0}/run",
+                        ValueConvert.ToPathParameterString(testSuiteId)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -120,9 +129,9 @@ public partial class TestSuiteRunsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<TestSuiteRun>(responseBody)!;
@@ -133,11 +142,14 @@ public partial class TestSuiteRunsClient
             }
         }
 
-        throw new VapiClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     public async Task<TestSuiteRun> TestSuiteRunControllerFindOneAsync(
@@ -148,21 +160,24 @@ public partial class TestSuiteRunsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path =
-                        $"test-suite/{JsonUtils.SerializeAsString(testSuiteId)}/run/{JsonUtils.SerializeAsString(id)}",
+                    Path = string.Format(
+                        "test-suite/{0}/run/{1}",
+                        ValueConvert.ToPathParameterString(testSuiteId),
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<TestSuiteRun>(responseBody)!;
@@ -173,11 +188,14 @@ public partial class TestSuiteRunsClient
             }
         }
 
-        throw new VapiClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     public async Task<TestSuiteRun> TestSuiteRunControllerRemoveAsync(
@@ -188,21 +206,24 @@ public partial class TestSuiteRunsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path =
-                        $"test-suite/{JsonUtils.SerializeAsString(testSuiteId)}/run/{JsonUtils.SerializeAsString(id)}",
+                    Path = string.Format(
+                        "test-suite/{0}/run/{1}",
+                        ValueConvert.ToPathParameterString(testSuiteId),
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<TestSuiteRun>(responseBody)!;
@@ -213,11 +234,14 @@ public partial class TestSuiteRunsClient
             }
         }
 
-        throw new VapiClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     public async Task<TestSuiteRun> TestSuiteRunControllerUpdateAsync(
@@ -229,13 +253,16 @@ public partial class TestSuiteRunsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path =
-                        $"test-suite/{JsonUtils.SerializeAsString(testSuiteId)}/run/{JsonUtils.SerializeAsString(id)}",
+                    Path = string.Format(
+                        "test-suite/{0}/run/{1}",
+                        ValueConvert.ToPathParameterString(testSuiteId),
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -243,9 +270,9 @@ public partial class TestSuiteRunsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<TestSuiteRun>(responseBody)!;
@@ -256,10 +283,13 @@ public partial class TestSuiteRunsClient
             }
         }
 
-        throw new VapiClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

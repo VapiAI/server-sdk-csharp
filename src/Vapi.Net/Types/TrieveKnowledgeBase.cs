@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -25,7 +26,7 @@ public record TrieveKnowledgeBase
     /// This is the plan if you want us to create/import a new vector store using Trieve.
     /// </summary>
     [JsonPropertyName("createPlan")]
-    public object? CreatePlan { get; set; }
+    public TrieveKnowledgeBaseImport? CreatePlan { get; set; }
 
     /// <summary>
     /// This is the id of the knowledge base.
@@ -39,6 +40,17 @@ public record TrieveKnowledgeBase
     [JsonPropertyName("orgId")]
     public required string OrgId { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

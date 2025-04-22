@@ -7,9 +7,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<FileStatus>))]
 public enum FileStatus
 {
-    [EnumMember(Value = "indexed")]
-    Indexed,
+    [EnumMember(Value = "processing")]
+    Processing,
 
-    [EnumMember(Value = "not_indexed")]
-    NotIndexed,
+    [EnumMember(Value = "done")]
+    Done,
+
+    [EnumMember(Value = "failed")]
+    Failed,
 }

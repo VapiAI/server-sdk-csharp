@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -41,6 +42,12 @@ public record File
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 
+    [JsonPropertyName("parsedTextUrl")]
+    public string? ParsedTextUrl { get; set; }
+
+    [JsonPropertyName("parsedTextBytes")]
+    public double? ParsedTextBytes { get; set; }
+
     [JsonPropertyName("metadata")]
     public object? Metadata { get; set; }
 
@@ -68,6 +75,17 @@ public record File
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

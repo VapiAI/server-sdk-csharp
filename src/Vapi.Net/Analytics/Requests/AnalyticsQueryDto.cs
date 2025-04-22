@@ -11,6 +11,7 @@ public record AnalyticsQueryDto
     [JsonPropertyName("queries")]
     public IEnumerable<AnalyticsQuery> Queries { get; set; } = new List<AnalyticsQuery>();
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -15,4 +15,7 @@ public enum CallPhoneCallProvider
 
     [EnumMember(Value = "vapi")]
     Vapi,
+
+    [EnumMember(Value = "telnyx")]
+    Telnyx,
 }

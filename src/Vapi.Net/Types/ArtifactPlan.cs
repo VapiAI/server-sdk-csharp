@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -18,6 +19,14 @@ public record ArtifactPlan
     /// </summary>
     [JsonPropertyName("recordingEnabled")]
     public bool? RecordingEnabled { get; set; }
+
+    /// <summary>
+    /// This determines the format of the recording. Defaults to `wav;l16`.
+    ///
+    /// @default 'wav;l16'
+    /// </summary>
+    [JsonPropertyName("recordingFormat")]
+    public ArtifactPlanRecordingFormat? RecordingFormat { get; set; }
 
     /// <summary>
     /// This determines whether the video is recorded during the call. Defaults to false. Only relevant for `webCall` type.
@@ -73,6 +82,17 @@ public record ArtifactPlan
     [JsonPropertyName("recordingPath")]
     public string? RecordingPath { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

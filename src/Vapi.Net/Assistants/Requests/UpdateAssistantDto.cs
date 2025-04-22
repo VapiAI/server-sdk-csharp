@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -31,6 +32,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("firstMessage")]
     public string? FirstMessage { get; set; }
 
+    [JsonPropertyName("firstMessageInterruptionsEnabled")]
+    public bool? FirstMessageInterruptionsEnabled { get; set; }
+
     /// <summary>
     /// This is the mode for the first message. Default is 'assistant-speaks-first'.
     ///
@@ -45,7 +49,15 @@ public record UpdateAssistantDto
     public UpdateAssistantDtoFirstMessageMode? FirstMessageMode { get; set; }
 
     /// <summary>
-    /// These are the messages that will be sent to your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-update,transfer-update,transcript,tool-calls,user-interrupted,voice-input. You can check the shape of the messages in ClientMessage schema.
+    /// These are the settings to configure or disable voicemail detection. Alternatively, voicemail detection can be configured using the model.tools=[VoicemailTool].
+    /// This uses Twilio's built-in detection while the VoicemailTool relies on the model to detect if a voicemail was reached.
+    /// You can use neither of them, one of them, or both of them. By default, Twilio built-in detection is enabled while VoicemailTool is not.
+    /// </summary>
+    [JsonPropertyName("voicemailDetection")]
+    public object? VoicemailDetection { get; set; }
+
+    /// <summary>
+    /// These are the messages that will be sent to your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-update,transfer-update,transcript,tool-calls,user-interrupted,voice-input,workflow.node.started. You can check the shape of the messages in ClientMessage schema.
     /// </summary>
     [JsonPropertyName("clientMessages")]
     public IEnumerable<UpdateAssistantDtoClientMessagesItem>? ClientMessages { get; set; }
@@ -74,9 +86,10 @@ public record UpdateAssistantDto
 
     /// <summary>
     /// This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
+    /// You can also provide a custom sound by providing a URL to an audio file.
     /// </summary>
     [JsonPropertyName("backgroundSound")]
-    public UpdateAssistantDtoBackgroundSound? BackgroundSound { get; set; }
+    public OneOf<UpdateAssistantDtoBackgroundSoundZero, string>? BackgroundSound { get; set; }
 
     /// <summary>
     /// This enables filtering of noise and background speech while the user is talking.
@@ -105,6 +118,13 @@ public record UpdateAssistantDto
     public IEnumerable<TransportConfigurationTwilio>? TransportConfigurations { get; set; }
 
     /// <summary>
+    /// This is the plan for observability configuration of assistant's calls.
+    /// Currently supports Langfuse for tracing and monitoring.
+    /// </summary>
+    [JsonPropertyName("observabilityPlan")]
+    public LangfuseObservabilityPlan? ObservabilityPlan { get; set; }
+
+    /// <summary>
     /// These are dynamic credentials that will be used for the assistant calls. By default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials.
     /// </summary>
     [JsonPropertyName("credentials")]
@@ -117,14 +137,6 @@ public record UpdateAssistantDto
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
-
-    /// <summary>
-    /// These are the settings to configure or disable voicemail detection. Alternatively, voicemail detection can be configured using the model.tools=[VoicemailTool].
-    /// This uses Twilio's built-in detection while the VoicemailTool relies on the model to detect if a voicemail was reached.
-    /// You can use neither of them, one of them, or both of them. By default, Twilio built-in detection is enabled while VoicemailTool is not.
-    /// </summary>
-    [JsonPropertyName("voicemailDetection")]
-    public TwilioVoicemailDetection? VoicemailDetection { get; set; }
 
     /// <summary>
     /// This is the message that the assistant will say if the call is forwarded to voicemail.
@@ -239,6 +251,10 @@ public record UpdateAssistantDto
     [JsonPropertyName("hooks")]
     public IEnumerable<AssistantHooks>? Hooks { get; set; }
 
+    [JsonPropertyName("keypadInputPlan")]
+    public KeypadInputPlan? KeypadInputPlan { get; set; }
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

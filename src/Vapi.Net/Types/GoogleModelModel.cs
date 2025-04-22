@@ -16,6 +16,9 @@ public enum GoogleModelModel
     [EnumMember(Value = "gemini-2.0-flash")]
     Gemini20Flash,
 
+    [EnumMember(Value = "gemini-2.0-flash-lite")]
+    Gemini20FlashLite,
+
     [EnumMember(Value = "gemini-2.0-flash-lite-preview-02-05")]
     Gemini20FlashLitePreview0205,
 

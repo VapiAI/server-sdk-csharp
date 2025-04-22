@@ -6,10 +6,30 @@ namespace Vapi.Net;
 public record CreateCallDto
 {
     /// <summary>
+    /// This is used to issue batch calls to multiple customers.
+    ///
+    /// Only relevant for `outboundPhoneCall`. To call a single customer, use `customer` instead.
+    /// </summary>
+    [JsonPropertyName("customers")]
+    public IEnumerable<CreateCustomerDto>? Customers { get; set; }
+
+    /// <summary>
     /// This is the name of the call. This is just for your own reference.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
+
+    /// <summary>
+    /// This is the schedule plan of the call.
+    /// </summary>
+    [JsonPropertyName("schedulePlan")]
+    public SchedulePlan? SchedulePlan { get; set; }
+
+    /// <summary>
+    /// This is the transport of the call.
+    /// </summary>
+    [JsonPropertyName("transport")]
+    public object? Transport { get; set; }
 
     /// <summary>
     /// This is the assistant that will be used for the call. To use a transient assistant, use `assistant` instead.
@@ -73,6 +93,7 @@ public record CreateCallDto
     [JsonPropertyName("customer")]
     public CreateCustomerDto? Customer { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

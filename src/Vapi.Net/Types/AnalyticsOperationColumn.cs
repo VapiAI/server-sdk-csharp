@@ -39,4 +39,7 @@ public enum AnalyticsOperationColumn
 
     [EnumMember(Value = "concurrency")]
     Concurrency,
+
+    [EnumMember(Value = "minutesUsed")]
+    MinutesUsed,
 }

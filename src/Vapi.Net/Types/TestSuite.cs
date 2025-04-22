@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -41,6 +42,31 @@ public record TestSuite
     [JsonPropertyName("phoneNumberId")]
     public string? PhoneNumberId { get; set; }
 
+    /// <summary>
+    /// Override the default tester plan by providing custom assistant configuration for the test agent.
+    ///
+    /// We recommend only using this if you are confident, as we have already set sensible defaults on the tester plan.
+    /// </summary>
+    [JsonPropertyName("testerPlan")]
+    public TesterPlan? TesterPlan { get; set; }
+
+    /// <summary>
+    /// These are the configuration for the assistant / phone number that is being tested.
+    /// </summary>
+    [JsonPropertyName("targetPlan")]
+    public TargetPlan? TargetPlan { get; set; }
+
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -7,6 +7,9 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<CallStatus>))]
 public enum CallStatus
 {
+    [EnumMember(Value = "scheduled")]
+    Scheduled,
+
     [EnumMember(Value = "queued")]
     Queued,
 

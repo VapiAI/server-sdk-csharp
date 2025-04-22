@@ -7,6 +7,9 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<ServerMessageStatusUpdateStatus>))]
 public enum ServerMessageStatusUpdateStatus
 {
+    [EnumMember(Value = "scheduled")]
+    Scheduled,
+
     [EnumMember(Value = "queued")]
     Queued,
 

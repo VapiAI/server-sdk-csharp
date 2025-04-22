@@ -11,6 +11,7 @@ public record CreateTestSuiteRunDto
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

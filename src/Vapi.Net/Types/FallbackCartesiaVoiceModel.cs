@@ -7,6 +7,9 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<FallbackCartesiaVoiceModel>))]
 public enum FallbackCartesiaVoiceModel
 {
+    [EnumMember(Value = "sonic-2")]
+    Sonic2,
+
     [EnumMember(Value = "sonic-english")]
     SonicEnglish,
 

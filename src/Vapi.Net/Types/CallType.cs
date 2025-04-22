@@ -15,4 +15,7 @@ public enum CallType
 
     [EnumMember(Value = "webCall")]
     WebCall,
+
+    [EnumMember(Value = "vapi.websocketCall")]
+    VapiWebsocketCall,
 }

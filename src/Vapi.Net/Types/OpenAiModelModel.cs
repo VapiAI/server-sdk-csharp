@@ -7,6 +7,18 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<OpenAiModelModel>))]
 public enum OpenAiModelModel
 {
+    [EnumMember(Value = "gpt-4.1")]
+    Gpt41,
+
+    [EnumMember(Value = "gpt-4.1-mini")]
+    Gpt41Mini,
+
+    [EnumMember(Value = "gpt-4.1-nano")]
+    Gpt41Nano,
+
+    [EnumMember(Value = "gpt-4.5-preview")]
+    Gpt45Preview,
+
     [EnumMember(Value = "chatgpt-4o-latest")]
     Chatgpt4OLatest,
 
@@ -34,11 +46,11 @@ public enum OpenAiModelModel
     [EnumMember(Value = "gpt-4o-mini-realtime-preview-2024-12-17")]
     Gpt4OMiniRealtimePreview20241217,
 
-    [EnumMember(Value = "gpt-4o-mini")]
-    Gpt4OMini,
-
     [EnumMember(Value = "gpt-4o-mini-2024-07-18")]
     Gpt4OMini20240718,
+
+    [EnumMember(Value = "gpt-4o-mini")]
+    Gpt4OMini,
 
     [EnumMember(Value = "gpt-4o")]
     Gpt4O,

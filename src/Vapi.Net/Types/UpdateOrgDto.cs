@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -55,6 +56,28 @@ public record UpdateOrgDto
     [JsonPropertyName("concurrencyLimit")]
     public double? ConcurrencyLimit { get; set; }
 
+    /// <summary>
+    /// Stores the information about the compliance plan enforced at the organization level. Currently pciEnabled is supported through this field.
+    /// When this is enabled, any logs, recordings, or transcriptions will be shipped to the customer endpoints if provided else lost.
+    /// At the end of the call, you will receive an end-of-call-report message to store on your server, if webhook is provided.
+    /// Defaults to false.
+    /// When PCI is enabled, only PCI-compliant Providers will be available for LLM, Voice and transcribers.
+    /// This is due to the compliance requirements of PCI. Other providers may not meet these requirements.
+    /// </summary>
+    [JsonPropertyName("compliancePlan")]
+    public CompliancePlan? CompliancePlan { get; set; }
+
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

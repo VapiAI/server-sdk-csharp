@@ -15,4 +15,7 @@ public enum TestSuiteRunStatus
 
     [EnumMember(Value = "completed")]
     Completed,
+
+    [EnumMember(Value = "failed")]
+    Failed,
 }

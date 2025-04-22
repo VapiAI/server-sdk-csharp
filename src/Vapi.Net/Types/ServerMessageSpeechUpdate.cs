@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
@@ -34,10 +35,16 @@ public record ServerMessageSpeechUpdate
     public required ServerMessageSpeechUpdateRole Role { get; set; }
 
     /// <summary>
-    /// This is the ISO-8601 formatted timestamp of when the message was sent.
+    /// This is the turn number of the speech update (0-indexed).
+    /// </summary>
+    [JsonPropertyName("turn")]
+    public double? Turn { get; set; }
+
+    /// <summary>
+    /// This is the timestamp of when the message was sent in milliseconds since Unix Epoch.
     /// </summary>
     [JsonPropertyName("timestamp")]
-    public string? Timestamp { get; set; }
+    public double? Timestamp { get; set; }
 
     /// <summary>
     /// This is a live version of the `call.artifact`.
@@ -81,6 +88,17 @@ public record ServerMessageSpeechUpdate
     [JsonPropertyName("call")]
     public Call? Call { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

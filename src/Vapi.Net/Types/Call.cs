@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
@@ -130,13 +131,7 @@ public record Call
     public Artifact? Artifact { get; set; }
 
     /// <summary>
-    /// This is the transport used for the call.
-    /// </summary>
-    [JsonPropertyName("transport")]
-    public Transport? Transport { get; set; }
-
-    /// <summary>
-    /// The ID of the call as provided by the phone number service. callSid in Twilio. conversationUuid in Vonage.
+    /// The ID of the call as provided by the phone number service. callSid in Twilio. conversationUuid in Vonage. callControlId in Telnyx.
     ///
     /// Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
     /// </summary>
@@ -211,6 +206,29 @@ public record Call
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
+    /// <summary>
+    /// This is the schedule plan of the call.
+    /// </summary>
+    [JsonPropertyName("schedulePlan")]
+    public SchedulePlan? SchedulePlan { get; set; }
+
+    /// <summary>
+    /// This is the transport of the call.
+    /// </summary>
+    [JsonPropertyName("transport")]
+    public object? Transport { get; set; }
+
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
