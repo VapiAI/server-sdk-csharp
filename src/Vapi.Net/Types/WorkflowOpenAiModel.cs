@@ -4,16 +4,25 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record Hangup
+public record WorkflowOpenAiModel
 {
-    [JsonPropertyName("name")]
-    public required string Name { get; set; }
+    /// <summary>
+    /// This is the specific OpenAI model that will be used.
+    /// </summary>
+    [JsonPropertyName("model")]
+    public required WorkflowOpenAiModelModel Model { get; set; }
 
     /// <summary>
-    /// This is for metadata you want to store on the task.
+    /// This is the temperature of the model.
     /// </summary>
-    [JsonPropertyName("metadata")]
-    public object? Metadata { get; set; }
+    [JsonPropertyName("temperature")]
+    public double? Temperature { get; set; }
+
+    /// <summary>
+    /// This is the max tokens of the model.
+    /// </summary>
+    [JsonPropertyName("maxTokens")]
+    public double? MaxTokens { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

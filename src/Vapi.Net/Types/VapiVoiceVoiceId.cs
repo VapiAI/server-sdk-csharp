@@ -10,6 +10,9 @@ public enum VapiVoiceVoiceId
     [EnumMember(Value = "Elliot")]
     Elliot,
 
+    [EnumMember(Value = "Kylie")]
+    Kylie,
+
     [EnumMember(Value = "Rohan")]
     Rohan,
 

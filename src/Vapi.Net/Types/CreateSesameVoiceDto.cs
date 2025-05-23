@@ -4,19 +4,19 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record Transfer
+public record CreateSesameVoiceDto
 {
-    [JsonPropertyName("destination")]
-    public object Destination { get; set; } = new Dictionary<string, object?>();
-
-    [JsonPropertyName("name")]
-    public required string Name { get; set; }
+    /// <summary>
+    /// The name of the voice.
+    /// </summary>
+    [JsonPropertyName("voiceName")]
+    public string? VoiceName { get; set; }
 
     /// <summary>
-    /// This is for metadata you want to store on the task.
+    /// The transcript of the utterance.
     /// </summary>
-    [JsonPropertyName("metadata")]
-    public object? Metadata { get; set; }
+    [JsonPropertyName("transcription")]
+    public string? Transcription { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

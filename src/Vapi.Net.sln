@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net", "Vapi.Net\Vapi.Net.csproj", "{97511217-C45A-49CD-A9C8-4B0F42EA576C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net", "Vapi.Net\Vapi.Net.csproj", "{B7822B17-E7D4-4F82-A255-BAE4080C361A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net.Test", "Vapi.Net.Test\Vapi.Net.Test.csproj", "{1A0450D4-0B00-479A-88B4-38C53981E4B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vapi.Net.Test", "Vapi.Net.Test\Vapi.Net.Test.csproj", "{0CBE75AE-B4F0-450F-8577-7EFCC284FE08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +16,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{97511217-C45A-49CD-A9C8-4B0F42EA576C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97511217-C45A-49CD-A9C8-4B0F42EA576C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97511217-C45A-49CD-A9C8-4B0F42EA576C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97511217-C45A-49CD-A9C8-4B0F42EA576C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A0450D4-0B00-479A-88B4-38C53981E4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A0450D4-0B00-479A-88B4-38C53981E4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A0450D4-0B00-479A-88B4-38C53981E4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A0450D4-0B00-479A-88B4-38C53981E4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7822B17-E7D4-4F82-A255-BAE4080C361A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7822B17-E7D4-4F82-A255-BAE4080C361A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7822B17-E7D4-4F82-A255-BAE4080C361A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7822B17-E7D4-4F82-A255-BAE4080C361A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CBE75AE-B4F0-450F-8577-7EFCC284FE08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CBE75AE-B4F0-450F-8577-7EFCC284FE08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CBE75AE-B4F0-450F-8577-7EFCC284FE08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CBE75AE-B4F0-450F-8577-7EFCC284FE08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -7,6 +7,12 @@ namespace Vapi.Net;
 public record FallbackCustomVoice
 {
     /// <summary>
+    /// This is the flag to toggle voice caching for the assistant.
+    /// </summary>
+    [JsonPropertyName("cachingEnabled")]
+    public bool? CachingEnabled { get; set; }
+
+    /// <summary>
     /// This is where the voice request will be sent.
     ///
     /// Request Example:

@@ -7,6 +7,12 @@ namespace Vapi.Net;
 public record CustomVoice
 {
     /// <summary>
+    /// This is the flag to toggle voice caching for the assistant.
+    /// </summary>
+    [JsonPropertyName("cachingEnabled")]
+    public bool? CachingEnabled { get; set; }
+
+    /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.
     /// </summary>
     [JsonPropertyName("chunkPlan")]

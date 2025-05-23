@@ -19,6 +19,12 @@ public record Oauth2AuthenticationSession
     public DateTime? ExpiresAt { get; set; }
 
     /// <summary>
+    /// This is the OAuth2 refresh token.
+    /// </summary>
+    [JsonPropertyName("refreshToken")]
+    public string? RefreshToken { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

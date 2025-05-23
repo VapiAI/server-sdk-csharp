@@ -7,7 +7,7 @@ namespace Vapi.Net;
 public record OAuth2AuthenticationPlan
 {
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "oauth2";
+    public required OAuth2AuthenticationPlanType Type { get; set; }
 
     /// <summary>
     /// This is the OAuth2 URL.

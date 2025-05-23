@@ -1,60 +1,43 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Vapi.Net.Core;
+using System.Runtime.Serialization;
 
 namespace Vapi.Net;
 
 [JsonConverter(typeof(EnumSerializer<CreateAssistantDtoServerMessagesItem>))]
 public enum CreateAssistantDtoServerMessagesItem
 {
-    [EnumMember(Value = "conversation-update")]
-    ConversationUpdate,
+    [EnumMember(Value = "conversation-update")]ConversationUpdate,
 
-    [EnumMember(Value = "end-of-call-report")]
-    EndOfCallReport,
+    [EnumMember(Value = "end-of-call-report")]EndOfCallReport,
 
-    [EnumMember(Value = "function-call")]
-    FunctionCall,
+    [EnumMember(Value = "function-call")]FunctionCall,
 
-    [EnumMember(Value = "hang")]
-    Hang,
+    [EnumMember(Value = "hang")]Hang,
 
-    [EnumMember(Value = "language-changed")]
-    LanguageChanged,
+    [EnumMember(Value = "language-changed")]LanguageChanged,
 
-    [EnumMember(Value = "language-change-detected")]
-    LanguageChangeDetected,
+    [EnumMember(Value = "language-change-detected")]LanguageChangeDetected,
 
-    [EnumMember(Value = "model-output")]
-    ModelOutput,
+    [EnumMember(Value = "model-output")]ModelOutput,
 
-    [EnumMember(Value = "phone-call-control")]
-    PhoneCallControl,
+    [EnumMember(Value = "phone-call-control")]PhoneCallControl,
 
-    [EnumMember(Value = "speech-update")]
-    SpeechUpdate,
+    [EnumMember(Value = "speech-update")]SpeechUpdate,
 
-    [EnumMember(Value = "status-update")]
-    StatusUpdate,
+    [EnumMember(Value = "status-update")]StatusUpdate,
 
-    [EnumMember(Value = "transcript")]
-    Transcript,
+    [EnumMember(Value = "transcript")]Transcript,
 
-    [EnumMember(Value = "transcript[transcriptType='final']")]
-    TranscriptTranscriptTypeFinal,
+    [EnumMember(Value = "transcript[transcriptType="final"]")]TranscriptTranscriptTypeFinal,
 
-    [EnumMember(Value = "tool-calls")]
-    ToolCalls,
+    [EnumMember(Value = "tool-calls")]ToolCalls,
 
-    [EnumMember(Value = "transfer-destination-request")]
-    TransferDestinationRequest,
+    [EnumMember(Value = "transfer-destination-request")]TransferDestinationRequest,
 
-    [EnumMember(Value = "transfer-update")]
-    TransferUpdate,
+    [EnumMember(Value = "transfer-update")]TransferUpdate,
 
-    [EnumMember(Value = "user-interrupted")]
-    UserInterrupted,
+    [EnumMember(Value = "user-interrupted")]UserInterrupted,
 
-    [EnumMember(Value = "voice-input")]
-    VoiceInput,
+    [EnumMember(Value = "voice-input")]VoiceInput
 }

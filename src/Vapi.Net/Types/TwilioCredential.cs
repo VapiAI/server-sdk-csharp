@@ -13,7 +13,19 @@ public record TwilioCredential
     /// This is not returned in the API.
     /// </summary>
     [JsonPropertyName("authToken")]
-    public required string AuthToken { get; set; }
+    public string? AuthToken { get; set; }
+
+    /// <summary>
+    /// This is not returned in the API.
+    /// </summary>
+    [JsonPropertyName("apiKey")]
+    public string? ApiKey { get; set; }
+
+    /// <summary>
+    /// This is not returned in the API.
+    /// </summary>
+    [JsonPropertyName("apiSecret")]
+    public string? ApiSecret { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the credential.

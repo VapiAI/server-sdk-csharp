@@ -40,6 +40,9 @@ public record VapiModel
     [JsonPropertyName("knowledgeBaseId")]
     public string? KnowledgeBaseId { get; set; }
 
+    [JsonPropertyName("provider")]
+    public string Provider { get; set; } = "vapi";
+
     /// <summary>
     /// This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.
     /// </summary>
@@ -50,7 +53,7 @@ public record VapiModel
     /// This is the workflow that will be used for the call. To use an existing workflow, use `workflowId` instead.
     /// </summary>
     [JsonPropertyName("workflow")]
-    public Workflow? Workflow { get; set; }
+    public WorkflowUserEditable? Workflow { get; set; }
 
     /// <summary>
     /// This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b

@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -17,7 +16,7 @@ public record PhoneNumberHookCallRinging
     /// This is the set of actions to perform when the hook triggers
     /// </summary>
     [JsonPropertyName("do")]
-    public IEnumerable<OneOf<object>> Do { get; set; } = new List<OneOf<object>>();
+    public IEnumerable<object> Do { get; set; } = new List<object>();
 
     /// <summary>
     /// Additional properties received from the response, if any.

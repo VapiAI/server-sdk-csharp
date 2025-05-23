@@ -62,15 +62,23 @@ public record VonagePhoneNumber
     /// <summary>
     /// This is the assistant that will be used for incoming calls to this phone number.
     ///
-    /// If neither `assistantId` nor `squadId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
+    /// If neither `assistantId`, `squadId` nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
     /// </summary>
     [JsonPropertyName("assistantId")]
     public string? AssistantId { get; set; }
 
     /// <summary>
+    /// This is the workflow that will be used for incoming calls to this phone number.
+    ///
+    /// If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
+    /// </summary>
+    [JsonPropertyName("workflowId")]
+    public string? WorkflowId { get; set; }
+
+    /// <summary>
     /// This is the squad that will be used for incoming calls to this phone number.
     ///
-    /// If neither `assistantId` nor `squadId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
+    /// If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
     /// </summary>
     [JsonPropertyName("squadId")]
     public string? SquadId { get; set; }

@@ -15,7 +15,12 @@ public record ServerMessageResponseAssistantRequest
     public object? Destination { get; set; }
 
     /// <summary>
-    /// This is the assistant that will be used for the call. To use a transient assistant, use `assistant` instead.
+    /// This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.
+    ///
+    /// To start a call with:
+    /// - Assistant, use `assistantId` or `assistant`
+    /// - Squad, use `squadId` or `squad`
+    /// - Workflow, use `workflowId` or `workflow`
     /// </summary>
     [JsonPropertyName("assistantId")]
     public string? AssistantId { get; set; }
@@ -23,7 +28,10 @@ public record ServerMessageResponseAssistantRequest
     /// <summary>
     /// This is the assistant that will be used for the call. To use an existing assistant, use `assistantId` instead.
     ///
-    /// If you're unsure why you're getting an invalid assistant, try logging your response and send the JSON blob to POST /assistant which will return the validation errors.
+    /// To start a call with:
+    /// - Assistant, use `assistant`
+    /// - Squad, use `squad`
+    /// - Workflow, use `workflow`
     /// </summary>
     [JsonPropertyName("assistant")]
     public CreateAssistantDto? Assistant { get; set; }
@@ -36,15 +44,51 @@ public record ServerMessageResponseAssistantRequest
 
     /// <summary>
     /// This is the squad that will be used for the call. To use a transient squad, use `squad` instead.
+    ///
+    /// To start a call with:
+    /// - Assistant, use `assistant` or `assistantId`
+    /// - Squad, use `squad` or `squadId`
+    /// - Workflow, use `workflow` or `workflowId`
     /// </summary>
     [JsonPropertyName("squadId")]
     public string? SquadId { get; set; }
 
     /// <summary>
     /// This is a squad that will be used for the call. To use an existing squad, use `squadId` instead.
+    ///
+    /// To start a call with:
+    /// - Assistant, use `assistant` or `assistantId`
+    /// - Squad, use `squad` or `squadId`
+    /// - Workflow, use `workflow` or `workflowId`
     /// </summary>
     [JsonPropertyName("squad")]
     public CreateSquadDto? Squad { get; set; }
+
+    /// <summary>
+    /// [BETA] This feature is in active development. The API and behavior are subject to change as we refine it based on user feedback.
+    ///
+    /// This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.
+    ///
+    /// To start a call with:
+    /// - Assistant, use `assistant` or `assistantId`
+    /// - Squad, use `squad` or `squadId`
+    /// - Workflow, use `workflow` or `workflowId`
+    /// </summary>
+    [JsonPropertyName("workflowId")]
+    public string? WorkflowId { get; set; }
+
+    /// <summary>
+    /// [BETA] This feature is in active development. The API and behavior are subject to change as we refine it based on user feedback.
+    ///
+    /// This is a workflow that will be used for the call. To use an existing workflow, use `workflowId` instead.
+    ///
+    /// To start a call with:
+    /// - Assistant, use `assistant` or `assistantId`
+    /// - Squad, use `squad` or `squadId`
+    /// - Workflow, use `workflow` or `workflowId`
+    /// </summary>
+    [JsonPropertyName("workflow")]
+    public CreateWorkflowDto? Workflow { get; set; }
 
     /// <summary>
     /// This is the error if the call shouldn't be accepted. This is spoken to the customer.

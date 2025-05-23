@@ -7,7 +7,7 @@ namespace Vapi.Net;
 public record Server
 {
     /// <summary>
-    /// This is the timeout in seconds for the request to your server. Defaults to 20 seconds.
+    /// This is the timeout in seconds for the request. Defaults to 20 seconds.
     ///
     /// @default 20
     /// </summary>
@@ -15,21 +15,13 @@ public record Server
     public double? TimeoutSeconds { get; set; }
 
     /// <summary>
-    /// API endpoint to send requests to.
+    /// This is where the request will be sent.
     /// </summary>
     [JsonPropertyName("url")]
-    public required string Url { get; set; }
+    public string? Url { get; set; }
 
     /// <summary>
-    /// This is the secret you can set that Vapi will send with every request to your server. Will be sent as a header called x-vapi-secret.
-    ///
-    /// Same precedence logic as server.
-    /// </summary>
-    [JsonPropertyName("secret")]
-    public string? Secret { get; set; }
-
-    /// <summary>
-    /// These are the custom headers to include in the request sent to your server.
+    /// These are the headers to include in the request.
     ///
     /// Each key-value pair represents a header name and its value.
     /// </summary>
@@ -37,7 +29,9 @@ public record Server
     public object? Headers { get; set; }
 
     /// <summary>
-    /// This is the backoff plan to use if the request fails.
+    /// This is the backoff plan if the request fails. Defaults to undefined (the request will not be retried).
+    ///
+    /// @default undefined (the request will not be retried)
     /// </summary>
     [JsonPropertyName("backoffPlan")]
     public BackoffPlan? BackoffPlan { get; set; }

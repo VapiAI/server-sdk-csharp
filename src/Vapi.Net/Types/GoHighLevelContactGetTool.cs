@@ -4,7 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record UpdateSmsSendToolDto
+public record GoHighLevelContactGetTool
 {
     /// <summary>
     /// This determines if the tool is async.
@@ -25,6 +25,30 @@ public record UpdateSmsSendToolDto
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the tool.
+    /// </summary>
+    [JsonPropertyName("id")]
+    public required string Id { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the organization that this tool belongs to.
+    /// </summary>
+    [JsonPropertyName("orgId")]
+    public required string OrgId { get; set; }
+
+    /// <summary>
+    /// This is the ISO 8601 date-time string of when the tool was created.
+    /// </summary>
+    [JsonPropertyName("createdAt")]
+    public required DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// This is the ISO 8601 date-time string of when the tool was last updated.
+    /// </summary>
+    [JsonPropertyName("updatedAt")]
+    public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
     /// This is the function definition of the tool.

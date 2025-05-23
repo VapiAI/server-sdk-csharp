@@ -8,6 +8,12 @@ namespace Vapi.Net;
 public record FallbackRimeAiVoice
 {
     /// <summary>
+    /// This is the flag to toggle voice caching for the assistant.
+    /// </summary>
+    [JsonPropertyName("cachingEnabled")]
+    public bool? CachingEnabled { get; set; }
+
+    /// <summary>
     /// This is the provider-specific ID that will be used.
     /// </summary>
     [JsonPropertyName("voiceId")]
@@ -26,7 +32,7 @@ public record FallbackRimeAiVoice
     public double? Speed { get; set; }
 
     /// <summary>
-    /// This is a flag that controls whether to add slight pauses using angle brackets. Example: “Hi. &lt;200&gt; I’d love to have a conversation with you.” adds a 200ms pause between the first and second sentences.
+    /// This is a flag that controls whether to add slight pauses using angle brackets. Example: "Hi. &lt;200&gt; I'd love to have a conversation with you." adds a 200ms pause between the first and second sentences.
     /// </summary>
     [JsonPropertyName("pauseBetweenBrackets")]
     public bool? PauseBetweenBrackets { get; set; }

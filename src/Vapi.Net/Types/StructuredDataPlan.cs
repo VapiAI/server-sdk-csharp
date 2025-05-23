@@ -17,14 +17,14 @@ public record StructuredDataPlan
     ///   },
     ///   {
     ///     "role": "user",
-    ///     "content": "Here is the transcript:\n\n{{transcript}}\n\n"
+    ///     "content": "Here is the transcript:\n\n{{transcript}}\n\n. Here is the ended reason of the call:\n\n{{endedReason}}\n\n"
     ///   }
     /// ]```
     ///
     /// You can customize by providing any messages you want.
     ///
     /// Here are the template variables available:
-    /// - {{transcript}}: the transcript of the call from `call.artifact.transcript`- {{systemPrompt}}: the system prompt of the call from `assistant.model.messages[type=system].content`- {{schema}}: the schema of the structured data from `structuredDataPlan.schema`
+    /// - {{transcript}}: the transcript of the call from `call.artifact.transcript`- {{systemPrompt}}: the system prompt of the call from `assistant.model.messages[type=system].content`- {{schema}}: the schema of the structured data from `structuredDataPlan.schema`- {{endedReason}}: the ended reason of the call from `call.endedReason`
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }

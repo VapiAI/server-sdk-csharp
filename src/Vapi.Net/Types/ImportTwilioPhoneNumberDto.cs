@@ -24,6 +24,17 @@ public record ImportTwilioPhoneNumberDto
     public IEnumerable<PhoneNumberHookCallRinging>? Hooks { get; set; }
 
     /// <summary>
+    /// Controls whether Vapi sets the messaging webhook URL on the Twilio number during import.
+    ///
+    /// If set to `false`, Vapi will not update the Twilio messaging URL, leaving it as is.
+    /// If `true` or omitted (default), Vapi will configure both the voice and messaging URLs.
+    ///
+    /// @default true
+    /// </summary>
+    [JsonPropertyName("smsEnabled")]
+    public bool? SmsEnabled { get; set; }
+
+    /// <summary>
     /// These are the digits of the phone number you own on your Twilio.
     /// </summary>
     [JsonPropertyName("twilioPhoneNumber")]
@@ -39,7 +50,19 @@ public record ImportTwilioPhoneNumberDto
     /// This is the Twilio Auth Token that will be used to handle this phone number.
     /// </summary>
     [JsonPropertyName("twilioAuthToken")]
-    public required string TwilioAuthToken { get; set; }
+    public string? TwilioAuthToken { get; set; }
+
+    /// <summary>
+    /// This is the Twilio API Key that will be used to handle this phone number. If AuthToken is provided, this will be ignored.
+    /// </summary>
+    [JsonPropertyName("twilioApiKey")]
+    public string? TwilioApiKey { get; set; }
+
+    /// <summary>
+    /// This is the Twilio API Secret that will be used to handle this phone number. If AuthToken is provided, this will be ignored.
+    /// </summary>
+    [JsonPropertyName("twilioApiSecret")]
+    public string? TwilioApiSecret { get; set; }
 
     /// <summary>
     /// This is the name of the phone number. This is just for your own reference.
@@ -50,15 +73,23 @@ public record ImportTwilioPhoneNumberDto
     /// <summary>
     /// This is the assistant that will be used for incoming calls to this phone number.
     ///
-    /// If neither `assistantId` nor `squadId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
+    /// If neither `assistantId`, `squadId` nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
     /// </summary>
     [JsonPropertyName("assistantId")]
     public string? AssistantId { get; set; }
 
     /// <summary>
+    /// This is the workflow that will be used for incoming calls to this phone number.
+    ///
+    /// If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
+    /// </summary>
+    [JsonPropertyName("workflowId")]
+    public string? WorkflowId { get; set; }
+
+    /// <summary>
     /// This is the squad that will be used for incoming calls to this phone number.
     ///
-    /// If neither `assistantId` nor `squadId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
+    /// If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
     /// </summary>
     [JsonPropertyName("squadId")]
     public string? SquadId { get; set; }

@@ -7,6 +7,12 @@ namespace Vapi.Net;
 public record FallbackNeuphonicVoice
 {
     /// <summary>
+    /// This is the flag to toggle voice caching for the assistant.
+    /// </summary>
+    [JsonPropertyName("cachingEnabled")]
+    public bool? CachingEnabled { get; set; }
+
+    /// <summary>
     /// This is the voice provider that will be used.
     /// </summary>
     [JsonPropertyName("provider")]

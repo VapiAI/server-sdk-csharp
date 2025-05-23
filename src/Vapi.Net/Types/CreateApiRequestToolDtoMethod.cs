@@ -4,8 +4,8 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<ApiRequestMethod>))]
-public enum ApiRequestMethod
+[JsonConverter(typeof(EnumSerializer<CreateApiRequestToolDtoMethod>))]
+public enum CreateApiRequestToolDtoMethod
 {
     [EnumMember(Value = "POST")]
     Post,

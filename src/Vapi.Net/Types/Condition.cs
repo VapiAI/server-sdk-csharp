@@ -22,7 +22,7 @@ public record Condition
     /// This is the value you want to compare against the parameter.
     /// </summary>
     [JsonPropertyName("value")]
-    public object Value { get; set; } = new Dictionary<string, object?>();
+    public required string Value { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

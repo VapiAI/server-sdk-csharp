@@ -27,4 +27,7 @@ public enum TransferPlanMode
 
     [EnumMember(Value = "warm-transfer-wait-for-operator-to-speak-first-and-then-say-summary")]
     WarmTransferWaitForOperatorToSpeakFirstAndThenSaySummary,
+
+    [EnumMember(Value = "warm-transfer-experimental")]
+    WarmTransferExperimental,
 }

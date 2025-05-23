@@ -7,11 +7,7 @@ namespace Vapi.Net;
 public record ServerMessageTransferDestinationRequest
 {
     /// <summary>
-    /// This is the phone number associated with the call.
-    ///
-    /// This matches one of the following:
-    /// - `call.phoneNumber`,
-    /// - `call.phoneNumberId`.
+    /// This is the phone number that the message is associated with.
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public object? PhoneNumber { get; set; }
@@ -23,7 +19,7 @@ public record ServerMessageTransferDestinationRequest
     public string Type { get; set; } = "transfer-destination-request";
 
     /// <summary>
-    /// This is the timestamp of when the message was sent in milliseconds since Unix Epoch.
+    /// This is the timestamp of the message.
     /// </summary>
     [JsonPropertyName("timestamp")]
     public double? Timestamp { get; set; }
@@ -37,35 +33,19 @@ public record ServerMessageTransferDestinationRequest
     public Artifact? Artifact { get; set; }
 
     /// <summary>
-    /// This is the assistant that is currently active. This is provided for convenience.
-    ///
-    /// This matches one of the following:
-    /// - `call.assistant`,
-    /// - `call.assistantId`,
-    /// - `call.squad[n].assistant`,
-    /// - `call.squad[n].assistantId`,
-    /// - `call.squadId-&gt;[n].assistant`,
-    /// - `call.squadId-&gt;[n].assistantId`.
+    /// This is the assistant that the message is associated with.
     /// </summary>
     [JsonPropertyName("assistant")]
     public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
-    /// This is the customer associated with the call.
-    ///
-    /// This matches one of the following:
-    /// - `call.customer`,
-    /// - `call.customerId`.
+    /// This is the customer that the message is associated with.
     /// </summary>
     [JsonPropertyName("customer")]
     public CreateCustomerDto? Customer { get; set; }
 
     /// <summary>
-    /// This is the call object.
-    ///
-    /// This matches what was returned in POST /call.
-    ///
-    /// Note: This might get stale during the call. To get the latest call object, especially after the call is ended, use GET /call/:id.
+    /// This is the call that the message is associated with.
     /// </summary>
     [JsonPropertyName("call")]
     public Call? Call { get; set; }

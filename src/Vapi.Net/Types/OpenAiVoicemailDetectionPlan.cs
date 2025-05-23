@@ -7,12 +7,24 @@ namespace Vapi.Net;
 public record OpenAiVoicemailDetectionPlan
 {
     /// <summary>
-    /// This is how long should we listen in order to determine if we were sent to voicemail or not?
+    /// This is the maximum duration from the start of the call that we will wait for a voicemail beep, before speaking our message
     ///
-    /// @default 15
+    /// - If we detect a voicemail beep before this, we will speak the message at that point.
+    ///
+    /// - Setting too low a value means that the bot will start speaking its voicemail message too early. If it does so before the actual beep, it will get cut off. You should definitely tune this to your use case.
+    ///
+    /// @default 30
+    /// @min 0
+    /// @max 60
     /// </summary>
-    [JsonPropertyName("voicemailExpectedDurationSeconds")]
-    public required double VoicemailExpectedDurationSeconds { get; set; }
+    [JsonPropertyName("beepMaxAwaitSeconds")]
+    public double? BeepMaxAwaitSeconds { get; set; }
+
+    /// <summary>
+    /// This is the backoff plan for the voicemail detection.
+    /// </summary>
+    [JsonPropertyName("backoffPlan")]
+    public VoicemailDetectionBackoffPlan? BackoffPlan { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

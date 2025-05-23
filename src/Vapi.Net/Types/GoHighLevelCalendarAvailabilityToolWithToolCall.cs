@@ -4,7 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record CreateSmsSendToolDto
+public record GoHighLevelCalendarAvailabilityToolWithToolCall
 {
     /// <summary>
     /// This determines if the tool is async.
@@ -25,6 +25,15 @@ public record CreateSmsSendToolDto
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
+
+    /// <summary>
+    /// The type of tool. "gohighlevel.calendar.availability.check" for GoHighLevel Calendar availability check tool.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "gohighlevel.calendar.availability.check";
+
+    [JsonPropertyName("toolCall")]
+    public required ToolCall ToolCall { get; set; }
 
     /// <summary>
     /// This is the function definition of the tool.

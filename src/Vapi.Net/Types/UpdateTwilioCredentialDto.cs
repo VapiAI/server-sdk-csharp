@@ -13,6 +13,18 @@ public record UpdateTwilioCredentialDto
     public string? AuthToken { get; set; }
 
     /// <summary>
+    /// This is not returned in the API.
+    /// </summary>
+    [JsonPropertyName("apiKey")]
+    public string? ApiKey { get; set; }
+
+    /// <summary>
+    /// This is not returned in the API.
+    /// </summary>
+    [JsonPropertyName("apiSecret")]
+    public string? ApiSecret { get; set; }
+
+    /// <summary>
     /// This is the name of credential. This is just for your reference.
     /// </summary>
     [JsonPropertyName("name")]

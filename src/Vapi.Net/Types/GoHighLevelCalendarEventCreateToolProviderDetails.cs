@@ -4,22 +4,16 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record Say
+public record GoHighLevelCalendarEventCreateToolProviderDetails
 {
-    [JsonPropertyName("exact")]
-    public string? Exact { get; set; }
-
-    [JsonPropertyName("prompt")]
-    public string? Prompt { get; set; }
-
-    [JsonPropertyName("name")]
-    public required string Name { get; set; }
-
     /// <summary>
-    /// This is for metadata you want to store on the task.
+    /// This is the Template URL or the Snapshot URL corresponding to the Template.
     /// </summary>
-    [JsonPropertyName("metadata")]
-    public object? Metadata { get; set; }
+    [JsonPropertyName("templateUrl")]
+    public string? TemplateUrl { get; set; }
+
+    [JsonPropertyName("setupInstructions")]
+    public IEnumerable<ToolTemplateSetup>? SetupInstructions { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

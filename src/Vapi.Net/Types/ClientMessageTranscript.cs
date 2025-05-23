@@ -7,10 +7,40 @@ namespace Vapi.Net;
 public record ClientMessageTranscript
 {
     /// <summary>
+    /// This is the phone number that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("phoneNumber")]
+    public object? PhoneNumber { get; set; }
+
+    /// <summary>
     /// This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript.
     /// </summary>
     [JsonPropertyName("type")]
     public required ClientMessageTranscriptType Type { get; set; }
+
+    /// <summary>
+    /// This is the timestamp of the message.
+    /// </summary>
+    [JsonPropertyName("timestamp")]
+    public double? Timestamp { get; set; }
+
+    /// <summary>
+    /// This is the call that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("call")]
+    public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the customer that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("customer")]
+    public CreateCustomerDto? Customer { get; set; }
+
+    /// <summary>
+    /// This is the assistant that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("assistant")]
+    public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// This is the role for which the transcript is for.

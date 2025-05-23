@@ -7,6 +7,12 @@ namespace Vapi.Net;
 public record FallbackCartesiaVoice
 {
     /// <summary>
+    /// This is the flag to toggle voice caching for the assistant.
+    /// </summary>
+    [JsonPropertyName("cachingEnabled")]
+    public bool? CachingEnabled { get; set; }
+
+    /// <summary>
     /// The ID of the particular voice you want to use.
     /// </summary>
     [JsonPropertyName("voiceId")]

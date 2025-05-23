@@ -281,6 +281,12 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "phone-call-provider-bypass-enabled-but-no-call-received")]
     PhoneCallProviderBypassEnabledButNoCallReceived,
 
+    [EnumMember(Value = "call.in-progress.error-providerfault-transport-never-connected")]
+    CallInProgressErrorProviderfaultTransportNeverConnected,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-worker-not-available")]
+    CallInProgressErrorVapifaultWorkerNotAvailable,
+
     [EnumMember(Value = "call.in-progress.error-vapifault-transport-never-connected")]
     CallInProgressErrorVapifaultTransportNeverConnected,
 
@@ -1558,6 +1564,9 @@ public enum ServerMessageStatusUpdateEndedReason
 
     [EnumMember(Value = "phone-call-provider-closed-websocket")]
     PhoneCallProviderClosedWebsocket,
+
+    [EnumMember(Value = "call.forwarding.operator-busy")]
+    CallForwardingOperatorBusy,
 
     [EnumMember(Value = "silence-timed-out")]
     SilenceTimedOut,

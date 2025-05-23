@@ -17,6 +17,16 @@ public record MonitorPlan
     public bool? ListenEnabled { get; set; }
 
     /// <summary>
+    /// This enables authentication on the `call.monitor.listenUrl`.
+    ///
+    /// If `listenAuthenticationEnabled` is `true`, the `call.monitor.listenUrl` will require an `Authorization: Bearer &lt;vapi-public-api-key&gt;` header.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("listenAuthenticationEnabled")]
+    public bool? ListenAuthenticationEnabled { get; set; }
+
+    /// <summary>
     /// This determines whether the assistant's calls allow live control. Defaults to true.
     ///
     /// Fetch `call.monitor.controlUrl` to get the live control URL.
@@ -27,6 +37,16 @@ public record MonitorPlan
     /// </summary>
     [JsonPropertyName("controlEnabled")]
     public bool? ControlEnabled { get; set; }
+
+    /// <summary>
+    /// This enables authentication on the `call.monitor.controlUrl`.
+    ///
+    /// If `controlAuthenticationEnabled` is `true`, the `call.monitor.controlUrl` will require an `Authorization: Bearer &lt;vapi-public-api-key&gt;` header.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("controlAuthenticationEnabled")]
+    public bool? ControlAuthenticationEnabled { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

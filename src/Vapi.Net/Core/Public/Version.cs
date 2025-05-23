@@ -2,5 +2,5 @@ namespace Vapi.Net;
 
 internal class Version
 {
-    public const string Current = "0.6.0";
+    public const string Current = "0.8.1";
 }

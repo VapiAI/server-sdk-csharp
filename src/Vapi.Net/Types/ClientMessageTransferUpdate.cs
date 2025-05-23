@@ -7,6 +7,12 @@ namespace Vapi.Net;
 public record ClientMessageTransferUpdate
 {
     /// <summary>
+    /// This is the phone number that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("phoneNumber")]
+    public object? PhoneNumber { get; set; }
+
+    /// <summary>
     /// This is the type of the message. "transfer-update" is sent whenever a transfer happens.
     /// </summary>
     [JsonPropertyName("type")]
@@ -17,6 +23,30 @@ public record ClientMessageTransferUpdate
     /// </summary>
     [JsonPropertyName("destination")]
     public object? Destination { get; set; }
+
+    /// <summary>
+    /// This is the timestamp of the message.
+    /// </summary>
+    [JsonPropertyName("timestamp")]
+    public double? Timestamp { get; set; }
+
+    /// <summary>
+    /// This is the call that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("call")]
+    public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the customer that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("customer")]
+    public CreateCustomerDto? Customer { get; set; }
+
+    /// <summary>
+    /// This is the assistant that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("assistant")]
+    public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// This is the assistant that the call is being transferred to. This is only sent if `destination.type` is "assistant".

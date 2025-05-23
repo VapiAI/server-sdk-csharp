@@ -27,4 +27,10 @@ public enum AnthropicModelModel
 
     [EnumMember(Value = "claude-3-7-sonnet-20250219")]
     Claude37Sonnet20250219,
+
+    [EnumMember(Value = "claude-opus-4-20250514")]
+    ClaudeOpus420250514,
+
+    [EnumMember(Value = "claude-sonnet-4-20250514")]
+    ClaudeSonnet420250514,
 }

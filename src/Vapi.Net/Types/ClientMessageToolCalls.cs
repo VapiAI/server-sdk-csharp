@@ -7,6 +7,12 @@ namespace Vapi.Net;
 public record ClientMessageToolCalls
 {
     /// <summary>
+    /// This is the phone number that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("phoneNumber")]
+    public object? PhoneNumber { get; set; }
+
+    /// <summary>
     /// This is the type of the message. "tool-calls" is sent to call a tool.
     /// </summary>
     [JsonPropertyName("type")]
@@ -17,6 +23,30 @@ public record ClientMessageToolCalls
     /// </summary>
     [JsonPropertyName("toolWithToolCallList")]
     public IEnumerable<object> ToolWithToolCallList { get; set; } = new List<object>();
+
+    /// <summary>
+    /// This is the timestamp of the message.
+    /// </summary>
+    [JsonPropertyName("timestamp")]
+    public double? Timestamp { get; set; }
+
+    /// <summary>
+    /// This is the call that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("call")]
+    public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the customer that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("customer")]
+    public CreateCustomerDto? Customer { get; set; }
+
+    /// <summary>
+    /// This is the assistant that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("assistant")]
+    public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// This is the list of tool calls that the model is requesting.

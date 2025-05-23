@@ -1,3 +1,6 @@
+using System.Net.Http;
+using System.Threading;
+using global::System.Threading.Tasks;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -6,7 +9,7 @@ public partial class VapiClient
 {
     private readonly RawClient _client;
 
-    public VapiClient(string? token = null, ClientOptions? clientOptions = null)
+    public VapiClient(string token, ClientOptions? clientOptions = null)
     {
         var defaultHeaders = new Headers(
             new Dictionary<string, string>()
@@ -15,7 +18,7 @@ public partial class VapiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/0.6.0" },
+                { "User-Agent", "Vapi.Net/0.8.1" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -67,4 +70,35 @@ public partial class VapiClient
     public AnalyticsClient Analytics { get; }
 
     public LogsClient Logs { get; }
+
+    public async global::System.Threading.Tasks.Task PrometheusControllerIndexAsync(
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "prometheus_metrics",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 }

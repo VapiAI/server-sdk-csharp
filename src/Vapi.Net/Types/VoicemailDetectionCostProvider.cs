@@ -15,4 +15,7 @@ public enum VoicemailDetectionCostProvider
 
     [EnumMember(Value = "openai")]
     Openai,
+
+    [EnumMember(Value = "vapi")]
+    Vapi,
 }

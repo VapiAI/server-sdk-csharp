@@ -54,4 +54,7 @@ public enum FormatPlanFormattersEnabledItem
 
     [EnumMember(Value = "number")]
     Number,
+
+    [EnumMember(Value = "stripAsterisk")]
+    StripAsterisk,
 }

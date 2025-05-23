@@ -131,6 +131,12 @@ public record UpdateAssistantDto
     public IEnumerable<object>? Credentials { get; set; }
 
     /// <summary>
+    /// This is a set of actions that will be performed on certain events.
+    /// </summary>
+    [JsonPropertyName("hooks")]
+    public IEnumerable<object>? Hooks { get; set; }
+
+    /// <summary>
     /// This is the name of the assistant.
     ///
     /// This is required when you want to transfer between assistants in a call.
@@ -244,12 +250,6 @@ public record UpdateAssistantDto
     /// </summary>
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
-
-    /// <summary>
-    /// This is a set of actions that will be performed on certain events.
-    /// </summary>
-    [JsonPropertyName("hooks")]
-    public IEnumerable<AssistantHooks>? Hooks { get; set; }
 
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }

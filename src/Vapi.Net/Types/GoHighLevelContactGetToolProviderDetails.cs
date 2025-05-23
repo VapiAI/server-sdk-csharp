@@ -4,13 +4,16 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record Hook
+public record GoHighLevelContactGetToolProviderDetails
 {
-    [JsonPropertyName("on")]
-    public required HookOn On { get; set; }
+    /// <summary>
+    /// This is the Template URL or the Snapshot URL corresponding to the Template.
+    /// </summary>
+    [JsonPropertyName("templateUrl")]
+    public string? TemplateUrl { get; set; }
 
-    [JsonPropertyName("do")]
-    public IEnumerable<SayHook> Do { get; set; } = new List<SayHook>();
+    [JsonPropertyName("setupInstructions")]
+    public IEnumerable<ToolTemplateSetup>? SetupInstructions { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

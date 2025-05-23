@@ -43,6 +43,12 @@ public record ToolCallResultMessage
     public required double SecondsFromStart { get; set; }
 
     /// <summary>
+    /// The metadata for the tool call result.
+    /// </summary>
+    [JsonPropertyName("metadata")]
+    public object? Metadata { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

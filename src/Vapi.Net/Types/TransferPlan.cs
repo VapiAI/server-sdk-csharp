@@ -18,6 +18,7 @@ public record TransferPlan
     /// - `warm-transfer-wait-for-operator-to-speak-first-and-then-say-message`: The assistant dials the destination, waits for the operator to speak, delivers the `message` to the destination party, and then connects the customer.
     /// - `warm-transfer-wait-for-operator-to-speak-first-and-then-say-summary`: The assistant dials the destination, waits for the operator to speak, provides a summary of the call to the destination party, and then connects the customer.
     /// - `warm-transfer-twiml`: The assistant dials the destination, executes the twiml instructions on the destination call leg, connects the customer, and leaves the call.
+    /// - `warm-transfer-experimental`: The assistant puts the customer on hold, dials the destination, and if the destination answers (and is human), delivers a message or summary before connecting the customer. If the destination is unreachable or not human (e.g., with voicemail detection), the assistant delivers the `fallbackMessage` to the customer and optionally ends the call.
     ///
     /// @default 'blind-transfer'
     /// </summary>
@@ -28,7 +29,7 @@ public record TransferPlan
     /// This is the message the assistant will deliver to the destination party before connecting the customer.
     ///
     /// Usage:
-    /// - Used only when `mode` is `blind-transfer-add-summary-to-sip-header`, `warm-transfer-say-message` or `warm-transfer-wait-for-operator-to-speak-first-and-then-say-message`.
+    /// - Used only when `mode` is `blind-transfer-add-summary-to-sip-header`, `warm-transfer-say-message`, `warm-transfer-wait-for-operator-to-speak-first-and-then-say-message`, or `warm-transfer-experimental`.
     /// </summary>
     [JsonPropertyName("message")]
     public OneOf<string, CustomMessage>? Message { get; set; }
@@ -41,6 +42,19 @@ public record TransferPlan
     /// </summary>
     [JsonPropertyName("sipVerb")]
     public object? SipVerb { get; set; }
+
+    /// <summary>
+    /// This is the URL to an audio file played while the customer is on hold during transfer.
+    ///
+    /// Usage:
+    /// - Used only when `mode` is `warm-transfer-experimental`.
+    /// - Used when transferring calls to play hold audio for the customer.
+    /// - Must be a publicly accessible URL to an audio file.
+    /// - Supported formats: MP3 and WAV.
+    /// - If not provided, the default hold audio will be used.
+    /// </summary>
+    [JsonPropertyName("holdAudioUrl")]
+    public string? HoldAudioUrl { get; set; }
 
     /// <summary>
     /// This is the TwiML instructions to execute on the destination call leg before connecting the customer.
@@ -64,10 +78,28 @@ public record TransferPlan
     /// This is the plan for generating a summary of the call to present to the destination party.
     ///
     /// Usage:
-    /// - Used only when `mode` is `blind-transfer-add-summary-to-sip-header` or `warm-transfer-say-summary` or `warm-transfer-wait-for-operator-to-speak-first-and-then-say-summary`.
+    /// - Used only when `mode` is `blind-transfer-add-summary-to-sip-header` or `warm-transfer-say-summary` or `warm-transfer-wait-for-operator-to-speak-first-and-then-say-summary` or `warm-transfer-experimental`.
     /// </summary>
     [JsonPropertyName("summaryPlan")]
     public SummaryPlan? SummaryPlan { get; set; }
+
+    /// <summary>
+    /// This flag includes the sipHeaders from above in the refer to sip uri as url encoded query params.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("sipHeadersInReferToEnabled")]
+    public bool? SipHeadersInReferToEnabled { get; set; }
+
+    /// <summary>
+    /// This configures the fallback plan when the transfer fails (destination unreachable, busy, or not human).
+    ///
+    /// Usage:
+    /// - Used only when `mode` is `warm-transfer-experimental`.
+    /// - If not provided when using `warm-transfer-experimental`, a default message will be used.
+    /// </summary>
+    [JsonPropertyName("fallbackPlan")]
+    public TransferFallbackPlan? FallbackPlan { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

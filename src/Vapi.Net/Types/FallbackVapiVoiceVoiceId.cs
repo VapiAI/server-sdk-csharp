@@ -10,6 +10,9 @@ public enum FallbackVapiVoiceVoiceId
     [EnumMember(Value = "Elliot")]
     Elliot,
 
+    [EnumMember(Value = "Kylie")]
+    Kylie,
+
     [EnumMember(Value = "Rohan")]
     Rohan,
 

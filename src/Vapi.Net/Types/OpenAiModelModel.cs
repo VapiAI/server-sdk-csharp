@@ -22,8 +22,14 @@ public enum OpenAiModelModel
     [EnumMember(Value = "chatgpt-4o-latest")]
     Chatgpt4OLatest,
 
+    [EnumMember(Value = "o3")]
+    O3,
+
     [EnumMember(Value = "o3-mini")]
     O3Mini,
+
+    [EnumMember(Value = "o4-mini")]
+    O4Mini,
 
     [EnumMember(Value = "o1-preview")]
     O1Preview,

@@ -27,6 +27,12 @@ public record CreateVoicemailToolDto
     public IEnumerable<object>? Messages { get; set; }
 
     /// <summary>
+    /// The type of tool. "voicemail". This uses the model itself to determine if a voicemil was reached. Can be used alternatively/alongside with TwilioVoicemailDetection
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "voicemail";
+
+    /// <summary>
     /// This is the function definition of the tool.
     ///
     /// For `endCall`, `transferCall`, and `dtmf` tools, this is auto-filled based on tool-specific fields like `tool.destinations`. But, even in those cases, you can provide a custom function definition for advanced use cases.

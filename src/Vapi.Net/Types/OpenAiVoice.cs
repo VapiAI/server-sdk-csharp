@@ -8,6 +8,12 @@ namespace Vapi.Net;
 public record OpenAiVoice
 {
     /// <summary>
+    /// This is the flag to toggle voice caching for the assistant.
+    /// </summary>
+    [JsonPropertyName("cachingEnabled")]
+    public bool? CachingEnabled { get; set; }
+
+    /// <summary>
     /// This is the provider-specific ID that will be used.
     /// Please note that ash, ballad, coral, sage, and verse may only be used with realtime models.
     /// </summary>

@@ -78,6 +78,12 @@ public record Org
     public OrgPlan? Plan { get; set; }
 
     /// <summary>
+    /// This is the secret key used for signing JWT tokens for the org.
+    /// </summary>
+    [JsonPropertyName("jwtSecret")]
+    public string? JwtSecret { get; set; }
+
+    /// <summary>
     /// This is the name of the org. This is just for your own reference.
     /// </summary>
     [JsonPropertyName("name")]

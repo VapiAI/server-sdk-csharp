@@ -43,6 +43,9 @@ public enum CreateAssistantDtoClientMessagesItem
     [EnumMember(Value = "tool-calls-result")]
     ToolCallsResult,
 
+    [EnumMember(Value = "tool.completed")]
+    ToolCompleted,
+
     [EnumMember(Value = "transfer-update")]
     TransferUpdate,
 

@@ -4,22 +4,13 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record SayHook
+public record SayAssistantHookAction
 {
-    [JsonPropertyName("type")]
-    public string Type { get; set; } = "say";
-
     /// <summary>
-    /// This is for metadata you want to store on the task.
+    /// This is the message to say
     /// </summary>
-    [JsonPropertyName("metadata")]
-    public object? Metadata { get; set; }
-
     [JsonPropertyName("exact")]
-    public string? Exact { get; set; }
-
-    [JsonPropertyName("prompt")]
-    public string? Prompt { get; set; }
+    public object Exact { get; set; } = new Dictionary<string, object?>();
 
     /// <summary>
     /// Additional properties received from the response, if any.

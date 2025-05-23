@@ -46,6 +46,12 @@ public record Artifact
     public double? VideoRecordingStartDelaySeconds { get; set; }
 
     /// <summary>
+    /// This is the recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`.
+    /// </summary>
+    [JsonPropertyName("recording")]
+    public Recording? Recording { get; set; }
+
+    /// <summary>
     /// This is the transcript of the call. This is derived from `artifact.messages` but provided for convenience.
     /// </summary>
     [JsonPropertyName("transcript")]

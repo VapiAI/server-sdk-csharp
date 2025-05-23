@@ -132,6 +132,12 @@ public record AssistantOverrides
     public IEnumerable<object>? Credentials { get; set; }
 
     /// <summary>
+    /// This is a set of actions that will be performed on certain events.
+    /// </summary>
+    [JsonPropertyName("hooks")]
+    public IEnumerable<object>? Hooks { get; set; }
+
+    /// <summary>
     /// These are values that will be used to replace the template variables in the assistant messages and other text-based fields.
     /// This uses LiquidJS syntax. https://liquidjs.com/tutorials/intro-to-liquid.html
     ///
@@ -257,12 +263,6 @@ public record AssistantOverrides
     /// </summary>
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
-
-    /// <summary>
-    /// This is a set of actions that will be performed on certain events.
-    /// </summary>
-    [JsonPropertyName("hooks")]
-    public IEnumerable<AssistantHooks>? Hooks { get; set; }
 
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }

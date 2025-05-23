@@ -4,8 +4,14 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record AssistantHookActionBase
+public record AssistantHookAssistantSpeechInterrupted
 {
+    /// <summary>
+    /// This is the set of actions to perform when the hook triggers
+    /// </summary>
+    [JsonPropertyName("do")]
+    public IEnumerable<object> Do { get; set; } = new List<object>();
+
     /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>

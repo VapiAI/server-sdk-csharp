@@ -4,7 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record SmsSendTool
+public record GoHighLevelCalendarEventCreateTool
 {
     /// <summary>
     /// This determines if the tool is async.

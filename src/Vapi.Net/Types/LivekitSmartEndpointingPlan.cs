@@ -21,7 +21,7 @@ public record LivekitSmartEndpointingPlan
     ///
     /// Under the hood, this is parsed into a mathjs expression. Whatever you use to write your expression needs to be valid with respect to mathjs
     ///
-    /// @default "70 + 4000 * x"
+    /// @default "20 + 500 * sqrt(x) + 2500 * x^3"
     /// </summary>
     [JsonPropertyName("waitFunction")]
     public string? WaitFunction { get; set; }
