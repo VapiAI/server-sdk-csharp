@@ -2,6 +2,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record CreateFileDto
 {
     public required FileParameter File { get; set; }

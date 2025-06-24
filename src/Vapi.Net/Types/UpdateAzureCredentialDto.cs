@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record UpdateAzureCredentialDto
 {
     /// <summary>
@@ -23,6 +24,12 @@ public record UpdateAzureCredentialDto
     /// </summary>
     [JsonPropertyName("apiKey")]
     public string? ApiKey { get; set; }
+
+    /// <summary>
+    /// This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order.
+    /// </summary>
+    [JsonPropertyName("fallbackIndex")]
+    public double? FallbackIndex { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

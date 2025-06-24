@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record CreateOutboundCallDto
 {
     /// <summary>
@@ -83,8 +84,6 @@ public record CreateOutboundCallDto
     public CreateSquadDto? Squad { get; set; }
 
     /// <summary>
-    /// [BETA] This feature is in active development. The API and behavior are subject to change as we refine it based on user feedback.
-    ///
     /// This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.
     ///
     /// To start a call with:
@@ -96,8 +95,6 @@ public record CreateOutboundCallDto
     public string? WorkflowId { get; set; }
 
     /// <summary>
-    /// [BETA] This feature is in active development. The API and behavior are subject to change as we refine it based on user feedback.
-    ///
     /// This is a workflow that will be used for the call. To use an existing workflow, use `workflowId` instead.
     ///
     /// To start a call with:
@@ -107,6 +104,12 @@ public record CreateOutboundCallDto
     /// </summary>
     [JsonPropertyName("workflow")]
     public CreateWorkflowDto? Workflow { get; set; }
+
+    /// <summary>
+    /// These are the overrides for the `workflow` or `workflowId`'s settings and template variables.
+    /// </summary>
+    [JsonPropertyName("workflowOverrides")]
+    public WorkflowOverrides? WorkflowOverrides { get; set; }
 
     /// <summary>
     /// This is the phone number that will be used for the call. To use a transient number, use `phoneNumber` instead.

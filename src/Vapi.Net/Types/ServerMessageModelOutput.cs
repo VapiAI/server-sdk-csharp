@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ServerMessageModelOutput
 {
     /// <summary>
@@ -49,6 +50,12 @@ public record ServerMessageModelOutput
     /// </summary>
     [JsonPropertyName("call")]
     public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the chat object.
+    /// </summary>
+    [JsonPropertyName("chat")]
+    public Chat? Chat { get; set; }
 
     /// <summary>
     /// This is the output of the model. It can be a token or tool call.

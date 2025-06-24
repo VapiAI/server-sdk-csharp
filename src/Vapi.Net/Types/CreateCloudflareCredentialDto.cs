@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record CreateCloudflareCredentialDto
 {
     /// <summary>
@@ -23,6 +24,12 @@ public record CreateCloudflareCredentialDto
     /// </summary>
     [JsonPropertyName("accountEmail")]
     public string? AccountEmail { get; set; }
+
+    /// <summary>
+    /// This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order.
+    /// </summary>
+    [JsonPropertyName("fallbackIndex")]
+    public double? FallbackIndex { get; set; }
 
     /// <summary>
     /// This is the bucket plan that can be provided to store call artifacts in R2

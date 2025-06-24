@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record VapiVoice
 {
     /// <summary>
@@ -25,14 +26,6 @@ public record VapiVoice
     /// </summary>
     [JsonPropertyName("speed")]
     public double? Speed { get; set; }
-
-    /// <summary>
-    /// This is the language code (ISO 639-1) that will be used.
-    ///
-    /// @default 'en-US'
-    /// </summary>
-    [JsonPropertyName("language")]
-    public VapiVoiceLanguage? Language { get; set; }
 
     /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.

@@ -4,10 +4,11 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record Edge
 {
     [JsonPropertyName("condition")]
-    public object? Condition { get; set; }
+    public AiEdgeCondition? Condition { get; set; }
 
     [JsonPropertyName("from")]
     public required string From { get; set; }

@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record JsonSchema
 {
     /// <summary>
@@ -49,12 +50,6 @@ public record JsonSchema
     /// </summary>
     [JsonPropertyName("required")]
     public IEnumerable<string>? Required { get; set; }
-
-    /// <summary>
-    /// This is a regex that will be used to validate data in question.
-    /// </summary>
-    [JsonPropertyName("regex")]
-    public string? Regex { get; set; }
 
     /// <summary>
     /// This the value that will be used in filling the property.

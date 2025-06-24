@@ -1,25 +1,33 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ConversationNode
 {
     /// <summary>
-    /// This is the model for the Conversation Task.
+    /// This is the model for the node.
+    ///
+    /// This overrides `workflow.model`.
     /// </summary>
     [JsonPropertyName("model")]
-    public object? Model { get; set; }
+    public OneOf<WorkflowOpenAiModel, WorkflowAnthropicModel, object>? Model { get; set; }
 
     /// <summary>
-    /// These are the options for the assistant's transcriber.
+    /// This is the transcriber for the node.
+    ///
+    /// This overrides `workflow.transcriber`.
     /// </summary>
     [JsonPropertyName("transcriber")]
     public object? Transcriber { get; set; }
 
     /// <summary>
-    /// These are the options for the assistant's voice.
+    /// This is the voice for the node.
+    ///
+    /// This overrides `workflow.voice`.
     /// </summary>
     [JsonPropertyName("voice")]
     public object? Voice { get; set; }

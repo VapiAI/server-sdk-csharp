@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record OpenAiModel
 {
     /// <summary>
@@ -42,6 +43,11 @@ public record OpenAiModel
 
     /// <summary>
     /// This is the OpenAI model that will be used.
+    ///
+    /// When using Vapi OpenAI or your own Azure Credentials, you have the option to specify the region for the selected model. This shouldn't be specified unless you have a specific reason to do so. Vapi will automatically find the fastest region that make sense.
+    /// This is helpful when you are required to comply with Data Residency rules. Learn more about Azure regions here https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/.
+    ///
+    /// @default undefined
     /// </summary>
     [JsonPropertyName("model")]
     public required OpenAiModelModel Model { get; set; }
@@ -51,6 +57,17 @@ public record OpenAiModel
     /// </summary>
     [JsonPropertyName("fallbackModels")]
     public IEnumerable<OpenAiModelFallbackModelsItem>? FallbackModels { get; set; }
+
+    /// <summary>
+    /// Azure OpenAI doesn't support `maxLength` right now https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&pivots=programming-language-csharp#unsupported-type-specific-keywords. Need to strip.
+    ///
+    /// - `strip-parameters-with-unsupported-validation` will strip parameters with unsupported validation.
+    /// - `strip-unsupported-validation` will keep the parameters but strip unsupported validation.
+    ///
+    /// @default `strip-unsupported-validation`
+    /// </summary>
+    [JsonPropertyName("toolStrictCompatibilityMode")]
+    public OpenAiModelToolStrictCompatibilityMode? ToolStrictCompatibilityMode { get; set; }
 
     /// <summary>
     /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.

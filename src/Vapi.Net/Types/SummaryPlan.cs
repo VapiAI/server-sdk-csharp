@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record SummaryPlan
 {
     /// <summary>
@@ -24,7 +25,9 @@ public record SummaryPlan
     /// You can customize by providing any messages you want.
     ///
     /// Here are the template variables available:
-    /// - {{transcript}}: The transcript of the call from `call.artifact.transcript`- {{systemPrompt}}: The system prompt of the call from `assistant.model.messages[type=system].content`- {{endedReason}}: The ended reason of the call from `call.endedReason`
+    /// - {{transcript}}: The transcript of the call from `call.artifact.transcript`
+    /// - {{systemPrompt}}: The system prompt of the call from `assistant.model.messages[type=system].content`
+    /// - {{endedReason}}: The ended reason of the call from `call.endedReason`
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }

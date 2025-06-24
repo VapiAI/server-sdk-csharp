@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record UpdateAssistantDto
 {
     /// <summary>
@@ -118,8 +119,9 @@ public record UpdateAssistantDto
     public IEnumerable<TransportConfigurationTwilio>? TransportConfigurations { get; set; }
 
     /// <summary>
-    /// This is the plan for observability configuration of assistant's calls.
-    /// Currently supports Langfuse for tracing and monitoring.
+    /// This is the plan for observability of assistant's calls.
+    ///
+    /// Currently, only Langfuse is supported.
     /// </summary>
     [JsonPropertyName("observabilityPlan")]
     public LangfuseObservabilityPlan? ObservabilityPlan { get; set; }
@@ -176,6 +178,22 @@ public record UpdateAssistantDto
     public object? Metadata { get; set; }
 
     /// <summary>
+    /// This enables filtering of noise and background speech while the user is talking.
+    ///
+    /// Features:
+    /// - Smart denoising using Krisp
+    /// - Fourier denoising
+    ///
+    /// Smart denoising can be combined with or used independently of Fourier denoising.
+    ///
+    /// Order of precedence:
+    /// - Smart denoising
+    /// - Fourier denoising
+    /// </summary>
+    [JsonPropertyName("backgroundSpeechDenoisingPlan")]
+    public BackgroundSpeechDenoisingPlan? BackgroundSpeechDenoisingPlan { get; set; }
+
+    /// <summary>
     /// This is the plan for analysis of assistant's calls. Stored in `call.analysis`.
     /// </summary>
     [JsonPropertyName("analysisPlan")]
@@ -183,8 +201,6 @@ public record UpdateAssistantDto
 
     /// <summary>
     /// This is the plan for artifacts generated during assistant's calls. Stored in `call.artifact`.
-    ///
-    /// Note: `recordingEnabled` is currently at the root level. It will be moved to `artifactPlan` in the future, but will remain backwards compatible.
     /// </summary>
     [JsonPropertyName("artifactPlan")]
     public ArtifactPlan? ArtifactPlan { get; set; }
@@ -227,8 +243,6 @@ public record UpdateAssistantDto
     /// Usage:
     /// - To enable live listening of the assistant's calls, set `monitorPlan.listenEnabled` to `true`.
     /// - To enable live control of the assistant's calls, set `monitorPlan.controlEnabled` to `true`.
-    ///
-    /// Note, `serverMessages`, `clientMessages`, `serverUrl` and `serverUrlSecret` are currently at the root level but will be moved to `monitorPlan` in the future. Will remain backwards compatible
     /// </summary>
     [JsonPropertyName("monitorPlan")]
     public MonitorPlan? MonitorPlan { get; set; }

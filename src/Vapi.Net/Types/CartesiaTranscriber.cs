@@ -4,17 +4,20 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record ChatCompletionsDto
+[Serializable]
+public record CartesiaTranscriber
 {
-    [JsonPropertyName("messages")]
-    public IEnumerable<ChatCompletionMessageWorkflows> Messages { get; set; } =
-        new List<ChatCompletionMessageWorkflows>();
+    [JsonPropertyName("model")]
+    public string? Model { get; set; }
 
-    [JsonPropertyName("workflowId")]
-    public string? WorkflowId { get; set; }
+    [JsonPropertyName("language")]
+    public CartesiaTranscriberLanguage? Language { get; set; }
 
-    [JsonPropertyName("workflow")]
-    public CreateWorkflowDto? Workflow { get; set; }
+    /// <summary>
+    /// This is the plan for voice provider fallbacks in the event that the primary voice provider fails.
+    /// </summary>
+    [JsonPropertyName("fallbackPlan")]
+    public FallbackTranscriberPlan? FallbackPlan { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

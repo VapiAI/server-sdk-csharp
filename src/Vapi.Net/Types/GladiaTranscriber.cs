@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record GladiaTranscriber
 {
     [JsonPropertyName("model")]
@@ -17,6 +18,12 @@ public record GladiaTranscriber
     /// </summary>
     [JsonPropertyName("language")]
     public GladiaTranscriberLanguage? Language { get; set; }
+
+    /// <summary>
+    /// Defines the languages to use for the transcription. Required when languageBehaviour is 'manual'.
+    /// </summary>
+    [JsonPropertyName("languages")]
+    public GladiaTranscriberLanguages? Languages { get; set; }
 
     /// <summary>
     /// Provides a custom vocabulary to the model to improve accuracy of transcribing context specific words, technical terms, names, etc. If empty, this argument is ignored.

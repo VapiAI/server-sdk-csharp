@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ServerMessageVoiceRequest
 {
     /// <summary>
@@ -70,6 +71,12 @@ public record ServerMessageVoiceRequest
     /// </summary>
     [JsonPropertyName("call")]
     public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the chat object.
+    /// </summary>
+    [JsonPropertyName("chat")]
+    public Chat? Chat { get; set; }
 
     /// <summary>
     /// This is the text to be synthesized.

@@ -4,20 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record CreateApiRequestToolDto
 {
-    /// <summary>
-    /// This determines if the tool is async.
-    ///
-    /// If async, the assistant will move forward without waiting for your server to respond. This is useful if you just want to trigger something on your server.
-    ///
-    /// If sync, the assistant will wait for your server to respond. This is useful if want assistant to respond with the result from your server.
-    ///
-    /// Defaults to synchronous (`false`).
-    /// </summary>
-    [JsonPropertyName("async")]
-    public bool? Async { get; set; }
-
     /// <summary>
     /// These are the messages that will be spoken to the user as the tool is running.
     ///
@@ -39,6 +28,8 @@ public record CreateApiRequestToolDto
 
     /// <summary>
     /// This is the name of the tool. This will be passed to the model.
+    ///
+    /// Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
@@ -59,7 +50,7 @@ public record CreateApiRequestToolDto
     /// This is the body of the request.
     /// </summary>
     [JsonPropertyName("body")]
-    public required JsonSchema Body { get; set; }
+    public JsonSchema? Body { get; set; }
 
     /// <summary>
     /// These are the headers to send in the request.
@@ -76,6 +67,12 @@ public record CreateApiRequestToolDto
     public BackoffPlan? BackoffPlan { get; set; }
 
     /// <summary>
+    /// This is the plan that controls the variable extraction from the tool's response.
+    /// </summary>
+    [JsonPropertyName("variableExtractionPlan")]
+    public VariableExtractionPlan? VariableExtractionPlan { get; set; }
+
+    /// <summary>
     /// This is the function definition of the tool.
     ///
     /// For `endCall`, `transferCall`, and `dtmf` tools, this is auto-filled based on tool-specific fields like `tool.destinations`. But, even in those cases, you can provide a custom function definition for advanced use cases.
@@ -84,16 +81,6 @@ public record CreateApiRequestToolDto
     /// </summary>
     [JsonPropertyName("function")]
     public OpenAiFunction? Function { get; set; }
-
-    /// <summary>
-    /// This is the server that will be hit when this tool is requested by the model.
-    ///
-    /// All requests will be sent with the call object among other things. You can find more details in the Server URL documentation.
-    ///
-    /// This overrides the serverUrl set on the org and the phoneNumber. Order of precedence: highest tool.server.url, then assistant.serverUrl, then phoneNumber.serverUrl, then org.serverUrl.
-    /// </summary>
-    [JsonPropertyName("server")]
-    public Server? Server { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

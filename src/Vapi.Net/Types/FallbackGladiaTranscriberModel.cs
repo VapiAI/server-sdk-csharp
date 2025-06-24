@@ -12,4 +12,7 @@ public enum FallbackGladiaTranscriberModel
 
     [EnumMember(Value = "accurate")]
     Accurate,
+
+    [EnumMember(Value = "solaria-1")]
+    Solaria1,
 }

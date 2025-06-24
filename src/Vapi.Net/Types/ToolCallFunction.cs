@@ -4,19 +4,20 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ToolCallFunction
 {
     /// <summary>
-    /// This is the name of the function the model called.
+    /// This is the arguments to call the function with
+    /// </summary>
+    [JsonPropertyName("arguments")]
+    public required string Arguments { get; set; }
+
+    /// <summary>
+    /// This is the name of the function to call
     /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
-
-    /// <summary>
-    /// These are the arguments that the function was called with.
-    /// </summary>
-    [JsonPropertyName("arguments")]
-    public object Arguments { get; set; } = new Dictionary<string, object?>();
 
     /// <summary>
     /// Additional properties received from the response, if any.

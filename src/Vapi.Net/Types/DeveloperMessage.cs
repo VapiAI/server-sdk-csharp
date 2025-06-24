@@ -4,8 +4,27 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record ChatServiceResponse
+[Serializable]
+public record DeveloperMessage
 {
+    /// <summary>
+    /// This is the role of the message author
+    /// </summary>
+    [JsonPropertyName("role")]
+    public string Role { get; set; } = "developer";
+
+    /// <summary>
+    /// This is the content of the developer message
+    /// </summary>
+    [JsonPropertyName("content")]
+    public required string Content { get; set; }
+
+    /// <summary>
+    /// This is an optional name for the participant
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
     /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>

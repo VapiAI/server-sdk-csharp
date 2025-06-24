@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ServerMessageTransferUpdate
 {
     /// <summary>
@@ -55,6 +56,12 @@ public record ServerMessageTransferUpdate
     /// </summary>
     [JsonPropertyName("call")]
     public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the chat object.
+    /// </summary>
+    [JsonPropertyName("chat")]
+    public Chat? Chat { get; set; }
 
     /// <summary>
     /// This is the assistant that the call is being transferred to. This is only sent if `destination.type` is "assistant".

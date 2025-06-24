@@ -4,8 +4,15 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record WorkflowAnthropicModel
 {
+    /// <summary>
+    /// This is the provider of the model (`anthropic`).
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public string Provider { get; set; } = "anthropic";
+
     /// <summary>
     /// This is the specific model that will be used.
     /// </summary>

@@ -10,6 +10,9 @@ public enum GoogleModelModel
     [EnumMember(Value = "gemini-2.5-pro-preview-05-06")]
     Gemini25ProPreview0506,
 
+    [EnumMember(Value = "gemini-2.5-flash-preview-05-20")]
+    Gemini25FlashPreview0520,
+
     [EnumMember(Value = "gemini-2.5-flash-preview-04-17")]
     Gemini25FlashPreview0417,
 

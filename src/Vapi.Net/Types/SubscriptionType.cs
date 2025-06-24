@@ -15,4 +15,16 @@ public enum SubscriptionType
 
     [EnumMember(Value = "enterprise")]
     Enterprise,
+
+    [EnumMember(Value = "agency")]
+    Agency,
+
+    [EnumMember(Value = "startup")]
+    Startup,
+
+    [EnumMember(Value = "growth")]
+    Growth,
+
+    [EnumMember(Value = "scale")]
+    Scale,
 }

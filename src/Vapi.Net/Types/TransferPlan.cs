@@ -5,6 +5,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record TransferPlan
 {
     /// <summary>
@@ -35,6 +36,14 @@ public record TransferPlan
     public OneOf<string, CustomMessage>? Message { get; set; }
 
     /// <summary>
+    /// This is the timeout in seconds for the warm-transfer-wait-for-operator-to-speak-first-and-then-say-message/summary
+    ///
+    /// @default 60
+    /// </summary>
+    [JsonPropertyName("timeout")]
+    public double? Timeout { get; set; }
+
+    /// <summary>
     /// This specifies the SIP verb to use while transferring the call.
     /// - 'refer': Uses SIP REFER to transfer the call (default)
     /// - 'bye': Ends current call with SIP BYE
@@ -55,6 +64,19 @@ public record TransferPlan
     /// </summary>
     [JsonPropertyName("holdAudioUrl")]
     public string? HoldAudioUrl { get; set; }
+
+    /// <summary>
+    /// This is the URL to an audio file played after the warm transfer message or summary is delivered to the destination party.
+    /// It can be used to play a custom sound like 'beep' to notify that the transfer is complete.
+    ///
+    /// Usage:
+    /// - Used only when `mode` is `warm-transfer-experimental`.
+    /// - Used when transferring calls to play hold audio for the destination party.
+    /// - Must be a publicly accessible URL to an audio file.
+    /// - Supported formats: MP3 and WAV.
+    /// </summary>
+    [JsonPropertyName("transferCompleteAudioUrl")]
+    public string? TransferCompleteAudioUrl { get; set; }
 
     /// <summary>
     /// This is the TwiML instructions to execute on the destination call leg before connecting the customer.

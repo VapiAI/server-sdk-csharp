@@ -5,6 +5,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record Artifact
 {
     /// <summary>
@@ -62,6 +63,18 @@ public record Artifact
     /// </summary>
     [JsonPropertyName("pcapUrl")]
     public string? PcapUrl { get; set; }
+
+    /// <summary>
+    /// This is the history of workflow nodes that were executed during the call.
+    /// </summary>
+    [JsonPropertyName("nodes")]
+    public IEnumerable<NodeArtifact>? Nodes { get; set; }
+
+    /// <summary>
+    /// This is the state of variables at the end of the workflow execution.
+    /// </summary>
+    [JsonPropertyName("variables")]
+    public object? Variables { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

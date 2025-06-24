@@ -4,16 +4,32 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record ChatCompletionMessageWorkflows
+[Serializable]
+public record ToolMessage
 {
+    /// <summary>
+    /// This is the role of the message author
+    /// </summary>
     [JsonPropertyName("role")]
-    public object Role { get; set; } = new Dictionary<string, object?>();
+    public string Role { get; set; } = "tool";
 
+    /// <summary>
+    /// This is the content of the tool message
+    /// </summary>
     [JsonPropertyName("content")]
-    public string? Content { get; set; }
+    public required string Content { get; set; }
 
-    [JsonPropertyName("metadata")]
-    public ChatCompletionMessageMetadata? Metadata { get; set; }
+    /// <summary>
+    /// This is the ID of the tool call this message is responding to
+    /// </summary>
+    [JsonPropertyName("tool_call_id")]
+    public required string ToolCallId { get; set; }
+
+    /// <summary>
+    /// This is an optional name for the participant
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

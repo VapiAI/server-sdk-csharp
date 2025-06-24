@@ -28,11 +28,14 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "assistant-request-returned-forwarding-phone-number")]
     AssistantRequestReturnedForwardingPhoneNumber,
 
-    [EnumMember(Value = "call.start.error-get-org")]
-    CallStartErrorGetOrg,
+    [EnumMember(Value = "scheduled-call-deleted")]
+    ScheduledCallDeleted,
 
-    [EnumMember(Value = "call.start.error-get-subscription")]
-    CallStartErrorGetSubscription,
+    [EnumMember(Value = "call.start.error-vapifault-get-org")]
+    CallStartErrorVapifaultGetOrg,
+
+    [EnumMember(Value = "call.start.error-vapifault-get-subscription")]
+    CallStartErrorVapifaultGetSubscription,
 
     [EnumMember(Value = "call.start.error-get-assistant")]
     CallStartErrorGetAssistant,
@@ -54,6 +57,21 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "call.start.error-get-transport")]
     CallStartErrorGetTransport,
+
+    [EnumMember(Value = "call.start.error-subscription-wallet-does-not-exist")]
+    CallStartErrorSubscriptionWalletDoesNotExist,
+
+    [EnumMember(Value = "call.start.error-subscription-frozen")]
+    CallStartErrorSubscriptionFrozen,
+
+    [EnumMember(Value = "call.start.error-subscription-insufficient-credits")]
+    CallStartErrorSubscriptionInsufficientCredits,
+
+    [EnumMember(Value = "call.start.error-subscription-upgrade-failed")]
+    CallStartErrorSubscriptionUpgradeFailed,
+
+    [EnumMember(Value = "call.start.error-subscription-concurrency-limit-reached")]
+    CallStartErrorSubscriptionConcurrencyLimitReached,
 
     [EnumMember(Value = "assistant-not-valid")]
     AssistantNotValid,
@@ -266,9 +284,6 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "worker-shutdown")]
     WorkerShutdown,
 
-    [EnumMember(Value = "unknown-error")]
-    UnknownError,
-
     [EnumMember(Value = "vonage-disconnected")]
     VonageDisconnected,
 
@@ -298,6 +313,15 @@ public enum ServerMessageEndOfCallReportEndedReason
     )]
     CallInProgressErrorVapifaultCallStartedButConnectionToTransportMissing,
 
+    [EnumMember(Value = "call.in-progress.error-vapifault-worker-died")]
+    CallInProgressErrorVapifaultWorkerDied,
+
+    [EnumMember(Value = "call.in-progress.twilio-completed-call")]
+    CallInProgressTwilioCompletedCall,
+
+    [EnumMember(Value = "call.in-progress.sip-completed-call")]
+    CallInProgressSipCompletedCall,
+
     [EnumMember(Value = "call.in-progress.error-vapifault-openai-llm-failed")]
     CallInProgressErrorVapifaultOpenaiLlmFailed,
 
@@ -324,6 +348,9 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "call.in-progress.error-vapifault-deep-seek-llm-failed")]
     CallInProgressErrorVapifaultDeepSeekLlmFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-chat-pipeline-failed-to-start")]
+    CallInProgressErrorVapifaultChatPipelineFailedToStart,
 
     [EnumMember(Value = "pipeline-error-openai-400-bad-request-validation-failed")]
     PipelineErrorOpenai400BadRequestValidationFailed,
@@ -1190,6 +1217,9 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "pipeline-error-cartesia-500-server-error")]
     PipelineErrorCartesia500ServerError,
 
+    [EnumMember(Value = "pipeline-error-cartesia-502-server-error")]
+    PipelineErrorCartesia502ServerError,
+
     [EnumMember(Value = "pipeline-error-cartesia-503-server-error")]
     PipelineErrorCartesia503ServerError,
 
@@ -1254,6 +1284,9 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "pipeline-error-eleven-labs-voice-disabled-by-owner")]
     PipelineErrorElevenLabsVoiceDisabledByOwner,
 
+    [EnumMember(Value = "pipeline-error-eleven-labs-vapi-voice-disabled-by-owner")]
+    PipelineErrorElevenLabsVapiVoiceDisabledByOwner,
+
     [EnumMember(Value = "pipeline-error-eleven-labs-blocked-account-in-probation")]
     PipelineErrorElevenLabsBlockedAccountInProbation,
 
@@ -1279,6 +1312,9 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "pipeline-error-eleven-labs-500-server-error")]
     PipelineErrorElevenLabs500ServerError,
+
+    [EnumMember(Value = "pipeline-error-eleven-labs-503-server-error")]
+    PipelineErrorElevenLabs503ServerError,
 
     [EnumMember(Value = "call.in-progress.error-vapifault-eleven-labs-voice-not-found")]
     CallInProgressErrorVapifaultElevenLabsVoiceNotFound,
@@ -1368,6 +1404,9 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "call.in-progress.error-providerfault-eleven-labs-500-server-error")]
     CallInProgressErrorProviderfaultElevenLabs500ServerError,
+
+    [EnumMember(Value = "call.in-progress.error-providerfault-eleven-labs-503-server-error")]
+    CallInProgressErrorProviderfaultElevenLabs503ServerError,
 
     [EnumMember(Value = "pipeline-error-playht-request-timed-out")]
     PipelineErrorPlayhtRequestTimedOut,
@@ -1544,6 +1583,9 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "call.in-progress.error-assistant-did-not-receive-customer-audio")]
     CallInProgressErrorAssistantDidNotReceiveCustomerAudio,
 
+    [EnumMember(Value = "call.in-progress.error-transfer-failed")]
+    CallInProgressErrorTransferFailed,
+
     [EnumMember(Value = "customer-busy")]
     CustomerBusy,
 
@@ -1571,14 +1613,41 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "silence-timed-out")]
     SilenceTimedOut,
 
-    [EnumMember(Value = "call.in-progress.error-sip-telephony-provider-failed-to-connect-call")]
-    CallInProgressErrorSipTelephonyProviderFailedToConnectCall,
+    [EnumMember(Value = "call.in-progress.error-sip-inbound-call-failed-to-connect")]
+    CallInProgressErrorSipInboundCallFailedToConnect,
+
+    [EnumMember(Value = "call.in-progress.error-providerfault-outbound-sip-403-forbidden")]
+    CallInProgressErrorProviderfaultOutboundSip403Forbidden,
+
+    [EnumMember(
+        Value = "call.in-progress.error-providerfault-outbound-sip-407-proxy-authentication-required"
+    )]
+    CallInProgressErrorProviderfaultOutboundSip407ProxyAuthenticationRequired,
+
+    [EnumMember(
+        Value = "call.in-progress.error-providerfault-outbound-sip-503-service-unavailable"
+    )]
+    CallInProgressErrorProviderfaultOutboundSip503ServiceUnavailable,
+
+    [EnumMember(
+        Value = "call.in-progress.error-providerfault-outbound-sip-480-temporarily-unavailable"
+    )]
+    CallInProgressErrorProviderfaultOutboundSip480TemporarilyUnavailable,
+
+    [EnumMember(Value = "call.in-progress.error-sip-outbound-call-failed-to-connect")]
+    CallInProgressErrorSipOutboundCallFailedToConnect,
 
     [EnumMember(Value = "call.ringing.hook-executed-say")]
     CallRingingHookExecutedSay,
 
     [EnumMember(Value = "call.ringing.hook-executed-transfer")]
     CallRingingHookExecutedTransfer,
+
+    [EnumMember(Value = "call.ringing.sip-inbound-caller-hungup-before-call-connect")]
+    CallRingingSipInboundCallerHungupBeforeCallConnect,
+
+    [EnumMember(Value = "call.ringing.error-sip-inbound-call-failed-to-connect")]
+    CallRingingErrorSipInboundCallFailedToConnect,
 
     [EnumMember(Value = "twilio-failed-to-connect-call")]
     TwilioFailedToConnectCall,

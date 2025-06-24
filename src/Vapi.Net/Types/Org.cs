@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record Org
 {
     /// <summary>
@@ -82,6 +83,12 @@ public record Org
     /// </summary>
     [JsonPropertyName("jwtSecret")]
     public string? JwtSecret { get; set; }
+
+    /// <summary>
+    /// This is the total number of call minutes used by this org across all time.
+    /// </summary>
+    [JsonPropertyName("minutesUsed")]
+    public double? MinutesUsed { get; set; }
 
     /// <summary>
     /// This is the name of the org. This is just for your own reference.

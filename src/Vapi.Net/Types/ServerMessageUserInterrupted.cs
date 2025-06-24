@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ServerMessageUserInterrupted
 {
     /// <summary>
@@ -49,6 +50,12 @@ public record ServerMessageUserInterrupted
     /// </summary>
     [JsonPropertyName("call")]
     public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the chat object.
+    /// </summary>
+    [JsonPropertyName("chat")]
+    public Chat? Chat { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

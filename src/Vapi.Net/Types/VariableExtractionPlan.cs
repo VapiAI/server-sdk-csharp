@@ -4,11 +4,14 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record VariableExtractionPlan
 {
-    [JsonPropertyName("output")]
-    public IEnumerable<VariableExtractionSchema> Output { get; set; } =
-        new List<VariableExtractionSchema>();
+    /// <summary>
+    /// This is the schema of parameters we want to extract from the response
+    /// </summary>
+    [JsonPropertyName("schema")]
+    public JsonSchema? Schema { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

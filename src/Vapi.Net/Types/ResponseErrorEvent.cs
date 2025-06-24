@@ -4,35 +4,38 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record VariableExtractionSchema
+[Serializable]
+public record ResponseErrorEvent
 {
     /// <summary>
-    /// This is the type of output you'd like.
-    ///
-    /// `string`, `number`, `boolean` are primitive types.
+    /// Event type
     /// </summary>
     [JsonPropertyName("type")]
-    public required VariableExtractionSchemaType Type { get; set; }
+    public string Type { get; set; } = "error";
 
     /// <summary>
-    /// This is the title of the variable.
-    ///
-    /// It can only contain letters, numbers, and underscores.
+    /// Error code
     /// </summary>
-    [JsonPropertyName("title")]
-    public required string Title { get; set; }
+    [JsonPropertyName("code")]
+    public required string Code { get; set; }
 
     /// <summary>
-    /// This is the description to help the model understand what it needs to output.
+    /// Error message
     /// </summary>
-    [JsonPropertyName("description")]
-    public required string Description { get; set; }
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
     /// <summary>
-    /// This is the enum values to choose from. Only used if the type is `string`.
+    /// Parameter that caused the error
     /// </summary>
-    [JsonPropertyName("enum")]
-    public IEnumerable<string>? Enum { get; set; }
+    [JsonPropertyName("param")]
+    public string? Param { get; set; }
+
+    /// <summary>
+    /// Sequence number of the event
+    /// </summary>
+    [JsonPropertyName("sequence_number")]
+    public required double SequenceNumber { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

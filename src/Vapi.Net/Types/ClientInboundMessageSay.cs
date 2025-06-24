@@ -4,8 +4,17 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ClientInboundMessageSay
 {
+    /// <summary>
+    /// This is the flag for whether the message should replace existing assistant speech.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("interruptAssistantEnabled")]
+    public bool? InterruptAssistantEnabled { get; set; }
+
     /// <summary>
     /// This is the content to say.
     /// </summary>
@@ -19,7 +28,7 @@ public record ClientInboundMessageSay
     public bool? EndCallAfterSpoken { get; set; }
 
     /// <summary>
-    /// This is the flag for whether the message is interruptible.
+    /// This is the flag for whether the message is interruptible by the user.
     /// </summary>
     [JsonPropertyName("interruptionsEnabled")]
     public bool? InterruptionsEnabled { get; set; }

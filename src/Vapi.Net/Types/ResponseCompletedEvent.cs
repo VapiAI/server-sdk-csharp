@@ -4,10 +4,20 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record LogicEdgeCondition
+[Serializable]
+public record ResponseCompletedEvent
 {
-    [JsonPropertyName("liquid")]
-    public required string Liquid { get; set; }
+    /// <summary>
+    /// The completed response
+    /// </summary>
+    [JsonPropertyName("response")]
+    public required ResponseObject Response { get; set; }
+
+    /// <summary>
+    /// Event type
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "response.completed";
 
     /// <summary>
     /// Additional properties received from the response, if any.

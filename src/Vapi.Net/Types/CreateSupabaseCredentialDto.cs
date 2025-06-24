@@ -4,8 +4,15 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record CreateSupabaseCredentialDto
 {
+    /// <summary>
+    /// This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order.
+    /// </summary>
+    [JsonPropertyName("fallbackIndex")]
+    public double? FallbackIndex { get; set; }
+
     [JsonPropertyName("bucketPlan")]
     public SupabaseBucketPlan? BucketPlan { get; set; }
 

@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record ServerMessageEndOfCallReport
 {
     /// <summary>
@@ -65,6 +66,12 @@ public record ServerMessageEndOfCallReport
     /// </summary>
     [JsonPropertyName("call")]
     public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the chat object.
+    /// </summary>
+    [JsonPropertyName("chat")]
+    public Chat? Chat { get; set; }
 
     /// <summary>
     /// This is the analysis of the call. This can also be found at `call.analysis` on GET /call/:id.

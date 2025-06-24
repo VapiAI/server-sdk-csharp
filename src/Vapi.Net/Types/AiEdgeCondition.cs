@@ -4,8 +4,12 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record AiEdgeCondition
 {
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "ai";
+
     /// <summary>
     /// This is the prompt for the AI edge condition. It should evaluate to a boolean.
     /// </summary>

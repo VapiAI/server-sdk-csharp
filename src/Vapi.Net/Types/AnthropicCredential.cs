@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record AnthropicCredential
 {
     [JsonPropertyName("provider")]

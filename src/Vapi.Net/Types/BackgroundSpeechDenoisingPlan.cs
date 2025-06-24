@@ -4,22 +4,22 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record ChatCompletionMessageMetadata
+[Serializable]
+public record BackgroundSpeechDenoisingPlan
 {
-    [JsonPropertyName("taskName")]
-    public required string TaskName { get; set; }
+    /// <summary>
+    /// Whether smart denoising using Krisp is enabled.
+    /// </summary>
+    [JsonPropertyName("smartDenoisingPlan")]
+    public SmartDenoisingPlan? SmartDenoisingPlan { get; set; }
 
-    [JsonPropertyName("taskType")]
-    public required string TaskType { get; set; }
-
-    [JsonPropertyName("taskOutput")]
-    public required string TaskOutput { get; set; }
-
-    [JsonPropertyName("taskState")]
-    public object? TaskState { get; set; }
-
-    [JsonPropertyName("nodeTrace")]
-    public IEnumerable<string>? NodeTrace { get; set; }
+    /// <summary>
+    /// Whether Fourier denoising is enabled. Note that this is experimental and may not work as expected.
+    ///
+    /// This can be combined with smart denoising, and will be run afterwards.
+    /// </summary>
+    [JsonPropertyName("fourierDenoisingPlan")]
+    public FourierDenoisingPlan? FourierDenoisingPlan { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

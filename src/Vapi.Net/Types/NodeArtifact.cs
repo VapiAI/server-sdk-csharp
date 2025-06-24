@@ -4,8 +4,27 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public record FailedEdgeCondition
+[Serializable]
+public record NodeArtifact
 {
+    /// <summary>
+    /// This is the node id.
+    /// </summary>
+    [JsonPropertyName("nodeName")]
+    public string? NodeName { get; set; }
+
+    /// <summary>
+    /// This is the messages that were spoken during the node.
+    /// </summary>
+    [JsonPropertyName("messages")]
+    public IEnumerable<object>? Messages { get; set; }
+
+    /// <summary>
+    /// This is the object containing the variables extracted from the node.
+    /// </summary>
+    [JsonPropertyName("variables")]
+    public object? Variables { get; set; }
+
     /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>

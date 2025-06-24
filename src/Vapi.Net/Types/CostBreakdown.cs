@@ -4,6 +4,7 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+[Serializable]
 public record CostBreakdown
 {
     /// <summary>
@@ -35,6 +36,12 @@ public record CostBreakdown
     /// </summary>
     [JsonPropertyName("vapi")]
     public double? Vapi { get; set; }
+
+    /// <summary>
+    /// This is the cost of chat interactions.
+    /// </summary>
+    [JsonPropertyName("chat")]
+    public double? Chat { get; set; }
 
     /// <summary>
     /// This is the total cost of the call.
