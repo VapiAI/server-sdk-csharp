@@ -255,4 +255,28 @@ public enum RimeAiVoiceIdEnum
 
     [EnumMember(Value = "zest")]
     Zest,
+
+    [EnumMember(Value = "luna")]
+    Luna,
+
+    [EnumMember(Value = "celeste")]
+    Celeste,
+
+    [EnumMember(Value = "orion")]
+    Orion,
+
+    [EnumMember(Value = "ursa")]
+    Ursa,
+
+    [EnumMember(Value = "astra")]
+    Astra,
+
+    [EnumMember(Value = "esther")]
+    Esther,
+
+    [EnumMember(Value = "estelle")]
+    Estelle,
+
+    [EnumMember(Value = "andromeda")]
+    Andromeda,
 }

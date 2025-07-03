@@ -21,6 +21,13 @@ public record Chat
     public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
+    /// These are the variable values that will be used to replace template variables in the assistant messages.
+    /// Only variable substitution is supported in chat contexts - other assistant properties cannot be overridden.
+    /// </summary>
+    [JsonPropertyName("assistantOverrides")]
+    public AssistantOverrides? AssistantOverrides { get; set; }
+
+    /// <summary>
     /// This is the name of the chat. This is just for your own reference.
     /// </summary>
     [JsonPropertyName("name")]

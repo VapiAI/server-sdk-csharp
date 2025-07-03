@@ -27,6 +27,12 @@ public record LmntVoice
     public double? Speed { get; set; }
 
     /// <summary>
+    /// Two letter ISO 639-1 language code. Use "auto" for auto-detection.
+    /// </summary>
+    [JsonPropertyName("language")]
+    public LmntVoiceLanguage? Language { get; set; }
+
+    /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.
     /// </summary>
     [JsonPropertyName("chunkPlan")]

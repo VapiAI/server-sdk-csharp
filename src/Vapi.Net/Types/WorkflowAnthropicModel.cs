@@ -8,12 +8,6 @@ namespace Vapi.Net;
 public record WorkflowAnthropicModel
 {
     /// <summary>
-    /// This is the provider of the model (`anthropic`).
-    /// </summary>
-    [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "anthropic";
-
-    /// <summary>
     /// This is the specific model that will be used.
     /// </summary>
     [JsonPropertyName("model")]

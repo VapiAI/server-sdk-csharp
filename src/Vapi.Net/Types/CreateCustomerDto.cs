@@ -55,6 +55,18 @@ public record CreateCustomerDto
     public string? Name { get; set; }
 
     /// <summary>
+    /// This is the email of the customer.
+    /// </summary>
+    [JsonPropertyName("email")]
+    public string? Email { get; set; }
+
+    /// <summary>
+    /// This is the external ID of the customer.
+    /// </summary>
+    [JsonPropertyName("externalId")]
+    public string? ExternalId { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

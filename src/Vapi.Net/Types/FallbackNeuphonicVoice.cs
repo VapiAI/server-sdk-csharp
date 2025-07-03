@@ -14,12 +14,6 @@ public record FallbackNeuphonicVoice
     public bool? CachingEnabled { get; set; }
 
     /// <summary>
-    /// This is the voice provider that will be used.
-    /// </summary>
-    [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "neuphonic";
-
-    /// <summary>
     /// This is the provider-specific ID that will be used.
     /// </summary>
     [JsonPropertyName("voiceId")]

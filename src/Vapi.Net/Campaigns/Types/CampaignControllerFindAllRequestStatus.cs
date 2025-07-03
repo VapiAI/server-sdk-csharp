@@ -4,8 +4,8 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<CampaignControllerFindAllPaginatedRequestStatus>))]
-public enum CampaignControllerFindAllPaginatedRequestStatus
+[JsonConverter(typeof(EnumSerializer<CampaignControllerFindAllRequestStatus>))]
+public enum CampaignControllerFindAllRequestStatus
 {
     [EnumMember(Value = "scheduled")]
     Scheduled,

@@ -7,12 +7,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<RimeAiVoiceModel>))]
 public enum RimeAiVoiceModel
 {
-    [EnumMember(Value = "v1")]
-    V1,
-
     [EnumMember(Value = "mist")]
     Mist,
 
     [EnumMember(Value = "mistv2")]
     Mistv2,
+
+    [EnumMember(Value = "arcana")]
+    Arcana,
 }

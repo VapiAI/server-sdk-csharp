@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>12</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.8.2</Version>
+    <Version>0.9.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>

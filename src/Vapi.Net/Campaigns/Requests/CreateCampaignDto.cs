@@ -34,7 +34,7 @@ public record CreateCampaignDto
     /// This is the schedule plan for the campaign.
     /// </summary>
     [JsonPropertyName("schedulePlan")]
-    public required SchedulePlan SchedulePlan { get; set; }
+    public SchedulePlan? SchedulePlan { get; set; }
 
     /// <summary>
     /// These are the customers that will be called in the campaign.

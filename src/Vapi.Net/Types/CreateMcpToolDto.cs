@@ -28,6 +28,9 @@ public record CreateMcpToolDto
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
 
+    [JsonPropertyName("metadata")]
+    public McpToolMetadata? Metadata { get; set; }
+
     /// <summary>
     /// This is the function definition of the tool.
     ///

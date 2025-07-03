@@ -14,6 +14,12 @@ public record ServerMessageResponseTransferDestinationRequest
     public object? Destination { get; set; }
 
     /// <summary>
+    /// This is the message that will be spoken to the user as the tool is running.
+    /// </summary>
+    [JsonPropertyName("message")]
+    public object? Message { get; set; }
+
+    /// <summary>
     /// This is the error message if the transfer should not be made.
     /// </summary>
     [JsonPropertyName("error")]

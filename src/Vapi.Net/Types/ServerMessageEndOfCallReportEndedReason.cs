@@ -118,6 +118,9 @@ public enum ServerMessageEndOfCallReportEndedReason
     [EnumMember(Value = "pipeline-error-sesame-voice-failed")]
     PipelineErrorSesameVoiceFailed,
 
+    [EnumMember(Value = "pipeline-error-inworld-voice-failed")]
+    PipelineErrorInworldVoiceFailed,
+
     [EnumMember(Value = "pipeline-error-tavus-video-failed")]
     PipelineErrorTavusVideoFailed,
 
@@ -156,6 +159,9 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "call.in-progress.error-vapifault-sesame-voice-failed")]
     CallInProgressErrorVapifaultSesameVoiceFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-inworld-voice-failed")]
+    CallInProgressErrorVapifaultInworldVoiceFailed,
 
     [EnumMember(Value = "call.in-progress.error-vapifault-tavus-video-failed")]
     CallInProgressErrorVapifaultTavusVideoFailed,
@@ -1518,6 +1524,9 @@ public enum ServerMessageEndOfCallReportEndedReason
 
     [EnumMember(Value = "pipeline-error-deepgram-returning-502-bad-gateway-ehostunreach")]
     PipelineErrorDeepgramReturning502BadGatewayEhostunreach,
+
+    [EnumMember(Value = "pipeline-error-deepgram-returning-econnreset")]
+    PipelineErrorDeepgramReturningEconnreset,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-deepgram-returning-400-no-such-model-language-tier-combination"

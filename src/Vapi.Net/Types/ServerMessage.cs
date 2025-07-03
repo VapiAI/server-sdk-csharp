@@ -36,7 +36,8 @@ public record ServerMessage
         ServerMessageUserInterrupted,
         ServerMessageLanguageChangeDetected,
         ServerMessageVoiceInput,
-        ServerMessageVoiceRequest
+        ServerMessageVoiceRequest,
+        ServerMessageCallEndpointingRequest
     > Message { get; set; }
 
     /// <summary>

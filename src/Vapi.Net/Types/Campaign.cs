@@ -47,7 +47,7 @@ public record Campaign
     /// This is the schedule plan for the campaign.
     /// </summary>
     [JsonPropertyName("schedulePlan")]
-    public required SchedulePlan SchedulePlan { get; set; }
+    public SchedulePlan? SchedulePlan { get; set; }
 
     /// <summary>
     /// These are the customers that will be called in the campaign.
@@ -84,6 +84,30 @@ public record Campaign
     /// </summary>
     [JsonPropertyName("calls")]
     public object Calls { get; set; } = new Dictionary<string, object?>();
+
+    /// <summary>
+    /// This is the number of calls that have been scheduled.
+    /// </summary>
+    [JsonPropertyName("callsCounterScheduled")]
+    public required double CallsCounterScheduled { get; set; }
+
+    /// <summary>
+    /// This is the number of calls that have been queued.
+    /// </summary>
+    [JsonPropertyName("callsCounterQueued")]
+    public required double CallsCounterQueued { get; set; }
+
+    /// <summary>
+    /// This is the number of calls that have been in progress.
+    /// </summary>
+    [JsonPropertyName("callsCounterInProgress")]
+    public required double CallsCounterInProgress { get; set; }
+
+    /// <summary>
+    /// This is the number of calls whose ended reason is 'voicemail'.
+    /// </summary>
+    [JsonPropertyName("callsCounterEndedVoicemail")]
+    public required double CallsCounterEndedVoicemail { get; set; }
 
     /// <summary>
     /// This is the number of calls that have ended.

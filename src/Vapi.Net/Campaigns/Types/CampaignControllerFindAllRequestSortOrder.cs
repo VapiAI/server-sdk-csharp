@@ -4,8 +4,8 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<CampaignControllerFindAllPaginatedRequestSortOrder>))]
-public enum CampaignControllerFindAllPaginatedRequestSortOrder
+[JsonConverter(typeof(EnumSerializer<CampaignControllerFindAllRequestSortOrder>))]
+public enum CampaignControllerFindAllRequestSortOrder
 {
     [EnumMember(Value = "ASC")]
     Asc,

@@ -14,6 +14,13 @@ public record CreateChatStreamResponse
     public required string Id { get; set; }
 
     /// <summary>
+    /// This is the ID of the session that will be used for the chat.
+    /// Helps track conversation context across multiple messages.
+    /// </summary>
+    [JsonPropertyName("sessionId")]
+    public string? SessionId { get; set; }
+
+    /// <summary>
     /// This is the path to the content being updated.
     /// Format: `chat.output[{contentIndex}].content` where contentIndex identifies the specific content item.
     /// </summary>

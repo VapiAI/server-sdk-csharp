@@ -71,10 +71,10 @@ public record Artifact
     public IEnumerable<NodeArtifact>? Nodes { get; set; }
 
     /// <summary>
-    /// This is the state of variables at the end of the workflow execution.
+    /// These are the variable values at the end of the workflow execution.
     /// </summary>
-    [JsonPropertyName("variables")]
-    public object? Variables { get; set; }
+    [JsonPropertyName("variableValues")]
+    public object? VariableValues { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

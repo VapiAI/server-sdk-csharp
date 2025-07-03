@@ -7,6 +7,15 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<GoogleTranscriberModel>))]
 public enum GoogleTranscriberModel
 {
+    [EnumMember(Value = "gemini-2.5-pro")]
+    Gemini25Pro,
+
+    [EnumMember(Value = "gemini-2.5-flash")]
+    Gemini25Flash,
+
+    [EnumMember(Value = "gemini-2.5-flash-lite")]
+    Gemini25FlashLite,
+
     [EnumMember(Value = "gemini-2.5-pro-preview-05-06")]
     Gemini25ProPreview0506,
 

@@ -44,6 +44,22 @@ public record JsonSchema
     public string? Description { get; set; }
 
     /// <summary>
+    /// This is the pattern of the string. This is a regex that will be used to validate the data in question. To use a common format, use the `format` property instead.
+    ///
+    /// OpenAI documentation: https://platform.openai.com/docs/guides/structured-outputs#supported-properties
+    /// </summary>
+    [JsonPropertyName("pattern")]
+    public string? Pattern { get; set; }
+
+    /// <summary>
+    /// This is the format of the string. To pass a regex, use the `pattern` property instead.
+    ///
+    /// OpenAI documentation: https://platform.openai.com/docs/guides/structured-outputs?api-mode=chat&type-restrictions=string-restrictions
+    /// </summary>
+    [JsonPropertyName("format")]
+    public JsonSchemaFormat? Format { get; set; }
+
+    /// <summary>
     /// This is a list of properties that are required.
     ///
     /// This only makes sense if the type is "object".
@@ -52,22 +68,16 @@ public record JsonSchema
     public IEnumerable<string>? Required { get; set; }
 
     /// <summary>
-    /// This the value that will be used in filling the property.
-    /// </summary>
-    [JsonPropertyName("value")]
-    public string? Value { get; set; }
-
-    /// <summary>
-    /// This the target variable that will be filled with the value of this property.
-    /// </summary>
-    [JsonPropertyName("target")]
-    public string? Target { get; set; }
-
-    /// <summary>
     /// This array specifies the allowed values that can be used to restrict the output of the model.
     /// </summary>
     [JsonPropertyName("enum")]
     public IEnumerable<string>? Enum { get; set; }
+
+    /// <summary>
+    /// This is the title of the schema.
+    /// </summary>
+    [JsonPropertyName("title")]
+    public string? Title { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

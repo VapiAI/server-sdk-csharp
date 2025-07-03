@@ -26,42 +26,6 @@ public record DeepgramTranscriber
     public bool? SmartFormat { get; set; }
 
     /// <summary>
-    /// This automatically switches the transcriber's language when the customer's language changes. Defaults to false.
-    ///
-    /// Usage:
-    /// - If your customers switch languages mid-call, you can set this to true.
-    ///
-    /// Note:
-    /// - To detect language changes, Vapi uses a custom trained model. Languages supported (X = limited support):
-    ///   1. Arabic
-    ///   2. Bengali
-    ///   3. Cantonese
-    ///   4. Chinese
-    ///   5. Chinese Simplified (X)
-    ///   6. Chinese Traditional (X)
-    ///   7. English
-    ///   8. Farsi (X)
-    ///   9. French
-    ///   10. German
-    ///   11. Haitian Creole (X)
-    ///   12. Hindi
-    ///   13. Italian
-    ///   14. Japanese
-    ///   15. Korean
-    ///   16. Portuguese
-    ///   17. Russian
-    ///   18. Spanish
-    ///   19. Thai
-    ///   20. Urdu
-    ///   21. Vietnamese
-    /// - To receive `language-change-detected` webhook events, add it to `assistant.serverMessages`.
-    ///
-    /// @default false
-    /// </summary>
-    [JsonPropertyName("codeSwitchingEnabled")]
-    public bool? CodeSwitchingEnabled { get; set; }
-
-    /// <summary>
     /// If set to true, this will add mip_opt_out=true as a query parameter of all API requests. See https://developers.deepgram.com/docs/the-deepgram-model-improvement-partnership-program#want-to-opt-out
     ///
     /// This will only be used if you are using your own Deepgram API key.

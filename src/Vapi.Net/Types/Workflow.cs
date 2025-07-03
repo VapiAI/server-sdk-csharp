@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -33,6 +34,13 @@ public record Workflow
     /// </summary>
     [JsonPropertyName("observabilityPlan")]
     public LangfuseObservabilityPlan? ObservabilityPlan { get; set; }
+
+    /// <summary>
+    /// This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
+    /// You can also provide a custom sound by providing a URL to an audio file.
+    /// </summary>
+    [JsonPropertyName("backgroundSound")]
+    public OneOf<WorkflowBackgroundSoundZero, string>? BackgroundSound { get; set; }
 
     /// <summary>
     /// These are dynamic credentials that will be used for the workflow calls. By default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials.

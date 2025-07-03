@@ -6,6 +6,24 @@ namespace Vapi.Net;
 [Serializable]
 public record CampaignControllerFindAllRequest
 {
+    [JsonIgnore]
+    public string? Id { get; set; }
+
+    [JsonIgnore]
+    public CampaignControllerFindAllRequestStatus? Status { get; set; }
+
+    /// <summary>
+    /// This is the page number to return. Defaults to 1.
+    /// </summary>
+    [JsonIgnore]
+    public double? Page { get; set; }
+
+    /// <summary>
+    /// This is the sort order for pagination. Defaults to 'DESC'.
+    /// </summary>
+    [JsonIgnore]
+    public CampaignControllerFindAllRequestSortOrder? SortOrder { get; set; }
+
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.
     /// </summary>

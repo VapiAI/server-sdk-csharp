@@ -37,7 +37,8 @@ public record StartSpeakingPlan
     [JsonPropertyName("smartEndpointingPlan")]
     public OneOf<
         VapiSmartEndpointingPlan,
-        LivekitSmartEndpointingPlan
+        LivekitSmartEndpointingPlan,
+        CustomEndpointingModelSmartEndpointingPlan
     >? SmartEndpointingPlan { get; set; }
 
     /// <summary>

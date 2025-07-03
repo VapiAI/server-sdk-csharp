@@ -51,4 +51,7 @@ public enum SyncVoiceLibraryDtoProvidersItem
 
     [EnumMember(Value = "sesame")]
     Sesame,
+
+    [EnumMember(Value = "inworld")]
+    Inworld,
 }

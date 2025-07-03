@@ -12,4 +12,7 @@ public enum VapiSmartEndpointingPlanProvider
 
     [EnumMember(Value = "livekit")]
     Livekit,
+
+    [EnumMember(Value = "custom-endpointing-model")]
+    CustomEndpointingModel,
 }

@@ -8,10 +8,10 @@ namespace Vapi.Net;
 public record UpdateWebhookCredentialDto
 {
     /// <summary>
-    /// This is the authentication plan. Currently supports OAuth2 RFC 6749.
+    /// This is the authentication plan. Supports OAuth2 RFC 6749 and HMAC signing.
     /// </summary>
     [JsonPropertyName("authenticationPlan")]
-    public OAuth2AuthenticationPlan? AuthenticationPlan { get; set; }
+    public object? AuthenticationPlan { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

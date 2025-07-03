@@ -38,6 +38,9 @@ public record UpdateMcpToolDto
     [JsonPropertyName("function")]
     public OpenAiFunction? Function { get; set; }
 
+    [JsonPropertyName("metadata")]
+    public McpToolMetadata? Metadata { get; set; }
+
     /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>

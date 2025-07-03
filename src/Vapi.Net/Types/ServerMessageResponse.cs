@@ -19,7 +19,8 @@ public record ServerMessageResponse
         ServerMessageResponseKnowledgeBaseRequest,
         ServerMessageResponseToolCalls,
         ServerMessageResponseTransferDestinationRequest,
-        ServerMessageResponseVoiceRequest
+        ServerMessageResponseVoiceRequest,
+        ServerMessageResponseCallEndpointingRequest
     > MessageResponse { get; set; }
 
     /// <summary>

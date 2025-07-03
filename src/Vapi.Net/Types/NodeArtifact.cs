@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -8,22 +9,24 @@ namespace Vapi.Net;
 public record NodeArtifact
 {
     /// <summary>
-    /// This is the node id.
+    /// These are the messages that were spoken during the node.
+    /// </summary>
+    [JsonPropertyName("messages")]
+    public IEnumerable<
+        OneOf<UserMessage, SystemMessage, BotMessage, ToolCallMessage, ToolCallResultMessage>
+    >? Messages { get; set; }
+
+    /// <summary>
+    /// This is the node name.
     /// </summary>
     [JsonPropertyName("nodeName")]
     public string? NodeName { get; set; }
 
     /// <summary>
-    /// This is the messages that were spoken during the node.
+    /// These are the variable values that were extracted from the node.
     /// </summary>
-    [JsonPropertyName("messages")]
-    public IEnumerable<object>? Messages { get; set; }
-
-    /// <summary>
-    /// This is the object containing the variables extracted from the node.
-    /// </summary>
-    [JsonPropertyName("variables")]
-    public object? Variables { get; set; }
+    [JsonPropertyName("variableValues")]
+    public object? VariableValues { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

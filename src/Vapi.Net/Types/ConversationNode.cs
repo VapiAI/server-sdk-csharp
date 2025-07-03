@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -14,7 +13,7 @@ public record ConversationNode
     /// This overrides `workflow.model`.
     /// </summary>
     [JsonPropertyName("model")]
-    public OneOf<WorkflowOpenAiModel, WorkflowAnthropicModel, object>? Model { get; set; }
+    public object? Model { get; set; }
 
     /// <summary>
     /// This is the transcriber for the node.
@@ -42,7 +41,53 @@ public record ConversationNode
     public GlobalNodePlan? GlobalNodePlan { get; set; }
 
     /// <summary>
-    /// This is the plan that controls the variable extraction from the user's response.
+    /// This is the plan that controls the variable extraction from the user's responses.
+    ///
+    /// Usage:
+    /// Use `schema` to specify what you want to extract from the user's responses.
+    /// ```json
+    /// {
+    ///   "schema": {
+    ///     "type": "object",
+    ///     "properties": {
+    ///       "user": {
+    ///         "type": "object",
+    ///         "properties": {
+    ///           "name": {
+    ///             "type": "string"
+    ///           },
+    ///           "age": {
+    ///             "type": "number"
+    ///           }
+    ///         }
+    ///       }
+    ///     }
+    ///   }
+    /// }
+    /// ```
+    ///
+    /// This will be extracted as `{{ user.name }}` and `{{ user.age }}` respectively.
+    ///
+    /// (Optional) Use `aliases` to create new variables.
+    ///
+    /// ```json
+    /// {
+    ///   "aliases": [
+    ///     {
+    ///       "key": "userAge",
+    ///       "value": "{{user.age}}"
+    ///     },
+    ///     {
+    ///       "key": "userName",
+    ///       "value": "{{user.name}}"
+    ///     }
+    ///   ]
+    /// }
+    /// ```
+    ///
+    /// This will be extracted as `{{ userAge }}` and `{{ userName }}` respectively.
+    ///
+    /// Note: The `schema` field is required for Conversation nodes if you want to extract variables from the user's responses. `aliases` is just a convenience.
     /// </summary>
     [JsonPropertyName("variableExtractionPlan")]
     public VariableExtractionPlan? VariableExtractionPlan { get; set; }

@@ -15,7 +15,7 @@ public partial class VapiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/0.8.2" },
+                { "User-Agent", "Vapi.Net/0.9.0" },
             }
         );
         clientOptions ??= new ClientOptions();
