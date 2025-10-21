@@ -30,6 +30,20 @@ public record ArtifactPlan
     public ArtifactPlanRecordingFormat? RecordingFormat { get; set; }
 
     /// <summary>
+    /// This determines whether to use custom storage (S3 or GCP) for call recordings when storage credentials are configured.
+    ///
+    /// When set to false, recordings will be stored on Vapi's storage instead of your custom storage, even if you have custom storage credentials configured.
+    ///
+    /// Usage:
+    /// - Set to false if you have custom storage configured but want to store recordings on Vapi's storage for this assistant.
+    /// - Set to true (or leave unset) to use your custom storage for recordings when available.
+    ///
+    /// @default true
+    /// </summary>
+    [JsonPropertyName("recordingUseCustomStorageEnabled")]
+    public bool? RecordingUseCustomStorageEnabled { get; set; }
+
+    /// <summary>
     /// This determines whether the video is recorded during the call. Defaults to false. Only relevant for `webCall` type.
     ///
     /// You can find the video recording at `call.artifact.videoRecordingUrl` after the call is ended.
@@ -38,6 +52,12 @@ public record ArtifactPlan
     /// </summary>
     [JsonPropertyName("videoRecordingEnabled")]
     public bool? VideoRecordingEnabled { get; set; }
+
+    /// <summary>
+    /// This determines whether the artifact contains the full message history, even after handoff context engineering. Defaults to false.
+    /// </summary>
+    [JsonPropertyName("fullMessageHistoryEnabled")]
+    public bool? FullMessageHistoryEnabled { get; set; }
 
     /// <summary>
     /// This determines whether the SIP packet capture is enabled. Defaults to true. Only relevant for `phone` type calls where phone number's provider is `vapi` or `byo-phone-number`.
@@ -64,6 +84,42 @@ public record ArtifactPlan
     public string? PcapS3PathPrefix { get; set; }
 
     /// <summary>
+    /// This determines whether to use custom storage (S3 or GCP) for SIP packet captures when storage credentials are configured.
+    ///
+    /// When set to false, packet captures will be stored on Vapi's storage instead of your custom storage, even if you have custom storage credentials configured.
+    ///
+    /// Usage:
+    /// - Set to false if you have custom storage configured but want to store packet captures on Vapi's storage for this assistant.
+    /// - Set to true (or leave unset) to use your custom storage for packet captures when available.
+    ///
+    /// @default true
+    /// </summary>
+    [JsonPropertyName("pcapUseCustomStorageEnabled")]
+    public bool? PcapUseCustomStorageEnabled { get; set; }
+
+    /// <summary>
+    /// This determines whether the call logs are enabled. Defaults to true.
+    ///
+    /// @default true
+    /// </summary>
+    [JsonPropertyName("loggingEnabled")]
+    public bool? LoggingEnabled { get; set; }
+
+    /// <summary>
+    /// This determines whether to use custom storage (S3 or GCP) for call logs when storage credentials are configured.
+    ///
+    /// When set to false, logs will be stored on Vapi's storage instead of your custom storage, even if you have custom storage credentials configured.
+    ///
+    /// Usage:
+    /// - Set to false if you have custom storage configured but want to store logs on Vapi's storage for this assistant.
+    /// - Set to true (or leave unset) to use your custom storage for logs when available.
+    ///
+    /// @default true
+    /// </summary>
+    [JsonPropertyName("loggingUseCustomStorageEnabled")]
+    public bool? LoggingUseCustomStorageEnabled { get; set; }
+
+    /// <summary>
     /// This is the plan for `call.artifact.transcript`. To disable, set `transcriptPlan.enabled` to false.
     /// </summary>
     [JsonPropertyName("transcriptPlan")]
@@ -82,6 +138,27 @@ public record ArtifactPlan
     /// </summary>
     [JsonPropertyName("recordingPath")]
     public string? RecordingPath { get; set; }
+
+    /// <summary>
+    /// This is an array of structured output IDs to be calculated during the call.
+    /// The outputs will be extracted and stored in `call.artifact.structuredOutputs` after the call is ended.
+    /// </summary>
+    [JsonPropertyName("structuredOutputIds")]
+    public IEnumerable<string>? StructuredOutputIds { get; set; }
+
+    /// <summary>
+    /// This is the path where the call logs will be uploaded. This is only used if you have provided S3 or GCP credentials on the Provider Credentials page in the Dashboard.
+    ///
+    /// If credential.s3PathPrefix or credential.bucketPlan.path is set, this will append to it.
+    ///
+    /// Usage:
+    /// - If you want to upload the call logs to a specific path, set this to the path. Example: `/my-assistant-logs`.
+    /// - If you want to upload the call logs to the root of the bucket, set this to `/`.
+    ///
+    /// @default '/'
+    /// </summary>
+    [JsonPropertyName("loggingPath")]
+    public string? LoggingPath { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

@@ -7,6 +7,15 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<WorkflowOpenAiModelModel>))]
 public enum WorkflowOpenAiModelModel
 {
+    [EnumMember(Value = "gpt-5")]
+    Gpt5,
+
+    [EnumMember(Value = "gpt-5-mini")]
+    Gpt5Mini,
+
+    [EnumMember(Value = "gpt-5-nano")]
+    Gpt5Nano,
+
     [EnumMember(Value = "gpt-4.1-2025-04-14")]
     Gpt4120250414,
 
@@ -25,9 +34,6 @@ public enum WorkflowOpenAiModelModel
     [EnumMember(Value = "gpt-4.1-nano")]
     Gpt41Nano,
 
-    [EnumMember(Value = "gpt-4.5-preview")]
-    Gpt45Preview,
-
     [EnumMember(Value = "chatgpt-4o-latest")]
     Chatgpt4OLatest,
 
@@ -39,12 +45,6 @@ public enum WorkflowOpenAiModelModel
 
     [EnumMember(Value = "o4-mini")]
     O4Mini,
-
-    [EnumMember(Value = "o1-preview")]
-    O1Preview,
-
-    [EnumMember(Value = "o1-preview-2024-09-12")]
-    O1Preview20240912,
 
     [EnumMember(Value = "o1-mini")]
     O1Mini,

@@ -116,7 +116,7 @@ public record VariableExtractionPlan
     ///       "value": "Hello {{name}}, welcome to {{company}}!"
     ///     },
     ///     {
-    ///       "key": "customerEmail",
+    ///       "key": "customerCity",
     ///       "value": "{{addresses[0].city}}"
     ///     },
     ///     {
@@ -127,7 +127,7 @@ public record VariableExtractionPlan
     /// }
     /// ```
     ///
-    /// This will create variables `customerName`, `fullName`, `customerEmail`, `greeting`, and `something`. To access these variables, you can reference them as `{{customerName}}`, `{{fullName}}`, `{{customerEmail}}`, `{{greeting}}`, and `{{something}}`.
+    /// This will create variables `customerName`, `fullName`, `greeting`, `customerCity`, and `something`. To access these variables, you can reference them as `{{customerName}}`, `{{fullName}}`, `{{greeting}}`, `{{customerCity}}`, and `{{something}}`.
     /// </summary>
     [JsonPropertyName("aliases")]
     public IEnumerable<VariableExtractionAlias>? Aliases { get; set; }

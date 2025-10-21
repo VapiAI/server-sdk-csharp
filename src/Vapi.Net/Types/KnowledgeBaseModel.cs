@@ -16,15 +16,6 @@ public enum KnowledgeBaseModel
     [EnumMember(Value = "gemini-2.5-flash-lite")]
     Gemini25FlashLite,
 
-    [EnumMember(Value = "gemini-2.5-pro-preview-05-06")]
-    Gemini25ProPreview0506,
-
-    [EnumMember(Value = "gemini-2.5-flash-preview-05-20")]
-    Gemini25FlashPreview0520,
-
-    [EnumMember(Value = "gemini-2.5-flash-preview-04-17")]
-    Gemini25FlashPreview0417,
-
     [EnumMember(Value = "gemini-2.0-flash-thinking-exp")]
     Gemini20FlashThinkingExp,
 
@@ -36,9 +27,6 @@ public enum KnowledgeBaseModel
 
     [EnumMember(Value = "gemini-2.0-flash-lite")]
     Gemini20FlashLite,
-
-    [EnumMember(Value = "gemini-2.0-flash-lite-preview-02-05")]
-    Gemini20FlashLitePreview0205,
 
     [EnumMember(Value = "gemini-2.0-flash-exp")]
     Gemini20FlashExp,

@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 using OneOf;
 using Vapi.Net.Core;
 
@@ -25,6 +26,10 @@ public partial class ChatsClient
         if (request.AssistantId != null)
         {
             _query["assistantId"] = request.AssistantId;
+        }
+        if (request.SquadId != null)
+        {
+            _query["squadId"] = request.SquadId;
         }
         if (request.WorkflowId != null)
         {
@@ -115,7 +120,7 @@ public partial class ChatsClient
     }
 
     /// <summary>
-    /// Creates a new chat. Requires at least one of: assistantId/assistant, sessionId, or previousChatId. Note: sessionId and previousChatId are mutually exclusive.
+    /// Creates a new chat with optional SMS delivery via transport field. Requires at least one of: assistantId/assistant, sessionId, or previousChatId. Note: sessionId and previousChatId are mutually exclusive. Transport field enables SMS delivery with two modes: (1) New conversation - provide transport.phoneNumberId and transport.customer to create a new session, (2) Existing conversation - provide sessionId to use existing session data. Cannot specify both sessionId and transport fields together. The transport.useLLMGeneratedMessageForOutbound flag controls whether input is processed by LLM (true, default) or forwarded directly as SMS (false).
     /// </summary>
     public async Task<OneOf<Chat, CreateChatStreamResponse>> CreateAsync(
         CreateChatDto request,

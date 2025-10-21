@@ -16,6 +16,15 @@ public record PaginationMeta
     [JsonPropertyName("currentPage")]
     public required double CurrentPage { get; set; }
 
+    [JsonPropertyName("itemsBeyondRetention")]
+    public bool? ItemsBeyondRetention { get; set; }
+
+    [JsonPropertyName("createdAtLe")]
+    public DateTime? CreatedAtLe { get; set; }
+
+    [JsonPropertyName("createdAtGe")]
+    public DateTime? CreatedAtGe { get; set; }
+
     /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>

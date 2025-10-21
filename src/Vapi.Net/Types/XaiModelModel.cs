@@ -15,4 +15,10 @@ public enum XaiModelModel
 
     [EnumMember(Value = "grok-3")]
     Grok3,
+
+    [EnumMember(Value = "grok-4-fast-reasoning")]
+    Grok4FastReasoning,
+
+    [EnumMember(Value = "grok-4-fast-non-reasoning")]
+    Grok4FastNonReasoning,
 }

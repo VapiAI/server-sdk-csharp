@@ -36,12 +36,6 @@ public record GoogleModel
     public CreateCustomKnowledgeBaseDto? KnowledgeBase { get; set; }
 
     /// <summary>
-    /// This is the ID of the knowledge base the model will use.
-    /// </summary>
-    [JsonPropertyName("knowledgeBaseId")]
-    public string? KnowledgeBaseId { get; set; }
-
-    /// <summary>
     /// This is the Google model that will be used.
     /// </summary>
     [JsonPropertyName("model")]

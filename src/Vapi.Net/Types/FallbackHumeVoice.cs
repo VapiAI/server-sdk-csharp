@@ -17,7 +17,7 @@ public record FallbackHumeVoice
     /// This is the model that will be used.
     /// </summary>
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public FallbackHumeVoiceModel? Model { get; set; }
 
     /// <summary>
     /// The ID of the particular voice you want to use.

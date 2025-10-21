@@ -39,6 +39,19 @@ public record CreateSessionDto
     public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
+    /// This is the squad ID associated with this session. Use this when referencing an existing squad.
+    /// </summary>
+    [JsonPropertyName("squadId")]
+    public string? SquadId { get; set; }
+
+    /// <summary>
+    /// This is the squad configuration for this session. Use this when creating a new squad configuration.
+    /// If squadId is provided, this will be ignored.
+    /// </summary>
+    [JsonPropertyName("squad")]
+    public CreateSquadDto? Squad { get; set; }
+
+    /// <summary>
     /// This is an array of chat messages in the session.
     /// </summary>
     [JsonPropertyName("messages")]

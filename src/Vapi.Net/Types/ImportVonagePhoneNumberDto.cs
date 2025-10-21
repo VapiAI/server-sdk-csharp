@@ -22,7 +22,7 @@ public record ImportVonagePhoneNumberDto
     /// This is the hooks that will be used for incoming calls to this phone number.
     /// </summary>
     [JsonPropertyName("hooks")]
-    public IEnumerable<PhoneNumberHookCallRinging>? Hooks { get; set; }
+    public IEnumerable<object>? Hooks { get; set; }
 
     /// <summary>
     /// These are the digits of the phone number you own on your Vonage.

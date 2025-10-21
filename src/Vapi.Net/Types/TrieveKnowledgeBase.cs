@@ -8,6 +8,14 @@ namespace Vapi.Net;
 public record TrieveKnowledgeBase
 {
     /// <summary>
+    /// This knowledge base is provided by Trieve.
+    ///
+    /// To learn more about Trieve, visit https://trieve.ai.
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public string Provider { get; set; } = "trieve";
+
+    /// <summary>
     /// This is the name of the knowledge base.
     /// </summary>
     [JsonPropertyName("name")]

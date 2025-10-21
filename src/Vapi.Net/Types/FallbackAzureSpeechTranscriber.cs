@@ -14,6 +14,24 @@ public record FallbackAzureSpeechTranscriber
     public FallbackAzureSpeechTranscriberLanguage? Language { get; set; }
 
     /// <summary>
+    /// Controls how phrase boundaries are detected, enabling either simple time/silence heuristics or more advanced semantic segmentation.
+    /// </summary>
+    [JsonPropertyName("segmentationStrategy")]
+    public FallbackAzureSpeechTranscriberSegmentationStrategy? SegmentationStrategy { get; set; }
+
+    /// <summary>
+    /// Duration of detected silence after which the service finalizes a phrase. Configure to adjust sensitivity to pauses in speech.
+    /// </summary>
+    [JsonPropertyName("segmentationSilenceTimeoutMs")]
+    public double? SegmentationSilenceTimeoutMs { get; set; }
+
+    /// <summary>
+    /// Maximum duration a segment can reach before being cut off when using time-based segmentation.
+    /// </summary>
+    [JsonPropertyName("segmentationMaximumTimeMs")]
+    public double? SegmentationMaximumTimeMs { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

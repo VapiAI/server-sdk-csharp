@@ -40,6 +40,13 @@ public record AnalysisPlan
     public SuccessEvaluationPlan? SuccessEvaluationPlan { get; set; }
 
     /// <summary>
+    /// This is an array of outcome UUIDs to be calculated during analysis.
+    /// The outcomes will be calculated and stored in `call.analysis.outcomes`.
+    /// </summary>
+    [JsonPropertyName("outcomeIds")]
+    public IEnumerable<string>? OutcomeIds { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

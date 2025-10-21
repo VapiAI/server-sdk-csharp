@@ -15,4 +15,7 @@ public enum AnalysisCostAnalysisType
 
     [EnumMember(Value = "successEvaluation")]
     SuccessEvaluation,
+
+    [EnumMember(Value = "structuredOutput")]
+    StructuredOutput,
 }

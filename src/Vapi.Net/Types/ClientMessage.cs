@@ -25,7 +25,14 @@ public record ClientMessage
         ClientMessageTransferUpdate,
         ClientMessageUserInterrupted,
         ClientMessageLanguageChangeDetected,
-        ClientMessageVoiceInput
+        ClientMessageVoiceInput,
+        ClientMessageChatCreated,
+        ClientMessageChatDeleted,
+        ClientMessageSessionCreated,
+        ClientMessageSessionUpdated,
+        ClientMessageSessionDeleted,
+        ClientMessageCallDeleted,
+        ClientMessageCallDeleteFailed
     > Message { get; set; }
 
     /// <summary>

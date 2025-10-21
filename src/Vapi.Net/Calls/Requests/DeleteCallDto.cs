@@ -1,0 +1,23 @@
+using System.Text.Json.Serialization;
+using Vapi.Net.Core;
+
+namespace Vapi.Net;
+
+[Serializable]
+public record DeleteCallDto
+{
+    /// <summary>
+    /// These are the Call IDs to be bulk deleted.
+    /// If provided, the call ID if any in the request query will be ignored
+    /// When requesting a bulk delete, updates when a call is deleted will be sent as a webhook to the server URL configured in the Org settings.
+    /// It may take up to a few hours to complete the bulk delete, and will be asynchronous.
+    /// </summary>
+    [JsonPropertyName("ids")]
+    public IEnumerable<string>? Ids { get; set; }
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

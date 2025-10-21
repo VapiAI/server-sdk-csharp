@@ -27,6 +27,18 @@ public record OpenAiResponsesRequest
     public AssistantOverrides? AssistantOverrides { get; set; }
 
     /// <summary>
+    /// This is the squad that will be used for the chat. To use a transient squad, use `squad` instead.
+    /// </summary>
+    [JsonPropertyName("squadId")]
+    public string? SquadId { get; set; }
+
+    /// <summary>
+    /// This is the squad that will be used for the chat. To use an existing squad, use `squadId` instead.
+    /// </summary>
+    [JsonPropertyName("squad")]
+    public CreateSquadDto? Squad { get; set; }
+
+    /// <summary>
     /// This is the name of the chat. This is just for your own reference.
     /// </summary>
     [JsonPropertyName("name")]
@@ -65,6 +77,15 @@ public record OpenAiResponsesRequest
     /// </summary>
     [JsonPropertyName("previousChatId")]
     public string? PreviousChatId { get; set; }
+
+    /// <summary>
+    /// This is used to send the chat through a transport like SMS.
+    /// If transport.phoneNumberId and transport.customer are provided, creates a new session.
+    /// If sessionId is provided without transport fields, uses existing session data.
+    /// Cannot specify both sessionId and transport fields (phoneNumberId/customer) together.
+    /// </summary>
+    [JsonPropertyName("transport")]
+    public TwilioSmsChatTransport? Transport { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

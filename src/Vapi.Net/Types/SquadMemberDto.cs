@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -7,6 +8,11 @@ namespace Vapi.Net;
 [Serializable]
 public record SquadMemberDto
 {
+    [JsonPropertyName("assistantDestinations")]
+    public IEnumerable<
+        OneOf<TransferDestinationAssistant, HandoffDestinationAssistant>
+    >? AssistantDestinations { get; set; }
+
     /// <summary>
     /// This is the assistant that will be used for the call. To use a transient assistant, use `assistant` instead.
     /// </summary>
@@ -24,14 +30,6 @@ public record SquadMemberDto
     /// </summary>
     [JsonPropertyName("assistantOverrides")]
     public AssistantOverrides? AssistantOverrides { get; set; }
-
-    /// <summary>
-    /// These are the others assistants that this assistant can transfer to.
-    ///
-    /// If the assistant already has transfer call tool, these destinations are just appended to existing ones.
-    /// </summary>
-    [JsonPropertyName("assistantDestinations")]
-    public IEnumerable<TransferDestinationAssistant>? AssistantDestinations { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

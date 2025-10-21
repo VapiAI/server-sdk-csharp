@@ -13,6 +13,9 @@ public record CredentialEndUser
     [JsonPropertyName("organizationId")]
     public required string OrganizationId { get; set; }
 
+    [JsonPropertyName("tags")]
+    public object? Tags { get; set; }
+
     /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>

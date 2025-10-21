@@ -22,6 +22,15 @@ public record CompliancePlan
     public bool? PciEnabled { get; set; }
 
     /// <summary>
+    /// This is the security filter plan for the assistant. It allows filtering of transcripts for security threats before sending to LLM.
+    /// </summary>
+    [JsonPropertyName("securityFilterPlan")]
+    public SecurityFilterPlan? SecurityFilterPlan { get; set; }
+
+    [JsonPropertyName("recordingConsentPlan")]
+    public object? RecordingConsentPlan { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

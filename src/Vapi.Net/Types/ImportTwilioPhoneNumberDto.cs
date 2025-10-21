@@ -22,7 +22,7 @@ public record ImportTwilioPhoneNumberDto
     /// This is the hooks that will be used for incoming calls to this phone number.
     /// </summary>
     [JsonPropertyName("hooks")]
-    public IEnumerable<PhoneNumberHookCallRinging>? Hooks { get; set; }
+    public IEnumerable<object>? Hooks { get; set; }
 
     /// <summary>
     /// Controls whether Vapi sets the messaging webhook URL on the Twilio number during import.

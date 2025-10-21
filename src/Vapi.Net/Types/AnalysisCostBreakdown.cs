@@ -62,6 +62,24 @@ public record AnalysisCostBreakdown
     public double? SuccessEvaluationCompletionTokens { get; set; }
 
     /// <summary>
+    /// This is the cost to evaluate structuredOutputs from the call.
+    /// </summary>
+    [JsonPropertyName("structuredOutput")]
+    public double? StructuredOutput { get; set; }
+
+    /// <summary>
+    /// This is the number of prompt tokens used to evaluate structuredOutputs from the call.
+    /// </summary>
+    [JsonPropertyName("structuredOutputPromptTokens")]
+    public double? StructuredOutputPromptTokens { get; set; }
+
+    /// <summary>
+    /// This is the number of completion tokens used to evaluate structuredOutputs from the call.
+    /// </summary>
+    [JsonPropertyName("structuredOutputCompletionTokens")]
+    public double? StructuredOutputCompletionTokens { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

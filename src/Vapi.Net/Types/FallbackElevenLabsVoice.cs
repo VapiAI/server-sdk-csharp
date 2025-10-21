@@ -83,6 +83,12 @@ public record FallbackElevenLabsVoice
     public string? Language { get; set; }
 
     /// <summary>
+    /// This is the pronunciation dictionary locators to use.
+    /// </summary>
+    [JsonPropertyName("pronunciationDictionaryLocators")]
+    public IEnumerable<ElevenLabsPronunciationDictionaryLocator>? PronunciationDictionaryLocators { get; set; }
+
+    /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.
     /// </summary>
     [JsonPropertyName("chunkPlan")]

@@ -20,6 +20,12 @@ public record GetSessionPaginatedDto
     public string? AssistantId { get; set; }
 
     /// <summary>
+    /// This is the ID of the squad to filter sessions by.
+    /// </summary>
+    [JsonPropertyName("squadId")]
+    public string? SquadId { get; set; }
+
+    /// <summary>
     /// This is the ID of the workflow to filter sessions by.
     /// </summary>
     [JsonPropertyName("workflowId")]

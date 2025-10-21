@@ -24,4 +24,10 @@ public enum FallbackOpenAiVoiceIdEnum
 
     [EnumMember(Value = "shimmer")]
     Shimmer,
+
+    [EnumMember(Value = "marin")]
+    Marin,
+
+    [EnumMember(Value = "cedar")]
+    Cedar,
 }

@@ -52,6 +52,28 @@ public record FallbackDeepgramTranscriber
     public double? ConfidenceThreshold { get; set; }
 
     /// <summary>
+    /// Eager end-of-turn confidence required to fire a eager end-of-turn event. Setting a value here will enable EagerEndOfTurn and SpeechResumed events. It is disabled by default. Only used with Flux models.
+    /// </summary>
+    [JsonPropertyName("eagerEotThreshold")]
+    public double? EagerEotThreshold { get; set; }
+
+    /// <summary>
+    /// End-of-turn confidence required to finish a turn. Only used with Flux models.
+    ///
+    /// @default 0.7
+    /// </summary>
+    [JsonPropertyName("eotThreshold")]
+    public double? EotThreshold { get; set; }
+
+    /// <summary>
+    /// A turn will be finished when this much time has passed after speech, regardless of EOT confidence. Only used with Flux models.
+    ///
+    /// @default 5000
+    /// </summary>
+    [JsonPropertyName("eotTimeoutMs")]
+    public double? EotTimeoutMs { get; set; }
+
+    /// <summary>
     /// These keywords are passed to the transcription model to help it pick up use-case specific words. Anything that may not be a common word, like your company name, should be added here.
     /// </summary>
     [JsonPropertyName("keywords")]

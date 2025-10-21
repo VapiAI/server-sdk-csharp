@@ -1,0 +1,111 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Vapi.Net.Core;
+
+namespace Vapi.Net;
+
+[Serializable]
+public record StructuredOutput
+{
+    /// <summary>
+    /// This is the model that will be used to extract the structured output.
+    ///
+    /// To provide your own custom system and user prompts for structured output extraction, populate the messages array with your system and user messages. You can specify liquid templating in your system and user messages.
+    /// Between the system or user messages, you must reference either 'transcript' or 'messages' with the '{{}}' syntax to access the conversation history.
+    /// Between the system or user messages, you must reference a variation of the structured output with the '{{}}' syntax to access the structured output definition.
+    /// i.e.:
+    /// {{structuredOutput}}
+    /// {{structuredOutput.name}}
+    /// {{structuredOutput.description}}
+    /// {{structuredOutput.schema}}
+    ///
+    /// If model is not specified, GPT-4.1 will be used by default for extraction, utilizing default system and user prompts.
+    /// If messages or required fields are not specified, the default system and user prompts will be used.
+    /// </summary>
+    [JsonPropertyName("model")]
+    public object? Model { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the structured output.
+    /// </summary>
+    [JsonPropertyName("id")]
+    public required string Id { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the org that this structured output belongs to.
+    /// </summary>
+    [JsonPropertyName("orgId")]
+    public required string OrgId { get; set; }
+
+    /// <summary>
+    /// This is the ISO 8601 date-time string of when the structured output was created.
+    /// </summary>
+    [JsonPropertyName("createdAt")]
+    public required DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// This is the ISO 8601 date-time string of when the structured output was last updated.
+    /// </summary>
+    [JsonPropertyName("updatedAt")]
+    public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// This is the name of the structured output.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
+
+    /// <summary>
+    /// This is the description of what the structured output extracts.
+    ///
+    /// Use this to provide context about what data will be extracted and how it will be used.
+    /// </summary>
+    [JsonPropertyName("description")]
+    public string? Description { get; set; }
+
+    /// <summary>
+    /// These are the assistant IDs that this structured output is linked to.
+    ///
+    /// When linked to assistants, this structured output will be available for extraction during those assistant's calls.
+    /// </summary>
+    [JsonPropertyName("assistantIds")]
+    public IEnumerable<string>? AssistantIds { get; set; }
+
+    /// <summary>
+    /// These are the workflow IDs that this structured output is linked to.
+    ///
+    /// When linked to workflows, this structured output will be available for extraction during those workflow's execution.
+    /// </summary>
+    [JsonPropertyName("workflowIds")]
+    public IEnumerable<string>? WorkflowIds { get; set; }
+
+    /// <summary>
+    /// This is the JSON Schema definition for the structured output.
+    ///
+    /// Defines the structure and validation rules for the data that will be extracted. Supports all JSON Schema features including:
+    /// - Objects and nested properties
+    /// - Arrays and array validation
+    /// - String, number, boolean, and null types
+    /// - Enums and const values
+    /// - Validation constraints (min/max, patterns, etc.)
+    /// - Composition with allOf, anyOf, oneOf
+    /// </summary>
+    [JsonPropertyName("schema")]
+    public required JsonSchema Schema { get; set; }
+
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

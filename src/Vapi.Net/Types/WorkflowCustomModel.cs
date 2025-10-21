@@ -28,6 +28,12 @@ public record WorkflowCustomModel
     public required string Url { get; set; }
 
     /// <summary>
+    /// These are the headers we'll use for the OpenAI client's `headers`.
+    /// </summary>
+    [JsonPropertyName("headers")]
+    public object? Headers { get; set; }
+
+    /// <summary>
     /// This sets the timeout for the connection to the custom provider without needing to stream any tokens back. Default is 20 seconds.
     /// </summary>
     [JsonPropertyName("timeoutSeconds")]

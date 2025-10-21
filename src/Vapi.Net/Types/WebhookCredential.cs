@@ -11,7 +11,7 @@ public record WebhookCredential
     public string Provider { get; set; } = "webhook";
 
     /// <summary>
-    /// This is the authentication plan. Supports OAuth2 RFC 6749 and HMAC signing.
+    /// This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication.
     /// </summary>
     [JsonPropertyName("authenticationPlan")]
     public required object AuthenticationPlan { get; set; }

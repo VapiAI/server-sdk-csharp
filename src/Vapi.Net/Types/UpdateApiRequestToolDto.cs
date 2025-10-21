@@ -27,14 +27,93 @@ public record UpdateApiRequestToolDto
     public double? TimeoutSeconds { get; set; }
 
     /// <summary>
-    /// This is the function definition of the tool.
-    ///
-    /// For `endCall`, `transferCall`, and `dtmf` tools, this is auto-filled based on tool-specific fields like `tool.destinations`. But, even in those cases, you can provide a custom function definition for advanced use cases.
-    ///
-    /// An example of an advanced use case is if you want to customize the message that's spoken for `endCall` tool. You can specify a function where it returns an argument "reason". Then, in `messages` array, you can have many "request-complete" messages. One of these messages will be triggered if the `messages[].conditions` matches the "reason" argument.
+    /// The credential ID for API request authentication
     /// </summary>
-    [JsonPropertyName("function")]
-    public OpenAiFunction? Function { get; set; }
+    [JsonPropertyName("credentialId")]
+    public string? CredentialId { get; set; }
+
+    /// <summary>
+    /// This is the plan to reject a tool call based on the conversation state.
+    ///
+    /// // Example 1: Reject endCall if user didn't say goodbye
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'regex',
+    ///     regex: '(?i)\\b(bye|goodbye|farewell|see you later|take care)\\b',
+    ///     target: { position: -1, role: 'user' },
+    ///     negate: true  // Reject if pattern does NOT match
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 2: Reject transfer if user is actually asking a question
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'regex',
+    ///     regex: '\\?',
+    ///     target: { position: -1, role: 'user' }
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 3: Reject transfer if user didn't mention transfer recently
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'liquid',
+    ///     liquid: `{% assign recentMessages = messages | last: 5 %}
+    /// {% assign userMessages = recentMessages | where: 'role', 'user' %}
+    /// {% assign mentioned = false %}
+    /// {% for msg in userMessages %}
+    ///   {% if msg.content contains 'transfer' or msg.content contains 'connect' or msg.content contains 'speak to' %}
+    ///     {% assign mentioned = true %}
+    ///     {% break %}
+    ///   {% endif %}
+    /// {% endfor %}
+    /// {% if mentioned %}
+    ///   false
+    /// {% else %}
+    ///   true
+    /// {% endif %}`
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 4: Reject endCall if the bot is looping and trying to exit
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'liquid',
+    ///     liquid: `{% assign recentMessages = messages | last: 6 %}
+    /// {% assign userMessages = recentMessages | where: 'role', 'user' | reverse %}
+    /// {% if userMessages.size &lt; 3 %}
+    ///   false
+    /// {% else %}
+    ///   {% assign msg1 = userMessages[0].content | downcase %}
+    ///   {% assign msg2 = userMessages[1].content | downcase %}
+    ///   {% assign msg3 = userMessages[2].content | downcase %}
+    ///   {% comment %} Check for repetitive messages {% endcomment %}
+    ///   {% if msg1 == msg2 or msg1 == msg3 or msg2 == msg3 %}
+    ///     true
+    ///   {% comment %} Check for common loop phrases {% endcomment %}
+    ///   {% elsif msg1 contains 'cool thanks' or msg2 contains 'cool thanks' or msg3 contains 'cool thanks' %}
+    ///     true
+    ///   {% elsif msg1 contains 'okay thanks' or msg2 contains 'okay thanks' or msg3 contains 'okay thanks' %}
+    ///     true
+    ///   {% elsif msg1 contains 'got it' or msg2 contains 'got it' or msg3 contains 'got it' %}
+    ///     true
+    ///   {% else %}
+    ///     false
+    ///   {% endif %}
+    /// {% endif %}`
+    ///   }]
+    /// }
+    /// ```
+    /// </summary>
+    [JsonPropertyName("rejectionPlan")]
+    public ToolRejectionPlan? RejectionPlan { get; set; }
 
     /// <summary>
     /// This is the name of the tool. This will be passed to the model.
@@ -63,7 +142,7 @@ public record UpdateApiRequestToolDto
     public JsonSchema? Body { get; set; }
 
     /// <summary>
-    /// These are the headers to send in the request.
+    /// These are the headers to send with the request.
     /// </summary>
     [JsonPropertyName("headers")]
     public JsonSchema? Headers { get; set; }
@@ -156,6 +235,7 @@ public record UpdateApiRequestToolDto
     ///   }
     /// }
     /// ```
+    /// These will be extracted as `{{ name }}` and `{{ age }}` respectively. To emphasize, object properties are extracted as direct global variables.
     ///
     /// 4.2. If you hit example.com and it returns `{"name": {"first": "John", "last": "Doe"}}`, then you can specify the schema as:
     ///
@@ -180,34 +260,9 @@ public record UpdateApiRequestToolDto
     /// }
     /// ```
     ///
-    /// These will be extracted as `{{ name }}` and `{{ age }}` respectively. To emphasize, object properties are extracted as direct global variables.
-    ///
-    /// 4.3. If you hit example.com and it returns `{"name": {"first": "John", "last": "Doe"}}`, then you can specify the schema as:
-    ///
-    /// ```json
-    /// {
-    ///   "schema": {
-    ///     "type": "object",
-    ///     "properties": {
-    ///       "name": {
-    ///         "type": "object",
-    ///         "properties": {
-    ///           "first": {
-    ///             "type": "string"
-    ///           },
-    ///           "last": {
-    ///             "type": "string"
-    ///           }
-    ///         }
-    ///       }
-    ///     }
-    ///   }
-    /// }
-    /// ```
-    ///
     /// These will be extracted as `{{ name }}`. And, `{{ name.first }}` and `{{ name.last }}` will be accessible.
     ///
-    /// 4.4. If you hit example.com and it returns `["94123", "94124"]`, then you can specify the schema as:
+    /// 4.3. If you hit example.com and it returns `["94123", "94124"]`, then you can specify the schema as:
     ///
     /// ```json
     /// {
@@ -223,7 +278,7 @@ public record UpdateApiRequestToolDto
     ///
     /// This will be extracted as `{{ zipCodes }}`. To access the array items, you can use `{{ zipCodes[0] }}` and `{{ zipCodes[1] }}`.
     ///
-    /// 4.5. If you hit example.com and it returns `[{"name": "John", "age": 30, "zipCodes": ["94123", "94124"]}, {"name": "Jane", "age": 25, "zipCodes": ["94125", "94126"]}]`, then you can specify the schema as:
+    /// 4.4. If you hit example.com and it returns `[{"name": "John", "age": 30, "zipCodes": ["94123", "94124"]}, {"name": "Jane", "age": 25, "zipCodes": ["94125", "94126"]}]`, then you can specify the schema as:
     ///
     /// ```json
     /// {

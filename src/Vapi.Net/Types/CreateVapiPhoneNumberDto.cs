@@ -22,7 +22,7 @@ public record CreateVapiPhoneNumberDto
     /// This is the hooks that will be used for incoming calls to this phone number.
     /// </summary>
     [JsonPropertyName("hooks")]
-    public IEnumerable<PhoneNumberHookCallRinging>? Hooks { get; set; }
+    public IEnumerable<object>? Hooks { get; set; }
 
     /// <summary>
     /// This is the area code of the phone number to purchase.

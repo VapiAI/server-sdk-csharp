@@ -19,6 +19,12 @@ public record SessionsListRequest
     public string? AssistantId { get; set; }
 
     /// <summary>
+    /// This is the ID of the squad to filter sessions by.
+    /// </summary>
+    [JsonIgnore]
+    public string? SquadId { get; set; }
+
+    /// <summary>
     /// This is the ID of the workflow to filter sessions by.
     /// </summary>
     [JsonIgnore]

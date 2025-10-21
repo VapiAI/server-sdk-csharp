@@ -61,6 +61,9 @@ public enum CallEndedReason
     [EnumMember(Value = "call.start.error-subscription-wallet-does-not-exist")]
     CallStartErrorSubscriptionWalletDoesNotExist,
 
+    [EnumMember(Value = "call.start.error-fraud-check-failed")]
+    CallStartErrorFraudCheckFailed,
+
     [EnumMember(Value = "call.start.error-subscription-frozen")]
     CallStartErrorSubscriptionFrozen,
 
@@ -73,11 +76,14 @@ public enum CallEndedReason
     [EnumMember(Value = "call.start.error-subscription-concurrency-limit-reached")]
     CallStartErrorSubscriptionConcurrencyLimitReached,
 
+    [EnumMember(Value = "call.start.error-enterprise-feature-not-available-recording-consent")]
+    CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent,
+
     [EnumMember(Value = "assistant-not-valid")]
     AssistantNotValid,
 
-    [EnumMember(Value = "database-error")]
-    DatabaseError,
+    [EnumMember(Value = "call.start.error-vapifault-database-error")]
+    CallStartErrorVapifaultDatabaseError,
 
     [EnumMember(Value = "assistant-not-found")]
     AssistantNotFound,
@@ -121,6 +127,9 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-inworld-voice-failed")]
     PipelineErrorInworldVoiceFailed,
 
+    [EnumMember(Value = "pipeline-error-minimax-voice-failed")]
+    PipelineErrorMinimaxVoiceFailed,
+
     [EnumMember(Value = "pipeline-error-tavus-video-failed")]
     PipelineErrorTavusVideoFailed,
 
@@ -163,6 +172,9 @@ public enum CallEndedReason
     [EnumMember(Value = "call.in-progress.error-vapifault-inworld-voice-failed")]
     CallInProgressErrorVapifaultInworldVoiceFailed,
 
+    [EnumMember(Value = "call.in-progress.error-vapifault-minimax-voice-failed")]
+    CallInProgressErrorVapifaultMinimaxVoiceFailed,
+
     [EnumMember(Value = "call.in-progress.error-vapifault-tavus-video-failed")]
     CallInProgressErrorVapifaultTavusVideoFailed,
 
@@ -187,8 +199,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-vapi-503-server-overloaded-error")]
     PipelineErrorVapi503ServerOverloadedError,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-vapi-llm-failed")]
-    CallInProgressErrorVapifaultVapiLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-vapi-llm-failed")]
+    CallInProgressErrorProviderfaultVapiLlmFailed,
 
     [EnumMember(Value = "call.in-progress.error-vapifault-vapi-400-bad-request-validation-failed")]
     CallInProgressErrorVapifaultVapi400BadRequestValidationFailed,
@@ -210,6 +222,9 @@ public enum CallEndedReason
 
     [EnumMember(Value = "pipeline-error-deepgram-transcriber-failed")]
     PipelineErrorDeepgramTranscriberFailed,
+
+    [EnumMember(Value = "pipeline-error-deepgram-transcriber-api-key-missing")]
+    PipelineErrorDeepgramTranscriberApiKeyMissing,
 
     [EnumMember(Value = "call.in-progress.error-vapifault-deepgram-transcriber-failed")]
     CallInProgressErrorVapifaultDeepgramTranscriberFailed,
@@ -328,32 +343,32 @@ public enum CallEndedReason
     [EnumMember(Value = "call.in-progress.sip-completed-call")]
     CallInProgressSipCompletedCall,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-openai-llm-failed")]
-    CallInProgressErrorVapifaultOpenaiLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-openai-llm-failed")]
+    CallInProgressErrorProviderfaultOpenaiLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-azure-openai-llm-failed")]
-    CallInProgressErrorVapifaultAzureOpenaiLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-azure-openai-llm-failed")]
+    CallInProgressErrorProviderfaultAzureOpenaiLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-groq-llm-failed")]
-    CallInProgressErrorVapifaultGroqLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-groq-llm-failed")]
+    CallInProgressErrorProviderfaultGroqLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-google-llm-failed")]
-    CallInProgressErrorVapifaultGoogleLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-google-llm-failed")]
+    CallInProgressErrorProviderfaultGoogleLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-xai-llm-failed")]
-    CallInProgressErrorVapifaultXaiLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-xai-llm-failed")]
+    CallInProgressErrorProviderfaultXaiLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-mistral-llm-failed")]
-    CallInProgressErrorVapifaultMistralLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-mistral-llm-failed")]
+    CallInProgressErrorProviderfaultMistralLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-inflection-ai-llm-failed")]
-    CallInProgressErrorVapifaultInflectionAiLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-inflection-ai-llm-failed")]
+    CallInProgressErrorProviderfaultInflectionAiLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-cerebras-llm-failed")]
-    CallInProgressErrorVapifaultCerebrasLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-cerebras-llm-failed")]
+    CallInProgressErrorProviderfaultCerebrasLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-deep-seek-llm-failed")]
-    CallInProgressErrorVapifaultDeepSeekLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-deep-seek-llm-failed")]
+    CallInProgressErrorProviderfaultDeepSeekLlmFailed,
 
     [EnumMember(Value = "call.in-progress.error-vapifault-chat-pipeline-failed-to-start")]
     CallInProgressErrorVapifaultChatPipelineFailedToStart,
@@ -770,8 +785,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-anthropic-llm-failed")]
     PipelineErrorAnthropicLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-anthropic-llm-failed")]
-    CallInProgressErrorVapifaultAnthropicLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-anthropic-llm-failed")]
+    CallInProgressErrorProviderfaultAnthropicLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-anthropic-400-bad-request-validation-failed"
@@ -816,8 +831,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-anthropic-bedrock-llm-failed")]
     PipelineErrorAnthropicBedrockLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-anthropic-bedrock-llm-failed")]
-    CallInProgressErrorVapifaultAnthropicBedrockLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-anthropic-bedrock-llm-failed")]
+    CallInProgressErrorProviderfaultAnthropicBedrockLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-anthropic-bedrock-400-bad-request-validation-failed"
@@ -864,8 +879,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-anthropic-vertex-llm-failed")]
     PipelineErrorAnthropicVertexLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-anthropic-vertex-llm-failed")]
-    CallInProgressErrorVapifaultAnthropicVertexLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-anthropic-vertex-llm-failed")]
+    CallInProgressErrorProviderfaultAnthropicVertexLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-anthropic-vertex-400-bad-request-validation-failed"
@@ -912,8 +927,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-together-ai-llm-failed")]
     PipelineErrorTogetherAiLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-together-ai-llm-failed")]
-    CallInProgressErrorVapifaultTogetherAiLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-together-ai-llm-failed")]
+    CallInProgressErrorProviderfaultTogetherAiLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-together-ai-400-bad-request-validation-failed"
@@ -958,8 +973,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-anyscale-llm-failed")]
     PipelineErrorAnyscaleLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-anyscale-llm-failed")]
-    CallInProgressErrorVapifaultAnyscaleLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-anyscale-llm-failed")]
+    CallInProgressErrorProviderfaultAnyscaleLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-anyscale-400-bad-request-validation-failed"
@@ -1004,8 +1019,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-openrouter-llm-failed")]
     PipelineErrorOpenrouterLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-openrouter-llm-failed")]
-    CallInProgressErrorVapifaultOpenrouterLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-openrouter-llm-failed")]
+    CallInProgressErrorProviderfaultOpenrouterLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-openrouter-400-bad-request-validation-failed"
@@ -1050,8 +1065,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-perplexity-ai-llm-failed")]
     PipelineErrorPerplexityAiLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-perplexity-ai-llm-failed")]
-    CallInProgressErrorVapifaultPerplexityAiLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-perplexity-ai-llm-failed")]
+    CallInProgressErrorProviderfaultPerplexityAiLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-perplexity-ai-400-bad-request-validation-failed"
@@ -1096,8 +1111,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-deepinfra-llm-failed")]
     PipelineErrorDeepinfraLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-deepinfra-llm-failed")]
-    CallInProgressErrorVapifaultDeepinfraLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-deepinfra-llm-failed")]
+    CallInProgressErrorProviderfaultDeepinfraLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-deepinfra-400-bad-request-validation-failed"
@@ -1142,8 +1157,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-runpod-llm-failed")]
     PipelineErrorRunpodLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-runpod-llm-failed")]
-    CallInProgressErrorVapifaultRunpodLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-runpod-llm-failed")]
+    CallInProgressErrorProviderfaultRunpodLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-runpod-400-bad-request-validation-failed"
@@ -1186,8 +1201,8 @@ public enum CallEndedReason
     [EnumMember(Value = "pipeline-error-custom-llm-llm-failed")]
     PipelineErrorCustomLlmLlmFailed,
 
-    [EnumMember(Value = "call.in-progress.error-vapifault-custom-llm-llm-failed")]
-    CallInProgressErrorVapifaultCustomLlmLlmFailed,
+    [EnumMember(Value = "call.in-progress.error-providerfault-custom-llm-llm-failed")]
+    CallInProgressErrorProviderfaultCustomLlmLlmFailed,
 
     [EnumMember(
         Value = "call.in-progress.error-vapifault-custom-llm-400-bad-request-validation-failed"
@@ -1571,6 +1586,24 @@ public enum CallEndedReason
     [EnumMember(Value = "call.in-progress.error-vapifault-openai-transcriber-failed")]
     CallInProgressErrorVapifaultOpenaiTranscriberFailed,
 
+    [EnumMember(Value = "call.in-progress.error-warm-transfer-max-duration")]
+    CallInProgressErrorWarmTransferMaxDuration,
+
+    [EnumMember(Value = "call.in-progress.error-warm-transfer-assistant-cancelled")]
+    CallInProgressErrorWarmTransferAssistantCancelled,
+
+    [EnumMember(Value = "call.in-progress.error-warm-transfer-silence-timeout")]
+    CallInProgressErrorWarmTransferSilenceTimeout,
+
+    [EnumMember(Value = "call.in-progress.error-warm-transfer-microphone-timeout")]
+    CallInProgressErrorWarmTransferMicrophoneTimeout,
+
+    [EnumMember(Value = "call.in-progress.error-warm-transfer-hang-timeout")]
+    CallInProgressErrorWarmTransferHangTimeout,
+
+    [EnumMember(Value = "call.in-progress.error-warm-transfer-idle-timeout")]
+    CallInProgressErrorWarmTransferIdleTimeout,
+
     [EnumMember(Value = "assistant-ended-call")]
     AssistantEndedCall,
 
@@ -1600,6 +1633,12 @@ public enum CallEndedReason
 
     [EnumMember(Value = "customer-ended-call")]
     CustomerEndedCall,
+
+    [EnumMember(Value = "customer-ended-call-before-warm-transfer")]
+    CustomerEndedCallBeforeWarmTransfer,
+
+    [EnumMember(Value = "customer-ended-call-after-warm-transfer-attempt")]
+    CustomerEndedCallAfterWarmTransferAttempt,
 
     [EnumMember(Value = "customer-did-not-answer")]
     CustomerDidNotAnswer,
@@ -1652,6 +1691,12 @@ public enum CallEndedReason
     [EnumMember(Value = "call.ringing.hook-executed-transfer")]
     CallRingingHookExecutedTransfer,
 
+    [EnumMember(Value = "call.ending.hook-executed-say")]
+    CallEndingHookExecutedSay,
+
+    [EnumMember(Value = "call.ending.hook-executed-transfer")]
+    CallEndingHookExecutedTransfer,
+
     [EnumMember(Value = "call.ringing.sip-inbound-caller-hungup-before-call-connect")]
     CallRingingSipInboundCallerHungupBeforeCallConnect,
 
@@ -1669,4 +1714,7 @@ public enum CallEndedReason
 
     [EnumMember(Value = "voicemail")]
     Voicemail,
+
+    [EnumMember(Value = "call-deleted")]
+    CallDeleted,
 }

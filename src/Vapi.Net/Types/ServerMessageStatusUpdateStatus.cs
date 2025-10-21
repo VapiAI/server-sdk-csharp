@@ -24,4 +24,10 @@ public enum ServerMessageStatusUpdateStatus
 
     [EnumMember(Value = "ended")]
     Ended,
+
+    [EnumMember(Value = "not-found")]
+    NotFound,
+
+    [EnumMember(Value = "deletion-failed")]
+    DeletionFailed,
 }

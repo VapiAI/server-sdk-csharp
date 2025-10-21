@@ -15,6 +15,12 @@ public record CreateTestSuiteTestVoiceDto
         new List<TestSuiteTestScorerAi>();
 
     /// <summary>
+    /// This is the type of the test, which must be voice.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "voice";
+
+    /// <summary>
     /// This is the script to be used for the voice test.
     /// </summary>
     [JsonPropertyName("script")]

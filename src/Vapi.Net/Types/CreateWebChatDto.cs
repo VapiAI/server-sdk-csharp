@@ -56,6 +56,14 @@ public record CreateWebChatDto
     public bool? Stream { get; set; }
 
     /// <summary>
+    /// This is a flag to indicate end of session. When true, the session will be marked as completed and the chat will be ended.
+    /// Used to end session to send End-of-session report to the customer.
+    /// When flag is set to true, any messages sent will not be processed and session will directly be marked as completed.
+    /// </summary>
+    [JsonPropertyName("sessionEnd")]
+    public bool? SessionEnd { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

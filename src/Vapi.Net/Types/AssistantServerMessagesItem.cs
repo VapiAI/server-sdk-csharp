@@ -49,6 +49,9 @@ public enum AssistantServerMessagesItem
     [EnumMember(Value = "transfer-destination-request")]
     TransferDestinationRequest,
 
+    [EnumMember(Value = "handoff-destination-request")]
+    HandoffDestinationRequest,
+
     [EnumMember(Value = "transfer-update")]
     TransferUpdate,
 
@@ -57,4 +60,25 @@ public enum AssistantServerMessagesItem
 
     [EnumMember(Value = "voice-input")]
     VoiceInput,
+
+    [EnumMember(Value = "chat.created")]
+    ChatCreated,
+
+    [EnumMember(Value = "chat.deleted")]
+    ChatDeleted,
+
+    [EnumMember(Value = "session.created")]
+    SessionCreated,
+
+    [EnumMember(Value = "session.updated")]
+    SessionUpdated,
+
+    [EnumMember(Value = "session.deleted")]
+    SessionDeleted,
+
+    [EnumMember(Value = "call.deleted")]
+    CallDeleted,
+
+    [EnumMember(Value = "call.delete.failed")]
+    CallDeleteFailed,
 }

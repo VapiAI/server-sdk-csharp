@@ -7,9 +7,15 @@ namespace Vapi.Net;
 [Serializable]
 public record FallbackGladiaTranscriber
 {
+    /// <summary>
+    /// This is the Gladia model that will be used. Default is 'fast'
+    /// </summary>
     [JsonPropertyName("model")]
     public FallbackGladiaTranscriberModel? Model { get; set; }
 
+    /// <summary>
+    /// Defines how the transcription model detects the audio language. Default value is 'automatic single language'.
+    /// </summary>
     [JsonPropertyName("languageBehaviour")]
     public FallbackGladiaTranscriberLanguageBehaviour? LanguageBehaviour { get; set; }
 
@@ -51,6 +57,42 @@ public record FallbackGladiaTranscriber
     /// </summary>
     [JsonPropertyName("confidenceThreshold")]
     public double? ConfidenceThreshold { get; set; }
+
+    /// <summary>
+    /// Endpointing time in seconds - time to wait before considering speech ended
+    /// </summary>
+    [JsonPropertyName("endpointing")]
+    public double? Endpointing { get; set; }
+
+    /// <summary>
+    /// Speech threshold - sensitivity configuration for speech detection (0.0 to 1.0)
+    /// </summary>
+    [JsonPropertyName("speechThreshold")]
+    public double? SpeechThreshold { get; set; }
+
+    /// <summary>
+    /// Enable custom vocabulary for improved accuracy
+    /// </summary>
+    [JsonPropertyName("customVocabularyEnabled")]
+    public bool? CustomVocabularyEnabled { get; set; }
+
+    /// <summary>
+    /// Custom vocabulary configuration
+    /// </summary>
+    [JsonPropertyName("customVocabularyConfig")]
+    public GladiaCustomVocabularyConfigDto? CustomVocabularyConfig { get; set; }
+
+    /// <summary>
+    /// Region for processing audio (us-west or eu-west)
+    /// </summary>
+    [JsonPropertyName("region")]
+    public FallbackGladiaTranscriberRegion? Region { get; set; }
+
+    /// <summary>
+    /// Enable partial transcripts for low-latency streaming transcription
+    /// </summary>
+    [JsonPropertyName("receivePartialTranscripts")]
+    public bool? ReceivePartialTranscripts { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

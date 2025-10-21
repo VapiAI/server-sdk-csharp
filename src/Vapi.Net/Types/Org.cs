@@ -43,12 +43,6 @@ public record Org
     public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
-    /// This is the Stripe customer for the org.
-    /// </summary>
-    [JsonPropertyName("stripeCustomerId")]
-    public string? StripeCustomerId { get; set; }
-
-    /// <summary>
     /// This is the subscription for the org.
     /// </summary>
     [JsonPropertyName("stripeSubscriptionId")]
@@ -71,12 +65,6 @@ public record Org
     /// </summary>
     [JsonPropertyName("stripeSubscriptionStatus")]
     public string? StripeSubscriptionStatus { get; set; }
-
-    /// <summary>
-    /// This is the plan for the org.
-    /// </summary>
-    [JsonPropertyName("plan")]
-    public OrgPlan? Plan { get; set; }
 
     /// <summary>
     /// This is the secret key used for signing JWT tokens for the org.

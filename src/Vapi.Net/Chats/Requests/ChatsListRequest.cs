@@ -13,6 +13,12 @@ public record ChatsListRequest
     public string? AssistantId { get; set; }
 
     /// <summary>
+    /// This is the unique identifier for the squad that will be used for the chat.
+    /// </summary>
+    [JsonIgnore]
+    public string? SquadId { get; set; }
+
+    /// <summary>
     /// This is the unique identifier for the workflow that will be used for the chat.
     /// </summary>
     [JsonIgnore]

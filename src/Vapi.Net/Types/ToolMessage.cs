@@ -32,6 +32,12 @@ public record ToolMessage
     public string? Name { get; set; }
 
     /// <summary>
+    /// This is an optional metadata for the message
+    /// </summary>
+    [JsonPropertyName("metadata")]
+    public object? Metadata { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

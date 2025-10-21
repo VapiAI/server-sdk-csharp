@@ -65,18 +65,10 @@ public record AssistantOverrides
     public IEnumerable<AssistantOverridesClientMessagesItem>? ClientMessages { get; set; }
 
     /// <summary>
-    /// These are the messages that will be sent to your Server URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-update,status-update,tool-calls,transfer-destination-request,user-interrupted. You can check the shape of the messages in ServerMessage schema.
+    /// These are the messages that will be sent to your Server URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-update,status-update,tool-calls,transfer-destination-request,handoff-destination-request,user-interrupted. You can check the shape of the messages in ServerMessage schema.
     /// </summary>
     [JsonPropertyName("serverMessages")]
     public IEnumerable<AssistantOverridesServerMessagesItem>? ServerMessages { get; set; }
-
-    /// <summary>
-    /// How many seconds of silence to wait before ending the call. Defaults to 30.
-    ///
-    /// @default 30
-    /// </summary>
-    [JsonPropertyName("silenceTimeoutSeconds")]
-    public double? SilenceTimeoutSeconds { get; set; }
 
     /// <summary>
     /// This is the maximum number of seconds that the call will last. When the call reaches this duration, it will be ended.
@@ -92,16 +84,6 @@ public record AssistantOverrides
     /// </summary>
     [JsonPropertyName("backgroundSound")]
     public OneOf<AssistantOverridesBackgroundSoundZero, string>? BackgroundSound { get; set; }
-
-    /// <summary>
-    /// This enables filtering of noise and background speech while the user is talking.
-    ///
-    /// Default `false` while in beta.
-    ///
-    /// @default false
-    /// </summary>
-    [JsonPropertyName("backgroundDenoisingEnabled")]
-    public bool? BackgroundDenoisingEnabled { get; set; }
 
     /// <summary>
     /// This determines whether the model's output is used in conversation history rather than the transcription of assistant's speech.
@@ -137,7 +119,17 @@ public record AssistantOverrides
     /// This is a set of actions that will be performed on certain events.
     /// </summary>
     [JsonPropertyName("hooks")]
-    public IEnumerable<object>? Hooks { get; set; }
+    public IEnumerable<
+        OneOf<
+            CallHookCallEnding,
+            CallHookAssistantSpeechInterrupted,
+            CallHookCustomerSpeechInterrupted,
+            CallHookCustomerSpeechTimeout
+        >
+    >? Hooks { get; set; }
+
+    [JsonPropertyName("tools:append")]
+    public IEnumerable<object>? ToolsAppend { get; set; }
 
     /// <summary>
     /// These are values that will be used to replace the template variables in the assistant messages and other text-based fields.
@@ -217,14 +209,6 @@ public record AssistantOverrides
     /// </summary>
     [JsonPropertyName("artifactPlan")]
     public ArtifactPlan? ArtifactPlan { get; set; }
-
-    /// <summary>
-    /// This is the plan for static predefined messages that can be spoken by the assistant during the call, like `idleMessages`.
-    ///
-    /// Note: `firstMessage`, `voicemailMessage`, and `endCallMessage` are currently at the root level. They will be moved to `messagePlan` in the future, but will remain backwards compatible.
-    /// </summary>
-    [JsonPropertyName("messagePlan")]
-    public MessagePlan? MessagePlan { get; set; }
 
     /// <summary>
     /// This is the plan for when the assistant should start talking.

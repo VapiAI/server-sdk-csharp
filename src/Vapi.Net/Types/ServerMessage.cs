@@ -23,6 +23,7 @@ public record ServerMessage
         ServerMessageAssistantRequest,
         ServerMessageConversationUpdate,
         ServerMessageEndOfCallReport,
+        ServerMessageHandoffDestinationRequest,
         ServerMessageHang,
         ServerMessageKnowledgeBaseRequest,
         ServerMessageModelOutput,
@@ -37,7 +38,14 @@ public record ServerMessage
         ServerMessageLanguageChangeDetected,
         ServerMessageVoiceInput,
         ServerMessageVoiceRequest,
-        ServerMessageCallEndpointingRequest
+        ServerMessageCallEndpointingRequest,
+        ServerMessageChatCreated,
+        ServerMessageChatDeleted,
+        ServerMessageSessionCreated,
+        ServerMessageSessionUpdated,
+        ServerMessageSessionDeleted,
+        ServerMessageCallDeleted,
+        ServerMessageCallDeleteFailed
     > Message { get; set; }
 
     /// <summary>

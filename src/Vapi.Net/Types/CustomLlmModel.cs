@@ -36,12 +36,6 @@ public record CustomLlmModel
     public CreateCustomKnowledgeBaseDto? KnowledgeBase { get; set; }
 
     /// <summary>
-    /// This is the ID of the knowledge base the model will use.
-    /// </summary>
-    [JsonPropertyName("knowledgeBaseId")]
-    public string? KnowledgeBaseId { get; set; }
-
-    /// <summary>
     /// This determines whether metadata is sent in requests to the custom provider.
     ///
     /// - `off` will not send any metadata. payload will look like `{ messages }`
@@ -56,10 +50,23 @@ public record CustomLlmModel
     public CustomLlmModelMetadataSendMode? MetadataSendMode { get; set; }
 
     /// <summary>
+    /// Custom headers to send with requests. These headers can override default OpenAI headers except for Authorization (which should be specified using a custom-llm credential).
+    /// </summary>
+    [JsonPropertyName("headers")]
+    public Dictionary<string, string>? Headers { get; set; }
+
+    /// <summary>
     /// These is the URL we'll use for the OpenAI client's `baseURL`. Ex. https://openrouter.ai/api/v1
     /// </summary>
     [JsonPropertyName("url")]
     public required string Url { get; set; }
+
+    /// <summary>
+    /// This determines whether the transcriber's word level confidence is sent in requests to the custom provider. Default is false.
+    /// This only works for Deepgram transcribers.
+    /// </summary>
+    [JsonPropertyName("wordLevelConfidenceEnabled")]
+    public bool? WordLevelConfidenceEnabled { get; set; }
 
     /// <summary>
     /// This sets the timeout for the connection to the custom provider without needing to stream any tokens back. Default is 20 seconds.

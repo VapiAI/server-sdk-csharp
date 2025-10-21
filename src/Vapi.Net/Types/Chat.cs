@@ -28,6 +28,18 @@ public record Chat
     public AssistantOverrides? AssistantOverrides { get; set; }
 
     /// <summary>
+    /// This is the squad that will be used for the chat. To use a transient squad, use `squad` instead.
+    /// </summary>
+    [JsonPropertyName("squadId")]
+    public string? SquadId { get; set; }
+
+    /// <summary>
+    /// This is the squad that will be used for the chat. To use an existing squad, use `squadId` instead.
+    /// </summary>
+    [JsonPropertyName("squad")]
+    public CreateSquadDto? Squad { get; set; }
+
+    /// <summary>
     /// This is the name of the chat. This is just for your own reference.
     /// </summary>
     [JsonPropertyName("name")]

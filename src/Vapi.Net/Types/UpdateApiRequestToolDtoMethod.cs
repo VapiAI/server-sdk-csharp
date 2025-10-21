@@ -12,4 +12,13 @@ public enum UpdateApiRequestToolDtoMethod
 
     [EnumMember(Value = "GET")]
     Get,
+
+    [EnumMember(Value = "PUT")]
+    Put,
+
+    [EnumMember(Value = "PATCH")]
+    Patch,
+
+    [EnumMember(Value = "DELETE")]
+    Delete,
 }

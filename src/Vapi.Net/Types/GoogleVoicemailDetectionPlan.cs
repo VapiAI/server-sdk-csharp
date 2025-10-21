@@ -28,6 +28,15 @@ public record GoogleVoicemailDetectionPlan
     public VoicemailDetectionBackoffPlan? BackoffPlan { get; set; }
 
     /// <summary>
+    /// This is the detection type to use for voicemail detection.
+    /// - 'audio': Uses native audio models (default)
+    /// - 'transcript': Uses ASR/transcript-based detection
+    /// @default 'audio' (audio detection)
+    /// </summary>
+    [JsonPropertyName("type")]
+    public GoogleVoicemailDetectionPlanType? Type { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

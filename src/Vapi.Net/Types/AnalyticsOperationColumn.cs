@@ -25,6 +25,15 @@ public enum AnalyticsOperationColumn
     [EnumMember(Value = "costBreakdown.vapi")]
     CostBreakdownVapi,
 
+    [EnumMember(Value = "costBreakdown.transport")]
+    CostBreakdownTransport,
+
+    [EnumMember(Value = "costBreakdown.analysisBreakdown.summary")]
+    CostBreakdownAnalysisBreakdownSummary,
+
+    [EnumMember(Value = "costBreakdown.transcriber")]
+    CostBreakdownTranscriber,
+
     [EnumMember(Value = "costBreakdown.ttsCharacters")]
     CostBreakdownTtsCharacters,
 

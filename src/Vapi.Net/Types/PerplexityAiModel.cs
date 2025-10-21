@@ -36,12 +36,6 @@ public record PerplexityAiModel
     public CreateCustomKnowledgeBaseDto? KnowledgeBase { get; set; }
 
     /// <summary>
-    /// This is the ID of the knowledge base the model will use.
-    /// </summary>
-    [JsonPropertyName("knowledgeBaseId")]
-    public string? KnowledgeBaseId { get; set; }
-
-    /// <summary>
     /// This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
     /// </summary>
     [JsonPropertyName("model")]

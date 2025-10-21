@@ -22,48 +22,37 @@ public record FallbackAssemblyAiTranscriber
     public double? ConfidenceThreshold { get; set; }
 
     /// <summary>
-    /// Uses Assembly AI's new Universal Streaming API. See: https://www.assemblyai.com/docs/speech-to-text/universal-streaming
+    /// This enables formatting of transcripts.
     ///
-    /// @default false
-    /// </summary>
-    [JsonPropertyName("enableUniversalStreamingApi")]
-    public bool? EnableUniversalStreamingApi { get; set; }
-
-    /// <summary>
-    /// This enables formatting of transcripts. Only used when `enableUniversalStreamingApi` is true.
-    ///
-    /// @default false
+    /// @default true
     /// </summary>
     [JsonPropertyName("formatTurns")]
     public bool? FormatTurns { get; set; }
 
     /// <summary>
-    /// The confidence threshold to use when determining if the end of a turn has been reached. Only used when `enableUniversalStreamingApi` is true.
-    ///
+    /// This is the end of turn confidence threshold. The minimum confidence that the end of turn is detected.
+    /// Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
+    /// @min 0
+    /// @max 1
     /// @default 0.7
     /// </summary>
     [JsonPropertyName("endOfTurnConfidenceThreshold")]
     public double? EndOfTurnConfidenceThreshold { get; set; }
 
     /// <summary>
-    /// The minimum amount of silence in milliseconds required to detect end of turn when confident. Only used when `enableUniversalStreamingApi` is true.
-    ///
+    /// This is the minimum end of turn silence when confident in milliseconds.
+    /// Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
     /// @default 160
     /// </summary>
     [JsonPropertyName("minEndOfTurnSilenceWhenConfident")]
     public double? MinEndOfTurnSilenceWhenConfident { get; set; }
 
-    /// <summary>
-    /// The maximum wait time for word finalization. Only used when `enableUniversalStreamingApi` is true.
-    ///
-    /// @default 160
-    /// </summary>
     [JsonPropertyName("wordFinalizationMaxWaitTime")]
     public double? WordFinalizationMaxWaitTime { get; set; }
 
     /// <summary>
-    /// The maximum amount of silence in milliseconds allowed in a turn before end of turn is triggered. Only used when `enableUniversalStreamingApi` is true.
-    ///
+    /// This is the maximum turn silence time in milliseconds.
+    /// Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
     /// @default 400
     /// </summary>
     [JsonPropertyName("maxTurnSilence")]
@@ -80,6 +69,14 @@ public record FallbackAssemblyAiTranscriber
     /// </summary>
     [JsonPropertyName("wordBoost")]
     public IEnumerable<string>? WordBoost { get; set; }
+
+    /// <summary>
+    /// Keyterms prompting improves recognition accuracy for specific words and phrases.
+    /// Can include up to 100 keyterms, each up to 50 characters.
+    /// Costs an additional $0.04/hour when enabled.
+    /// </summary>
+    [JsonPropertyName("keytermsPrompt")]
+    public IEnumerable<string>? KeytermsPrompt { get; set; }
 
     /// <summary>
     /// The duration of the end utterance silence threshold in milliseconds.

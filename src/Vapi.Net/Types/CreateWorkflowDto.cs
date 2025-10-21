@@ -12,6 +12,14 @@ public record CreateWorkflowDto
     public IEnumerable<object> Nodes { get; set; } = new List<object>();
 
     /// <summary>
+    /// This is the model for the workflow.
+    ///
+    /// This can be overridden at node level using `nodes[n].model`.
+    /// </summary>
+    [JsonPropertyName("model")]
+    public object? Model { get; set; }
+
+    /// <summary>
     /// This is the transcriber for the workflow.
     ///
     /// This can be overridden at node level using `nodes[n].transcriber`.
@@ -43,10 +51,39 @@ public record CreateWorkflowDto
     public OneOf<CreateWorkflowDtoBackgroundSoundZero, string>? BackgroundSound { get; set; }
 
     /// <summary>
+    /// This is a set of actions that will be performed on certain events.
+    /// </summary>
+    [JsonPropertyName("hooks")]
+    public IEnumerable<
+        OneOf<
+            CallHookCallEnding,
+            CallHookAssistantSpeechInterrupted,
+            CallHookCustomerSpeechInterrupted,
+            CallHookCustomerSpeechTimeout
+        >
+    >? Hooks { get; set; }
+
+    /// <summary>
     /// These are dynamic credentials that will be used for the workflow calls. By default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials.
     /// </summary>
     [JsonPropertyName("credentials")]
     public IEnumerable<object>? Credentials { get; set; }
+
+    /// <summary>
+    /// This is the voicemail detection plan for the workflow.
+    /// </summary>
+    [JsonPropertyName("voicemailDetection")]
+    public object? VoicemailDetection { get; set; }
+
+    /// <summary>
+    /// This is the maximum duration of the call in seconds.
+    ///
+    /// After this duration, the call will automatically end.
+    ///
+    /// Default is 1800 (30 minutes), max is 43200 (12 hours), and min is 10 seconds.
+    /// </summary>
+    [JsonPropertyName("maxDurationSeconds")]
+    public double? MaxDurationSeconds { get; set; }
 
     [JsonPropertyName("name")]
     public required string Name { get; set; }
@@ -141,6 +178,20 @@ public record CreateWorkflowDto
     /// </summary>
     [JsonPropertyName("credentialIds")]
     public IEnumerable<string>? CredentialIds { get; set; }
+
+    /// <summary>
+    /// This is the plan for keypad input handling during workflow calls.
+    /// </summary>
+    [JsonPropertyName("keypadInputPlan")]
+    public KeypadInputPlan? KeypadInputPlan { get; set; }
+
+    /// <summary>
+    /// This is the message that the assistant will say if the call is forwarded to voicemail.
+    ///
+    /// If unspecified, it will hang up.
+    /// </summary>
+    [JsonPropertyName("voicemailMessage")]
+    public string? VoicemailMessage { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

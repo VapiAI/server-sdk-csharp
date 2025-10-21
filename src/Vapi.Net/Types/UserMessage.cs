@@ -44,6 +44,30 @@ public record UserMessage
     public double? Duration { get; set; }
 
     /// <summary>
+    /// Indicates if the message was filtered for security reasons.
+    /// </summary>
+    [JsonPropertyName("isFiltered")]
+    public bool? IsFiltered { get; set; }
+
+    /// <summary>
+    /// List of detected security threats if the message was filtered.
+    /// </summary>
+    [JsonPropertyName("detectedThreats")]
+    public IEnumerable<string>? DetectedThreats { get; set; }
+
+    /// <summary>
+    /// The original message before filtering (only included if content was filtered).
+    /// </summary>
+    [JsonPropertyName("originalMessage")]
+    public string? OriginalMessage { get; set; }
+
+    /// <summary>
+    /// The metadata associated with the message. Currently used to store the transcriber's word level confidence.
+    /// </summary>
+    [JsonPropertyName("metadata")]
+    public object? Metadata { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

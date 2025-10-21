@@ -50,6 +50,12 @@ public record BotMessage
     public double? Duration { get; set; }
 
     /// <summary>
+    /// Stable speaker label for diarized user speakers (e.g., "Speaker 1").
+    /// </summary>
+    [JsonPropertyName("speakerLabel")]
+    public string? SpeakerLabel { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

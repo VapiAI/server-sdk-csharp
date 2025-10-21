@@ -13,6 +13,12 @@ public enum ClientInboundMessageControlControl
     [EnumMember(Value = "unmute-assistant")]
     UnmuteAssistant,
 
+    [EnumMember(Value = "mute-customer")]
+    MuteCustomer,
+
+    [EnumMember(Value = "unmute-customer")]
+    UnmuteCustomer,
+
     [EnumMember(Value = "say-first-message")]
     SayFirstMessage,
 }

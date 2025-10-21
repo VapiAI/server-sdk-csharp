@@ -14,6 +14,12 @@ public record UpdateTestSuiteTestChatDto
     public IEnumerable<TestSuiteTestScorerAi>? Scorers { get; set; }
 
     /// <summary>
+    /// This is the type of the test, which must be chat.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
+    /// <summary>
     /// This is the name of the test.
     /// </summary>
     [JsonPropertyName("name")]

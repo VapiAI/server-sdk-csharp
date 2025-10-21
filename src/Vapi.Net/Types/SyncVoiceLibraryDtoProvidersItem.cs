@@ -54,4 +54,7 @@ public enum SyncVoiceLibraryDtoProvidersItem
 
     [EnumMember(Value = "inworld")]
     Inworld,
+
+    [EnumMember(Value = "minimax")]
+    Minimax,
 }

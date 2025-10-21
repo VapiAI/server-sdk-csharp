@@ -64,6 +64,19 @@ public record Session
     public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
+    /// This is the squad ID associated with this session. Use this when referencing an existing squad.
+    /// </summary>
+    [JsonPropertyName("squadId")]
+    public string? SquadId { get; set; }
+
+    /// <summary>
+    /// This is the squad configuration for this session. Use this when creating a new squad configuration.
+    /// If squadId is provided, this will be ignored.
+    /// </summary>
+    [JsonPropertyName("squad")]
+    public CreateSquadDto? Squad { get; set; }
+
+    /// <summary>
     /// This is an array of chat messages in the session.
     /// </summary>
     [JsonPropertyName("messages")]
@@ -88,6 +101,16 @@ public record Session
     /// </summary>
     [JsonPropertyName("phoneNumber")]
     public ImportTwilioPhoneNumberDto? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// These are the artifacts that were extracted from the session messages.
+    /// They are only available after the session has completed.
+    /// The artifact plan from the assistant or active assistant of squad is used to generate the artifact.
+    /// Currently the only supported fields of assistant artifact plan are:
+    /// - structuredOutputIds
+    /// </summary>
+    [JsonPropertyName("artifact")]
+    public Artifact? Artifact { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

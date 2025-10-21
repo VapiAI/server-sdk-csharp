@@ -132,6 +132,12 @@ public record Call
     public Artifact? Artifact { get; set; }
 
     /// <summary>
+    /// This is the compliance of the call. Configure in `assistant.compliancePlan`.
+    /// </summary>
+    [JsonPropertyName("compliance")]
+    public Compliance? Compliance { get; set; }
+
+    /// <summary>
     /// The ID of the call as provided by the phone number service. callSid in Twilio. conversationUuid in Vonage. callControlId in Telnyx.
     ///
     /// Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.

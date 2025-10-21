@@ -7,6 +7,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<GroqModelModel>))]
 public enum GroqModelModel
 {
+    [EnumMember(Value = "openai/gpt-oss-20b")]
+    OpenaiGptOss20B,
+
+    [EnumMember(Value = "openai/gpt-oss-120b")]
+    OpenaiGptOss120B,
+
     [EnumMember(Value = "deepseek-r1-distill-llama-70b")]
     DeepseekR1DistillLlama70B,
 
@@ -27,6 +33,9 @@ public enum GroqModelModel
 
     [EnumMember(Value = "gemma2-9b-it")]
     Gemma29BIt,
+
+    [EnumMember(Value = "moonshotai/kimi-k2-instruct-0905")]
+    MoonshotaiKimiK2Instruct0905,
 
     [EnumMember(Value = "meta-llama/llama-4-maverick-17b-128e-instruct")]
     MetaLlamaLlama4Maverick17B128EInstruct,

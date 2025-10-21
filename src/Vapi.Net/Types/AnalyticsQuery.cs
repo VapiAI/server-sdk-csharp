@@ -20,6 +20,12 @@ public record AnalyticsQuery
     public IEnumerable<AnalyticsQueryGroupByItem>? GroupBy { get; set; }
 
     /// <summary>
+    /// This is the list of variable value keys you want to group by.
+    /// </summary>
+    [JsonPropertyName("groupByVariableValue")]
+    public IEnumerable<VariableValueGroupBy>? GroupByVariableValue { get; set; }
+
+    /// <summary>
     /// This is the name of the query. This will be used to identify the query in the response.
     /// </summary>
     [JsonPropertyName("name")]

@@ -141,4 +141,34 @@ public enum DeepgramVoiceId
 
     [EnumMember(Value = "vesta")]
     Vesta,
+
+    [EnumMember(Value = "celeste")]
+    Celeste,
+
+    [EnumMember(Value = "estrella")]
+    Estrella,
+
+    [EnumMember(Value = "nestor")]
+    Nestor,
+
+    [EnumMember(Value = "sirio")]
+    Sirio,
+
+    [EnumMember(Value = "carina")]
+    Carina,
+
+    [EnumMember(Value = "alvaro")]
+    Alvaro,
+
+    [EnumMember(Value = "diana")]
+    Diana,
+
+    [EnumMember(Value = "aquila")]
+    Aquila,
+
+    [EnumMember(Value = "selena")]
+    Selena,
+
+    [EnumMember(Value = "javier")]
+    Javier,
 }

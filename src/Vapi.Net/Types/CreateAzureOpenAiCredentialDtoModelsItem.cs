@@ -7,6 +7,15 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<CreateAzureOpenAiCredentialDtoModelsItem>))]
 public enum CreateAzureOpenAiCredentialDtoModelsItem
 {
+    [EnumMember(Value = "gpt-5")]
+    Gpt5,
+
+    [EnumMember(Value = "gpt-5-mini")]
+    Gpt5Mini,
+
+    [EnumMember(Value = "gpt-5-nano")]
+    Gpt5Nano,
+
     [EnumMember(Value = "gpt-4.1-2025-04-14")]
     Gpt4120250414,
 

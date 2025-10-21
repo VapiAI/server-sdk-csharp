@@ -21,7 +21,7 @@ public record FallbackRimeAiVoice
     public required OneOf<FallbackRimeAiVoiceIdEnum, string> VoiceId { get; set; }
 
     /// <summary>
-    /// This is the model that will be used. Defaults to 'mistv2' when not specified.
+    /// This is the model that will be used. Defaults to 'arcana' when not specified.
     /// </summary>
     [JsonPropertyName("model")]
     public FallbackRimeAiVoiceModel? Model { get; set; }

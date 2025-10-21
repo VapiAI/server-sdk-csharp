@@ -36,12 +36,6 @@ public record OpenAiModel
     public CreateCustomKnowledgeBaseDto? KnowledgeBase { get; set; }
 
     /// <summary>
-    /// This is the ID of the knowledge base the model will use.
-    /// </summary>
-    [JsonPropertyName("knowledgeBaseId")]
-    public string? KnowledgeBaseId { get; set; }
-
-    /// <summary>
     /// This is the OpenAI model that will be used.
     ///
     /// When using Vapi OpenAI or your own Azure Credentials, you have the option to specify the region for the selected model. This shouldn't be specified unless you have a specific reason to do so. Vapi will automatically find the fastest region that make sense.

@@ -65,6 +65,12 @@ public record Artifact
     public string? PcapUrl { get; set; }
 
     /// <summary>
+    /// This is the url for the call logs. This includes all logging output during the call for debugging purposes.
+    /// </summary>
+    [JsonPropertyName("logUrl")]
+    public string? LogUrl { get; set; }
+
+    /// <summary>
     /// This is the history of workflow nodes that were executed during the call.
     /// </summary>
     [JsonPropertyName("nodes")]
@@ -75,6 +81,25 @@ public record Artifact
     /// </summary>
     [JsonPropertyName("variableValues")]
     public object? VariableValues { get; set; }
+
+    /// <summary>
+    /// This is the performance metrics for the call. It contains the turn latency, broken down by component.
+    /// </summary>
+    [JsonPropertyName("performanceMetrics")]
+    public PerformanceMetrics? PerformanceMetrics { get; set; }
+
+    /// <summary>
+    /// These are the structured outputs that will be extracted from the call.
+    /// To enable, set `assistant.artifactPlan.structuredOutputIds` with the IDs of the structured outputs you want to extract.
+    /// </summary>
+    [JsonPropertyName("structuredOutputs")]
+    public object? StructuredOutputs { get; set; }
+
+    /// <summary>
+    /// These are the transfer records from warm transfers, including destinations, transcripts, and status.
+    /// </summary>
+    [JsonPropertyName("transfers")]
+    public IEnumerable<string>? Transfers { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

@@ -22,7 +22,7 @@ public record UpdateByoPhoneNumberDto
     /// This is the hooks that will be used for incoming calls to this phone number.
     /// </summary>
     [JsonPropertyName("hooks")]
-    public IEnumerable<PhoneNumberHookCallRinging>? Hooks { get; set; }
+    public IEnumerable<object>? Hooks { get; set; }
 
     /// <summary>
     /// This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.

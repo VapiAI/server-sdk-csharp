@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -28,6 +29,10 @@ public partial class SessionsClient
         if (request.AssistantId != null)
         {
             _query["assistantId"] = request.AssistantId;
+        }
+        if (request.SquadId != null)
+        {
+            _query["squadId"] = request.SquadId;
         }
         if (request.WorkflowId != null)
         {

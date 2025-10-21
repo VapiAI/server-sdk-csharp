@@ -15,6 +15,12 @@ public record CreateTestSuiteTestChatDto
         new List<TestSuiteTestScorerAi>();
 
     /// <summary>
+    /// This is the type of the test, which must be chat.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = "chat";
+
+    /// <summary>
     /// This is the script to be used for the chat test.
     /// </summary>
     [JsonPropertyName("script")]

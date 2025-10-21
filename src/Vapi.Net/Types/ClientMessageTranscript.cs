@@ -62,6 +62,24 @@ public record ClientMessageTranscript
     public required string Transcript { get; set; }
 
     /// <summary>
+    /// Indicates if the transcript was filtered for security reasons.
+    /// </summary>
+    [JsonPropertyName("isFiltered")]
+    public bool? IsFiltered { get; set; }
+
+    /// <summary>
+    /// List of detected security threats if the transcript was filtered.
+    /// </summary>
+    [JsonPropertyName("detectedThreats")]
+    public IEnumerable<string>? DetectedThreats { get; set; }
+
+    /// <summary>
+    /// The original transcript before filtering (only included if content was filtered).
+    /// </summary>
+    [JsonPropertyName("originalTranscript")]
+    public string? OriginalTranscript { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

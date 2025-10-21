@@ -11,11 +11,11 @@ public partial class VapiClient
         var defaultHeaders = new Headers(
             new Dictionary<string, string>()
             {
-                { "Authorization", $"Bearer {token}" },
+                { "Authorization", $"Bearer {token ?? ""}" },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/0.9.0" },
+                { "User-Agent", "Vapi.Net/0.9.1" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -27,23 +27,24 @@ public partial class VapiClient
             }
         }
         _client = new RawClient(clientOptions);
+        Assistants = new AssistantsClient(_client);
+        Squads = new SquadsClient(_client);
         Calls = new CallsClient(_client);
         Chats = new ChatsClient(_client);
         Campaigns = new CampaignsClient(_client);
         Sessions = new SessionsClient(_client);
-        Assistants = new AssistantsClient(_client);
         PhoneNumbers = new PhoneNumbersClient(_client);
         Tools = new ToolsClient(_client);
         Files = new FilesClient(_client);
-        KnowledgeBases = new KnowledgeBasesClient(_client);
-        Workflow = new WorkflowClient(_client);
-        Squads = new SquadsClient(_client);
-        TestSuites = new TestSuitesClient(_client);
-        TestSuiteTests = new TestSuiteTestsClient(_client);
-        TestSuiteRuns = new TestSuiteRunsClient(_client);
+        StructuredOutputs = new StructuredOutputsClient(_client);
+        Eval = new EvalClient(_client);
+        ProviderResources = new ProviderResourcesClient(_client);
         Analytics = new AnalyticsClient(_client);
-        Logs = new LogsClient(_client);
     }
+
+    public AssistantsClient Assistants { get; }
+
+    public SquadsClient Squads { get; }
 
     public CallsClient Calls { get; }
 
@@ -53,27 +54,17 @@ public partial class VapiClient
 
     public SessionsClient Sessions { get; }
 
-    public AssistantsClient Assistants { get; }
-
     public PhoneNumbersClient PhoneNumbers { get; }
 
     public ToolsClient Tools { get; }
 
     public FilesClient Files { get; }
 
-    public KnowledgeBasesClient KnowledgeBases { get; }
+    public StructuredOutputsClient StructuredOutputs { get; }
 
-    public WorkflowClient Workflow { get; }
+    public EvalClient Eval { get; }
 
-    public SquadsClient Squads { get; }
-
-    public TestSuitesClient TestSuites { get; }
-
-    public TestSuiteTestsClient TestSuiteTests { get; }
-
-    public TestSuiteRunsClient TestSuiteRuns { get; }
+    public ProviderResourcesClient ProviderResources { get; }
 
     public AnalyticsClient Analytics { get; }
-
-    public LogsClient Logs { get; }
 }

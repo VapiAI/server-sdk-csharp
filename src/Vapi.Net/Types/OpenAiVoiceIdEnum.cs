@@ -24,4 +24,10 @@ public enum OpenAiVoiceIdEnum
 
     [EnumMember(Value = "shimmer")]
     Shimmer,
+
+    [EnumMember(Value = "marin")]
+    Marin,
+
+    [EnumMember(Value = "cedar")]
+    Cedar,
 }

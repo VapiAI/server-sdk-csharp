@@ -92,6 +92,12 @@ public record ServerMessageEndOfCallReport
     public DateTime? EndedAt { get; set; }
 
     /// <summary>
+    /// This is the compliance result of the call. This can also be found at `call.compliance` on GET /call/:id.
+    /// </summary>
+    [JsonPropertyName("compliance")]
+    public Compliance? Compliance { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

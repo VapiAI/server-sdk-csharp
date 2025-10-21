@@ -31,6 +31,22 @@ public record ConversationNode
     [JsonPropertyName("voice")]
     public object? Voice { get; set; }
 
+    /// <summary>
+    /// These are the tools that the conversation node can use during the call. To use existing tools, use `toolIds`.
+    ///
+    /// Both `tools` and `toolIds` can be used together.
+    /// </summary>
+    [JsonPropertyName("tools")]
+    public IEnumerable<object>? Tools { get; set; }
+
+    /// <summary>
+    /// These are the tools that the conversation node can use during the call. To use transient tools, use `tools`.
+    ///
+    /// Both `tools` and `toolIds` can be used together.
+    /// </summary>
+    [JsonPropertyName("toolIds")]
+    public IEnumerable<string>? ToolIds { get; set; }
+
     [JsonPropertyName("prompt")]
     public string? Prompt { get; set; }
 

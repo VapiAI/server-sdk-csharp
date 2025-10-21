@@ -231,6 +231,36 @@ public record Subscription
     public string? PciCommonPaperAgreementId { get; set; }
 
     /// <summary>
+    /// This is the call retention days for the subscription.
+    /// </summary>
+    [JsonPropertyName("callRetentionDays")]
+    public double? CallRetentionDays { get; set; }
+
+    /// <summary>
+    /// This is the chat retention days for the subscription.
+    /// </summary>
+    [JsonPropertyName("chatRetentionDays")]
+    public double? ChatRetentionDays { get; set; }
+
+    /// <summary>
+    /// This is the minutes_included reset frequency for the subscription.
+    /// </summary>
+    [JsonPropertyName("minutesIncludedResetFrequency")]
+    public SubscriptionMinutesIncludedResetFrequency? MinutesIncludedResetFrequency { get; set; }
+
+    /// <summary>
+    /// This is the Role Based Access Control (RBAC) enabled flag for the subscription.
+    /// </summary>
+    [JsonPropertyName("rbacEnabled")]
+    public bool? RbacEnabled { get; set; }
+
+    /// <summary>
+    /// This is the platform fee for the subscription.
+    /// </summary>
+    [JsonPropertyName("platformFee")]
+    public double? PlatformFee { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

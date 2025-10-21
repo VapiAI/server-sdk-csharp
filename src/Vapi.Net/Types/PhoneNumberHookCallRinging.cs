@@ -8,13 +8,7 @@ namespace Vapi.Net;
 public record PhoneNumberHookCallRinging
 {
     /// <summary>
-    /// This is the event to trigger the hook on
-    /// </summary>
-    [JsonPropertyName("on")]
-    public string On { get; set; } = "call.ringing";
-
-    /// <summary>
-    /// This is the set of actions to perform when the hook triggers
+    /// Only the first action will be executed. Additional actions will be ignored.
     /// </summary>
     [JsonPropertyName("do")]
     public IEnumerable<object> Do { get; set; } = new List<object>();
