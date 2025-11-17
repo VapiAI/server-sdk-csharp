@@ -23,7 +23,7 @@ public record ResponseOutputText
     /// The type of the output text
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "output_text";
+    public required ResponseOutputTextType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

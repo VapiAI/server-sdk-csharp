@@ -32,6 +32,12 @@ public record GetSessionPaginatedDto
     public string? WorkflowId { get; set; }
 
     /// <summary>
+    /// This is the customer information to filter by.
+    /// </summary>
+    [JsonPropertyName("customer")]
+    public CreateCustomerDto? Customer { get; set; }
+
+    /// <summary>
     /// This is the page number to return. Defaults to 1.
     /// </summary>
     [JsonPropertyName("page")]

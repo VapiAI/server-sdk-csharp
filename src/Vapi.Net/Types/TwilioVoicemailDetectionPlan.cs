@@ -8,6 +8,12 @@ namespace Vapi.Net;
 public record TwilioVoicemailDetectionPlan
 {
     /// <summary>
+    /// This is the provider to use for voicemail detection.
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public required TwilioVoicemailDetectionPlanProvider Provider { get; set; }
+
+    /// <summary>
     /// These are the AMD messages from Twilio that are considered as voicemail. Default is ['machine_end_beep', 'machine_end_silence'].
     ///
     /// @default {Array} ['machine_end_beep', 'machine_end_silence']

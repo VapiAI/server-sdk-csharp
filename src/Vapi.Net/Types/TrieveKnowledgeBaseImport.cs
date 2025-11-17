@@ -11,7 +11,7 @@ public record TrieveKnowledgeBaseImport
     /// This is to import an existing dataset from Trieve.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "import";
+    public required TrieveKnowledgeBaseImportType Type { get; set; }
 
     /// <summary>
     /// This is the `datasetId` of the dataset on your Trieve account.

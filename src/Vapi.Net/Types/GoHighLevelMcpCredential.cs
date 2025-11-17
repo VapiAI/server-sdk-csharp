@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record GoHighLevelMcpCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "ghl.oauth2-authorization";
+    public required GoHighLevelMcpCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is the authentication session for the credential.

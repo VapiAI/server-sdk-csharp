@@ -11,7 +11,7 @@ public record S3Credential
     /// Credential provider. Only allowed value is s3
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "s3";
+    public required S3CredentialProvider Provider { get; set; }
 
     /// <summary>
     /// AWS access key ID.

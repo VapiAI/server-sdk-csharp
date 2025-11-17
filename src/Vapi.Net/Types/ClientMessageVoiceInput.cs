@@ -17,7 +17,7 @@ public record ClientMessageVoiceInput
     /// This is the type of the message. "voice-input" is sent when a generation is requested from voice provider.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "voice-input";
+    public required ClientMessageVoiceInputType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

@@ -17,7 +17,7 @@ public record ResponseObject
     /// The object type
     /// </summary>
     [JsonPropertyName("object")]
-    public string Object { get; set; } = "response";
+    public required ResponseObjectObject Object { get; set; }
 
     /// <summary>
     /// Unix timestamp (in seconds) of when this Response was created

@@ -11,7 +11,7 @@ public record TrieveKnowledgeBaseCreate
     /// This is to create a new dataset on Trieve.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "create";
+    public required TrieveKnowledgeBaseCreateType Type { get; set; }
 
     /// <summary>
     /// These are the chunk plans used to create the dataset.

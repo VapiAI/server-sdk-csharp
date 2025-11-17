@@ -15,7 +15,7 @@ public partial class VapiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/0.9.1" },
+                { "User-Agent", "Vapi.Net/0.10.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -37,7 +37,9 @@ public partial class VapiClient
         Tools = new ToolsClient(_client);
         Files = new FilesClient(_client);
         StructuredOutputs = new StructuredOutputsClient(_client);
+        Insight = new InsightClient(_client);
         Eval = new EvalClient(_client);
+        ObservabilityScorecard = new ObservabilityScorecardClient(_client);
         ProviderResources = new ProviderResourcesClient(_client);
         Analytics = new AnalyticsClient(_client);
     }
@@ -62,7 +64,11 @@ public partial class VapiClient
 
     public StructuredOutputsClient StructuredOutputs { get; }
 
+    public InsightClient Insight { get; }
+
     public EvalClient Eval { get; }
+
+    public ObservabilityScorecardClient ObservabilityScorecard { get; }
 
     public ProviderResourcesClient ProviderResources { get; }
 

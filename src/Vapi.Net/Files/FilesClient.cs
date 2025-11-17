@@ -109,6 +109,7 @@ public partial class FilesClient
 
     public async Task<File> GetAsync(
         string id,
+        GetFilesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -150,6 +151,7 @@ public partial class FilesClient
 
     public async Task<File> DeleteAsync(
         string id,
+        DeleteFilesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

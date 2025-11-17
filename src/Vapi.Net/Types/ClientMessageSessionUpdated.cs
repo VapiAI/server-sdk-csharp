@@ -17,7 +17,7 @@ public record ClientMessageSessionUpdated
     /// This is the type of the message. "session.updated" is sent when a session is updated.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "session.updated";
+    public required ClientMessageSessionUpdatedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

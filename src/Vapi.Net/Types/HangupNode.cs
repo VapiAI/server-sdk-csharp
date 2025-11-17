@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record HangupNode
 {
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "hangup";
+    public required HangupNodeType Type { get; set; }
 
     [JsonPropertyName("name")]
     public required string Name { get; set; }

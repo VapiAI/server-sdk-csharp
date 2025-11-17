@@ -19,7 +19,7 @@ public record GoHighLevelContactGetToolWithToolCall
     /// The type of tool. "gohighlevel.contact.get" for GoHighLevel Contact Get tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "gohighlevel.contact.get";
+    public required GoHighLevelContactGetToolWithToolCallType Type { get; set; }
 
     [JsonPropertyName("toolCall")]
     public required ToolCall ToolCall { get; set; }

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record TransportConfigurationTwilio
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "twilio";
+    public required TransportConfigurationTwilioProvider Provider { get; set; }
 
     /// <summary>
     /// The integer number of seconds that we should allow the phone to ring before assuming there is no answer.

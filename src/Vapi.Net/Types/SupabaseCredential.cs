@@ -11,7 +11,7 @@ public record SupabaseCredential
     /// This is for supabase storage.
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "supabase";
+    public required SupabaseCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order.

@@ -31,6 +31,18 @@ public record CallControllerFindAllPaginatedRequest
     public string? AssistantName { get; set; }
 
     /// <summary>
+    /// This will return calls with the specified squadId.
+    /// </summary>
+    [JsonIgnore]
+    public string? SquadId { get; set; }
+
+    /// <summary>
+    /// This will return calls where the transient squad name exactly matches the specified value (case-insensitive).
+    /// </summary>
+    [JsonIgnore]
+    public string? SquadName { get; set; }
+
+    /// <summary>
     /// This will return calls with the specified callId.
     /// </summary>
     [JsonIgnore]
@@ -82,10 +94,13 @@ public record CallControllerFindAllPaginatedRequest
     /// Filter calls by structured output values. Use structured output ID as key and filter operators as values.
     /// </summary>
     [JsonIgnore]
-    public Dictionary<
-        string,
-        CallControllerFindAllPaginatedRequestStructuredOutputsValue?
-    >? StructuredOutputs { get; set; }
+    public Dictionary<string, StructuredOutputFilterDto>? StructuredOutputs { get; set; }
+
+    /// <summary>
+    /// Filter calls by the first scorecard's normalized score.
+    /// </summary>
+    [JsonIgnore]
+    public string? Score { get; set; }
 
     /// <summary>
     /// This is the page number to return. Defaults to 1.

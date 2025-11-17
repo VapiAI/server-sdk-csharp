@@ -11,7 +11,7 @@ public record RegexSecurityFilter
     /// The type of security threat to filter.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "regex";
+    public required RegexSecurityFilterType Type { get; set; }
 
     /// <summary>
     /// The regex pattern to filter.

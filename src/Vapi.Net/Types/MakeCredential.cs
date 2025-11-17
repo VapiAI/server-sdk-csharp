@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record MakeCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "make";
+    public required MakeCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// Team ID

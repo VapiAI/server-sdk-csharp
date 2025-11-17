@@ -19,7 +19,7 @@ public record UpdateBashToolDto
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public string? SubType { get; set; }
+    public UpdateBashToolDtoSubType? SubType { get; set; }
 
     /// <summary>
     /// This is the server where a `tool-calls` webhook will be sent.
@@ -121,7 +121,7 @@ public record UpdateBashToolDto
     /// The name of the tool, fixed to 'bash'
     /// </summary>
     [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    public UpdateBashToolDtoName? Name { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

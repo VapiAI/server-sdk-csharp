@@ -39,7 +39,7 @@ public record InflectionAiModel
     /// This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
     /// </summary>
     [JsonPropertyName("model")]
-    public string Model { get; set; } = "inflection_3_pi";
+    public required InflectionAiModelModel Model { get; set; }
 
     /// <summary>
     /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.

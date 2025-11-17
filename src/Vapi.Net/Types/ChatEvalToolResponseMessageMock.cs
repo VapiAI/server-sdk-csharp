@@ -8,6 +8,14 @@ namespace Vapi.Net;
 public record ChatEvalToolResponseMessageMock
 {
     /// <summary>
+    /// This is the role of the message author.
+    /// For a mock tool response message, the role is always 'tool'
+    /// @default 'tool'
+    /// </summary>
+    [JsonPropertyName("role")]
+    public required ChatEvalToolResponseMessageMockRole Role { get; set; }
+
+    /// <summary>
     /// This is the content of the tool response message. JSON Objects should be stringified.
     /// </summary>
     [JsonPropertyName("content")]

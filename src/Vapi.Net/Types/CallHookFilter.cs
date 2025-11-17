@@ -11,7 +11,7 @@ public record CallHookFilter
     /// This is the type of filter - currently only "oneOf" is supported
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "oneOf";
+    public required CallHookFilterType Type { get; set; }
 
     /// <summary>
     /// This is the key to filter on (e.g. "call.endedReason")

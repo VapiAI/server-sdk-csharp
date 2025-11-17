@@ -19,7 +19,7 @@ public record TextEditorToolWithToolCall
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public string SubType { get; set; } = "text_editor_20241022";
+    public required TextEditorToolWithToolCallSubType SubType { get; set; }
 
     /// <summary>
     /// This is the server where a `tool-calls` webhook will be sent.
@@ -41,7 +41,7 @@ public record TextEditorToolWithToolCall
     /// The name of the tool, fixed to 'str_replace_editor'
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; } = "str_replace_editor";
+    public required TextEditorToolWithToolCallName Name { get; set; }
 
     /// <summary>
     /// This is the plan to reject a tool call based on the conversation state.

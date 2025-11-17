@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record MistralCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "mistral";
+    public required MistralCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

@@ -17,7 +17,7 @@ public record UpdateTestSuiteTestVoiceDto
     /// This is the type of the test, which must be voice.
     /// </summary>
     [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    public UpdateTestSuiteTestVoiceDtoType? Type { get; set; }
 
     /// <summary>
     /// This is the name of the test.

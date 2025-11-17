@@ -21,6 +21,7 @@ public record EvalUserEditable
             ChatEvalAssistantMessageMock,
             ChatEvalSystemMessageMock,
             ChatEvalToolResponseMessageMock,
+            ChatEvalToolResponseMessageEvaluation,
             ChatEvalUserMessageMock,
             ChatEvalAssistantMessageEvaluation
         >
@@ -30,6 +31,7 @@ public record EvalUserEditable
                 ChatEvalAssistantMessageMock,
                 ChatEvalSystemMessageMock,
                 ChatEvalToolResponseMessageMock,
+                ChatEvalToolResponseMessageEvaluation,
                 ChatEvalUserMessageMock,
                 ChatEvalAssistantMessageEvaluation
             >
@@ -54,7 +56,7 @@ public record EvalUserEditable
     /// Currently it is fixed to `chat.mockConversation`.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "chat.mockConversation";
+    public required EvalUserEditableType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

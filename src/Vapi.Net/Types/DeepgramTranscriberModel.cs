@@ -7,6 +7,9 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<DeepgramTranscriberModel>))]
 public enum DeepgramTranscriberModel
 {
+    [EnumMember(Value = "flux-general-en")]
+    FluxGeneralEn,
+
     [EnumMember(Value = "nova-3")]
     Nova3,
 
@@ -99,4 +102,7 @@ public enum DeepgramTranscriberModel
 
     [EnumMember(Value = "base-video")]
     BaseVideo,
+
+    [EnumMember(Value = "whisper")]
+    Whisper,
 }

@@ -11,7 +11,7 @@ public record FallbackSpeechmaticsTranscriber
     /// This is the model that will be used for the transcription.
     /// </summary>
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public FallbackSpeechmaticsTranscriberModel? Model { get; set; }
 
     [JsonPropertyName("language")]
     public FallbackSpeechmaticsTranscriberLanguage? Language { get; set; }
@@ -47,6 +47,12 @@ public record FallbackSpeechmaticsTranscriber
     /// </summary>
     [JsonPropertyName("maxSpeakers")]
     public double? MaxSpeakers { get; set; }
+
+    /// <summary>
+    /// Provides friendly speaker labels that map to diarization indices (Speaker 1 -&gt; labels[0]).
+    /// </summary>
+    [JsonPropertyName("speakerLabels")]
+    public IEnumerable<string>? SpeakerLabels { get; set; }
 
     /// <summary>
     /// This enables partial transcripts during speech recognition. When false, only final transcripts are returned.

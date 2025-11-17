@@ -36,7 +36,7 @@ public partial class StructuredOutputsClient
         }
         if (request.SortOrder != null)
         {
-            _query["sortOrder"] = request.SortOrder.Value.ToString();
+            _query["sortOrder"] = request.SortOrder.Value.Stringify();
         }
         if (request.Limit != null)
         {
@@ -44,35 +44,35 @@ public partial class StructuredOutputsClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -155,6 +155,7 @@ public partial class StructuredOutputsClient
 
     public async Task<StructuredOutput> StructuredOutputControllerFindOneAsync(
         string id,
+        StructuredOutputControllerFindOneRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -199,6 +200,7 @@ public partial class StructuredOutputsClient
 
     public async Task<StructuredOutput> StructuredOutputControllerRemoveAsync(
         string id,
+        StructuredOutputControllerRemoveRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -274,6 +276,95 @@ public partial class StructuredOutputsClient
             try
             {
                 return JsonUtils.Deserialize<StructuredOutput>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new VapiClientException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    public async Task<StructuredOutput> StructuredOutputControllerRunAsync(
+        StructuredOutputRunDto request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "structured-output/run",
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<StructuredOutput>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new VapiClientException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new VapiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Analyzes assistant configuration and generates contextual structured output recommendations
+    /// </summary>
+    public async Task<IEnumerable<object>> StructuredOutputControllerSuggestAsync(
+        GenerateStructuredOutputSuggestionsDto request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "structured-output/suggest",
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<IEnumerable<object>>(responseBody)!;
             }
             catch (JsonException e)
             {

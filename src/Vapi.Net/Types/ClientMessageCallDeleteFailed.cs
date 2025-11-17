@@ -17,7 +17,7 @@ public record ClientMessageCallDeleteFailed
     /// This is the type of the message. "call.deleted" is sent when a call is deleted.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "call.delete.failed";
+    public required ClientMessageCallDeleteFailedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

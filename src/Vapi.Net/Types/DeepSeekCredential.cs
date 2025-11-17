@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record DeepSeekCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "deep-seek";
+    public required DeepSeekCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

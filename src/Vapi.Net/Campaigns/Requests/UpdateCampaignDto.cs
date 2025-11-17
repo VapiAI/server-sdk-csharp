@@ -46,7 +46,7 @@ public record UpdateCampaignDto
     /// When set to 'ended', it will delete all scheduled calls. Calls in progress will be allowed to complete.
     /// </summary>
     [JsonPropertyName("status")]
-    public string? Status { get; set; }
+    public UpdateCampaignDtoStatus? Status { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

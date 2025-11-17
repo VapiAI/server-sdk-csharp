@@ -20,7 +20,7 @@ public record Template
     public TemplateVisibility? Visibility { get; set; }
 
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "tool";
+    public required TemplateType Type { get; set; }
 
     /// <summary>
     /// The name of the template. This is just for your own reference.

@@ -9,7 +9,7 @@ namespace Vapi.Net;
 public record CartesiaExperimentalControls
 {
     [JsonPropertyName("speed")]
-    public OneOf<CartesiaExperimentalControlsSpeed, double>? Speed { get; set; }
+    public OneOf<CartesiaExperimentalControlsSpeedZero, double>? Speed { get; set; }
 
     [JsonPropertyName("emotion")]
     public CartesiaExperimentalControlsEmotion? Emotion { get; set; }

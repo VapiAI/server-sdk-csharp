@@ -17,7 +17,7 @@ public record ServerMessageAssistantRequest
     /// This is the type of the message. "assistant-request" is sent to fetch assistant configuration for an incoming call.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "assistant-request";
+    public required ServerMessageAssistantRequestType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

@@ -11,13 +11,13 @@ public record PhoneNumberCallEndingHookFilter
     /// This is the type of filter - currently only "oneOf" is supported
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "oneOf";
+    public required PhoneNumberCallEndingHookFilterType Type { get; set; }
 
     /// <summary>
     /// This is the key to filter on - only "call.endedReason" is allowed for phone number call ending hooks
     /// </summary>
     [JsonPropertyName("key")]
-    public string Key { get; set; } = "call.endedReason";
+    public required PhoneNumberCallEndingHookFilterKey Key { get; set; }
 
     /// <summary>
     /// This is the array of assistant-request related ended reasons to match against

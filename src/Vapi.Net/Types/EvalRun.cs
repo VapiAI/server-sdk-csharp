@@ -66,11 +66,23 @@ public record EvalRun
     public IEnumerable<EvalRunResult> Results { get; set; } = new List<EvalRunResult>();
 
     /// <summary>
+    /// This is the cost of the eval or suite run in USD.
+    /// </summary>
+    [JsonPropertyName("cost")]
+    public required double Cost { get; set; }
+
+    /// <summary>
+    /// This is the break up of costs of the eval or suite run.
+    /// </summary>
+    [JsonPropertyName("costs")]
+    public IEnumerable<object> Costs { get; set; } = new List<object>();
+
+    /// <summary>
     /// This is the type of the run.
     /// Currently it is fixed to `eval`.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "eval";
+    public required EvalRunType Type { get; set; }
 
     /// <summary>
     /// This is the id of the eval that will be run.

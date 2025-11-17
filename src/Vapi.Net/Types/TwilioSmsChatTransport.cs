@@ -36,7 +36,7 @@ public record TwilioSmsChatTransport
     /// Currently supports 'twilio.sms' for SMS delivery via Twilio.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "twilio.sms";
+    public required TwilioSmsChatTransportType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

@@ -19,7 +19,7 @@ public record GoHighLevelCalendarEventCreateToolWithToolCall
     /// The type of tool. "gohighlevel.calendar.event.create" for GoHighLevel Calendar Event Create tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "gohighlevel.calendar.event.create";
+    public required GoHighLevelCalendarEventCreateToolWithToolCallType Type { get; set; }
 
     [JsonPropertyName("toolCall")]
     public required ToolCall ToolCall { get; set; }

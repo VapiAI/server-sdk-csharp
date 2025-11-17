@@ -17,7 +17,7 @@ public record ServerMessageTransferDestinationRequest
     /// This is the type of the message. "transfer-destination-request" is sent when the model is requesting transfer but destination is unknown.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "transfer-destination-request";
+    public required ServerMessageTransferDestinationRequestType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

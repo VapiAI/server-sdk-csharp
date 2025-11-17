@@ -43,7 +43,7 @@ public record ServerMessageCallEndpointingRequest
     /// }
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "call.endpointing.request";
+    public required ServerMessageCallEndpointingRequestType Type { get; set; }
 
     /// <summary>
     /// This is the conversation history at the time of the endpointing request.

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record GroqCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "groq";
+    public required GroqCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

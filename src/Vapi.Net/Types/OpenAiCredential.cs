@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record OpenAiCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "openai";
+    public required OpenAiCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

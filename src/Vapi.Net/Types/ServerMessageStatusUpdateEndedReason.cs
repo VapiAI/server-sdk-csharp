@@ -115,6 +115,9 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "pipeline-error-smallest-ai-voice-failed")]
     PipelineErrorSmallestAiVoiceFailed,
 
+    [EnumMember(Value = "pipeline-error-vapi-voice-failed")]
+    PipelineErrorVapiVoiceFailed,
+
     [EnumMember(Value = "pipeline-error-neuphonic-voice-failed")]
     PipelineErrorNeuphonicVoiceFailed,
 
@@ -159,6 +162,9 @@ public enum ServerMessageStatusUpdateEndedReason
 
     [EnumMember(Value = "call.in-progress.error-vapifault-smallest-ai-voice-failed")]
     CallInProgressErrorVapifaultSmallestAiVoiceFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-vapi-voice-failed")]
+    CallInProgressErrorVapifaultVapiVoiceFailed,
 
     [EnumMember(Value = "call.in-progress.error-vapifault-neuphonic-voice-failed")]
     CallInProgressErrorVapifaultNeuphonicVoiceFailed,
@@ -1226,6 +1232,9 @@ public enum ServerMessageStatusUpdateEndedReason
     )]
     CallInProgressErrorProviderfaultCustomLlm503ServerOverloadedError,
 
+    [EnumMember(Value = "call.in-progress.error-pipeline-ws-model-connection-failed")]
+    CallInProgressErrorPipelineWsModelConnectionFailed,
+
     [EnumMember(Value = "pipeline-error-custom-voice-failed")]
     PipelineErrorCustomVoiceFailed,
 
@@ -1423,6 +1432,11 @@ public enum ServerMessageStatusUpdateEndedReason
     )]
     CallInProgressErrorVapifaultElevenLabsBlockedVoicePotentiallyAgainstTermsOfServiceAndAwaitingVerification,
 
+    [EnumMember(
+        Value = "call.in-progress.error-providerfault-eleven-labs-system-busy-and-requested-upgrade"
+    )]
+    CallInProgressErrorProviderfaultElevenLabsSystemBusyAndRequestedUpgrade,
+
     [EnumMember(Value = "call.in-progress.error-providerfault-eleven-labs-500-server-error")]
     CallInProgressErrorProviderfaultElevenLabs500ServerError,
 
@@ -1597,12 +1611,6 @@ public enum ServerMessageStatusUpdateEndedReason
 
     [EnumMember(Value = "call.in-progress.error-warm-transfer-microphone-timeout")]
     CallInProgressErrorWarmTransferMicrophoneTimeout,
-
-    [EnumMember(Value = "call.in-progress.error-warm-transfer-hang-timeout")]
-    CallInProgressErrorWarmTransferHangTimeout,
-
-    [EnumMember(Value = "call.in-progress.error-warm-transfer-idle-timeout")]
-    CallInProgressErrorWarmTransferIdleTimeout,
 
     [EnumMember(Value = "assistant-ended-call")]
     AssistantEndedCall,

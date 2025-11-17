@@ -19,7 +19,7 @@ public record GoHighLevelCalendarAvailabilityToolWithToolCall
     /// The type of tool. "gohighlevel.calendar.availability.check" for GoHighLevel Calendar Availability Check tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "gohighlevel.calendar.availability.check";
+    public required GoHighLevelCalendarAvailabilityToolWithToolCallType Type { get; set; }
 
     [JsonPropertyName("toolCall")]
     public required ToolCall ToolCall { get; set; }

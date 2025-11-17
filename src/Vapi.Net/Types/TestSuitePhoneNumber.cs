@@ -11,7 +11,7 @@ public record TestSuitePhoneNumber
     /// This is the provider of the phone number.
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "test-suite";
+    public required TestSuitePhoneNumberProvider Provider { get; set; }
 
     /// <summary>
     /// This is the phone number that is being tested.

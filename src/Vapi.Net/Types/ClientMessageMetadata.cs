@@ -17,7 +17,7 @@ public record ClientMessageMetadata
     /// This is the type of the message. "metadata" is sent to forward metadata to the client.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "metadata";
+    public required ClientMessageMetadataType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

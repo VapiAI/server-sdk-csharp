@@ -17,7 +17,7 @@ public record ServerMessageChatDeleted
     /// This is the type of the message. "chat.deleted" is sent when a chat is deleted.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "chat.deleted";
+    public required ServerMessageChatDeletedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

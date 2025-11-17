@@ -21,7 +21,7 @@ public record ClientMessageHang
     /// - etc.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "hang";
+    public required ClientMessageHangType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

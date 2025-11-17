@@ -19,7 +19,7 @@ public record MakeTool
     /// The type of tool. "make" for Make tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "make";
+    public required MakeToolType Type { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the tool.

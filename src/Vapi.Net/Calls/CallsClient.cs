@@ -17,7 +17,7 @@ public partial class CallsClient
     }
 
     public async Task<IEnumerable<Call>> ListAsync(
-        CallsListRequest request,
+        ListCallsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -41,35 +41,35 @@ public partial class CallsClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -174,6 +174,14 @@ public partial class CallsClient
         {
             _query["assistantName"] = request.AssistantName;
         }
+        if (request.SquadId != null)
+        {
+            _query["squadId"] = request.SquadId;
+        }
+        if (request.SquadName != null)
+        {
+            _query["squadName"] = request.SquadName;
+        }
         if (request.Id != null)
         {
             _query["id"] = request.Id;
@@ -206,13 +214,17 @@ public partial class CallsClient
         {
             _query["structuredOutputs"] = JsonUtils.Serialize(request.StructuredOutputs);
         }
+        if (request.Score != null)
+        {
+            _query["score"] = request.Score;
+        }
         if (request.Page != null)
         {
             _query["page"] = request.Page.Value.ToString();
         }
         if (request.SortOrder != null)
         {
-            _query["sortOrder"] = request.SortOrder.Value.ToString();
+            _query["sortOrder"] = request.SortOrder.Value.Stringify();
         }
         if (request.Limit != null)
         {
@@ -220,35 +232,35 @@ public partial class CallsClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -288,6 +300,7 @@ public partial class CallsClient
 
     public async Task<Call> GetAsync(
         string id,
+        GetCallsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

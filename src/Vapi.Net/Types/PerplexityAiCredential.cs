@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record PerplexityAiCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "perplexity-ai";
+    public required PerplexityAiCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

@@ -8,6 +8,12 @@ namespace Vapi.Net;
 public record CallBatchResponse
 {
     /// <summary>
+    /// Subscription limits at the end of this batch
+    /// </summary>
+    [JsonPropertyName("subscriptionLimits")]
+    public SubscriptionLimits? SubscriptionLimits { get; set; }
+
+    /// <summary>
     /// This is the list of calls that were created.
     /// </summary>
     [JsonPropertyName("results")]

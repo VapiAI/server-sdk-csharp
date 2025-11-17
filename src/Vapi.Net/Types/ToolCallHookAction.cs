@@ -8,6 +8,12 @@ namespace Vapi.Net;
 public record ToolCallHookAction
 {
     /// <summary>
+    /// This is the type of action - must be "tool"
+    /// </summary>
+    [JsonPropertyName("type")]
+    public required ToolCallHookActionType Type { get; set; }
+
+    /// <summary>
     /// This is the tool to call. To use an existing tool, send `toolId` instead.
     /// </summary>
     [JsonPropertyName("tool")]

@@ -11,7 +11,7 @@ public record ElevenLabsTranscriber
     /// This is the model that will be used for the transcription.
     /// </summary>
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public ElevenLabsTranscriberModel? Model { get; set; }
 
     [JsonPropertyName("language")]
     public ElevenLabsTranscriberLanguage? Language { get; set; }

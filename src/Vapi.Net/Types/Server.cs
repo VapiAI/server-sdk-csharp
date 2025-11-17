@@ -22,6 +22,14 @@ public record Server
     public string? CredentialId { get; set; }
 
     /// <summary>
+    /// If enabled, requests will originate from a static set of IPs owned and managed by Vapi.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("staticIpAddressesEnabled")]
+    public bool? StaticIpAddressesEnabled { get; set; }
+
+    /// <summary>
     /// This is where the request will be sent.
     /// </summary>
     [JsonPropertyName("url")]

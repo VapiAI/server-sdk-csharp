@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record CartesiaCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "cartesia";
+    public required CartesiaCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

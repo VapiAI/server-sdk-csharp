@@ -11,7 +11,7 @@ public record FallbackTalkscriberTranscriber
     /// This is the model that will be used for the transcription.
     /// </summary>
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public FallbackTalkscriberTranscriberModel? Model { get; set; }
 
     /// <summary>
     /// This is the language that will be set for the transcription. The list of languages Whisper supports can be found here: https://github.com/openai/whisper/blob/main/whisper/tokenizer.py

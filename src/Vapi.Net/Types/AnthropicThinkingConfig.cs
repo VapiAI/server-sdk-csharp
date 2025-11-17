@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record AnthropicThinkingConfig
 {
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "enabled";
+    public required AnthropicThinkingConfigType Type { get; set; }
 
     /// <summary>
     /// The maximum number of tokens to allocate for thinking.

@@ -16,7 +16,7 @@ public partial class SessionsClient
     }
 
     public async Task<SessionPaginatedResponse> ListAsync(
-        SessionsListRequest request,
+        ListSessionsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -38,13 +38,43 @@ public partial class SessionsClient
         {
             _query["workflowId"] = request.WorkflowId;
         }
+        if (request.NumberE164CheckEnabled != null)
+        {
+            _query["numberE164CheckEnabled"] = JsonUtils.Serialize(
+                request.NumberE164CheckEnabled.Value
+            );
+        }
+        if (request.Extension != null)
+        {
+            _query["extension"] = request.Extension;
+        }
+        if (request.AssistantOverrides != null)
+        {
+            _query["assistantOverrides"] = request.AssistantOverrides;
+        }
+        if (request.Number != null)
+        {
+            _query["number"] = request.Number;
+        }
+        if (request.SipUri != null)
+        {
+            _query["sipUri"] = request.SipUri;
+        }
+        if (request.Email != null)
+        {
+            _query["email"] = request.Email;
+        }
+        if (request.ExternalId != null)
+        {
+            _query["externalId"] = request.ExternalId;
+        }
         if (request.Page != null)
         {
             _query["page"] = request.Page.Value.ToString();
         }
         if (request.SortOrder != null)
         {
-            _query["sortOrder"] = request.SortOrder.Value.ToString();
+            _query["sortOrder"] = request.SortOrder.Value.Stringify();
         }
         if (request.Limit != null)
         {
@@ -52,35 +82,35 @@ public partial class SessionsClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -163,6 +193,7 @@ public partial class SessionsClient
 
     public async Task<Session> GetAsync(
         string id,
+        GetSessionsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -204,6 +235,7 @@ public partial class SessionsClient
 
     public async Task<Session> DeleteAsync(
         string id,
+        DeleteSessionsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

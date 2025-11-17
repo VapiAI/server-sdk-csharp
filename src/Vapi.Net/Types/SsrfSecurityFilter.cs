@@ -11,7 +11,7 @@ public record SsrfSecurityFilter
     /// The type of security threat to filter.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "ssrf";
+    public required SsrfSecurityFilterType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

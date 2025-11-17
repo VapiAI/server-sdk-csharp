@@ -19,7 +19,7 @@ public record CreateVoicemailToolDto
     /// The type of tool. "voicemail" for Voicemail tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "voicemail";
+    public required CreateVoicemailToolDtoType Type { get; set; }
 
     /// <summary>
     /// This is the flag that enables beep detection for voicemail detection and applies only for twilio based calls.

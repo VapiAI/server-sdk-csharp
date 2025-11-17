@@ -59,7 +59,8 @@ public record Workflow
             CallHookCallEnding,
             CallHookAssistantSpeechInterrupted,
             CallHookCustomerSpeechInterrupted,
-            CallHookCustomerSpeechTimeout
+            CallHookCustomerSpeechTimeout,
+            CallHookModelResponseTimeout
         >
     >? Hooks { get; set; }
 
@@ -73,7 +74,13 @@ public record Workflow
     /// This is the voicemail detection plan for the workflow.
     /// </summary>
     [JsonPropertyName("voicemailDetection")]
-    public object? VoicemailDetection { get; set; }
+    public OneOf<
+        WorkflowVoicemailDetectionZero,
+        GoogleVoicemailDetectionPlan,
+        OpenAiVoicemailDetectionPlan,
+        TwilioVoicemailDetectionPlan,
+        VapiVoicemailDetectionPlan
+    >? VoicemailDetection { get; set; }
 
     /// <summary>
     /// This is the maximum duration of the call in seconds.

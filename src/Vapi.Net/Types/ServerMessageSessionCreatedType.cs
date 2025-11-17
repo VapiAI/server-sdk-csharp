@@ -1,0 +1,12 @@
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
+using Vapi.Net.Core;
+
+namespace Vapi.Net;
+
+[JsonConverter(typeof(EnumSerializer<ServerMessageSessionCreatedType>))]
+public enum ServerMessageSessionCreatedType
+{
+    [EnumMember(Value = "session.created")]
+    SessionCreated,
+}

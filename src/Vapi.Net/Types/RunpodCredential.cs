@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record RunpodCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "runpod";
+    public required RunpodCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

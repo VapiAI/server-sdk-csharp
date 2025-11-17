@@ -17,7 +17,7 @@ public record FallbackMinimaxVoice
     /// This is the voice provider that will be used.
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "minimax";
+    public required FallbackMinimaxVoiceProvider Provider { get; set; }
 
     /// <summary>
     /// This is the provider-specific ID that will be used. Use a voice from MINIMAX_PREDEFINED_VOICES or a custom cloned voice ID.

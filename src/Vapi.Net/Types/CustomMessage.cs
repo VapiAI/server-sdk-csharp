@@ -23,7 +23,7 @@ public record CustomMessage
     /// This is a custom message.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "custom-message";
+    public required CustomMessageType Type { get; set; }
 
     /// <summary>
     /// This is the content that the assistant will say when this message is triggered.

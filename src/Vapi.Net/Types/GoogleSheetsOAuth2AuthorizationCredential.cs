@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record GoogleSheetsOAuth2AuthorizationCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "google.sheets.oauth2-authorization";
+    public required GoogleSheetsOAuth2AuthorizationCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// The authorization ID for the OAuth2 authorization

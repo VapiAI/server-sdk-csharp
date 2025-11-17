@@ -17,7 +17,7 @@ public record ServerMessageCallDeleted
     /// This is the type of the message. "call.deleted" is sent when a call is deleted.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "call.deleted";
+    public required ServerMessageCallDeletedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

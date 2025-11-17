@@ -18,7 +18,7 @@ public record FallbackAzureVoice
     /// This is the provider-specific ID that will be used.
     /// </summary>
     [JsonPropertyName("voiceId")]
-    public required OneOf<FallbackAzureVoiceVoiceId, string> VoiceId { get; set; }
+    public required OneOf<FallbackAzureVoiceVoiceIdZero, string> VoiceId { get; set; }
 
     /// <summary>
     /// This is the speed multiplier that will be used.

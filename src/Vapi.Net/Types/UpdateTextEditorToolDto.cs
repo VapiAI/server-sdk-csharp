@@ -19,7 +19,7 @@ public record UpdateTextEditorToolDto
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public string? SubType { get; set; }
+    public UpdateTextEditorToolDtoSubType? SubType { get; set; }
 
     /// <summary>
     /// This is the server where a `tool-calls` webhook will be sent.
@@ -121,7 +121,7 @@ public record UpdateTextEditorToolDto
     /// The name of the tool, fixed to 'str_replace_editor'
     /// </summary>
     [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    public UpdateTextEditorToolDtoName? Name { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

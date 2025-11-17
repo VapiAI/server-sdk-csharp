@@ -13,7 +13,7 @@ public record CreateTrieveKnowledgeBaseDto
     /// To learn more about Trieve, visit https://trieve.ai.
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "trieve";
+    public required CreateTrieveKnowledgeBaseDtoProvider Provider { get; set; }
 
     /// <summary>
     /// This is the name of the knowledge base.

@@ -21,6 +21,14 @@ public record AssistantMessageJudgePlanAi
     public required object Model { get; set; }
 
     /// <summary>
+    /// This is the type of the judge plan.
+    /// Use 'ai' to evaluate the assistant message content using LLM-as-a-judge.
+    /// @default 'ai'
+    /// </summary>
+    [JsonPropertyName("type")]
+    public required AssistantMessageJudgePlanAiType Type { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

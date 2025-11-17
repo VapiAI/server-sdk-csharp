@@ -18,7 +18,7 @@ public record CreateTestSuiteTestChatDto
     /// This is the type of the test, which must be chat.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "chat";
+    public required CreateTestSuiteTestChatDtoType Type { get; set; }
 
     /// <summary>
     /// This is the script to be used for the chat test.

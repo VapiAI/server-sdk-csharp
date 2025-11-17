@@ -20,6 +20,9 @@ public record TransferDestinationAssistant
     [JsonPropertyName("message")]
     public OneOf<string, CustomMessage>? Message { get; set; }
 
+    [JsonPropertyName("type")]
+    public required TransferDestinationAssistantType Type { get; set; }
+
     /// <summary>
     /// This is the mode to use for the transfer. Defaults to `rolling-history`.
     ///

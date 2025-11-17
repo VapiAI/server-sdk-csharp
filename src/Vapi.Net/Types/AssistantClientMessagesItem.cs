@@ -57,4 +57,7 @@ public enum AssistantClientMessagesItem
 
     [EnumMember(Value = "workflow.node.started")]
     WorkflowNodeStarted,
+
+    [EnumMember(Value = "assistant.started")]
+    AssistantStarted,
 }

@@ -11,7 +11,7 @@ public record PromptInjectionSecurityFilter
     /// The type of security threat to filter.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "prompt-injection";
+    public required PromptInjectionSecurityFilterType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

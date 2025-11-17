@@ -23,7 +23,7 @@ public record CreateEvalRunDto
     /// Currently it is fixed to `eval`.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "eval";
+    public required CreateEvalRunDtoType Type { get; set; }
 
     /// <summary>
     /// This is the id of the eval that will be run.

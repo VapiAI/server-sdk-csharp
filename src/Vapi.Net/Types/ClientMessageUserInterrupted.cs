@@ -17,7 +17,7 @@ public record ClientMessageUserInterrupted
     /// This is the type of the message. "user-interrupted" is sent when the user interrupts the assistant.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "user-interrupted";
+    public required ClientMessageUserInterruptedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

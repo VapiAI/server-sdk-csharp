@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record SmallestAiCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "smallest-ai";
+    public required SmallestAiCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

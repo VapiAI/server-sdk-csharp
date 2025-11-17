@@ -15,6 +15,12 @@ public record TestSuiteTestVoice
         new List<TestSuiteTestScorerAi>();
 
     /// <summary>
+    /// This is the type of the test, which must be voice.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public required TestSuiteTestVoiceType Type { get; set; }
+
+    /// <summary>
     /// This is the unique identifier for the test.
     /// </summary>
     [JsonPropertyName("id")]

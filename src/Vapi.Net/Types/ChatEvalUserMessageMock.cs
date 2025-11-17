@@ -8,6 +8,14 @@ namespace Vapi.Net;
 public record ChatEvalUserMessageMock
 {
     /// <summary>
+    /// This is the role of the message author.
+    /// For a mock user message, the role is always 'user'
+    /// @default 'user'
+    /// </summary>
+    [JsonPropertyName("role")]
+    public required ChatEvalUserMessageMockRole Role { get; set; }
+
+    /// <summary>
     /// This is the content of the user message.
     /// This is the message that the user would have sent.
     /// </summary>

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record SlackOAuth2AuthorizationCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "slack.oauth2-authorization";
+    public required SlackOAuth2AuthorizationCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// The authorization ID for the OAuth2 authorization

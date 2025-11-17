@@ -11,7 +11,7 @@ public record SqlInjectionSecurityFilter
     /// The type of security threat to filter.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "sql-injection";
+    public required SqlInjectionSecurityFilterType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

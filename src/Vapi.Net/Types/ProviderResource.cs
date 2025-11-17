@@ -35,13 +35,13 @@ public record ProviderResource
     /// This is the provider that manages this resource.
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "11labs";
+    public required ProviderResourceProvider Provider { get; set; }
 
     /// <summary>
     /// This is the name/type of the resource.
     /// </summary>
     [JsonPropertyName("resourceName")]
-    public string ResourceName { get; set; } = "pronunciation-dictionary";
+    public required ProviderResourceResourceName ResourceName { get; set; }
 
     /// <summary>
     /// This is the provider-specific identifier for the resource.

@@ -19,7 +19,7 @@ public record CreateOutputToolDto
     /// The type of tool. "output" for Output tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "output";
+    public required CreateOutputToolDtoType Type { get; set; }
 
     /// <summary>
     /// This is the plan to reject a tool call based on the conversation state.

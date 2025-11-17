@@ -17,7 +17,7 @@ public record ServerMessageEndOfCallReport
     /// This is the type of the message. "end-of-call-report" is sent when the call ends and post-processing is complete.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "end-of-call-report";
+    public required ServerMessageEndOfCallReportType Type { get; set; }
 
     /// <summary>
     /// This is the reason the call ended. This can also be found at `call.endedReason` on GET /call/:id.

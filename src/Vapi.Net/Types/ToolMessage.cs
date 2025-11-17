@@ -11,7 +11,7 @@ public record ToolMessage
     /// This is the role of the message author
     /// </summary>
     [JsonPropertyName("role")]
-    public string Role { get; set; } = "tool";
+    public required ToolMessageRole Role { get; set; }
 
     /// <summary>
     /// This is the content of the tool message

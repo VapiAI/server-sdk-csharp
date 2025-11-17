@@ -11,7 +11,7 @@ public record DeveloperMessage
     /// This is the role of the message author
     /// </summary>
     [JsonPropertyName("role")]
-    public string Role { get; set; } = "developer";
+    public required DeveloperMessageRole Role { get; set; }
 
     /// <summary>
     /// This is the content of the developer message

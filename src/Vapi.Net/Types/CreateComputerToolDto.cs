@@ -19,7 +19,7 @@ public record CreateComputerToolDto
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public string SubType { get; set; } = "computer_20241022";
+    public required CreateComputerToolDtoSubType SubType { get; set; }
 
     /// <summary>
     /// This is the server where a `tool-calls` webhook will be sent.
@@ -38,7 +38,7 @@ public record CreateComputerToolDto
     /// The name of the tool, fixed to 'computer'
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; } = "computer";
+    public required CreateComputerToolDtoName Name { get; set; }
 
     /// <summary>
     /// The display width in pixels

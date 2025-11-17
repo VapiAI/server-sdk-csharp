@@ -34,7 +34,7 @@ public record InworldVoice
     /// This is the model that will be used.
     /// </summary>
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public InworldVoiceModel? Model { get; set; }
 
     /// <summary>
     /// Language code for Inworld TTS synthesis

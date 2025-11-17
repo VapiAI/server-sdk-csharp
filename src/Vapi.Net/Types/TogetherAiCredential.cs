@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record TogetherAiCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "together-ai";
+    public required TogetherAiCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

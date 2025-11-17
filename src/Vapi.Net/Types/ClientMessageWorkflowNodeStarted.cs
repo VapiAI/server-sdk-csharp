@@ -17,7 +17,7 @@ public record ClientMessageWorkflowNodeStarted
     /// This is the type of the message. "workflow.node.started" is sent when the active node changes.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "workflow.node.started";
+    public required ClientMessageWorkflowNodeStartedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

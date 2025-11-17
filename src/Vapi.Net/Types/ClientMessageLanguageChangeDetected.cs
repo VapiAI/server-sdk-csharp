@@ -17,7 +17,7 @@ public record ClientMessageLanguageChangeDetected
     /// This is the type of the message. "language-change-detected" is sent when the transcriber is automatically switched based on the detected language.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "language-change-detected";
+    public required ClientMessageLanguageChangeDetectedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

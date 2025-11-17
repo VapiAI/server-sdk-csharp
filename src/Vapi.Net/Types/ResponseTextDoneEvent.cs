@@ -35,7 +35,7 @@ public record ResponseTextDoneEvent
     /// Event type
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "response.output_text.done";
+    public required ResponseTextDoneEventType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

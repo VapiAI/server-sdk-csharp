@@ -17,7 +17,7 @@ public record ServerMessageSessionDeleted
     /// This is the type of the message. "session.deleted" is sent when a session is deleted.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "session.deleted";
+    public required ServerMessageSessionDeletedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

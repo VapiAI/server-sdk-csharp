@@ -7,6 +7,9 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<AssistantOverridesServerMessagesItem>))]
 public enum AssistantOverridesServerMessagesItem
 {
+    [EnumMember(Value = "assistant.started")]
+    AssistantStarted,
+
     [EnumMember(Value = "conversation-update")]
     ConversationUpdate,
 

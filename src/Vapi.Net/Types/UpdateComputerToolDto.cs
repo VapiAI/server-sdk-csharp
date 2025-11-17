@@ -19,7 +19,7 @@ public record UpdateComputerToolDto
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public string? SubType { get; set; }
+    public UpdateComputerToolDtoSubType? SubType { get; set; }
 
     /// <summary>
     /// This is the server where a `tool-calls` webhook will be sent.
@@ -121,7 +121,7 @@ public record UpdateComputerToolDto
     /// The name of the tool, fixed to 'computer'
     /// </summary>
     [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    public UpdateComputerToolDtoName? Name { get; set; }
 
     /// <summary>
     /// The display width in pixels

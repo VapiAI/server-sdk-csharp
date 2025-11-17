@@ -18,7 +18,7 @@ public record ClientMessageConversationUpdate
     /// This is the type of the message. "conversation-update" is sent when an update is committed to the conversation history.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "conversation-update";
+    public required ClientMessageConversationUpdateType Type { get; set; }
 
     /// <summary>
     /// This is the most up-to-date conversation history at the time the message is sent.

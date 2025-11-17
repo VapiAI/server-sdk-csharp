@@ -57,4 +57,7 @@ public enum UpdateAssistantDtoClientMessagesItem
 
     [EnumMember(Value = "workflow.node.started")]
     WorkflowNodeStarted,
+
+    [EnumMember(Value = "assistant.started")]
+    AssistantStarted,
 }

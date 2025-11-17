@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record AnyscaleCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "anyscale";
+    public required AnyscaleCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

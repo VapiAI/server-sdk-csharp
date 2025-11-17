@@ -23,6 +23,13 @@ public record OpenAiWebChatRequest
     public string? SessionId { get; set; }
 
     /// <summary>
+    /// This is the expiration time for the session. This can ONLY be set if starting a new chat and therefore a new session is created.
+    /// If session already exists, this will be ignored and NOT be updated for the existing session. Use PATCH /session/:id to update the session expiration time.
+    /// </summary>
+    [JsonPropertyName("sessionExpirationSeconds")]
+    public double? SessionExpirationSeconds { get; set; }
+
+    /// <summary>
     /// These are the variable values that will be used to replace template variables in the assistant messages.
     /// Only variable substitution is supported in web chat - other assistant properties cannot be overridden.
     /// </summary>

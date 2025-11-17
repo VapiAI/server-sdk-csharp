@@ -11,7 +11,7 @@ public record AssemblyAiTranscriber
     /// This is the language that will be set for the transcription.
     /// </summary>
     [JsonPropertyName("language")]
-    public string? Language { get; set; }
+    public AssemblyAiTranscriberLanguage? Language { get; set; }
 
     /// <summary>
     /// Transcripts below this confidence threshold will be discarded.

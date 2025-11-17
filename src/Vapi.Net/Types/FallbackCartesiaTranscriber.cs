@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record FallbackCartesiaTranscriber
 {
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public FallbackCartesiaTranscriberModel? Model { get; set; }
 
     [JsonPropertyName("language")]
     public FallbackCartesiaTranscriberLanguage? Language { get; set; }

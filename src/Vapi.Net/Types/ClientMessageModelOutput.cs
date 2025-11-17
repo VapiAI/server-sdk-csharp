@@ -17,7 +17,7 @@ public record ClientMessageModelOutput
     /// This is the type of the message. "model-output" is sent as the model outputs tokens.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "model-output";
+    public required ClientMessageModelOutputType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

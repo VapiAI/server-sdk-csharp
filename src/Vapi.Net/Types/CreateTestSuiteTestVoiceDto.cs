@@ -18,7 +18,7 @@ public record CreateTestSuiteTestVoiceDto
     /// This is the type of the test, which must be voice.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "voice";
+    public required CreateTestSuiteTestVoiceDtoType Type { get; set; }
 
     /// <summary>
     /// This is the script to be used for the voice test.

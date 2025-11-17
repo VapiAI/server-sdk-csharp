@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record CustomCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "custom-credential";
+    public required CustomCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication.

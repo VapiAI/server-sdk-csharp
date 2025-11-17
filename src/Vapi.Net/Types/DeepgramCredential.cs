@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record DeepgramCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "deepgram";
+    public required DeepgramCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

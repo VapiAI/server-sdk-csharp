@@ -17,7 +17,7 @@ public record ClientMessageSessionCreated
     /// This is the type of the message. "session.created" is sent when a new session is created.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "session.created";
+    public required ClientMessageSessionCreatedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

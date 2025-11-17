@@ -14,6 +14,7 @@ public record ClientMessage
     [JsonPropertyName("message")]
     public required OneOf<
         ClientMessageWorkflowNodeStarted,
+        ClientMessageAssistantStarted,
         ClientMessageConversationUpdate,
         ClientMessageHang,
         ClientMessageMetadata,

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record InworldCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "inworld";
+    public required InworldCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is the Inworld Basic (Base64) authentication token. This is not returned in the API.

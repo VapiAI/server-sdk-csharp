@@ -14,7 +14,7 @@ public record VonageCredential
     public required string VonageApplicationPrivateKey { get; set; }
 
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "vonage";
+    public required VonageCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

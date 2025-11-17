@@ -17,7 +17,7 @@ public record KnowledgeBase
     /// The provider of the knowledge base
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "google";
+    public required KnowledgeBaseProvider Provider { get; set; }
 
     /// <summary>
     /// The model to use for the knowledge base

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record AssemblyAiCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "assembly-ai";
+    public required AssemblyAiCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

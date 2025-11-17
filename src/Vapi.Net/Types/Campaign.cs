@@ -44,7 +44,7 @@ public record Campaign
     public required string PhoneNumberId { get; set; }
 
     /// <summary>
-    /// This is the schedule plan for the campaign.
+    /// This is the schedule plan for the campaign. Calls will start at startedAt and continue until your organization’s concurrency limit is reached. Any remaining calls will be retried for up to one hour as capacity becomes available. After that hour or after latestAt, whichever comes first, any calls that couldn’t be placed won’t be retried.
     /// </summary>
     [JsonPropertyName("schedulePlan")]
     public SchedulePlan? SchedulePlan { get; set; }

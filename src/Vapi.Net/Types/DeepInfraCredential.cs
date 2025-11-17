@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record DeepInfraCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "deepinfra";
+    public required DeepInfraCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

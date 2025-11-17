@@ -11,7 +11,7 @@ public record TestSuiteRunScorerAi
     /// This is the type of the scorer, which must be AI.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "ai";
+    public required TestSuiteRunScorerAiType Type { get; set; }
 
     /// <summary>
     /// This is the result of the test suite.

@@ -19,7 +19,7 @@ public record ServerMessagePhoneCallControl
     /// When it is requested in `assistant.serverMessages`, the hangup and forwarding responsibilities are delegated to your server. Vapi will no longer do the actual transfer and hangup.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "phone-call-control";
+    public required ServerMessagePhoneCallControlType Type { get; set; }
 
     /// <summary>
     /// This is the request to control the phone call.

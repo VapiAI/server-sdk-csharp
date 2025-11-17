@@ -23,7 +23,7 @@ public record SesameVoice
     /// This is the model that will be used.
     /// </summary>
     [JsonPropertyName("model")]
-    public string Model { get; set; } = "csm-1b";
+    public required SesameVoiceModel Model { get; set; }
 
     /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.

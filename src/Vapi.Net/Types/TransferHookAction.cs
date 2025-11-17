@@ -11,7 +11,7 @@ public record TransferHookAction
     /// This is the type of action - must be "transfer"
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "transfer";
+    public required TransferHookActionType Type { get; set; }
 
     /// <summary>
     /// This is the destination details for the transfer - can be a phone number or SIP URI

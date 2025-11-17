@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record OpenRouterCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "openrouter";
+    public required OpenRouterCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record PlayHtCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "playht";
+    public required PlayHtCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

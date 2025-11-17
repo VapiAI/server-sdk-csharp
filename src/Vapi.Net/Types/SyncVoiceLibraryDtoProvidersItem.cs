@@ -57,4 +57,7 @@ public enum SyncVoiceLibraryDtoProvidersItem
 
     [EnumMember(Value = "minimax")]
     Minimax,
+
+    [EnumMember(Value = "orpheus")]
+    Orpheus,
 }

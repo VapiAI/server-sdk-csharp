@@ -8,6 +8,14 @@ namespace Vapi.Net;
 public record ChatEvalAssistantMessageMock
 {
     /// <summary>
+    /// This is the role of the message author.
+    /// For a mock assistant message, the role is always 'assistant'
+    /// @default 'assistant'
+    /// </summary>
+    [JsonPropertyName("role")]
+    public required ChatEvalAssistantMessageMockRole Role { get; set; }
+
+    /// <summary>
     /// This is the content of the assistant message.
     /// This is the message that the assistant would have sent.
     /// </summary>

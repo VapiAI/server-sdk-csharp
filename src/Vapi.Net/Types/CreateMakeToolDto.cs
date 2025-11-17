@@ -19,7 +19,7 @@ public record CreateMakeToolDto
     /// The type of tool. "make" for Make tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "make";
+    public required CreateMakeToolDtoType Type { get; set; }
 
     [JsonPropertyName("metadata")]
     public required MakeToolMetadata Metadata { get; set; }

@@ -121,6 +121,13 @@ public record Subscription
     public bool? HipaaEnabled { get; set; }
 
     /// <summary>
+    /// This is the data retention enabled flag for the subscription. It determines whether orgs under this
+    /// subscription have the option to enable data retention.
+    /// </summary>
+    [JsonPropertyName("dataRetentionEnabled")]
+    public bool? DataRetentionEnabled { get; set; }
+
+    /// <summary>
     /// This is the ID for the Common Paper agreement outlining the HIPAA contract.
     /// </summary>
     [JsonPropertyName("hipaaCommonPaperAgreementId")]

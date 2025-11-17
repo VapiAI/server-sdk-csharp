@@ -23,7 +23,7 @@ public record ResponseOutputMessage
     /// The role of the output message
     /// </summary>
     [JsonPropertyName("role")]
-    public string Role { get; set; } = "assistant";
+    public required ResponseOutputMessageRole Role { get; set; }
 
     /// <summary>
     /// The status of the message
@@ -35,7 +35,7 @@ public record ResponseOutputMessage
     /// The type of the output message
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "message";
+    public required ResponseOutputMessageType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

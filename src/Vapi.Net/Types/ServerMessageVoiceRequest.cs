@@ -38,7 +38,7 @@ public record ServerMessageVoiceRequest
     /// ```
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "voice-request";
+    public required ServerMessageVoiceRequestType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

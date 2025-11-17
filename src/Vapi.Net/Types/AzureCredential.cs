@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record AzureCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "azure";
+    public required AzureCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is the service being used in Azure.

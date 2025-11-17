@@ -7,6 +7,9 @@ namespace Vapi.Net;
 [Serializable]
 public record HandoffDestinationAssistant
 {
+    [JsonPropertyName("type")]
+    public required HandoffDestinationAssistantType Type { get; set; }
+
     /// <summary>
     /// This is the plan for manipulating the message context before handing off the call to the next assistant.
     /// </summary>
@@ -36,6 +39,12 @@ public record HandoffDestinationAssistant
     /// </summary>
     [JsonPropertyName("variableExtractionPlan")]
     public VariableExtractionPlan? VariableExtractionPlan { get; set; }
+
+    /// <summary>
+    /// These are the assistant overrides to apply to the destination assistant.
+    /// </summary>
+    [JsonPropertyName("assistantOverrides")]
+    public AssistantOverrides? AssistantOverrides { get; set; }
 
     /// <summary>
     /// This is the description of the destination, used by the AI to choose when and how to transfer the call.

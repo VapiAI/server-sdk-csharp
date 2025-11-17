@@ -36,7 +36,7 @@ public record VapiModel
     public CreateCustomKnowledgeBaseDto? KnowledgeBase { get; set; }
 
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "vapi";
+    public required VapiModelProvider Provider { get; set; }
 
     /// <summary>
     /// This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.

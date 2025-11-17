@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record WebhookCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "webhook";
+    public required WebhookCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication.

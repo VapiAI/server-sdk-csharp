@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record AiEdgeCondition
 {
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "ai";
+    public required AiEdgeConditionType Type { get; set; }
 
     /// <summary>
     /// This is the prompt for the AI edge condition. It should evaluate to a boolean.

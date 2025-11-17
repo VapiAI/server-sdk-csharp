@@ -20,6 +20,7 @@ public record UpdateEvalDto
             ChatEvalAssistantMessageMock,
             ChatEvalSystemMessageMock,
             ChatEvalToolResponseMessageMock,
+            ChatEvalToolResponseMessageEvaluation,
             ChatEvalUserMessageMock,
             ChatEvalAssistantMessageEvaluation
         >
@@ -44,7 +45,7 @@ public record UpdateEvalDto
     /// Currently it is fixed to `chat.mockConversation`.
     /// </summary>
     [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    public UpdateEvalDtoType? Type { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

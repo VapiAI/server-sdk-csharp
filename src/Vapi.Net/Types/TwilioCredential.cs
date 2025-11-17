@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record TwilioCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "twilio";
+    public required TwilioCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

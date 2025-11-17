@@ -19,7 +19,7 @@ public record OutputTool
     /// The type of tool. "output" for Output tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "output";
+    public required OutputToolType Type { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the tool.

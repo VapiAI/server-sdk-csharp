@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record GoogleCalendarOAuth2ClientCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "google.calendar.oauth2-client";
+    public required GoogleCalendarOAuth2ClientCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the credential.

@@ -22,6 +22,12 @@ public record OpenAiVoicemailDetectionPlan
     public double? BeepMaxAwaitSeconds { get; set; }
 
     /// <summary>
+    /// This is the provider to use for voicemail detection.
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public required OpenAiVoicemailDetectionPlanProvider Provider { get; set; }
+
+    /// <summary>
     /// This is the backoff plan for the voicemail detection.
     /// </summary>
     [JsonPropertyName("backoffPlan")]

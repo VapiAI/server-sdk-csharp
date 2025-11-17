@@ -11,7 +11,7 @@ public record OpenAiFunctionParameters
     /// This must be set to 'object'. It instructs the model to return a JSON object containing the function call properties.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "object";
+    public required OpenAiFunctionParametersType Type { get; set; }
 
     /// <summary>
     /// This provides a description of the properties required by the function.

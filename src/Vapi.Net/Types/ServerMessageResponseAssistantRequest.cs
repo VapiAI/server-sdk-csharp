@@ -66,6 +66,13 @@ public record ServerMessageResponseAssistantRequest
     public CreateSquadDto? Squad { get; set; }
 
     /// <summary>
+    /// These are the overrides for the `squad` or `squadId`'s member settings and template variables.
+    /// This will apply to all members of the squad.
+    /// </summary>
+    [JsonPropertyName("squadOverrides")]
+    public AssistantOverrides? SquadOverrides { get; set; }
+
+    /// <summary>
     /// This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.
     ///
     /// To start a call with:

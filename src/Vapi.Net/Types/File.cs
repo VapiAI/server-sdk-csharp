@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record File
 {
     [JsonPropertyName("object")]
-    public string? Object { get; set; }
+    public FileObject? Object { get; set; }
 
     [JsonPropertyName("status")]
     public FileStatus? Status { get; set; }

@@ -11,7 +11,7 @@ public record GoogleCredential
     /// This is the key for Gemini in Google AI Studio. Get it from here: https://aistudio.google.com/app/apikey
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "google";
+    public required GoogleCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

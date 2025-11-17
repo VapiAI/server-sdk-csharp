@@ -11,7 +11,7 @@ public record AssistantMessage
     /// This is the role of the message author
     /// </summary>
     [JsonPropertyName("role")]
-    public string Role { get; set; } = "assistant";
+    public required AssistantMessageRole Role { get; set; }
 
     /// <summary>
     /// This is the content of the assistant message

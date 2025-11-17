@@ -19,7 +19,7 @@ public record TransferCancelToolUserEditable
     /// The type of tool. "transferCancel" for Transfer Cancel tool. This tool can only be used during warm-transfer-experimental by the transfer assistant to cancel an ongoing transfer and return the call back to the original assistant when the transfer cannot be completed.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "transferCancel";
+    public required TransferCancelToolUserEditableType Type { get; set; }
 
     /// <summary>
     /// This is the plan to reject a tool call based on the conversation state.

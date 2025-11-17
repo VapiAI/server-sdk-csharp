@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record TextContent
 {
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "text";
+    public required TextContentType Type { get; set; }
 
     [JsonPropertyName("text")]
     public required string Text { get; set; }

@@ -17,7 +17,7 @@ public partial class ChatsClient
     }
 
     public async Task<ChatPaginatedResponse> ListAsync(
-        ChatsListRequest request,
+        ListChatsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -31,13 +31,13 @@ public partial class ChatsClient
         {
             _query["squadId"] = request.SquadId;
         }
-        if (request.WorkflowId != null)
-        {
-            _query["workflowId"] = request.WorkflowId;
-        }
         if (request.SessionId != null)
         {
             _query["sessionId"] = request.SessionId;
+        }
+        if (request.PreviousChatId != null)
+        {
+            _query["previousChatId"] = request.PreviousChatId;
         }
         if (request.Page != null)
         {
@@ -45,7 +45,7 @@ public partial class ChatsClient
         }
         if (request.SortOrder != null)
         {
-            _query["sortOrder"] = request.SortOrder.Value.ToString();
+            _query["sortOrder"] = request.SortOrder.Value.Stringify();
         }
         if (request.Limit != null)
         {
@@ -53,35 +53,35 @@ public partial class ChatsClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -167,6 +167,7 @@ public partial class ChatsClient
 
     public async Task<Chat> GetAsync(
         string id,
+        GetChatsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -208,6 +209,7 @@ public partial class ChatsClient
 
     public async Task<Chat> DeleteAsync(
         string id,
+        DeleteChatsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

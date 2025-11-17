@@ -17,7 +17,7 @@ public record ServerMessageHandoffDestinationRequest
     /// This is the type of the message. "handoff-destination-request" is sent when the model is requesting handoff but destination is unknown.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "handoff-destination-request";
+    public required ServerMessageHandoffDestinationRequestType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

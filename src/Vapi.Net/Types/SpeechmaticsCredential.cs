@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record SpeechmaticsCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "speechmatics";
+    public required SpeechmaticsCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

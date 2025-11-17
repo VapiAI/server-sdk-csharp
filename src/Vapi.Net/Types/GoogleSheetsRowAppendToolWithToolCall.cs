@@ -19,7 +19,7 @@ public record GoogleSheetsRowAppendToolWithToolCall
     /// The type of tool. "google.sheets.row.append" for Google Sheets Row Append tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "google.sheets.row.append";
+    public required GoogleSheetsRowAppendToolWithToolCallType Type { get; set; }
 
     [JsonPropertyName("toolCall")]
     public required ToolCall ToolCall { get; set; }

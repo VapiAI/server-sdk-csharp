@@ -11,7 +11,7 @@ public record CloudflareCredential
     /// Credential provider. Only allowed value is cloudflare
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "cloudflare";
+    public required CloudflareCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// Cloudflare Account Id.

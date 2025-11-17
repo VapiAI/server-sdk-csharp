@@ -21,6 +21,7 @@ public record Eval
             ChatEvalAssistantMessageMock,
             ChatEvalSystemMessageMock,
             ChatEvalToolResponseMessageMock,
+            ChatEvalToolResponseMessageEvaluation,
             ChatEvalUserMessageMock,
             ChatEvalAssistantMessageEvaluation
         >
@@ -30,6 +31,7 @@ public record Eval
                 ChatEvalAssistantMessageMock,
                 ChatEvalSystemMessageMock,
                 ChatEvalToolResponseMessageMock,
+                ChatEvalToolResponseMessageEvaluation,
                 ChatEvalUserMessageMock,
                 ChatEvalAssistantMessageEvaluation
             >
@@ -66,7 +68,7 @@ public record Eval
     /// Currently it is fixed to `chat.mockConversation`.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "chat.mockConversation";
+    public required EvalType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

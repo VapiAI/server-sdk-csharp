@@ -18,7 +18,7 @@ public record ServerMessageKnowledgeBaseRequest
     /// This is the type of the message. "knowledge-base-request" is sent to request knowledge base documents. To enable, use `assistant.knowledgeBase.provider=custom-knowledge-base`.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "knowledge-base-request";
+    public required ServerMessageKnowledgeBaseRequestType Type { get; set; }
 
     /// <summary>
     /// These are the messages that are going to be sent to the `model` right after the `knowledge-base-request` webhook completes.

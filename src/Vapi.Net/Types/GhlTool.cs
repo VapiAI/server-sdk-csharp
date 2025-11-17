@@ -19,7 +19,7 @@ public record GhlTool
     /// The type of tool. "ghl" for GHL tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "ghl";
+    public required GhlToolType Type { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the tool.

@@ -16,7 +16,7 @@ public partial class PhoneNumbersClient
     }
 
     public async Task<IEnumerable<object>> ListAsync(
-        PhoneNumbersListRequest request,
+        ListPhoneNumbersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -28,35 +28,35 @@ public partial class PhoneNumbersClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -154,7 +154,7 @@ public partial class PhoneNumbersClient
         }
         if (request.SortOrder != null)
         {
-            _query["sortOrder"] = request.SortOrder.Value.ToString();
+            _query["sortOrder"] = request.SortOrder.Value.Stringify();
         }
         if (request.Limit != null)
         {
@@ -162,35 +162,35 @@ public partial class PhoneNumbersClient
         }
         if (request.CreatedAtGt != null)
         {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString();
+            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLt != null)
         {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString();
+            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtGe != null)
         {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString();
+            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.CreatedAtLe != null)
         {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString();
+            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGt != null)
         {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString();
+            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLt != null)
         {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString();
+            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtGe != null)
         {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString();
+            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.UpdatedAtLe != null)
         {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString();
+            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -230,6 +230,7 @@ public partial class PhoneNumbersClient
 
     public async Task<object> GetAsync(
         string id,
+        GetPhoneNumbersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -274,6 +275,7 @@ public partial class PhoneNumbersClient
 
     public async Task<object> DeleteAsync(
         string id,
+        DeletePhoneNumbersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -318,7 +320,7 @@ public partial class PhoneNumbersClient
 
     public async Task<object> UpdateAsync(
         string id,
-        object request,
+        UpdatePhoneNumbersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -333,7 +335,7 @@ public partial class PhoneNumbersClient
                         "phone-number/{0}",
                         ValueConvert.ToPathParameterString(id)
                     ),
-                    Body = request,
+                    Body = request.Body,
                     ContentType = "application/json",
                     Options = options,
                 },

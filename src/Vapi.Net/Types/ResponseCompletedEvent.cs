@@ -17,7 +17,7 @@ public record ResponseCompletedEvent
     /// Event type
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "response.completed";
+    public required ResponseCompletedEventType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

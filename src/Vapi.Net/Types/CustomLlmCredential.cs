@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record CustomLlmCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "custom-llm";
+    public required CustomLlmCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

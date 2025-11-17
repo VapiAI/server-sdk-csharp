@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record LangfuseObservabilityPlan
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "langfuse";
+    public required LangfuseObservabilityPlanProvider Provider { get; set; }
 
     /// <summary>
     /// This is an array of tags to be added to the Langfuse trace. Tags allow you to categorize and filter traces. https://langfuse.com/docs/tracing-features/tags

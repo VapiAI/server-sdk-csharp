@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record CartesiaTranscriber
 {
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public CartesiaTranscriberModel? Model { get; set; }
 
     [JsonPropertyName("language")]
     public CartesiaTranscriberLanguage? Language { get; set; }

@@ -11,7 +11,7 @@ public record CreateCustomKnowledgeBaseDto
     /// This knowledge base is bring your own knowledge base implementation.
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "custom-knowledge-base";
+    public required CreateCustomKnowledgeBaseDtoProvider Provider { get; set; }
 
     /// <summary>
     /// This is where the knowledge base request will be sent.

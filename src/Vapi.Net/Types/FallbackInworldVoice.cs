@@ -34,7 +34,7 @@ public record FallbackInworldVoice
     /// This is the model that will be used.
     /// </summary>
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public FallbackInworldVoiceModel? Model { get; set; }
 
     /// <summary>
     /// Language code for Inworld TTS synthesis

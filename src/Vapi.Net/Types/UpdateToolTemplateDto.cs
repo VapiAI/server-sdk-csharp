@@ -20,7 +20,7 @@ public record UpdateToolTemplateDto
     public UpdateToolTemplateDtoVisibility? Visibility { get; set; }
 
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "tool";
+    public required UpdateToolTemplateDtoType Type { get; set; }
 
     /// <summary>
     /// The name of the template. This is just for your own reference.

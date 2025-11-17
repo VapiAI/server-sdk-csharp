@@ -18,7 +18,7 @@ public record TavusVoice
     /// This is the provider-specific ID that will be used.
     /// </summary>
     [JsonPropertyName("voiceId")]
-    public required OneOf<string, string> VoiceId { get; set; }
+    public required OneOf<TavusVoiceVoiceIdZero, string> VoiceId { get; set; }
 
     /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.

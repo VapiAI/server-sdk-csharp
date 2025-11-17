@@ -7,6 +7,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EnumSerializer<OpenAiModelFallbackModelsItem>))]
 public enum OpenAiModelFallbackModelsItem
 {
+    [EnumMember(Value = "gpt-5.1")]
+    Gpt51,
+
+    [EnumMember(Value = "gpt-5.1-chat-latest")]
+    Gpt51ChatLatest,
+
     [EnumMember(Value = "gpt-5")]
     Gpt5,
 

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record HumeCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "hume";
+    public required HumeCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

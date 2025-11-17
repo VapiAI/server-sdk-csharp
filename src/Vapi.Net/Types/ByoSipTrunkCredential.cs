@@ -11,7 +11,7 @@ public record ByoSipTrunkCredential
     /// This can be used to bring your own SIP trunks or to connect to a Carrier.
     /// </summary>
     [JsonPropertyName("provider")]
-    public string? Provider { get; set; }
+    public ByoSipTrunkCredentialProvider? Provider { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the credential.

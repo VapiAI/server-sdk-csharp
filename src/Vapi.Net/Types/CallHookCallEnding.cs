@@ -11,7 +11,7 @@ public record CallHookCallEnding
     /// This is the event that triggers this hook
     /// </summary>
     [JsonPropertyName("on")]
-    public string On { get; set; } = "call.ending";
+    public required CallHookCallEndingOn On { get; set; }
 
     /// <summary>
     /// This is the set of actions to perform when the hook triggers

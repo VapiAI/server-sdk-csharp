@@ -20,16 +20,16 @@ public record GetChatPaginatedDto
     public string? SquadId { get; set; }
 
     /// <summary>
-    /// This is the unique identifier for the workflow that will be used for the chat.
-    /// </summary>
-    [JsonPropertyName("workflowId")]
-    public string? WorkflowId { get; set; }
-
-    /// <summary>
     /// This is the unique identifier for the session that will be used for the chat.
     /// </summary>
     [JsonPropertyName("sessionId")]
     public string? SessionId { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the previous chat to filter by.
+    /// </summary>
+    [JsonPropertyName("previousChatId")]
+    public string? PreviousChatId { get; set; }
 
     /// <summary>
     /// This is the page number to return. Defaults to 1.

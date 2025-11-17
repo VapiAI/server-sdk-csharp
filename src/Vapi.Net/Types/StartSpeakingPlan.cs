@@ -26,7 +26,10 @@ public record StartSpeakingPlan
     public double? WaitSeconds { get; set; }
 
     [JsonPropertyName("smartEndpointingEnabled")]
-    public OneOf<bool, string>? SmartEndpointingEnabled { get; set; }
+    public OneOf<
+        bool,
+        StartSpeakingPlanSmartEndpointingEnabledOne
+    >? SmartEndpointingEnabled { get; set; }
 
     /// <summary>
     /// This is the plan for smart endpointing. Pick between Vapi smart endpointing, LiveKit, or custom endpointing model (or nothing). We strongly recommend using livekit endpointing when working in English. LiveKit endpointing is not supported in other languages, yet.

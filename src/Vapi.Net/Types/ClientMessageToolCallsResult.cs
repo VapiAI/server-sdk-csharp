@@ -17,7 +17,7 @@ public record ClientMessageToolCallsResult
     /// This is the type of the message. "tool-calls-result" is sent to forward the result of a tool call to the client.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "tool-calls-result";
+    public required ClientMessageToolCallsResultType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

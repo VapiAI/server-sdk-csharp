@@ -96,10 +96,23 @@ public record Artifact
     public object? StructuredOutputs { get; set; }
 
     /// <summary>
+    /// These are the scorecards that have been evaluated based on the structured outputs extracted during the call.
+    /// To enable, set `assistant.artifactPlan.scorecardIds` or `assistant.artifactPlan.scorecards` with the IDs or objects of the scorecards you want to evaluate.
+    /// </summary>
+    [JsonPropertyName("scorecards")]
+    public object? Scorecards { get; set; }
+
+    /// <summary>
     /// These are the transfer records from warm transfers, including destinations, transcripts, and status.
     /// </summary>
     [JsonPropertyName("transfers")]
     public IEnumerable<string>? Transfers { get; set; }
+
+    /// <summary>
+    /// This is when the structured outputs were last updated
+    /// </summary>
+    [JsonPropertyName("structuredOutputsLastUpdatedAt")]
+    public DateTime? StructuredOutputsLastUpdatedAt { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

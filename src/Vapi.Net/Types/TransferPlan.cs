@@ -79,6 +79,19 @@ public record TransferPlan
     public string? TransferCompleteAudioUrl { get; set; }
 
     /// <summary>
+    /// This is the plan for manipulating the message context before initiating the warm transfer.
+    /// Usage:
+    /// - Used only when `mode` is `warm-transfer-experimental`.
+    /// - These messages will automatically be added to the transferAssistant's system message.
+    /// - If 'none', we will not add any transcript to the transferAssistant's system message.
+    /// - If you want to provide your own messages, use transferAssistant.model.messages instead.
+    ///
+    /// @default { type: 'all' }
+    /// </summary>
+    [JsonPropertyName("contextEngineeringPlan")]
+    public object? ContextEngineeringPlan { get; set; }
+
+    /// <summary>
     /// This is the TwiML instructions to execute on the destination call leg before connecting the customer.
     ///
     /// Usage:

@@ -17,7 +17,7 @@ public record ClientMessageChatCreated
     /// This is the type of the message. "chat.created" is sent when a new chat is created.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "chat.created";
+    public required ClientMessageChatCreatedType Type { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.

@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -20,6 +21,18 @@ public record TransferAssistant
     public required TransferAssistantModel Model { get; set; }
 
     /// <summary>
+    /// These are the options for the transfer assistant's voice.
+    /// </summary>
+    [JsonPropertyName("voice")]
+    public object? Voice { get; set; }
+
+    /// <summary>
+    /// These are the options for the transfer assistant's transcriber.
+    /// </summary>
+    [JsonPropertyName("transcriber")]
+    public object? Transcriber { get; set; }
+
+    /// <summary>
     /// This is the first message that the transfer assistant will say.
     /// This can also be a URL to a custom audio file.
     ///
@@ -27,6 +40,13 @@ public record TransferAssistant
     /// </summary>
     [JsonPropertyName("firstMessage")]
     public string? FirstMessage { get; set; }
+
+    /// <summary>
+    /// This is the background sound in the transfer assistant call. Default for phone calls is 'office' and default for web calls is 'off'.
+    /// You can also provide a custom sound by providing a URL to an audio file.
+    /// </summary>
+    [JsonPropertyName("backgroundSound")]
+    public OneOf<TransferAssistantBackgroundSoundZero, string>? BackgroundSound { get; set; }
 
     /// <summary>
     /// This is the mode for the first message. Default is 'assistant-speaks-first'.

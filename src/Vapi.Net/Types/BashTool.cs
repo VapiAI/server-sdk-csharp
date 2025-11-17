@@ -19,7 +19,7 @@ public record BashTool
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public string SubType { get; set; } = "bash_20241022";
+    public required BashToolSubType SubType { get; set; }
 
     /// <summary>
     /// This is the server where a `tool-calls` webhook will be sent.
@@ -145,7 +145,7 @@ public record BashTool
     /// The name of the tool, fixed to 'bash'
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; } = "bash";
+    public required BashToolName Name { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

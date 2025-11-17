@@ -35,7 +35,7 @@ public record ResponseTextDeltaEvent
     /// Event type
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "response.output_text.delta";
+    public required ResponseTextDeltaEventType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

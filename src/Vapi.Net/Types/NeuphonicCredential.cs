@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record NeuphonicCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "neuphonic";
+    public required NeuphonicCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

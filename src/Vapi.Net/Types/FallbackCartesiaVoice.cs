@@ -38,6 +38,18 @@ public record FallbackCartesiaVoice
     public CartesiaExperimentalControls? ExperimentalControls { get; set; }
 
     /// <summary>
+    /// Generation config for fine-grained control of sonic-3 voice output (speed, volume, and experimental controls). Only available for sonic-3 model.
+    /// </summary>
+    [JsonPropertyName("generationConfig")]
+    public CartesiaGenerationConfig? GenerationConfig { get; set; }
+
+    /// <summary>
+    /// Pronunciation dictionary ID for sonic-3. Allows custom pronunciations for specific words. Only available for sonic-3 model.
+    /// </summary>
+    [JsonPropertyName("pronunciationDictId")]
+    public string? PronunciationDictId { get; set; }
+
+    /// <summary>
     /// This is the plan for chunking the model output before it is sent to the voice provider.
     /// </summary>
     [JsonPropertyName("chunkPlan")]

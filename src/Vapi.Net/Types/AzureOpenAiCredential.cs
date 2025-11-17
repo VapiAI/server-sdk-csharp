@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record AzureOpenAiCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "azure-openai";
+    public required AzureOpenAiCredentialProvider Provider { get; set; }
 
     [JsonPropertyName("region")]
     public required AzureOpenAiCredentialRegion Region { get; set; }

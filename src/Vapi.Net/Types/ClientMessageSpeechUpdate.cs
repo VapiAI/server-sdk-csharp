@@ -17,7 +17,7 @@ public record ClientMessageSpeechUpdate
     /// This is the type of the message. "speech-update" is sent whenever assistant or user start or stop speaking.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "speech-update";
+    public required ClientMessageSpeechUpdateType Type { get; set; }
 
     /// <summary>
     /// This is the status of the speech update.

@@ -28,6 +28,12 @@ public record UpdateStructuredOutputDto
     public object? Model { get; set; }
 
     /// <summary>
+    /// Compliance configuration for this output. Only enable overrides if no sensitive data will be stored.
+    /// </summary>
+    [JsonPropertyName("compliancePlan")]
+    public ComplianceOverride? CompliancePlan { get; set; }
+
+    /// <summary>
     /// This is the name of the structured output.
     /// </summary>
     [JsonPropertyName("name")]

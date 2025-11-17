@@ -13,7 +13,7 @@ public record ChatEvalAssistantMessageEvaluation
     /// @default 'assistant'
     /// </summary>
     [JsonPropertyName("role")]
-    public string Role { get; set; } = "assistant";
+    public required ChatEvalAssistantMessageEvaluationRole Role { get; set; }
 
     /// <summary>
     /// This is the judge plan that instructs how to evaluate the assistant message.

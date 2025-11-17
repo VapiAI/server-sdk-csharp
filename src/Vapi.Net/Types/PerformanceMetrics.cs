@@ -44,6 +44,30 @@ public record PerformanceMetrics
     public double? TurnLatencyAverage { get; set; }
 
     /// <summary>
+    /// This is the average latency for packets received from the transport provider in milliseconds.
+    /// </summary>
+    [JsonPropertyName("fromTransportLatencyAverage")]
+    public double? FromTransportLatencyAverage { get; set; }
+
+    /// <summary>
+    /// This is the average latency for packets sent to the transport provider in milliseconds.
+    /// </summary>
+    [JsonPropertyName("toTransportLatencyAverage")]
+    public double? ToTransportLatencyAverage { get; set; }
+
+    /// <summary>
+    /// This is the number of times the user was interrupted by the assistant during the call.
+    /// </summary>
+    [JsonPropertyName("numUserInterrupted")]
+    public double? NumUserInterrupted { get; set; }
+
+    /// <summary>
+    /// This is the number of times the assistant was interrupted by the user during the call.
+    /// </summary>
+    [JsonPropertyName("numAssistantInterrupted")]
+    public double? NumAssistantInterrupted { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>

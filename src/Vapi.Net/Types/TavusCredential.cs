@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record TavusCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "tavus";
+    public required TavusCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

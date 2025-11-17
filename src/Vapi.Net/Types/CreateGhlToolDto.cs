@@ -19,7 +19,7 @@ public record CreateGhlToolDto
     /// The type of tool. "ghl" for GHL tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "ghl";
+    public required CreateGhlToolDtoType Type { get; set; }
 
     [JsonPropertyName("metadata")]
     public required GhlToolMetadata Metadata { get; set; }

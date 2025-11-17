@@ -19,7 +19,7 @@ public record CreateBashToolDto
     /// The sub type of tool.
     /// </summary>
     [JsonPropertyName("subType")]
-    public string SubType { get; set; } = "bash_20241022";
+    public required CreateBashToolDtoSubType SubType { get; set; }
 
     /// <summary>
     /// This is the server where a `tool-calls` webhook will be sent.
@@ -38,7 +38,7 @@ public record CreateBashToolDto
     /// The name of the tool, fixed to 'bash'
     /// </summary>
     [JsonPropertyName("name")]
-    public string Name { get; set; } = "bash";
+    public required CreateBashToolDtoName Name { get; set; }
 
     /// <summary>
     /// This is the plan to reject a tool call based on the conversation state.

@@ -8,7 +8,7 @@ namespace Vapi.Net;
 public record GoHighLevelCredential
 {
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "gohighlevel";
+    public required GoHighLevelCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

@@ -18,7 +18,7 @@ public record FallbackTavusVoice
     /// This is the provider-specific ID that will be used.
     /// </summary>
     [JsonPropertyName("voiceId")]
-    public required OneOf<string, string> VoiceId { get; set; }
+    public required OneOf<FallbackTavusVoiceVoiceIdZero, string> VoiceId { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the persona that the replica will use in the conversation.

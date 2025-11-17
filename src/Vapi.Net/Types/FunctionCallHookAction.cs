@@ -19,7 +19,7 @@ public record FunctionCallHookAction
     /// The type of tool. "function" for Function tool.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "function";
+    public required FunctionCallHookActionType Type { get; set; }
 
     /// <summary>
     /// This determines if the tool is async.

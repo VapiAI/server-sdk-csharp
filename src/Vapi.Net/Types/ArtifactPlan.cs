@@ -147,6 +147,20 @@ public record ArtifactPlan
     public IEnumerable<string>? StructuredOutputIds { get; set; }
 
     /// <summary>
+    /// This is an array of scorecard IDs that will be evaluated based on the structured outputs extracted during the call.
+    /// The scorecards will be evaluated and the results will be stored in `call.artifact.scorecards` after the call has ended.
+    /// </summary>
+    [JsonPropertyName("scorecardIds")]
+    public IEnumerable<string>? ScorecardIds { get; set; }
+
+    /// <summary>
+    /// This is the array of scorecards that will be evaluated based on the structured outputs extracted during the call.
+    /// The scorecards will be evaluated and the results will be stored in `call.artifact.scorecards` after the call has ended.
+    /// </summary>
+    [JsonPropertyName("scorecards")]
+    public IEnumerable<CreateScorecardDto>? Scorecards { get; set; }
+
+    /// <summary>
     /// This is the path where the call logs will be uploaded. This is only used if you have provided S3 or GCP credentials on the Provider Credentials page in the Dashboard.
     ///
     /// If credential.s3PathPrefix or credential.bucketPlan.path is set, this will append to it.

@@ -19,7 +19,7 @@ public record TransferSuccessfulToolUserEditable
     /// The type of tool. "transferSuccessful" for Transfer Successful tool. This tool can only be used during warm-transfer-experimental by the transfer assistant to confirm that the transfer should proceed and finalize the handoff to the destination.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "transferSuccessful";
+    public required TransferSuccessfulToolUserEditableType Type { get; set; }
 
     /// <summary>
     /// This is the plan to reject a tool call based on the conversation state.

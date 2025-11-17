@@ -17,7 +17,7 @@ public record ClientMessageTransferUpdate
     /// This is the type of the message. "transfer-update" is sent whenever a transfer happens.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "transfer-update";
+    public required ClientMessageTransferUpdateType Type { get; set; }
 
     /// <summary>
     /// This is the destination of the transfer.

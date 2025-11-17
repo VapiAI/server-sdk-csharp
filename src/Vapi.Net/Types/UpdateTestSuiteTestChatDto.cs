@@ -17,7 +17,7 @@ public record UpdateTestSuiteTestChatDto
     /// This is the type of the test, which must be chat.
     /// </summary>
     [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    public UpdateTestSuiteTestChatDtoType? Type { get; set; }
 
     /// <summary>
     /// This is the name of the test.

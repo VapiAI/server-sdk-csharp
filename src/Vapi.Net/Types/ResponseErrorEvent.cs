@@ -11,7 +11,7 @@ public record ResponseErrorEvent
     /// Event type
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "error";
+    public required ResponseErrorEventType Type { get; set; }
 
     /// <summary>
     /// Error code

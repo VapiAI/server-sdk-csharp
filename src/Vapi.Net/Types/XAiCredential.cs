@@ -11,7 +11,7 @@ public record XAiCredential
     /// This is the api key for Grok in XAi's console. Get it from here: https://console.x.ai
     /// </summary>
     [JsonPropertyName("provider")]
-    public string Provider { get; set; } = "xai";
+    public required XAiCredentialProvider Provider { get; set; }
 
     /// <summary>
     /// This is not returned in the API.

@@ -33,6 +33,18 @@ public record Session
     public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
+    /// This is the cost of the session in USD.
+    /// </summary>
+    [JsonPropertyName("cost")]
+    public double? Cost { get; set; }
+
+    /// <summary>
+    /// These are the costs of individual components of the session in USD.
+    /// </summary>
+    [JsonPropertyName("costs")]
+    public IEnumerable<object>? Costs { get; set; }
+
+    /// <summary>
     /// This is a user-defined name for the session. Maximum length is 40 characters.
     /// </summary>
     [JsonPropertyName("name")]

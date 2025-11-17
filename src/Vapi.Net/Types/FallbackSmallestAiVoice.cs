@@ -24,7 +24,7 @@ public record FallbackSmallestAiVoice
     /// Smallest AI voice model to use. Defaults to 'lightning' when not specified.
     /// </summary>
     [JsonPropertyName("model")]
-    public string? Model { get; set; }
+    public FallbackSmallestAiVoiceModel? Model { get; set; }
 
     /// <summary>
     /// This is the speed multiplier that will be used.
