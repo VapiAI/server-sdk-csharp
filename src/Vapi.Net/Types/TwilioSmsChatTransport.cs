@@ -8,6 +8,12 @@ namespace Vapi.Net;
 public record TwilioSmsChatTransport
 {
     /// <summary>
+    /// This is the conversation type of the call (ie, voice or chat).
+    /// </summary>
+    [JsonPropertyName("conversationType")]
+    public TwilioSmsChatTransportConversationType? ConversationType { get; set; }
+
+    /// <summary>
     /// This is the phone number that will be used to send the SMS.
     /// If provided, will create a new session. If not provided, uses existing session's phoneNumberId.
     /// The phone number must have SMS enabled and belong to your organization.

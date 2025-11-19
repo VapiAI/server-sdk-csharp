@@ -53,6 +53,16 @@ public record TransferPlan
     public object? SipVerb { get; set; }
 
     /// <summary>
+    /// This sets the timeout for the dial operation in seconds. This is the duration the call will ring before timing out.
+    ///
+    /// Only applicable when `sipVerb='dial'`. Not applicable for SIP REFER or BYE.
+    ///
+    /// @default 60
+    /// </summary>
+    [JsonPropertyName("dialTimeout")]
+    public double? DialTimeout { get; set; }
+
+    /// <summary>
     /// This is the URL to an audio file played while the customer is on hold during transfer.
     ///
     /// Usage:
