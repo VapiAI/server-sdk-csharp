@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record OpenAiModel
+public record OpenAiModel : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the starting state for the conversation.
     /// </summary>
@@ -64,6 +68,29 @@ public record OpenAiModel
     public OpenAiModelToolStrictCompatibilityMode? ToolStrictCompatibilityMode { get; set; }
 
     /// <summary>
+    /// This controls the prompt cache retention policy for models that support extended caching (GPT-4.1, GPT-5 series).
+    ///
+    /// - `in_memory`: Default behavior, cache retained in GPU memory only
+    /// - `24h`: Extended caching, keeps cached prefixes active for up to 24 hours by offloading to GPU-local storage
+    ///
+    /// Only applies to models: gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
+    ///
+    /// @default undefined (uses API default which is 'in_memory')
+    /// </summary>
+    [JsonPropertyName("promptCacheRetention")]
+    public OpenAiModelPromptCacheRetention? PromptCacheRetention { get; set; }
+
+    /// <summary>
+    /// This is the prompt cache key for models that support extended caching (GPT-4.1, GPT-5 series).
+    ///
+    /// Providing a cache key allows you to share cached prefixes across requests.
+    ///
+    /// @default undefined
+    /// </summary>
+    [JsonPropertyName("promptCacheKey")]
+    public string? PromptCacheKey { get; set; }
+
+    /// <summary>
     /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
     /// </summary>
     [JsonPropertyName("temperature")]
@@ -95,15 +122,11 @@ public record OpenAiModel
     [JsonPropertyName("numFastTurns")]
     public double? NumFastTurns { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

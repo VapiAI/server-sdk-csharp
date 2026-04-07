@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record SpeechmaticsTranscriber
+public record SpeechmaticsTranscriber : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the model that will be used for the transcription.
     /// </summary>
@@ -41,28 +45,6 @@ public record SpeechmaticsTranscriber
     public bool? EnableDiarization { get; set; }
 
     /// <summary>
-    /// This sets the maximum number of speakers to detect when diarization is enabled. Only used when enableDiarization is true.
-    ///
-    /// @default 2
-    /// </summary>
-    [JsonPropertyName("maxSpeakers")]
-    public double? MaxSpeakers { get; set; }
-
-    /// <summary>
-    /// Provides friendly speaker labels that map to diarization indices (Speaker 1 -&gt; labels[0]).
-    /// </summary>
-    [JsonPropertyName("speakerLabels")]
-    public IEnumerable<string>? SpeakerLabels { get; set; }
-
-    /// <summary>
-    /// This enables partial transcripts during speech recognition. When false, only final transcripts are returned.
-    ///
-    /// @default true
-    /// </summary>
-    [JsonPropertyName("enablePartials")]
-    public bool? EnablePartials { get; set; }
-
-    /// <summary>
     /// This sets the maximum delay in milliseconds for partial transcripts. Balances latency and accuracy.
     ///
     /// @default 3000
@@ -75,36 +57,12 @@ public record SpeechmaticsTranscriber
         new List<SpeechmaticsCustomVocabularyItem>();
 
     /// <summary>
-    /// This controls how numbers are formatted in the transcription output.
+    /// This controls how numbers, dates, currencies, and other entities are formatted in the transcription output.
     ///
     /// @default 'written'
     /// </summary>
     [JsonPropertyName("numeralStyle")]
     public SpeechmaticsTranscriberNumeralStyle? NumeralStyle { get; set; }
-
-    /// <summary>
-    /// This enables detection of non-speech audio events like music, applause, and laughter.
-    ///
-    /// @default false
-    /// </summary>
-    [JsonPropertyName("enableEntities")]
-    public bool? EnableEntities { get; set; }
-
-    /// <summary>
-    /// This enables automatic punctuation in the transcription output.
-    ///
-    /// @default true
-    /// </summary>
-    [JsonPropertyName("enablePunctuation")]
-    public bool? EnablePunctuation { get; set; }
-
-    /// <summary>
-    /// This enables automatic capitalization in the transcription output.
-    ///
-    /// @default true
-    /// </summary>
-    [JsonPropertyName("enableCapitalization")]
-    public bool? EnableCapitalization { get; set; }
 
     /// <summary>
     /// This is the sensitivity level for end-of-turn detection, which determines when a speaker has finished talking. Higher values are more sensitive.
@@ -116,6 +74,8 @@ public record SpeechmaticsTranscriber
 
     /// <summary>
     /// This enables removal of disfluencies (um, uh) from the transcript to create cleaner, more professional output.
+    ///
+    /// This is only supported for the English language transcriber.
     ///
     /// @default false
     /// </summary>
@@ -131,20 +91,16 @@ public record SpeechmaticsTranscriber
     public double? MinimumSpeechDuration { get; set; }
 
     /// <summary>
-    /// This is the plan for voice provider fallbacks in the event that the primary voice provider fails.
+    /// This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails.
     /// </summary>
     [JsonPropertyName("fallbackPlan")]
     public FallbackTranscriberPlan? FallbackPlan { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

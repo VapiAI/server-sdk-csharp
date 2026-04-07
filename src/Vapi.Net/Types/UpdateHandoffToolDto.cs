@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record UpdateHandoffToolDto
+public record UpdateHandoffToolDto : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// These are the messages that will be spoken to the user as the tool is running.
     ///
@@ -14,6 +18,12 @@ public record UpdateHandoffToolDto
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
+
+    /// <summary>
+    /// This is the default local tool result message used when no runtime handoff result override is returned.
+    /// </summary>
+    [JsonPropertyName("defaultResult")]
+    public string? DefaultResult { get; set; }
 
     /// <summary>
     /// These are the destinations that the call can be handed off to.
@@ -374,15 +384,11 @@ public record UpdateHandoffToolDto
     [JsonPropertyName("function")]
     public OpenAiFunction? Function { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record FunctionToolWithToolCall
+public record FunctionToolWithToolCall : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// These are the messages that will be spoken to the user as the tool is running.
     ///
@@ -39,6 +43,18 @@ public record FunctionToolWithToolCall
     /// </summary>
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
+
+    /// <summary>
+    /// Plan to extract variables from the tool response
+    /// </summary>
+    [JsonPropertyName("variableExtractionPlan")]
+    public VariableExtractionPlan? VariableExtractionPlan { get; set; }
+
+    /// <summary>
+    /// Static key-value pairs merged into the request body. Values support Liquid templates.
+    /// </summary>
+    [JsonPropertyName("parameters")]
+    public IEnumerable<ToolParameter>? Parameters { get; set; }
 
     [JsonPropertyName("toolCall")]
     public required ToolCall ToolCall { get; set; }
@@ -132,15 +148,11 @@ public record FunctionToolWithToolCall
     [JsonPropertyName("rejectionPlan")]
     public ToolRejectionPlan? RejectionPlan { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

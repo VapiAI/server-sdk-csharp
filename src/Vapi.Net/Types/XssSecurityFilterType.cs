@@ -1,12 +1,73 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<XssSecurityFilterType>))]
+[JsonConverter(typeof(XssSecurityFilterTypeSerializer))]
 public enum XssSecurityFilterType
 {
     [EnumMember(Value = "xss")]
     Xss,
+}
+
+internal class XssSecurityFilterTypeSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<XssSecurityFilterType>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        XssSecurityFilterType
+    > _stringToEnum = new() { { "xss", XssSecurityFilterType.Xss } };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        XssSecurityFilterType,
+        string
+    > _enumToString = new() { { XssSecurityFilterType.Xss, "xss" } };
+
+    public override XssSecurityFilterType Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        XssSecurityFilterType value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override XssSecurityFilterType ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        XssSecurityFilterType value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

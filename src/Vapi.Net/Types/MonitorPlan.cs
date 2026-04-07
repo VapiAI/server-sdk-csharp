@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record MonitorPlan
+public record MonitorPlan : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This determines whether the assistant's calls allow live listening. Defaults to true.
     ///
@@ -50,14 +54,20 @@ public record MonitorPlan
     public bool? ControlAuthenticationEnabled { get; set; }
 
     /// <summary>
-    /// Additional properties received from the response, if any.
+    /// This the set of monitor ids that are attached to the assistant.
+    /// The source of truth for the monitor ids is the assistant_monitor join table.
+    /// This field can be used for transient assistants and to update assistants with new monitor ids.
+    ///
+    /// @default []
     /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonPropertyName("monitorIds")]
+    public IEnumerable<string>? MonitorIds { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

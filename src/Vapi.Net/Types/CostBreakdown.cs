@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record CostBreakdown
+public record CostBreakdown : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the cost of the transport provider, like Twilio or Vonage.
     /// </summary>
@@ -62,6 +66,12 @@ public record CostBreakdown
     public double? LlmCompletionTokens { get; set; }
 
     /// <summary>
+    /// This is the LLM cached prompt tokens used for the call.
+    /// </summary>
+    [JsonPropertyName("llmCachedPromptTokens")]
+    public double? LlmCachedPromptTokens { get; set; }
+
+    /// <summary>
     /// This is the TTS characters used for the call.
     /// </summary>
     [JsonPropertyName("ttsCharacters")]
@@ -73,15 +83,11 @@ public record CostBreakdown
     [JsonPropertyName("analysisCostBreakdown")]
     public AnalysisCostBreakdown? AnalysisCostBreakdown { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

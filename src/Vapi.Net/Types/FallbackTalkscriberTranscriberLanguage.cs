@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<FallbackTalkscriberTranscriberLanguage>))]
+[JsonConverter(typeof(FallbackTalkscriberTranscriberLanguageSerializer))]
 public enum FallbackTalkscriberTranscriberLanguage
 {
     [EnumMember(Value = "en")]
@@ -306,4 +305,270 @@ public enum FallbackTalkscriberTranscriberLanguage
 
     [EnumMember(Value = "yue")]
     Yue,
+}
+
+internal class FallbackTalkscriberTranscriberLanguageSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<FallbackTalkscriberTranscriberLanguage>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        FallbackTalkscriberTranscriberLanguage
+    > _stringToEnum = new()
+    {
+        { "en", FallbackTalkscriberTranscriberLanguage.En },
+        { "zh", FallbackTalkscriberTranscriberLanguage.Zh },
+        { "de", FallbackTalkscriberTranscriberLanguage.De },
+        { "es", FallbackTalkscriberTranscriberLanguage.Es },
+        { "ru", FallbackTalkscriberTranscriberLanguage.Ru },
+        { "ko", FallbackTalkscriberTranscriberLanguage.Ko },
+        { "fr", FallbackTalkscriberTranscriberLanguage.Fr },
+        { "ja", FallbackTalkscriberTranscriberLanguage.Ja },
+        { "pt", FallbackTalkscriberTranscriberLanguage.Pt },
+        { "tr", FallbackTalkscriberTranscriberLanguage.Tr },
+        { "pl", FallbackTalkscriberTranscriberLanguage.Pl },
+        { "ca", FallbackTalkscriberTranscriberLanguage.Ca },
+        { "nl", FallbackTalkscriberTranscriberLanguage.Nl },
+        { "ar", FallbackTalkscriberTranscriberLanguage.Ar },
+        { "sv", FallbackTalkscriberTranscriberLanguage.Sv },
+        { "it", FallbackTalkscriberTranscriberLanguage.It },
+        { "id", FallbackTalkscriberTranscriberLanguage.Id },
+        { "hi", FallbackTalkscriberTranscriberLanguage.Hi },
+        { "fi", FallbackTalkscriberTranscriberLanguage.Fi },
+        { "vi", FallbackTalkscriberTranscriberLanguage.Vi },
+        { "he", FallbackTalkscriberTranscriberLanguage.He },
+        { "uk", FallbackTalkscriberTranscriberLanguage.Uk },
+        { "el", FallbackTalkscriberTranscriberLanguage.El },
+        { "ms", FallbackTalkscriberTranscriberLanguage.Ms },
+        { "cs", FallbackTalkscriberTranscriberLanguage.Cs },
+        { "ro", FallbackTalkscriberTranscriberLanguage.Ro },
+        { "da", FallbackTalkscriberTranscriberLanguage.Da },
+        { "hu", FallbackTalkscriberTranscriberLanguage.Hu },
+        { "ta", FallbackTalkscriberTranscriberLanguage.Ta },
+        { "no", FallbackTalkscriberTranscriberLanguage.No },
+        { "th", FallbackTalkscriberTranscriberLanguage.Th },
+        { "ur", FallbackTalkscriberTranscriberLanguage.Ur },
+        { "hr", FallbackTalkscriberTranscriberLanguage.Hr },
+        { "bg", FallbackTalkscriberTranscriberLanguage.Bg },
+        { "lt", FallbackTalkscriberTranscriberLanguage.Lt },
+        { "la", FallbackTalkscriberTranscriberLanguage.La },
+        { "mi", FallbackTalkscriberTranscriberLanguage.Mi },
+        { "ml", FallbackTalkscriberTranscriberLanguage.Ml },
+        { "cy", FallbackTalkscriberTranscriberLanguage.Cy },
+        { "sk", FallbackTalkscriberTranscriberLanguage.Sk },
+        { "te", FallbackTalkscriberTranscriberLanguage.Te },
+        { "fa", FallbackTalkscriberTranscriberLanguage.Fa },
+        { "lv", FallbackTalkscriberTranscriberLanguage.Lv },
+        { "bn", FallbackTalkscriberTranscriberLanguage.Bn },
+        { "sr", FallbackTalkscriberTranscriberLanguage.Sr },
+        { "az", FallbackTalkscriberTranscriberLanguage.Az },
+        { "sl", FallbackTalkscriberTranscriberLanguage.Sl },
+        { "kn", FallbackTalkscriberTranscriberLanguage.Kn },
+        { "et", FallbackTalkscriberTranscriberLanguage.Et },
+        { "mk", FallbackTalkscriberTranscriberLanguage.Mk },
+        { "br", FallbackTalkscriberTranscriberLanguage.Br },
+        { "eu", FallbackTalkscriberTranscriberLanguage.Eu },
+        { "is", FallbackTalkscriberTranscriberLanguage.Is },
+        { "hy", FallbackTalkscriberTranscriberLanguage.Hy },
+        { "ne", FallbackTalkscriberTranscriberLanguage.Ne },
+        { "mn", FallbackTalkscriberTranscriberLanguage.Mn },
+        { "bs", FallbackTalkscriberTranscriberLanguage.Bs },
+        { "kk", FallbackTalkscriberTranscriberLanguage.Kk },
+        { "sq", FallbackTalkscriberTranscriberLanguage.Sq },
+        { "sw", FallbackTalkscriberTranscriberLanguage.Sw },
+        { "gl", FallbackTalkscriberTranscriberLanguage.Gl },
+        { "mr", FallbackTalkscriberTranscriberLanguage.Mr },
+        { "pa", FallbackTalkscriberTranscriberLanguage.Pa },
+        { "si", FallbackTalkscriberTranscriberLanguage.Si },
+        { "km", FallbackTalkscriberTranscriberLanguage.Km },
+        { "sn", FallbackTalkscriberTranscriberLanguage.Sn },
+        { "yo", FallbackTalkscriberTranscriberLanguage.Yo },
+        { "so", FallbackTalkscriberTranscriberLanguage.So },
+        { "af", FallbackTalkscriberTranscriberLanguage.Af },
+        { "oc", FallbackTalkscriberTranscriberLanguage.Oc },
+        { "ka", FallbackTalkscriberTranscriberLanguage.Ka },
+        { "be", FallbackTalkscriberTranscriberLanguage.Be },
+        { "tg", FallbackTalkscriberTranscriberLanguage.Tg },
+        { "sd", FallbackTalkscriberTranscriberLanguage.Sd },
+        { "gu", FallbackTalkscriberTranscriberLanguage.Gu },
+        { "am", FallbackTalkscriberTranscriberLanguage.Am },
+        { "yi", FallbackTalkscriberTranscriberLanguage.Yi },
+        { "lo", FallbackTalkscriberTranscriberLanguage.Lo },
+        { "uz", FallbackTalkscriberTranscriberLanguage.Uz },
+        { "fo", FallbackTalkscriberTranscriberLanguage.Fo },
+        { "ht", FallbackTalkscriberTranscriberLanguage.Ht },
+        { "ps", FallbackTalkscriberTranscriberLanguage.Ps },
+        { "tk", FallbackTalkscriberTranscriberLanguage.Tk },
+        { "nn", FallbackTalkscriberTranscriberLanguage.Nn },
+        { "mt", FallbackTalkscriberTranscriberLanguage.Mt },
+        { "sa", FallbackTalkscriberTranscriberLanguage.Sa },
+        { "lb", FallbackTalkscriberTranscriberLanguage.Lb },
+        { "my", FallbackTalkscriberTranscriberLanguage.My },
+        { "bo", FallbackTalkscriberTranscriberLanguage.Bo },
+        { "tl", FallbackTalkscriberTranscriberLanguage.Tl },
+        { "mg", FallbackTalkscriberTranscriberLanguage.Mg },
+        { "as", FallbackTalkscriberTranscriberLanguage.As },
+        { "tt", FallbackTalkscriberTranscriberLanguage.Tt },
+        { "haw", FallbackTalkscriberTranscriberLanguage.Haw },
+        { "ln", FallbackTalkscriberTranscriberLanguage.Ln },
+        { "ha", FallbackTalkscriberTranscriberLanguage.Ha },
+        { "ba", FallbackTalkscriberTranscriberLanguage.Ba },
+        { "jw", FallbackTalkscriberTranscriberLanguage.Jw },
+        { "su", FallbackTalkscriberTranscriberLanguage.Su },
+        { "yue", FallbackTalkscriberTranscriberLanguage.Yue },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        FallbackTalkscriberTranscriberLanguage,
+        string
+    > _enumToString = new()
+    {
+        { FallbackTalkscriberTranscriberLanguage.En, "en" },
+        { FallbackTalkscriberTranscriberLanguage.Zh, "zh" },
+        { FallbackTalkscriberTranscriberLanguage.De, "de" },
+        { FallbackTalkscriberTranscriberLanguage.Es, "es" },
+        { FallbackTalkscriberTranscriberLanguage.Ru, "ru" },
+        { FallbackTalkscriberTranscriberLanguage.Ko, "ko" },
+        { FallbackTalkscriberTranscriberLanguage.Fr, "fr" },
+        { FallbackTalkscriberTranscriberLanguage.Ja, "ja" },
+        { FallbackTalkscriberTranscriberLanguage.Pt, "pt" },
+        { FallbackTalkscriberTranscriberLanguage.Tr, "tr" },
+        { FallbackTalkscriberTranscriberLanguage.Pl, "pl" },
+        { FallbackTalkscriberTranscriberLanguage.Ca, "ca" },
+        { FallbackTalkscriberTranscriberLanguage.Nl, "nl" },
+        { FallbackTalkscriberTranscriberLanguage.Ar, "ar" },
+        { FallbackTalkscriberTranscriberLanguage.Sv, "sv" },
+        { FallbackTalkscriberTranscriberLanguage.It, "it" },
+        { FallbackTalkscriberTranscriberLanguage.Id, "id" },
+        { FallbackTalkscriberTranscriberLanguage.Hi, "hi" },
+        { FallbackTalkscriberTranscriberLanguage.Fi, "fi" },
+        { FallbackTalkscriberTranscriberLanguage.Vi, "vi" },
+        { FallbackTalkscriberTranscriberLanguage.He, "he" },
+        { FallbackTalkscriberTranscriberLanguage.Uk, "uk" },
+        { FallbackTalkscriberTranscriberLanguage.El, "el" },
+        { FallbackTalkscriberTranscriberLanguage.Ms, "ms" },
+        { FallbackTalkscriberTranscriberLanguage.Cs, "cs" },
+        { FallbackTalkscriberTranscriberLanguage.Ro, "ro" },
+        { FallbackTalkscriberTranscriberLanguage.Da, "da" },
+        { FallbackTalkscriberTranscriberLanguage.Hu, "hu" },
+        { FallbackTalkscriberTranscriberLanguage.Ta, "ta" },
+        { FallbackTalkscriberTranscriberLanguage.No, "no" },
+        { FallbackTalkscriberTranscriberLanguage.Th, "th" },
+        { FallbackTalkscriberTranscriberLanguage.Ur, "ur" },
+        { FallbackTalkscriberTranscriberLanguage.Hr, "hr" },
+        { FallbackTalkscriberTranscriberLanguage.Bg, "bg" },
+        { FallbackTalkscriberTranscriberLanguage.Lt, "lt" },
+        { FallbackTalkscriberTranscriberLanguage.La, "la" },
+        { FallbackTalkscriberTranscriberLanguage.Mi, "mi" },
+        { FallbackTalkscriberTranscriberLanguage.Ml, "ml" },
+        { FallbackTalkscriberTranscriberLanguage.Cy, "cy" },
+        { FallbackTalkscriberTranscriberLanguage.Sk, "sk" },
+        { FallbackTalkscriberTranscriberLanguage.Te, "te" },
+        { FallbackTalkscriberTranscriberLanguage.Fa, "fa" },
+        { FallbackTalkscriberTranscriberLanguage.Lv, "lv" },
+        { FallbackTalkscriberTranscriberLanguage.Bn, "bn" },
+        { FallbackTalkscriberTranscriberLanguage.Sr, "sr" },
+        { FallbackTalkscriberTranscriberLanguage.Az, "az" },
+        { FallbackTalkscriberTranscriberLanguage.Sl, "sl" },
+        { FallbackTalkscriberTranscriberLanguage.Kn, "kn" },
+        { FallbackTalkscriberTranscriberLanguage.Et, "et" },
+        { FallbackTalkscriberTranscriberLanguage.Mk, "mk" },
+        { FallbackTalkscriberTranscriberLanguage.Br, "br" },
+        { FallbackTalkscriberTranscriberLanguage.Eu, "eu" },
+        { FallbackTalkscriberTranscriberLanguage.Is, "is" },
+        { FallbackTalkscriberTranscriberLanguage.Hy, "hy" },
+        { FallbackTalkscriberTranscriberLanguage.Ne, "ne" },
+        { FallbackTalkscriberTranscriberLanguage.Mn, "mn" },
+        { FallbackTalkscriberTranscriberLanguage.Bs, "bs" },
+        { FallbackTalkscriberTranscriberLanguage.Kk, "kk" },
+        { FallbackTalkscriberTranscriberLanguage.Sq, "sq" },
+        { FallbackTalkscriberTranscriberLanguage.Sw, "sw" },
+        { FallbackTalkscriberTranscriberLanguage.Gl, "gl" },
+        { FallbackTalkscriberTranscriberLanguage.Mr, "mr" },
+        { FallbackTalkscriberTranscriberLanguage.Pa, "pa" },
+        { FallbackTalkscriberTranscriberLanguage.Si, "si" },
+        { FallbackTalkscriberTranscriberLanguage.Km, "km" },
+        { FallbackTalkscriberTranscriberLanguage.Sn, "sn" },
+        { FallbackTalkscriberTranscriberLanguage.Yo, "yo" },
+        { FallbackTalkscriberTranscriberLanguage.So, "so" },
+        { FallbackTalkscriberTranscriberLanguage.Af, "af" },
+        { FallbackTalkscriberTranscriberLanguage.Oc, "oc" },
+        { FallbackTalkscriberTranscriberLanguage.Ka, "ka" },
+        { FallbackTalkscriberTranscriberLanguage.Be, "be" },
+        { FallbackTalkscriberTranscriberLanguage.Tg, "tg" },
+        { FallbackTalkscriberTranscriberLanguage.Sd, "sd" },
+        { FallbackTalkscriberTranscriberLanguage.Gu, "gu" },
+        { FallbackTalkscriberTranscriberLanguage.Am, "am" },
+        { FallbackTalkscriberTranscriberLanguage.Yi, "yi" },
+        { FallbackTalkscriberTranscriberLanguage.Lo, "lo" },
+        { FallbackTalkscriberTranscriberLanguage.Uz, "uz" },
+        { FallbackTalkscriberTranscriberLanguage.Fo, "fo" },
+        { FallbackTalkscriberTranscriberLanguage.Ht, "ht" },
+        { FallbackTalkscriberTranscriberLanguage.Ps, "ps" },
+        { FallbackTalkscriberTranscriberLanguage.Tk, "tk" },
+        { FallbackTalkscriberTranscriberLanguage.Nn, "nn" },
+        { FallbackTalkscriberTranscriberLanguage.Mt, "mt" },
+        { FallbackTalkscriberTranscriberLanguage.Sa, "sa" },
+        { FallbackTalkscriberTranscriberLanguage.Lb, "lb" },
+        { FallbackTalkscriberTranscriberLanguage.My, "my" },
+        { FallbackTalkscriberTranscriberLanguage.Bo, "bo" },
+        { FallbackTalkscriberTranscriberLanguage.Tl, "tl" },
+        { FallbackTalkscriberTranscriberLanguage.Mg, "mg" },
+        { FallbackTalkscriberTranscriberLanguage.As, "as" },
+        { FallbackTalkscriberTranscriberLanguage.Tt, "tt" },
+        { FallbackTalkscriberTranscriberLanguage.Haw, "haw" },
+        { FallbackTalkscriberTranscriberLanguage.Ln, "ln" },
+        { FallbackTalkscriberTranscriberLanguage.Ha, "ha" },
+        { FallbackTalkscriberTranscriberLanguage.Ba, "ba" },
+        { FallbackTalkscriberTranscriberLanguage.Jw, "jw" },
+        { FallbackTalkscriberTranscriberLanguage.Su, "su" },
+        { FallbackTalkscriberTranscriberLanguage.Yue, "yue" },
+    };
+
+    public override FallbackTalkscriberTranscriberLanguage Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackTalkscriberTranscriberLanguage value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override FallbackTalkscriberTranscriberLanguage ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackTalkscriberTranscriberLanguage value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

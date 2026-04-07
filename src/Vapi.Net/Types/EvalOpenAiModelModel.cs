@@ -1,12 +1,26 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<EvalOpenAiModelModel>))]
+[JsonConverter(typeof(EvalOpenAiModelModelSerializer))]
 public enum EvalOpenAiModelModel
 {
+    [EnumMember(Value = "gpt-5.4")]
+    Gpt54,
+
+    [EnumMember(Value = "gpt-5.4-mini")]
+    Gpt54Mini,
+
+    [EnumMember(Value = "gpt-5.4-nano")]
+    Gpt54Nano,
+
+    [EnumMember(Value = "gpt-5.2")]
+    Gpt52,
+
+    [EnumMember(Value = "gpt-5.2-chat-latest")]
+    Gpt52ChatLatest,
+
     [EnumMember(Value = "gpt-5.1")]
     Gpt51,
 
@@ -15,6 +29,9 @@ public enum EvalOpenAiModelModel
 
     [EnumMember(Value = "gpt-5")]
     Gpt5,
+
+    [EnumMember(Value = "gpt-5-chat-latest")]
+    Gpt5ChatLatest,
 
     [EnumMember(Value = "gpt-5-mini")]
     Gpt5Mini,
@@ -130,6 +147,18 @@ public enum EvalOpenAiModelModel
     [EnumMember(Value = "gpt-4.1-2025-04-14:southcentralus")]
     Gpt4120250414Southcentralus,
 
+    [EnumMember(Value = "gpt-4.1-2025-04-14:westeurope")]
+    Gpt4120250414Westeurope,
+
+    [EnumMember(Value = "gpt-4.1-2025-04-14:germanywestcentral")]
+    Gpt4120250414Germanywestcentral,
+
+    [EnumMember(Value = "gpt-4.1-2025-04-14:polandcentral")]
+    Gpt4120250414Polandcentral,
+
+    [EnumMember(Value = "gpt-4.1-2025-04-14:spaincentral")]
+    Gpt4120250414Spaincentral,
+
     [EnumMember(Value = "gpt-4.1-mini-2025-04-14:westus")]
     Gpt41Mini20250414Westus,
 
@@ -147,6 +176,18 @@ public enum EvalOpenAiModelModel
 
     [EnumMember(Value = "gpt-4.1-mini-2025-04-14:southcentralus")]
     Gpt41Mini20250414Southcentralus,
+
+    [EnumMember(Value = "gpt-4.1-mini-2025-04-14:westeurope")]
+    Gpt41Mini20250414Westeurope,
+
+    [EnumMember(Value = "gpt-4.1-mini-2025-04-14:germanywestcentral")]
+    Gpt41Mini20250414Germanywestcentral,
+
+    [EnumMember(Value = "gpt-4.1-mini-2025-04-14:polandcentral")]
+    Gpt41Mini20250414Polandcentral,
+
+    [EnumMember(Value = "gpt-4.1-mini-2025-04-14:spaincentral")]
+    Gpt41Mini20250414Spaincentral,
 
     [EnumMember(Value = "gpt-4.1-nano-2025-04-14:westus")]
     Gpt41Nano20250414Westus,
@@ -180,6 +221,18 @@ public enum EvalOpenAiModelModel
 
     [EnumMember(Value = "gpt-4o-2024-11-20:southcentralus")]
     Gpt4O20241120Southcentralus,
+
+    [EnumMember(Value = "gpt-4o-2024-11-20:westeurope")]
+    Gpt4O20241120Westeurope,
+
+    [EnumMember(Value = "gpt-4o-2024-11-20:germanywestcentral")]
+    Gpt4O20241120Germanywestcentral,
+
+    [EnumMember(Value = "gpt-4o-2024-11-20:polandcentral")]
+    Gpt4O20241120Polandcentral,
+
+    [EnumMember(Value = "gpt-4o-2024-11-20:spaincentral")]
+    Gpt4O20241120Spaincentral,
 
     [EnumMember(Value = "gpt-4o-2024-08-06:westus")]
     Gpt4O20240806Westus,
@@ -247,8 +300,8 @@ public enum EvalOpenAiModelModel
     [EnumMember(Value = "gpt-4-0125-preview:southcentralus")]
     Gpt40125PreviewSouthcentralus,
 
-    [EnumMember(Value = "gpt-4-1106-preview:australia")]
-    Gpt41106PreviewAustralia,
+    [EnumMember(Value = "gpt-4-1106-preview:australiaeast")]
+    Gpt41106PreviewAustraliaeast,
 
     [EnumMember(Value = "gpt-4-1106-preview:canadaeast")]
     Gpt41106PreviewCanadaeast,
@@ -291,4 +344,362 @@ public enum EvalOpenAiModelModel
 
     [EnumMember(Value = "gpt-3.5-turbo-1106:westus")]
     Gpt35Turbo1106Westus,
+}
+
+internal class EvalOpenAiModelModelSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<EvalOpenAiModelModel>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        EvalOpenAiModelModel
+    > _stringToEnum = new()
+    {
+        { "gpt-5.4", EvalOpenAiModelModel.Gpt54 },
+        { "gpt-5.4-mini", EvalOpenAiModelModel.Gpt54Mini },
+        { "gpt-5.4-nano", EvalOpenAiModelModel.Gpt54Nano },
+        { "gpt-5.2", EvalOpenAiModelModel.Gpt52 },
+        { "gpt-5.2-chat-latest", EvalOpenAiModelModel.Gpt52ChatLatest },
+        { "gpt-5.1", EvalOpenAiModelModel.Gpt51 },
+        { "gpt-5.1-chat-latest", EvalOpenAiModelModel.Gpt51ChatLatest },
+        { "gpt-5", EvalOpenAiModelModel.Gpt5 },
+        { "gpt-5-chat-latest", EvalOpenAiModelModel.Gpt5ChatLatest },
+        { "gpt-5-mini", EvalOpenAiModelModel.Gpt5Mini },
+        { "gpt-5-nano", EvalOpenAiModelModel.Gpt5Nano },
+        { "gpt-4.1-2025-04-14", EvalOpenAiModelModel.Gpt4120250414 },
+        { "gpt-4.1-mini-2025-04-14", EvalOpenAiModelModel.Gpt41Mini20250414 },
+        { "gpt-4.1-nano-2025-04-14", EvalOpenAiModelModel.Gpt41Nano20250414 },
+        { "gpt-4.1", EvalOpenAiModelModel.Gpt41 },
+        { "gpt-4.1-mini", EvalOpenAiModelModel.Gpt41Mini },
+        { "gpt-4.1-nano", EvalOpenAiModelModel.Gpt41Nano },
+        { "chatgpt-4o-latest", EvalOpenAiModelModel.Chatgpt4OLatest },
+        { "o3", EvalOpenAiModelModel.O3 },
+        { "o3-mini", EvalOpenAiModelModel.O3Mini },
+        { "o4-mini", EvalOpenAiModelModel.O4Mini },
+        { "o1-mini", EvalOpenAiModelModel.O1Mini },
+        { "o1-mini-2024-09-12", EvalOpenAiModelModel.O1Mini20240912 },
+        { "gpt-4o-mini-2024-07-18", EvalOpenAiModelModel.Gpt4OMini20240718 },
+        { "gpt-4o-mini", EvalOpenAiModelModel.Gpt4OMini },
+        { "gpt-4o", EvalOpenAiModelModel.Gpt4O },
+        { "gpt-4o-2024-05-13", EvalOpenAiModelModel.Gpt4O20240513 },
+        { "gpt-4o-2024-08-06", EvalOpenAiModelModel.Gpt4O20240806 },
+        { "gpt-4o-2024-11-20", EvalOpenAiModelModel.Gpt4O20241120 },
+        { "gpt-4-turbo", EvalOpenAiModelModel.Gpt4Turbo },
+        { "gpt-4-turbo-2024-04-09", EvalOpenAiModelModel.Gpt4Turbo20240409 },
+        { "gpt-4-turbo-preview", EvalOpenAiModelModel.Gpt4TurboPreview },
+        { "gpt-4-0125-preview", EvalOpenAiModelModel.Gpt40125Preview },
+        { "gpt-4-1106-preview", EvalOpenAiModelModel.Gpt41106Preview },
+        { "gpt-4", EvalOpenAiModelModel.Gpt4 },
+        { "gpt-4-0613", EvalOpenAiModelModel.Gpt40613 },
+        { "gpt-3.5-turbo", EvalOpenAiModelModel.Gpt35Turbo },
+        { "gpt-3.5-turbo-0125", EvalOpenAiModelModel.Gpt35Turbo0125 },
+        { "gpt-3.5-turbo-1106", EvalOpenAiModelModel.Gpt35Turbo1106 },
+        { "gpt-3.5-turbo-16k", EvalOpenAiModelModel.Gpt35Turbo16K },
+        { "gpt-3.5-turbo-0613", EvalOpenAiModelModel.Gpt35Turbo0613 },
+        { "gpt-4.1-2025-04-14:westus", EvalOpenAiModelModel.Gpt4120250414Westus },
+        { "gpt-4.1-2025-04-14:eastus2", EvalOpenAiModelModel.Gpt4120250414Eastus2 },
+        { "gpt-4.1-2025-04-14:eastus", EvalOpenAiModelModel.Gpt4120250414Eastus },
+        { "gpt-4.1-2025-04-14:westus3", EvalOpenAiModelModel.Gpt4120250414Westus3 },
+        { "gpt-4.1-2025-04-14:northcentralus", EvalOpenAiModelModel.Gpt4120250414Northcentralus },
+        { "gpt-4.1-2025-04-14:southcentralus", EvalOpenAiModelModel.Gpt4120250414Southcentralus },
+        { "gpt-4.1-2025-04-14:westeurope", EvalOpenAiModelModel.Gpt4120250414Westeurope },
+        {
+            "gpt-4.1-2025-04-14:germanywestcentral",
+            EvalOpenAiModelModel.Gpt4120250414Germanywestcentral
+        },
+        { "gpt-4.1-2025-04-14:polandcentral", EvalOpenAiModelModel.Gpt4120250414Polandcentral },
+        { "gpt-4.1-2025-04-14:spaincentral", EvalOpenAiModelModel.Gpt4120250414Spaincentral },
+        { "gpt-4.1-mini-2025-04-14:westus", EvalOpenAiModelModel.Gpt41Mini20250414Westus },
+        { "gpt-4.1-mini-2025-04-14:eastus2", EvalOpenAiModelModel.Gpt41Mini20250414Eastus2 },
+        { "gpt-4.1-mini-2025-04-14:eastus", EvalOpenAiModelModel.Gpt41Mini20250414Eastus },
+        { "gpt-4.1-mini-2025-04-14:westus3", EvalOpenAiModelModel.Gpt41Mini20250414Westus3 },
+        {
+            "gpt-4.1-mini-2025-04-14:northcentralus",
+            EvalOpenAiModelModel.Gpt41Mini20250414Northcentralus
+        },
+        {
+            "gpt-4.1-mini-2025-04-14:southcentralus",
+            EvalOpenAiModelModel.Gpt41Mini20250414Southcentralus
+        },
+        { "gpt-4.1-mini-2025-04-14:westeurope", EvalOpenAiModelModel.Gpt41Mini20250414Westeurope },
+        {
+            "gpt-4.1-mini-2025-04-14:germanywestcentral",
+            EvalOpenAiModelModel.Gpt41Mini20250414Germanywestcentral
+        },
+        {
+            "gpt-4.1-mini-2025-04-14:polandcentral",
+            EvalOpenAiModelModel.Gpt41Mini20250414Polandcentral
+        },
+        {
+            "gpt-4.1-mini-2025-04-14:spaincentral",
+            EvalOpenAiModelModel.Gpt41Mini20250414Spaincentral
+        },
+        { "gpt-4.1-nano-2025-04-14:westus", EvalOpenAiModelModel.Gpt41Nano20250414Westus },
+        { "gpt-4.1-nano-2025-04-14:eastus2", EvalOpenAiModelModel.Gpt41Nano20250414Eastus2 },
+        { "gpt-4.1-nano-2025-04-14:westus3", EvalOpenAiModelModel.Gpt41Nano20250414Westus3 },
+        {
+            "gpt-4.1-nano-2025-04-14:northcentralus",
+            EvalOpenAiModelModel.Gpt41Nano20250414Northcentralus
+        },
+        {
+            "gpt-4.1-nano-2025-04-14:southcentralus",
+            EvalOpenAiModelModel.Gpt41Nano20250414Southcentralus
+        },
+        { "gpt-4o-2024-11-20:swedencentral", EvalOpenAiModelModel.Gpt4O20241120Swedencentral },
+        { "gpt-4o-2024-11-20:westus", EvalOpenAiModelModel.Gpt4O20241120Westus },
+        { "gpt-4o-2024-11-20:eastus2", EvalOpenAiModelModel.Gpt4O20241120Eastus2 },
+        { "gpt-4o-2024-11-20:eastus", EvalOpenAiModelModel.Gpt4O20241120Eastus },
+        { "gpt-4o-2024-11-20:westus3", EvalOpenAiModelModel.Gpt4O20241120Westus3 },
+        { "gpt-4o-2024-11-20:southcentralus", EvalOpenAiModelModel.Gpt4O20241120Southcentralus },
+        { "gpt-4o-2024-11-20:westeurope", EvalOpenAiModelModel.Gpt4O20241120Westeurope },
+        {
+            "gpt-4o-2024-11-20:germanywestcentral",
+            EvalOpenAiModelModel.Gpt4O20241120Germanywestcentral
+        },
+        { "gpt-4o-2024-11-20:polandcentral", EvalOpenAiModelModel.Gpt4O20241120Polandcentral },
+        { "gpt-4o-2024-11-20:spaincentral", EvalOpenAiModelModel.Gpt4O20241120Spaincentral },
+        { "gpt-4o-2024-08-06:westus", EvalOpenAiModelModel.Gpt4O20240806Westus },
+        { "gpt-4o-2024-08-06:westus3", EvalOpenAiModelModel.Gpt4O20240806Westus3 },
+        { "gpt-4o-2024-08-06:eastus", EvalOpenAiModelModel.Gpt4O20240806Eastus },
+        { "gpt-4o-2024-08-06:eastus2", EvalOpenAiModelModel.Gpt4O20240806Eastus2 },
+        { "gpt-4o-2024-08-06:northcentralus", EvalOpenAiModelModel.Gpt4O20240806Northcentralus },
+        { "gpt-4o-2024-08-06:southcentralus", EvalOpenAiModelModel.Gpt4O20240806Southcentralus },
+        { "gpt-4o-mini-2024-07-18:westus", EvalOpenAiModelModel.Gpt4OMini20240718Westus },
+        { "gpt-4o-mini-2024-07-18:westus3", EvalOpenAiModelModel.Gpt4OMini20240718Westus3 },
+        { "gpt-4o-mini-2024-07-18:eastus", EvalOpenAiModelModel.Gpt4OMini20240718Eastus },
+        { "gpt-4o-mini-2024-07-18:eastus2", EvalOpenAiModelModel.Gpt4OMini20240718Eastus2 },
+        {
+            "gpt-4o-mini-2024-07-18:northcentralus",
+            EvalOpenAiModelModel.Gpt4OMini20240718Northcentralus
+        },
+        {
+            "gpt-4o-mini-2024-07-18:southcentralus",
+            EvalOpenAiModelModel.Gpt4OMini20240718Southcentralus
+        },
+        { "gpt-4o-2024-05-13:eastus2", EvalOpenAiModelModel.Gpt4O20240513Eastus2 },
+        { "gpt-4o-2024-05-13:eastus", EvalOpenAiModelModel.Gpt4O20240513Eastus },
+        { "gpt-4o-2024-05-13:northcentralus", EvalOpenAiModelModel.Gpt4O20240513Northcentralus },
+        { "gpt-4o-2024-05-13:southcentralus", EvalOpenAiModelModel.Gpt4O20240513Southcentralus },
+        { "gpt-4o-2024-05-13:westus3", EvalOpenAiModelModel.Gpt4O20240513Westus3 },
+        { "gpt-4o-2024-05-13:westus", EvalOpenAiModelModel.Gpt4O20240513Westus },
+        { "gpt-4-turbo-2024-04-09:eastus2", EvalOpenAiModelModel.Gpt4Turbo20240409Eastus2 },
+        { "gpt-4-0125-preview:eastus", EvalOpenAiModelModel.Gpt40125PreviewEastus },
+        { "gpt-4-0125-preview:northcentralus", EvalOpenAiModelModel.Gpt40125PreviewNorthcentralus },
+        { "gpt-4-0125-preview:southcentralus", EvalOpenAiModelModel.Gpt40125PreviewSouthcentralus },
+        { "gpt-4-1106-preview:australiaeast", EvalOpenAiModelModel.Gpt41106PreviewAustraliaeast },
+        { "gpt-4-1106-preview:canadaeast", EvalOpenAiModelModel.Gpt41106PreviewCanadaeast },
+        { "gpt-4-1106-preview:france", EvalOpenAiModelModel.Gpt41106PreviewFrance },
+        { "gpt-4-1106-preview:india", EvalOpenAiModelModel.Gpt41106PreviewIndia },
+        { "gpt-4-1106-preview:norway", EvalOpenAiModelModel.Gpt41106PreviewNorway },
+        { "gpt-4-1106-preview:swedencentral", EvalOpenAiModelModel.Gpt41106PreviewSwedencentral },
+        { "gpt-4-1106-preview:uk", EvalOpenAiModelModel.Gpt41106PreviewUk },
+        { "gpt-4-1106-preview:westus", EvalOpenAiModelModel.Gpt41106PreviewWestus },
+        { "gpt-4-1106-preview:westus3", EvalOpenAiModelModel.Gpt41106PreviewWestus3 },
+        { "gpt-4-0613:canadaeast", EvalOpenAiModelModel.Gpt40613Canadaeast },
+        { "gpt-3.5-turbo-0125:canadaeast", EvalOpenAiModelModel.Gpt35Turbo0125Canadaeast },
+        { "gpt-3.5-turbo-0125:northcentralus", EvalOpenAiModelModel.Gpt35Turbo0125Northcentralus },
+        { "gpt-3.5-turbo-0125:southcentralus", EvalOpenAiModelModel.Gpt35Turbo0125Southcentralus },
+        { "gpt-3.5-turbo-1106:canadaeast", EvalOpenAiModelModel.Gpt35Turbo1106Canadaeast },
+        { "gpt-3.5-turbo-1106:westus", EvalOpenAiModelModel.Gpt35Turbo1106Westus },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        EvalOpenAiModelModel,
+        string
+    > _enumToString = new()
+    {
+        { EvalOpenAiModelModel.Gpt54, "gpt-5.4" },
+        { EvalOpenAiModelModel.Gpt54Mini, "gpt-5.4-mini" },
+        { EvalOpenAiModelModel.Gpt54Nano, "gpt-5.4-nano" },
+        { EvalOpenAiModelModel.Gpt52, "gpt-5.2" },
+        { EvalOpenAiModelModel.Gpt52ChatLatest, "gpt-5.2-chat-latest" },
+        { EvalOpenAiModelModel.Gpt51, "gpt-5.1" },
+        { EvalOpenAiModelModel.Gpt51ChatLatest, "gpt-5.1-chat-latest" },
+        { EvalOpenAiModelModel.Gpt5, "gpt-5" },
+        { EvalOpenAiModelModel.Gpt5ChatLatest, "gpt-5-chat-latest" },
+        { EvalOpenAiModelModel.Gpt5Mini, "gpt-5-mini" },
+        { EvalOpenAiModelModel.Gpt5Nano, "gpt-5-nano" },
+        { EvalOpenAiModelModel.Gpt4120250414, "gpt-4.1-2025-04-14" },
+        { EvalOpenAiModelModel.Gpt41Mini20250414, "gpt-4.1-mini-2025-04-14" },
+        { EvalOpenAiModelModel.Gpt41Nano20250414, "gpt-4.1-nano-2025-04-14" },
+        { EvalOpenAiModelModel.Gpt41, "gpt-4.1" },
+        { EvalOpenAiModelModel.Gpt41Mini, "gpt-4.1-mini" },
+        { EvalOpenAiModelModel.Gpt41Nano, "gpt-4.1-nano" },
+        { EvalOpenAiModelModel.Chatgpt4OLatest, "chatgpt-4o-latest" },
+        { EvalOpenAiModelModel.O3, "o3" },
+        { EvalOpenAiModelModel.O3Mini, "o3-mini" },
+        { EvalOpenAiModelModel.O4Mini, "o4-mini" },
+        { EvalOpenAiModelModel.O1Mini, "o1-mini" },
+        { EvalOpenAiModelModel.O1Mini20240912, "o1-mini-2024-09-12" },
+        { EvalOpenAiModelModel.Gpt4OMini20240718, "gpt-4o-mini-2024-07-18" },
+        { EvalOpenAiModelModel.Gpt4OMini, "gpt-4o-mini" },
+        { EvalOpenAiModelModel.Gpt4O, "gpt-4o" },
+        { EvalOpenAiModelModel.Gpt4O20240513, "gpt-4o-2024-05-13" },
+        { EvalOpenAiModelModel.Gpt4O20240806, "gpt-4o-2024-08-06" },
+        { EvalOpenAiModelModel.Gpt4O20241120, "gpt-4o-2024-11-20" },
+        { EvalOpenAiModelModel.Gpt4Turbo, "gpt-4-turbo" },
+        { EvalOpenAiModelModel.Gpt4Turbo20240409, "gpt-4-turbo-2024-04-09" },
+        { EvalOpenAiModelModel.Gpt4TurboPreview, "gpt-4-turbo-preview" },
+        { EvalOpenAiModelModel.Gpt40125Preview, "gpt-4-0125-preview" },
+        { EvalOpenAiModelModel.Gpt41106Preview, "gpt-4-1106-preview" },
+        { EvalOpenAiModelModel.Gpt4, "gpt-4" },
+        { EvalOpenAiModelModel.Gpt40613, "gpt-4-0613" },
+        { EvalOpenAiModelModel.Gpt35Turbo, "gpt-3.5-turbo" },
+        { EvalOpenAiModelModel.Gpt35Turbo0125, "gpt-3.5-turbo-0125" },
+        { EvalOpenAiModelModel.Gpt35Turbo1106, "gpt-3.5-turbo-1106" },
+        { EvalOpenAiModelModel.Gpt35Turbo16K, "gpt-3.5-turbo-16k" },
+        { EvalOpenAiModelModel.Gpt35Turbo0613, "gpt-3.5-turbo-0613" },
+        { EvalOpenAiModelModel.Gpt4120250414Westus, "gpt-4.1-2025-04-14:westus" },
+        { EvalOpenAiModelModel.Gpt4120250414Eastus2, "gpt-4.1-2025-04-14:eastus2" },
+        { EvalOpenAiModelModel.Gpt4120250414Eastus, "gpt-4.1-2025-04-14:eastus" },
+        { EvalOpenAiModelModel.Gpt4120250414Westus3, "gpt-4.1-2025-04-14:westus3" },
+        { EvalOpenAiModelModel.Gpt4120250414Northcentralus, "gpt-4.1-2025-04-14:northcentralus" },
+        { EvalOpenAiModelModel.Gpt4120250414Southcentralus, "gpt-4.1-2025-04-14:southcentralus" },
+        { EvalOpenAiModelModel.Gpt4120250414Westeurope, "gpt-4.1-2025-04-14:westeurope" },
+        {
+            EvalOpenAiModelModel.Gpt4120250414Germanywestcentral,
+            "gpt-4.1-2025-04-14:germanywestcentral"
+        },
+        { EvalOpenAiModelModel.Gpt4120250414Polandcentral, "gpt-4.1-2025-04-14:polandcentral" },
+        { EvalOpenAiModelModel.Gpt4120250414Spaincentral, "gpt-4.1-2025-04-14:spaincentral" },
+        { EvalOpenAiModelModel.Gpt41Mini20250414Westus, "gpt-4.1-mini-2025-04-14:westus" },
+        { EvalOpenAiModelModel.Gpt41Mini20250414Eastus2, "gpt-4.1-mini-2025-04-14:eastus2" },
+        { EvalOpenAiModelModel.Gpt41Mini20250414Eastus, "gpt-4.1-mini-2025-04-14:eastus" },
+        { EvalOpenAiModelModel.Gpt41Mini20250414Westus3, "gpt-4.1-mini-2025-04-14:westus3" },
+        {
+            EvalOpenAiModelModel.Gpt41Mini20250414Northcentralus,
+            "gpt-4.1-mini-2025-04-14:northcentralus"
+        },
+        {
+            EvalOpenAiModelModel.Gpt41Mini20250414Southcentralus,
+            "gpt-4.1-mini-2025-04-14:southcentralus"
+        },
+        { EvalOpenAiModelModel.Gpt41Mini20250414Westeurope, "gpt-4.1-mini-2025-04-14:westeurope" },
+        {
+            EvalOpenAiModelModel.Gpt41Mini20250414Germanywestcentral,
+            "gpt-4.1-mini-2025-04-14:germanywestcentral"
+        },
+        {
+            EvalOpenAiModelModel.Gpt41Mini20250414Polandcentral,
+            "gpt-4.1-mini-2025-04-14:polandcentral"
+        },
+        {
+            EvalOpenAiModelModel.Gpt41Mini20250414Spaincentral,
+            "gpt-4.1-mini-2025-04-14:spaincentral"
+        },
+        { EvalOpenAiModelModel.Gpt41Nano20250414Westus, "gpt-4.1-nano-2025-04-14:westus" },
+        { EvalOpenAiModelModel.Gpt41Nano20250414Eastus2, "gpt-4.1-nano-2025-04-14:eastus2" },
+        { EvalOpenAiModelModel.Gpt41Nano20250414Westus3, "gpt-4.1-nano-2025-04-14:westus3" },
+        {
+            EvalOpenAiModelModel.Gpt41Nano20250414Northcentralus,
+            "gpt-4.1-nano-2025-04-14:northcentralus"
+        },
+        {
+            EvalOpenAiModelModel.Gpt41Nano20250414Southcentralus,
+            "gpt-4.1-nano-2025-04-14:southcentralus"
+        },
+        { EvalOpenAiModelModel.Gpt4O20241120Swedencentral, "gpt-4o-2024-11-20:swedencentral" },
+        { EvalOpenAiModelModel.Gpt4O20241120Westus, "gpt-4o-2024-11-20:westus" },
+        { EvalOpenAiModelModel.Gpt4O20241120Eastus2, "gpt-4o-2024-11-20:eastus2" },
+        { EvalOpenAiModelModel.Gpt4O20241120Eastus, "gpt-4o-2024-11-20:eastus" },
+        { EvalOpenAiModelModel.Gpt4O20241120Westus3, "gpt-4o-2024-11-20:westus3" },
+        { EvalOpenAiModelModel.Gpt4O20241120Southcentralus, "gpt-4o-2024-11-20:southcentralus" },
+        { EvalOpenAiModelModel.Gpt4O20241120Westeurope, "gpt-4o-2024-11-20:westeurope" },
+        {
+            EvalOpenAiModelModel.Gpt4O20241120Germanywestcentral,
+            "gpt-4o-2024-11-20:germanywestcentral"
+        },
+        { EvalOpenAiModelModel.Gpt4O20241120Polandcentral, "gpt-4o-2024-11-20:polandcentral" },
+        { EvalOpenAiModelModel.Gpt4O20241120Spaincentral, "gpt-4o-2024-11-20:spaincentral" },
+        { EvalOpenAiModelModel.Gpt4O20240806Westus, "gpt-4o-2024-08-06:westus" },
+        { EvalOpenAiModelModel.Gpt4O20240806Westus3, "gpt-4o-2024-08-06:westus3" },
+        { EvalOpenAiModelModel.Gpt4O20240806Eastus, "gpt-4o-2024-08-06:eastus" },
+        { EvalOpenAiModelModel.Gpt4O20240806Eastus2, "gpt-4o-2024-08-06:eastus2" },
+        { EvalOpenAiModelModel.Gpt4O20240806Northcentralus, "gpt-4o-2024-08-06:northcentralus" },
+        { EvalOpenAiModelModel.Gpt4O20240806Southcentralus, "gpt-4o-2024-08-06:southcentralus" },
+        { EvalOpenAiModelModel.Gpt4OMini20240718Westus, "gpt-4o-mini-2024-07-18:westus" },
+        { EvalOpenAiModelModel.Gpt4OMini20240718Westus3, "gpt-4o-mini-2024-07-18:westus3" },
+        { EvalOpenAiModelModel.Gpt4OMini20240718Eastus, "gpt-4o-mini-2024-07-18:eastus" },
+        { EvalOpenAiModelModel.Gpt4OMini20240718Eastus2, "gpt-4o-mini-2024-07-18:eastus2" },
+        {
+            EvalOpenAiModelModel.Gpt4OMini20240718Northcentralus,
+            "gpt-4o-mini-2024-07-18:northcentralus"
+        },
+        {
+            EvalOpenAiModelModel.Gpt4OMini20240718Southcentralus,
+            "gpt-4o-mini-2024-07-18:southcentralus"
+        },
+        { EvalOpenAiModelModel.Gpt4O20240513Eastus2, "gpt-4o-2024-05-13:eastus2" },
+        { EvalOpenAiModelModel.Gpt4O20240513Eastus, "gpt-4o-2024-05-13:eastus" },
+        { EvalOpenAiModelModel.Gpt4O20240513Northcentralus, "gpt-4o-2024-05-13:northcentralus" },
+        { EvalOpenAiModelModel.Gpt4O20240513Southcentralus, "gpt-4o-2024-05-13:southcentralus" },
+        { EvalOpenAiModelModel.Gpt4O20240513Westus3, "gpt-4o-2024-05-13:westus3" },
+        { EvalOpenAiModelModel.Gpt4O20240513Westus, "gpt-4o-2024-05-13:westus" },
+        { EvalOpenAiModelModel.Gpt4Turbo20240409Eastus2, "gpt-4-turbo-2024-04-09:eastus2" },
+        { EvalOpenAiModelModel.Gpt40125PreviewEastus, "gpt-4-0125-preview:eastus" },
+        { EvalOpenAiModelModel.Gpt40125PreviewNorthcentralus, "gpt-4-0125-preview:northcentralus" },
+        { EvalOpenAiModelModel.Gpt40125PreviewSouthcentralus, "gpt-4-0125-preview:southcentralus" },
+        { EvalOpenAiModelModel.Gpt41106PreviewAustraliaeast, "gpt-4-1106-preview:australiaeast" },
+        { EvalOpenAiModelModel.Gpt41106PreviewCanadaeast, "gpt-4-1106-preview:canadaeast" },
+        { EvalOpenAiModelModel.Gpt41106PreviewFrance, "gpt-4-1106-preview:france" },
+        { EvalOpenAiModelModel.Gpt41106PreviewIndia, "gpt-4-1106-preview:india" },
+        { EvalOpenAiModelModel.Gpt41106PreviewNorway, "gpt-4-1106-preview:norway" },
+        { EvalOpenAiModelModel.Gpt41106PreviewSwedencentral, "gpt-4-1106-preview:swedencentral" },
+        { EvalOpenAiModelModel.Gpt41106PreviewUk, "gpt-4-1106-preview:uk" },
+        { EvalOpenAiModelModel.Gpt41106PreviewWestus, "gpt-4-1106-preview:westus" },
+        { EvalOpenAiModelModel.Gpt41106PreviewWestus3, "gpt-4-1106-preview:westus3" },
+        { EvalOpenAiModelModel.Gpt40613Canadaeast, "gpt-4-0613:canadaeast" },
+        { EvalOpenAiModelModel.Gpt35Turbo0125Canadaeast, "gpt-3.5-turbo-0125:canadaeast" },
+        { EvalOpenAiModelModel.Gpt35Turbo0125Northcentralus, "gpt-3.5-turbo-0125:northcentralus" },
+        { EvalOpenAiModelModel.Gpt35Turbo0125Southcentralus, "gpt-3.5-turbo-0125:southcentralus" },
+        { EvalOpenAiModelModel.Gpt35Turbo1106Canadaeast, "gpt-3.5-turbo-1106:canadaeast" },
+        { EvalOpenAiModelModel.Gpt35Turbo1106Westus, "gpt-3.5-turbo-1106:westus" },
+    };
+
+    public override EvalOpenAiModelModel Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        EvalOpenAiModelModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override EvalOpenAiModelModel ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        EvalOpenAiModelModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

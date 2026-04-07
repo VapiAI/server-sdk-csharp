@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record ServerMessageModelOutput
+public record ServerMessageModelOutput : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the phone number that the message is associated with.
     /// </summary>
@@ -18,6 +22,13 @@ public record ServerMessageModelOutput
     /// </summary>
     [JsonPropertyName("type")]
     public required ServerMessageModelOutputType Type { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the current LLM turn. All tokens from the same
+    /// LLM response share the same turnId. Use this to group tokens and discard on interruption.
+    /// </summary>
+    [JsonPropertyName("turnId")]
+    public string? TurnId { get; set; }
 
     /// <summary>
     /// This is the timestamp of the message.
@@ -63,15 +74,11 @@ public record ServerMessageModelOutput
     [JsonPropertyName("output")]
     public object Output { get; set; } = new Dictionary<string, object?>();
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

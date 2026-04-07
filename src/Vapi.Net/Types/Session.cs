@@ -1,13 +1,17 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record Session
+public record Session : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the unique identifier for the session.
     /// </summary>
@@ -76,6 +80,14 @@ public record Session
     public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
+    /// These are the overrides for the assistant configuration.
+    /// Use this to provide variable values and other overrides when using assistantId.
+    /// Variable substitution will be applied to the assistant's messages and other text-based fields.
+    /// </summary>
+    [JsonPropertyName("assistantOverrides")]
+    public AssistantOverrides? AssistantOverrides { get; set; }
+
+    /// <summary>
     /// This is the squad ID associated with this session. Use this when referencing an existing squad.
     /// </summary>
     [JsonPropertyName("squadId")]
@@ -103,6 +115,12 @@ public record Session
     public CreateCustomerDto? Customer { get; set; }
 
     /// <summary>
+    /// This is the customerId of the customer associated with this session.
+    /// </summary>
+    [JsonPropertyName("customerId")]
+    public string? CustomerId { get; set; }
+
+    /// <summary>
     /// This is the ID of the phone number associated with this session.
     /// </summary>
     [JsonPropertyName("phoneNumberId")]
@@ -124,15 +142,11 @@ public record Session
     [JsonPropertyName("artifact")]
     public Artifact? Artifact { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

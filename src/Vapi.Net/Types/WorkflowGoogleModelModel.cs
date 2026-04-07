@@ -1,12 +1,14 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<WorkflowGoogleModelModel>))]
+[JsonConverter(typeof(WorkflowGoogleModelModelSerializer))]
 public enum WorkflowGoogleModelModel
 {
+    [EnumMember(Value = "gemini-3-flash-preview")]
+    Gemini3FlashPreview,
+
     [EnumMember(Value = "gemini-2.5-pro")]
     Gemini25Pro,
 
@@ -48,4 +50,100 @@ public enum WorkflowGoogleModelModel
 
     [EnumMember(Value = "gemini-1.0-pro")]
     Gemini10Pro,
+}
+
+internal class WorkflowGoogleModelModelSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<WorkflowGoogleModelModel>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        WorkflowGoogleModelModel
+    > _stringToEnum = new()
+    {
+        { "gemini-3-flash-preview", WorkflowGoogleModelModel.Gemini3FlashPreview },
+        { "gemini-2.5-pro", WorkflowGoogleModelModel.Gemini25Pro },
+        { "gemini-2.5-flash", WorkflowGoogleModelModel.Gemini25Flash },
+        { "gemini-2.5-flash-lite", WorkflowGoogleModelModel.Gemini25FlashLite },
+        { "gemini-2.0-flash-thinking-exp", WorkflowGoogleModelModel.Gemini20FlashThinkingExp },
+        { "gemini-2.0-pro-exp-02-05", WorkflowGoogleModelModel.Gemini20ProExp0205 },
+        { "gemini-2.0-flash", WorkflowGoogleModelModel.Gemini20Flash },
+        { "gemini-2.0-flash-lite", WorkflowGoogleModelModel.Gemini20FlashLite },
+        { "gemini-2.0-flash-exp", WorkflowGoogleModelModel.Gemini20FlashExp },
+        { "gemini-2.0-flash-realtime-exp", WorkflowGoogleModelModel.Gemini20FlashRealtimeExp },
+        { "gemini-1.5-flash", WorkflowGoogleModelModel.Gemini15Flash },
+        { "gemini-1.5-flash-002", WorkflowGoogleModelModel.Gemini15Flash002 },
+        { "gemini-1.5-pro", WorkflowGoogleModelModel.Gemini15Pro },
+        { "gemini-1.5-pro-002", WorkflowGoogleModelModel.Gemini15Pro002 },
+        { "gemini-1.0-pro", WorkflowGoogleModelModel.Gemini10Pro },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        WorkflowGoogleModelModel,
+        string
+    > _enumToString = new()
+    {
+        { WorkflowGoogleModelModel.Gemini3FlashPreview, "gemini-3-flash-preview" },
+        { WorkflowGoogleModelModel.Gemini25Pro, "gemini-2.5-pro" },
+        { WorkflowGoogleModelModel.Gemini25Flash, "gemini-2.5-flash" },
+        { WorkflowGoogleModelModel.Gemini25FlashLite, "gemini-2.5-flash-lite" },
+        { WorkflowGoogleModelModel.Gemini20FlashThinkingExp, "gemini-2.0-flash-thinking-exp" },
+        { WorkflowGoogleModelModel.Gemini20ProExp0205, "gemini-2.0-pro-exp-02-05" },
+        { WorkflowGoogleModelModel.Gemini20Flash, "gemini-2.0-flash" },
+        { WorkflowGoogleModelModel.Gemini20FlashLite, "gemini-2.0-flash-lite" },
+        { WorkflowGoogleModelModel.Gemini20FlashExp, "gemini-2.0-flash-exp" },
+        { WorkflowGoogleModelModel.Gemini20FlashRealtimeExp, "gemini-2.0-flash-realtime-exp" },
+        { WorkflowGoogleModelModel.Gemini15Flash, "gemini-1.5-flash" },
+        { WorkflowGoogleModelModel.Gemini15Flash002, "gemini-1.5-flash-002" },
+        { WorkflowGoogleModelModel.Gemini15Pro, "gemini-1.5-pro" },
+        { WorkflowGoogleModelModel.Gemini15Pro002, "gemini-1.5-pro-002" },
+        { WorkflowGoogleModelModel.Gemini10Pro, "gemini-1.0-pro" },
+    };
+
+    public override WorkflowGoogleModelModel Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        WorkflowGoogleModelModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override WorkflowGoogleModelModel ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        WorkflowGoogleModelModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

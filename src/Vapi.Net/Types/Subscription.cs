@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record Subscription
+public record Subscription : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the unique identifier for the subscription.
     /// </summary>
@@ -119,6 +123,13 @@ public record Subscription
     /// </summary>
     [JsonPropertyName("hipaaEnabled")]
     public bool? HipaaEnabled { get; set; }
+
+    /// <summary>
+    /// This is the ZDR enabled flag for the subscription. It determines whether orgs under this
+    /// subscription have the option to enable ZDR.
+    /// </summary>
+    [JsonPropertyName("zdrEnabled")]
+    public bool? ZdrEnabled { get; set; }
 
     /// <summary>
     /// This is the data retention enabled flag for the subscription. It determines whether orgs under this
@@ -267,15 +278,11 @@ public record Subscription
     [JsonPropertyName("platformFee")]
     public double? PlatformFee { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

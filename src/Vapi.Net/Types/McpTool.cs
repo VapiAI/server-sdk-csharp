@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record McpTool
+public record McpTool : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// These are the messages that will be spoken to the user as the tool is running.
     ///
@@ -27,6 +31,12 @@ public record McpTool
     /// </summary>
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
+
+    /// <summary>
+    /// Per-tool message overrides for individual tools loaded from the MCP server. Set messages to an empty array to suppress messages for a specific tool. Tools not listed here will use the default messages from the parent tool.
+    /// </summary>
+    [JsonPropertyName("toolMessages")]
+    public IEnumerable<McpToolMessages>? ToolMessages { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the tool.
@@ -138,15 +148,11 @@ public record McpTool
     [JsonPropertyName("metadata")]
     public McpToolMetadata? Metadata { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

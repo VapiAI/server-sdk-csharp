@@ -1,0 +1,135 @@
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
+using OneOf;
+using Vapi.Net.Core;
+
+namespace Vapi.Net;
+
+[Serializable]
+public record CreateSipRequestToolDto : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// These are the messages that will be spoken to the user as the tool is running.
+    ///
+    /// For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
+    /// </summary>
+    [JsonPropertyName("messages")]
+    public IEnumerable<object>? Messages { get; set; }
+
+    /// <summary>
+    /// The SIP method to send.
+    /// </summary>
+    [JsonPropertyName("verb")]
+    public required CreateSipRequestToolDtoVerb Verb { get; set; }
+
+    /// <summary>
+    /// JSON schema for headers the model should populate when sending the SIP request.
+    /// </summary>
+    [JsonPropertyName("headers")]
+    public JsonSchema? Headers { get; set; }
+
+    /// <summary>
+    /// Body to include in the SIP request. Either a literal string body, or a JSON schema describing a structured body that the model should populate.
+    /// </summary>
+    [JsonPropertyName("body")]
+    public OneOf<string, JsonSchema>? Body { get; set; }
+
+    /// <summary>
+    /// This is the plan to reject a tool call based on the conversation state.
+    ///
+    /// // Example 1: Reject endCall if user didn't say goodbye
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'regex',
+    ///     regex: '(?i)\\b(bye|goodbye|farewell|see you later|take care)\\b',
+    ///     target: { position: -1, role: 'user' },
+    ///     negate: true  // Reject if pattern does NOT match
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 2: Reject transfer if user is actually asking a question
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'regex',
+    ///     regex: '\\?',
+    ///     target: { position: -1, role: 'user' }
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 3: Reject transfer if user didn't mention transfer recently
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'liquid',
+    ///     liquid: `{% assign recentMessages = messages | last: 5 %}
+    /// {% assign userMessages = recentMessages | where: 'role', 'user' %}
+    /// {% assign mentioned = false %}
+    /// {% for msg in userMessages %}
+    ///   {% if msg.content contains 'transfer' or msg.content contains 'connect' or msg.content contains 'speak to' %}
+    ///     {% assign mentioned = true %}
+    ///     {% break %}
+    ///   {% endif %}
+    /// {% endfor %}
+    /// {% if mentioned %}
+    ///   false
+    /// {% else %}
+    ///   true
+    /// {% endif %}`
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 4: Reject endCall if the bot is looping and trying to exit
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'liquid',
+    ///     liquid: `{% assign recentMessages = messages | last: 6 %}
+    /// {% assign userMessages = recentMessages | where: 'role', 'user' | reverse %}
+    /// {% if userMessages.size &lt; 3 %}
+    ///   false
+    /// {% else %}
+    ///   {% assign msg1 = userMessages[0].content | downcase %}
+    ///   {% assign msg2 = userMessages[1].content | downcase %}
+    ///   {% assign msg3 = userMessages[2].content | downcase %}
+    ///   {% comment %} Check for repetitive messages {% endcomment %}
+    ///   {% if msg1 == msg2 or msg1 == msg3 or msg2 == msg3 %}
+    ///     true
+    ///   {% comment %} Check for common loop phrases {% endcomment %}
+    ///   {% elsif msg1 contains 'cool thanks' or msg2 contains 'cool thanks' or msg3 contains 'cool thanks' %}
+    ///     true
+    ///   {% elsif msg1 contains 'okay thanks' or msg2 contains 'okay thanks' or msg3 contains 'okay thanks' %}
+    ///     true
+    ///   {% elsif msg1 contains 'got it' or msg2 contains 'got it' or msg3 contains 'got it' %}
+    ///     true
+    ///   {% else %}
+    ///     false
+    ///   {% endif %}
+    /// {% endif %}`
+    ///   }]
+    /// }
+    /// ```
+    /// </summary>
+    [JsonPropertyName("rejectionPlan")]
+    public ToolRejectionPlan? RejectionPlan { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

@@ -2,31 +2,38 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public partial class VapiClient
+public partial class VapiClient : IVapiClient
 {
     private readonly RawClient _client;
 
     public VapiClient(string? token = null, ClientOptions? clientOptions = null)
     {
-        var defaultHeaders = new Headers(
+        clientOptions ??= new ClientOptions();
+        var platformHeaders = new Headers(
             new Dictionary<string, string>()
             {
-                { "Authorization", $"Bearer {token ?? ""}" },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/AUTO" },
+                { "User-Agent", "Vapi.Net/1.0.0" },
             }
         );
-        clientOptions ??= new ClientOptions();
-        foreach (var header in defaultHeaders)
+        foreach (var header in platformHeaders)
         {
             if (!clientOptions.Headers.ContainsKey(header.Key))
             {
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
-        _client = new RawClient(clientOptions);
+        var clientOptionsWithAuth = clientOptions.Clone();
+        var authHeaders = new Headers(
+            new Dictionary<string, string>() { { "Authorization", $"Bearer {token ?? ""}" } }
+        );
+        foreach (var header in authHeaders)
+        {
+            clientOptionsWithAuth.Headers[header.Key] = header.Value;
+        }
+        _client = new RawClient(clientOptionsWithAuth);
         Assistants = new AssistantsClient(_client);
         Squads = new SquadsClient(_client);
         Calls = new CallsClient(_client);
@@ -44,33 +51,33 @@ public partial class VapiClient
         Analytics = new AnalyticsClient(_client);
     }
 
-    public AssistantsClient Assistants { get; }
+    public IAssistantsClient Assistants { get; }
 
-    public SquadsClient Squads { get; }
+    public ISquadsClient Squads { get; }
 
-    public CallsClient Calls { get; }
+    public ICallsClient Calls { get; }
 
-    public ChatsClient Chats { get; }
+    public IChatsClient Chats { get; }
 
-    public CampaignsClient Campaigns { get; }
+    public ICampaignsClient Campaigns { get; }
 
-    public SessionsClient Sessions { get; }
+    public ISessionsClient Sessions { get; }
 
-    public PhoneNumbersClient PhoneNumbers { get; }
+    public IPhoneNumbersClient PhoneNumbers { get; }
 
-    public ToolsClient Tools { get; }
+    public IToolsClient Tools { get; }
 
-    public FilesClient Files { get; }
+    public IFilesClient Files { get; }
 
-    public StructuredOutputsClient StructuredOutputs { get; }
+    public IStructuredOutputsClient StructuredOutputs { get; }
 
-    public InsightClient Insight { get; }
+    public IInsightClient Insight { get; }
 
-    public EvalClient Eval { get; }
+    public IEvalClient Eval { get; }
 
-    public ObservabilityScorecardClient ObservabilityScorecard { get; }
+    public IObservabilityScorecardClient ObservabilityScorecard { get; }
 
-    public ProviderResourcesClient ProviderResources { get; }
+    public IProviderResourcesClient ProviderResources { get; }
 
-    public AnalyticsClient Analytics { get; }
+    public IAnalyticsClient Analytics { get; }
 }

@@ -1,12 +1,14 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<EvalGoogleModelModel>))]
+[JsonConverter(typeof(EvalGoogleModelModelSerializer))]
 public enum EvalGoogleModelModel
 {
+    [EnumMember(Value = "gemini-3-flash-preview")]
+    Gemini3FlashPreview,
+
     [EnumMember(Value = "gemini-2.5-pro")]
     Gemini25Pro,
 
@@ -48,4 +50,100 @@ public enum EvalGoogleModelModel
 
     [EnumMember(Value = "gemini-1.0-pro")]
     Gemini10Pro,
+}
+
+internal class EvalGoogleModelModelSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<EvalGoogleModelModel>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        EvalGoogleModelModel
+    > _stringToEnum = new()
+    {
+        { "gemini-3-flash-preview", EvalGoogleModelModel.Gemini3FlashPreview },
+        { "gemini-2.5-pro", EvalGoogleModelModel.Gemini25Pro },
+        { "gemini-2.5-flash", EvalGoogleModelModel.Gemini25Flash },
+        { "gemini-2.5-flash-lite", EvalGoogleModelModel.Gemini25FlashLite },
+        { "gemini-2.0-flash-thinking-exp", EvalGoogleModelModel.Gemini20FlashThinkingExp },
+        { "gemini-2.0-pro-exp-02-05", EvalGoogleModelModel.Gemini20ProExp0205 },
+        { "gemini-2.0-flash", EvalGoogleModelModel.Gemini20Flash },
+        { "gemini-2.0-flash-lite", EvalGoogleModelModel.Gemini20FlashLite },
+        { "gemini-2.0-flash-exp", EvalGoogleModelModel.Gemini20FlashExp },
+        { "gemini-2.0-flash-realtime-exp", EvalGoogleModelModel.Gemini20FlashRealtimeExp },
+        { "gemini-1.5-flash", EvalGoogleModelModel.Gemini15Flash },
+        { "gemini-1.5-flash-002", EvalGoogleModelModel.Gemini15Flash002 },
+        { "gemini-1.5-pro", EvalGoogleModelModel.Gemini15Pro },
+        { "gemini-1.5-pro-002", EvalGoogleModelModel.Gemini15Pro002 },
+        { "gemini-1.0-pro", EvalGoogleModelModel.Gemini10Pro },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        EvalGoogleModelModel,
+        string
+    > _enumToString = new()
+    {
+        { EvalGoogleModelModel.Gemini3FlashPreview, "gemini-3-flash-preview" },
+        { EvalGoogleModelModel.Gemini25Pro, "gemini-2.5-pro" },
+        { EvalGoogleModelModel.Gemini25Flash, "gemini-2.5-flash" },
+        { EvalGoogleModelModel.Gemini25FlashLite, "gemini-2.5-flash-lite" },
+        { EvalGoogleModelModel.Gemini20FlashThinkingExp, "gemini-2.0-flash-thinking-exp" },
+        { EvalGoogleModelModel.Gemini20ProExp0205, "gemini-2.0-pro-exp-02-05" },
+        { EvalGoogleModelModel.Gemini20Flash, "gemini-2.0-flash" },
+        { EvalGoogleModelModel.Gemini20FlashLite, "gemini-2.0-flash-lite" },
+        { EvalGoogleModelModel.Gemini20FlashExp, "gemini-2.0-flash-exp" },
+        { EvalGoogleModelModel.Gemini20FlashRealtimeExp, "gemini-2.0-flash-realtime-exp" },
+        { EvalGoogleModelModel.Gemini15Flash, "gemini-1.5-flash" },
+        { EvalGoogleModelModel.Gemini15Flash002, "gemini-1.5-flash-002" },
+        { EvalGoogleModelModel.Gemini15Pro, "gemini-1.5-pro" },
+        { EvalGoogleModelModel.Gemini15Pro002, "gemini-1.5-pro-002" },
+        { EvalGoogleModelModel.Gemini10Pro, "gemini-1.0-pro" },
+    };
+
+    public override EvalGoogleModelModel Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        EvalGoogleModelModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override EvalGoogleModelModel ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        EvalGoogleModelModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

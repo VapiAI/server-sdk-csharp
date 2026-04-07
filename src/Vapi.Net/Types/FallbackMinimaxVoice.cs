@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record FallbackMinimaxVoice
+public record FallbackMinimaxVoice : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the flag to toggle voice caching for the assistant.
     /// </summary>
@@ -41,6 +45,16 @@ public record FallbackMinimaxVoice
     /// </summary>
     [JsonPropertyName("emotion")]
     public string? Emotion { get; set; }
+
+    /// <summary>
+    /// Controls the granularity of subtitle/timing data returned by Minimax
+    /// during synthesis. Set to 'word' to receive per-word timestamps in
+    /// assistant.speechStarted events for karaoke-style caption rendering.
+    ///
+    /// @default "sentence"
+    /// </summary>
+    [JsonPropertyName("subtitleType")]
+    public FallbackMinimaxVoiceSubtitleType? SubtitleType { get; set; }
 
     /// <summary>
     /// Voice pitch adjustment. Range from -12 to 12 semitones.
@@ -87,15 +101,11 @@ public record FallbackMinimaxVoice
     [JsonPropertyName("chunkPlan")]
     public ChunkPlan? ChunkPlan { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

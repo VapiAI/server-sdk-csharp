@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record FallbackAssemblyAiTranscriber
+public record FallbackAssemblyAiTranscriber : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the language that will be set for the transcription.
     /// </summary>
@@ -59,6 +63,25 @@ public record FallbackAssemblyAiTranscriber
     public double? MaxTurnSilence { get; set; }
 
     /// <summary>
+    /// Use VAD to assist with endpointing decisions from the transcriber.
+    /// When enabled, transcriber endpointing will be buffered if VAD detects the user is still speaking, preventing premature turn-taking.
+    /// When disabled, transcriber endpointing will be used immediately regardless of VAD state, allowing for quicker but more aggressive turn-taking.
+    /// Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
+    ///
+    /// @default true
+    /// </summary>
+    [JsonPropertyName("vadAssistedEndpointingEnabled")]
+    public bool? VadAssistedEndpointingEnabled { get; set; }
+
+    /// <summary>
+    /// This is the speech model used for the streaming session.
+    /// Note: Keyterms prompting is not supported with multilingual streaming.
+    /// @default 'universal-streaming-english'
+    /// </summary>
+    [JsonPropertyName("speechModel")]
+    public FallbackAssemblyAiTranscriberSpeechModel? SpeechModel { get; set; }
+
+    /// <summary>
     /// The WebSocket URL that the transcriber connects to.
     /// </summary>
     [JsonPropertyName("realtimeUrl")]
@@ -91,15 +114,11 @@ public record FallbackAssemblyAiTranscriber
     [JsonPropertyName("disablePartialTranscripts")]
     public bool? DisablePartialTranscripts { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

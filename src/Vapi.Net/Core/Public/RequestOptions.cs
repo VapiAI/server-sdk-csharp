@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -8,11 +5,6 @@ namespace Vapi.Net;
 [Serializable]
 public partial class RequestOptions : IRequestOptions
 {
-    /// <summary>
-    /// The http headers sent with the request.
-    /// </summary>
-    Headers IRequestOptions.Headers { get; init; } = new();
-
     /// <summary>
     /// The Base URL for the API.
     /// </summary>
@@ -48,7 +40,7 @@ public partial class RequestOptions : IRequestOptions
     } = [];
 
     /// <summary>
-    /// The http client used to make requests.
+    /// The max number of retries to attempt.
     /// </summary>
     public int? MaxRetries { get;
 #if NET5_0_OR_GREATER

@@ -1,87 +1,55 @@
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
+using global::System.Text.Json;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public partial class CampaignsClient
+public partial class CampaignsClient : ICampaignsClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal CampaignsClient(RawClient client)
     {
         _client = client;
     }
 
-    public async Task<CampaignPaginatedResponse> CampaignControllerFindAllAsync(
+    private async Task<
+        WithRawResponse<CampaignPaginatedResponse>
+    > CampaignControllerFindAllAsyncCore(
         CampaignControllerFindAllRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Id != null)
-        {
-            _query["id"] = request.Id;
-        }
-        if (request.Status != null)
-        {
-            _query["status"] = request.Status.Value.Stringify();
-        }
-        if (request.Page != null)
-        {
-            _query["page"] = request.Page.Value.ToString();
-        }
-        if (request.SortOrder != null)
-        {
-            _query["sortOrder"] = request.SortOrder.Value.Stringify();
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.CreatedAtGt != null)
-        {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtLt != null)
-        {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtGe != null)
-        {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtLe != null)
-        {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtGt != null)
-        {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtLt != null)
-        {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtGe != null)
-        {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtLe != null)
-        {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
-        }
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 13)
+            .Add("id", request.Id)
+            .Add("status", request.Status)
+            .Add("page", request.Page)
+            .Add("sortOrder", request.SortOrder)
+            .Add("limit", request.Limit)
+            .Add("createdAtGt", request.CreatedAtGt)
+            .Add("createdAtLt", request.CreatedAtLt)
+            .Add("createdAtGe", request.CreatedAtGe)
+            .Add("createdAtLe", request.CreatedAtLe)
+            .Add("updatedAtGt", request.UpdatedAtGt)
+            .Add("updatedAtLt", request.UpdatedAtLt)
+            .Add("updatedAtGe", request.UpdatedAtGe)
+            .Add("updatedAtLe", request.UpdatedAtLe)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "campaign",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -89,19 +57,37 @@ public partial class CampaignsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<CampaignPaginatedResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<CampaignPaginatedResponse>(responseBody)!;
+                return new WithRawResponse<CampaignPaginatedResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -110,20 +96,26 @@ public partial class CampaignsClient
         }
     }
 
-    public async Task<Campaign> CampaignControllerCreateAsync(
+    private async Task<WithRawResponse<Campaign>> CampaignControllerCreateAsyncCore(
         CreateCampaignDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "campaign",
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -132,19 +124,37 @@ public partial class CampaignsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<Campaign>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<Campaign>(responseBody)!;
+                return new WithRawResponse<Campaign>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -153,20 +163,26 @@ public partial class CampaignsClient
         }
     }
 
-    public async Task<Campaign> CampaignControllerFindOneAsync(
+    private async Task<WithRawResponse<Campaign>> CampaignControllerFindOneAsyncCore(
         string id,
         CampaignControllerFindOneRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format("campaign/{0}", ValueConvert.ToPathParameterString(id)),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -174,19 +190,37 @@ public partial class CampaignsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<Campaign>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<Campaign>(responseBody)!;
+                return new WithRawResponse<Campaign>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -195,20 +229,26 @@ public partial class CampaignsClient
         }
     }
 
-    public async Task<Campaign> CampaignControllerRemoveAsync(
+    private async Task<WithRawResponse<Campaign>> CampaignControllerRemoveAsyncCore(
         string id,
         CampaignControllerRemoveRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = string.Format("campaign/{0}", ValueConvert.ToPathParameterString(id)),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -216,19 +256,37 @@ public partial class CampaignsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<Campaign>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<Campaign>(responseBody)!;
+                return new WithRawResponse<Campaign>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -237,21 +295,27 @@ public partial class CampaignsClient
         }
     }
 
-    public async Task<Campaign> CampaignControllerUpdateAsync(
+    private async Task<WithRawResponse<Campaign>> CampaignControllerUpdateAsyncCore(
         string id,
         UpdateCampaignDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format("campaign/{0}", ValueConvert.ToPathParameterString(id)),
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -260,24 +324,100 @@ public partial class CampaignsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<Campaign>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<Campaign>(responseBody)!;
+                return new WithRawResponse<Campaign>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
             );
         }
+    }
+
+    public WithRawResponseTask<CampaignPaginatedResponse> CampaignControllerFindAllAsync(
+        CampaignControllerFindAllRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<CampaignPaginatedResponse>(
+            CampaignControllerFindAllAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    public WithRawResponseTask<Campaign> CampaignControllerCreateAsync(
+        CreateCampaignDto request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<Campaign>(
+            CampaignControllerCreateAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    public WithRawResponseTask<Campaign> CampaignControllerFindOneAsync(
+        string id,
+        CampaignControllerFindOneRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<Campaign>(
+            CampaignControllerFindOneAsyncCore(id, request, options, cancellationToken)
+        );
+    }
+
+    public WithRawResponseTask<Campaign> CampaignControllerRemoveAsync(
+        string id,
+        CampaignControllerRemoveRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<Campaign>(
+            CampaignControllerRemoveAsyncCore(id, request, options, cancellationToken)
+        );
+    }
+
+    public WithRawResponseTask<Campaign> CampaignControllerUpdateAsync(
+        string id,
+        UpdateCampaignDto request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<Campaign>(
+            CampaignControllerUpdateAsyncCore(id, request, options, cancellationToken)
+        );
     }
 }

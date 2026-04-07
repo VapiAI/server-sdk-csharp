@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record ArtifactPlan
+public record ArtifactPlan : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This determines whether assistant's calls are recorded. Defaults to true.
     ///
@@ -147,6 +151,14 @@ public record ArtifactPlan
     public IEnumerable<string>? StructuredOutputIds { get; set; }
 
     /// <summary>
+    /// This is an array of transient structured outputs to be calculated during the call.
+    /// The outputs will be extracted and stored in `call.artifact.structuredOutputs` after the call is ended.
+    /// Use this to provide inline structured output configurations instead of referencing existing ones via structuredOutputIds.
+    /// </summary>
+    [JsonPropertyName("structuredOutputs")]
+    public IEnumerable<CreateStructuredOutputDto>? StructuredOutputs { get; set; }
+
+    /// <summary>
     /// This is an array of scorecard IDs that will be evaluated based on the structured outputs extracted during the call.
     /// The scorecards will be evaluated and the results will be stored in `call.artifact.scorecards` after the call has ended.
     /// </summary>
@@ -174,15 +186,11 @@ public record ArtifactPlan
     [JsonPropertyName("loggingPath")]
     public string? LoggingPath { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -1,12 +1,79 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<ResponseTextDeltaEventType>))]
+[JsonConverter(typeof(ResponseTextDeltaEventTypeSerializer))]
 public enum ResponseTextDeltaEventType
 {
     [EnumMember(Value = "response.output_text.delta")]
     ResponseOutputTextDelta,
+}
+
+internal class ResponseTextDeltaEventTypeSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<ResponseTextDeltaEventType>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        ResponseTextDeltaEventType
+    > _stringToEnum = new()
+    {
+        { "response.output_text.delta", ResponseTextDeltaEventType.ResponseOutputTextDelta },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        ResponseTextDeltaEventType,
+        string
+    > _enumToString = new()
+    {
+        { ResponseTextDeltaEventType.ResponseOutputTextDelta, "response.output_text.delta" },
+    };
+
+    public override ResponseTextDeltaEventType Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        ResponseTextDeltaEventType value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override ResponseTextDeltaEventType ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        ResponseTextDeltaEventType value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

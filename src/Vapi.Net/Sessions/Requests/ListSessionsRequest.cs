@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -6,6 +6,12 @@ namespace Vapi.Net;
 [Serializable]
 public record ListSessionsRequest
 {
+    /// <summary>
+    /// This is the unique identifier for the session to filter by.
+    /// </summary>
+    [JsonIgnore]
+    public string? Id { get; set; }
+
     /// <summary>
     /// This is the name of the customer. This is just for your own reference.
     ///
@@ -19,6 +25,12 @@ public record ListSessionsRequest
     /// </summary>
     [JsonIgnore]
     public string? AssistantId { get; set; }
+
+    /// <summary>
+    /// Filter by multiple assistant IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonIgnore]
+    public string? AssistantIdAny { get; set; }
 
     /// <summary>
     /// This is the ID of the squad to filter sessions by.
@@ -82,6 +94,24 @@ public record ListSessionsRequest
     /// </summary>
     [JsonIgnore]
     public string? ExternalId { get; set; }
+
+    /// <summary>
+    /// Filter by any of the specified customer phone numbers (comma-separated).
+    /// </summary>
+    [JsonIgnore]
+    public string? CustomerNumberAny { get; set; }
+
+    /// <summary>
+    /// This will return sessions with the specified phoneNumberId.
+    /// </summary>
+    [JsonIgnore]
+    public string? PhoneNumberId { get; set; }
+
+    /// <summary>
+    /// This will return sessions with any of the specified phoneNumberIds.
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> PhoneNumberIdAny { get; set; } = new List<string>();
 
     /// <summary>
     /// This is the page number to return. Defaults to 1.

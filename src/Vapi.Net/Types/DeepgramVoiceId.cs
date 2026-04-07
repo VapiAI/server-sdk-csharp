@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<DeepgramVoiceId>))]
+[JsonConverter(typeof(DeepgramVoiceIdSerializer))]
 public enum DeepgramVoiceId
 {
     [EnumMember(Value = "asteria")]
@@ -171,4 +170,180 @@ public enum DeepgramVoiceId
 
     [EnumMember(Value = "javier")]
     Javier,
+}
+
+internal class DeepgramVoiceIdSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<DeepgramVoiceId>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        DeepgramVoiceId
+    > _stringToEnum = new()
+    {
+        { "asteria", DeepgramVoiceId.Asteria },
+        { "luna", DeepgramVoiceId.Luna },
+        { "stella", DeepgramVoiceId.Stella },
+        { "athena", DeepgramVoiceId.Athena },
+        { "hera", DeepgramVoiceId.Hera },
+        { "orion", DeepgramVoiceId.Orion },
+        { "arcas", DeepgramVoiceId.Arcas },
+        { "perseus", DeepgramVoiceId.Perseus },
+        { "angus", DeepgramVoiceId.Angus },
+        { "orpheus", DeepgramVoiceId.Orpheus },
+        { "helios", DeepgramVoiceId.Helios },
+        { "zeus", DeepgramVoiceId.Zeus },
+        { "thalia", DeepgramVoiceId.Thalia },
+        { "andromeda", DeepgramVoiceId.Andromeda },
+        { "helena", DeepgramVoiceId.Helena },
+        { "apollo", DeepgramVoiceId.Apollo },
+        { "aries", DeepgramVoiceId.Aries },
+        { "amalthea", DeepgramVoiceId.Amalthea },
+        { "atlas", DeepgramVoiceId.Atlas },
+        { "aurora", DeepgramVoiceId.Aurora },
+        { "callista", DeepgramVoiceId.Callista },
+        { "cora", DeepgramVoiceId.Cora },
+        { "cordelia", DeepgramVoiceId.Cordelia },
+        { "delia", DeepgramVoiceId.Delia },
+        { "draco", DeepgramVoiceId.Draco },
+        { "electra", DeepgramVoiceId.Electra },
+        { "harmonia", DeepgramVoiceId.Harmonia },
+        { "hermes", DeepgramVoiceId.Hermes },
+        { "hyperion", DeepgramVoiceId.Hyperion },
+        { "iris", DeepgramVoiceId.Iris },
+        { "janus", DeepgramVoiceId.Janus },
+        { "juno", DeepgramVoiceId.Juno },
+        { "jupiter", DeepgramVoiceId.Jupiter },
+        { "mars", DeepgramVoiceId.Mars },
+        { "minerva", DeepgramVoiceId.Minerva },
+        { "neptune", DeepgramVoiceId.Neptune },
+        { "odysseus", DeepgramVoiceId.Odysseus },
+        { "ophelia", DeepgramVoiceId.Ophelia },
+        { "pandora", DeepgramVoiceId.Pandora },
+        { "phoebe", DeepgramVoiceId.Phoebe },
+        { "pluto", DeepgramVoiceId.Pluto },
+        { "saturn", DeepgramVoiceId.Saturn },
+        { "selene", DeepgramVoiceId.Selene },
+        { "theia", DeepgramVoiceId.Theia },
+        { "vesta", DeepgramVoiceId.Vesta },
+        { "celeste", DeepgramVoiceId.Celeste },
+        { "estrella", DeepgramVoiceId.Estrella },
+        { "nestor", DeepgramVoiceId.Nestor },
+        { "sirio", DeepgramVoiceId.Sirio },
+        { "carina", DeepgramVoiceId.Carina },
+        { "alvaro", DeepgramVoiceId.Alvaro },
+        { "diana", DeepgramVoiceId.Diana },
+        { "aquila", DeepgramVoiceId.Aquila },
+        { "selena", DeepgramVoiceId.Selena },
+        { "javier", DeepgramVoiceId.Javier },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        DeepgramVoiceId,
+        string
+    > _enumToString = new()
+    {
+        { DeepgramVoiceId.Asteria, "asteria" },
+        { DeepgramVoiceId.Luna, "luna" },
+        { DeepgramVoiceId.Stella, "stella" },
+        { DeepgramVoiceId.Athena, "athena" },
+        { DeepgramVoiceId.Hera, "hera" },
+        { DeepgramVoiceId.Orion, "orion" },
+        { DeepgramVoiceId.Arcas, "arcas" },
+        { DeepgramVoiceId.Perseus, "perseus" },
+        { DeepgramVoiceId.Angus, "angus" },
+        { DeepgramVoiceId.Orpheus, "orpheus" },
+        { DeepgramVoiceId.Helios, "helios" },
+        { DeepgramVoiceId.Zeus, "zeus" },
+        { DeepgramVoiceId.Thalia, "thalia" },
+        { DeepgramVoiceId.Andromeda, "andromeda" },
+        { DeepgramVoiceId.Helena, "helena" },
+        { DeepgramVoiceId.Apollo, "apollo" },
+        { DeepgramVoiceId.Aries, "aries" },
+        { DeepgramVoiceId.Amalthea, "amalthea" },
+        { DeepgramVoiceId.Atlas, "atlas" },
+        { DeepgramVoiceId.Aurora, "aurora" },
+        { DeepgramVoiceId.Callista, "callista" },
+        { DeepgramVoiceId.Cora, "cora" },
+        { DeepgramVoiceId.Cordelia, "cordelia" },
+        { DeepgramVoiceId.Delia, "delia" },
+        { DeepgramVoiceId.Draco, "draco" },
+        { DeepgramVoiceId.Electra, "electra" },
+        { DeepgramVoiceId.Harmonia, "harmonia" },
+        { DeepgramVoiceId.Hermes, "hermes" },
+        { DeepgramVoiceId.Hyperion, "hyperion" },
+        { DeepgramVoiceId.Iris, "iris" },
+        { DeepgramVoiceId.Janus, "janus" },
+        { DeepgramVoiceId.Juno, "juno" },
+        { DeepgramVoiceId.Jupiter, "jupiter" },
+        { DeepgramVoiceId.Mars, "mars" },
+        { DeepgramVoiceId.Minerva, "minerva" },
+        { DeepgramVoiceId.Neptune, "neptune" },
+        { DeepgramVoiceId.Odysseus, "odysseus" },
+        { DeepgramVoiceId.Ophelia, "ophelia" },
+        { DeepgramVoiceId.Pandora, "pandora" },
+        { DeepgramVoiceId.Phoebe, "phoebe" },
+        { DeepgramVoiceId.Pluto, "pluto" },
+        { DeepgramVoiceId.Saturn, "saturn" },
+        { DeepgramVoiceId.Selene, "selene" },
+        { DeepgramVoiceId.Theia, "theia" },
+        { DeepgramVoiceId.Vesta, "vesta" },
+        { DeepgramVoiceId.Celeste, "celeste" },
+        { DeepgramVoiceId.Estrella, "estrella" },
+        { DeepgramVoiceId.Nestor, "nestor" },
+        { DeepgramVoiceId.Sirio, "sirio" },
+        { DeepgramVoiceId.Carina, "carina" },
+        { DeepgramVoiceId.Alvaro, "alvaro" },
+        { DeepgramVoiceId.Diana, "diana" },
+        { DeepgramVoiceId.Aquila, "aquila" },
+        { DeepgramVoiceId.Selena, "selena" },
+        { DeepgramVoiceId.Javier, "javier" },
+    };
+
+    public override DeepgramVoiceId Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        DeepgramVoiceId value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override DeepgramVoiceId ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        DeepgramVoiceId value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

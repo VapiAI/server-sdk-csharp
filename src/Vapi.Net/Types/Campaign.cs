@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record Campaign
+public record Campaign : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the status of the campaign.
     /// </summary>
@@ -26,22 +30,34 @@ public record Campaign
     public required string Name { get; set; }
 
     /// <summary>
-    /// This is the assistant ID that will be used for the campaign calls. Note: Either assistantId or workflowId can be used, but not both.
+    /// This is the assistant ID that will be used for the campaign calls. Note: Only one of assistantId, workflowId, or squadId can be used.
     /// </summary>
     [JsonPropertyName("assistantId")]
     public string? AssistantId { get; set; }
 
     /// <summary>
-    /// This is the workflow ID that will be used for the campaign calls. Note: Either assistantId or workflowId can be used, but not both.
+    /// This is the workflow ID that will be used for the campaign calls. Note: Only one of assistantId, workflowId, or squadId can be used.
     /// </summary>
     [JsonPropertyName("workflowId")]
     public string? WorkflowId { get; set; }
 
     /// <summary>
-    /// This is the phone number ID that will be used for the campaign calls.
+    /// This is the squad ID that will be used for the campaign calls. Note: Only one of assistantId, workflowId, or squadId can be used.
+    /// </summary>
+    [JsonPropertyName("squadId")]
+    public string? SquadId { get; set; }
+
+    /// <summary>
+    /// This is the phone number ID that will be used for the campaign calls. Required if dialPlan is not provided. Note: phoneNumberId and dialPlan are mutually exclusive.
     /// </summary>
     [JsonPropertyName("phoneNumberId")]
-    public required string PhoneNumberId { get; set; }
+    public string? PhoneNumberId { get; set; }
+
+    /// <summary>
+    /// This is a list of dial entries, each specifying a phone number and the customers to call using that number. Use this when you want different phone numbers to call different sets of customers. Note: phoneNumberId and dialPlan are mutually exclusive.
+    /// </summary>
+    [JsonPropertyName("dialPlan")]
+    public IEnumerable<DialPlanEntry>? DialPlan { get; set; }
 
     /// <summary>
     /// This is the schedule plan for the campaign. Calls will start at startedAt and continue until your organization’s concurrency limit is reached. Any remaining calls will be retried for up to one hour as capacity becomes available. After that hour or after latestAt, whichever comes first, any calls that couldn’t be placed won’t be retried.
@@ -50,10 +66,10 @@ public record Campaign
     public SchedulePlan? SchedulePlan { get; set; }
 
     /// <summary>
-    /// These are the customers that will be called in the campaign.
+    /// These are the customers that will be called in the campaign. Required if dialPlan is not provided.
     /// </summary>
     [JsonPropertyName("customers")]
-    public IEnumerable<CreateCustomerDto> Customers { get; set; } = new List<CreateCustomerDto>();
+    public IEnumerable<CreateCustomerDto>? Customers { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the campaign.
@@ -115,15 +131,11 @@ public record Campaign
     [JsonPropertyName("callsCounterEnded")]
     public required double CallsCounterEnded { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

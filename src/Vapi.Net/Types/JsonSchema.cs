@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record JsonSchema
+public record JsonSchema : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the type of output you'd like.
     ///
@@ -22,20 +26,16 @@ public record JsonSchema
     public required JsonSchemaType Type { get; set; }
 
     /// <summary>
-    /// This is required if the type is "array". This is the schema of the items in the array.
-    ///
-    /// This is of type JsonSchema. However, Swagger doesn't support circular references.
+    /// This is required if the type is "array". This is the schema of the items in the array. This is a recursive reference to JsonSchema.
     /// </summary>
     [JsonPropertyName("items")]
-    public object? Items { get; set; }
+    public JsonSchema? Items { get; set; }
 
     /// <summary>
-    /// This is required if the type is "object". This specifies the properties of the object.
-    ///
-    /// This is a map of string to JsonSchema. However, Swagger doesn't support circular references.
+    /// This is required if the type is "object". This specifies the properties of the object. This is a map of property names to JsonSchema objects.
     /// </summary>
     [JsonPropertyName("properties")]
-    public object? Properties { get; set; }
+    public Dictionary<string, JsonSchema>? Properties { get; set; }
 
     /// <summary>
     /// This is the description to help the model understand what it needs to output.
@@ -79,15 +79,11 @@ public record JsonSchema
     [JsonPropertyName("title")]
     public string? Title { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

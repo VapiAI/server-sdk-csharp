@@ -1,17 +1,27 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record ServerMessageResponseHandoffDestinationRequest
+public record ServerMessageResponseHandoffDestinationRequest : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the local tool result message returned for the handoff tool call.
+    /// </summary>
+    [JsonPropertyName("result")]
+    public string? Result { get; set; }
+
     /// <summary>
     /// This is the destination you'd like the call to be transferred to.
     /// </summary>
     [JsonPropertyName("destination")]
-    public required HandoffDestinationAssistant Destination { get; set; }
+    public object Destination { get; set; } = new Dictionary<string, object?>();
 
     /// <summary>
     /// This is the error message if the handoff should not be made.
@@ -19,15 +29,11 @@ public record ServerMessageResponseHandoffDestinationRequest
     [JsonPropertyName("error")]
     public string? Error { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

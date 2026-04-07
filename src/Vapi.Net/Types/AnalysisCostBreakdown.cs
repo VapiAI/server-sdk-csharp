@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record AnalysisCostBreakdown
+public record AnalysisCostBreakdown : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the cost to summarize the call.
     /// </summary>
@@ -24,6 +28,12 @@ public record AnalysisCostBreakdown
     /// </summary>
     [JsonPropertyName("summaryCompletionTokens")]
     public double? SummaryCompletionTokens { get; set; }
+
+    /// <summary>
+    /// This is the number of cached prompt tokens used to summarize the call.
+    /// </summary>
+    [JsonPropertyName("summaryCachedPromptTokens")]
+    public double? SummaryCachedPromptTokens { get; set; }
 
     /// <summary>
     /// This is the cost to extract structured data from the call.
@@ -44,6 +54,12 @@ public record AnalysisCostBreakdown
     public double? StructuredDataCompletionTokens { get; set; }
 
     /// <summary>
+    /// This is the number of cached prompt tokens used to extract structured data from the call.
+    /// </summary>
+    [JsonPropertyName("structuredDataCachedPromptTokens")]
+    public double? StructuredDataCachedPromptTokens { get; set; }
+
+    /// <summary>
     /// This is the cost to evaluate if the call was successful.
     /// </summary>
     [JsonPropertyName("successEvaluation")]
@@ -60,6 +76,12 @@ public record AnalysisCostBreakdown
     /// </summary>
     [JsonPropertyName("successEvaluationCompletionTokens")]
     public double? SuccessEvaluationCompletionTokens { get; set; }
+
+    /// <summary>
+    /// This is the number of cached prompt tokens used to evaluate if the call was successful.
+    /// </summary>
+    [JsonPropertyName("successEvaluationCachedPromptTokens")]
+    public double? SuccessEvaluationCachedPromptTokens { get; set; }
 
     /// <summary>
     /// This is the cost to evaluate structuredOutputs from the call.
@@ -80,14 +102,16 @@ public record AnalysisCostBreakdown
     public double? StructuredOutputCompletionTokens { get; set; }
 
     /// <summary>
-    /// Additional properties received from the response, if any.
+    /// This is the number of cached prompt tokens used to evaluate structuredOutputs from the call.
     /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonPropertyName("structuredOutputCachedPromptTokens")]
+    public double? StructuredOutputCachedPromptTokens { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -7,10 +7,22 @@ namespace Vapi.Net;
 public record ListChatsRequest
 {
     /// <summary>
+    /// This is the unique identifier for the chat to filter by.
+    /// </summary>
+    [JsonIgnore]
+    public string? Id { get; set; }
+
+    /// <summary>
     /// This is the unique identifier for the assistant that will be used for the chat.
     /// </summary>
     [JsonIgnore]
     public string? AssistantId { get; set; }
+
+    /// <summary>
+    /// Filter by multiple assistant IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonIgnore]
+    public string? AssistantIdAny { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the squad that will be used for the chat.

@@ -1,13 +1,17 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record TransferDestinationSip
+public record TransferDestinationSip : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is spoken to the customer before connecting them to the destination.
     ///
@@ -25,6 +29,20 @@ public record TransferDestinationSip
     /// </summary>
     [JsonPropertyName("sipUri")]
     public required string SipUri { get; set; }
+
+    /// <summary>
+    /// This is the caller ID to use when transferring the call to the `sipUri`.
+    ///
+    /// Usage:
+    /// - If not provided, the caller ID will be determined by the SIP infrastructure.
+    /// - Set to '{{customer.number}}' to always use the customer's number as the caller ID.
+    /// - Set to '{{phoneNumber.number}}' to always use the phone number of the assistant as the caller ID.
+    /// - Set to any E164 number to always use that number as the caller ID.
+    ///
+    /// Only applicable when `transferPlan.sipVerb='dial'`. Not applicable for SIP REFER.
+    /// </summary>
+    [JsonPropertyName("callerId")]
+    public string? CallerId { get; set; }
 
     /// <summary>
     /// This configures how transfer is executed and the experience of the destination party receiving the call. Defaults to `blind-transfer`.
@@ -46,15 +64,11 @@ public record TransferDestinationSip
     [JsonPropertyName("description")]
     public string? Description { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

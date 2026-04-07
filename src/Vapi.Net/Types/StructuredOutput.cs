@@ -1,23 +1,51 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record StructuredOutput
+public record StructuredOutput : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the type of structured output.
+    ///
+    /// - 'ai': Uses an LLM to extract structured data from the conversation (default).
+    /// - 'regex': Uses a regex pattern to extract data from the transcript without an LLM.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public StructuredOutputType? Type { get; set; }
+
+    /// <summary>
+    /// This is the regex pattern to match against the transcript.
+    ///
+    /// Only used when type is 'regex'. Supports both raw patterns (e.g. '\d+') and
+    /// regex literal format (e.g. '/\d+/gi'). Uses RE2 syntax for safety.
+    ///
+    /// The result depends on the schema type:
+    /// - boolean: true if the pattern matches, false otherwise
+    /// - string: the first match or first capture group
+    /// - number/integer: the first match parsed as a number
+    /// - array: all matches
+    /// </summary>
+    [JsonPropertyName("regex")]
+    public string? Regex { get; set; }
+
     /// <summary>
     /// This is the model that will be used to extract the structured output.
     ///
     /// To provide your own custom system and user prompts for structured output extraction, populate the messages array with your system and user messages. You can specify liquid templating in your system and user messages.
-    /// Between the system or user messages, you must reference either 'transcript' or 'messages' with the '{{}}' syntax to access the conversation history.
-    /// Between the system or user messages, you must reference a variation of the structured output with the '{{}}' syntax to access the structured output definition.
+    /// Between the system or user messages, you must reference either 'transcript' or 'messages' with the `{{}}` syntax to access the conversation history.
+    /// Between the system or user messages, you must reference a variation of the structured output with the `{{}}` syntax to access the structured output definition.
     /// i.e.:
-    /// {{structuredOutput}}
-    /// {{structuredOutput.name}}
-    /// {{structuredOutput.description}}
-    /// {{structuredOutput.schema}}
+    /// `{{structuredOutput}}`
+    /// `{{structuredOutput.name}}`
+    /// `{{structuredOutput.description}}`
+    /// `{{structuredOutput.schema}}`
     ///
     /// If model is not specified, GPT-4.1 will be used by default for extraction, utilizing default system and user prompts.
     /// If messages or required fields are not specified, the default system and user prompts will be used.
@@ -99,15 +127,11 @@ public record StructuredOutput
     [JsonPropertyName("schema")]
     public required JsonSchema Schema { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()
