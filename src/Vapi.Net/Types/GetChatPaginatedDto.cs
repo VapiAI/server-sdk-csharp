@@ -1,17 +1,33 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record GetChatPaginatedDto
+public record GetChatPaginatedDto : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the unique identifier for the chat to filter by.
+    /// </summary>
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
+
     /// <summary>
     /// This is the unique identifier for the assistant that will be used for the chat.
     /// </summary>
     [JsonPropertyName("assistantId")]
     public string? AssistantId { get; set; }
+
+    /// <summary>
+    /// Filter by multiple assistant IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonPropertyName("assistantIdAny")]
+    public string? AssistantIdAny { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the squad that will be used for the chat.
@@ -97,15 +113,11 @@ public record GetChatPaginatedDto
     [JsonPropertyName("updatedAtLe")]
     public DateTime? UpdatedAtLe { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

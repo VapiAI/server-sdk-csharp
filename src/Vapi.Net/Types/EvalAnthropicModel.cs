@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record EvalAnthropicModel
+public record EvalAnthropicModel : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the specific model that will be used.
     /// </summary>
@@ -16,7 +20,6 @@ public record EvalAnthropicModel
     /// <summary>
     /// This is the optional configuration for Anthropic's thinking feature.
     ///
-    /// - Only applicable for `claude-3-7-sonnet-20250219` model.
     /// - If provided, `maxTokens` must be greater than `thinking.budgetTokens`.
     /// </summary>
     [JsonPropertyName("thinking")]
@@ -47,15 +50,11 @@ public record EvalAnthropicModel
     [JsonPropertyName("messages")]
     public IEnumerable<object> Messages { get; set; } = new List<object>();
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

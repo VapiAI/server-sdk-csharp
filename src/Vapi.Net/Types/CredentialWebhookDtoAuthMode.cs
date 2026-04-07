@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<CredentialWebhookDtoAuthMode>))]
+[JsonConverter(typeof(CredentialWebhookDtoAuthModeSerializer))]
 public enum CredentialWebhookDtoAuthMode
 {
     [EnumMember(Value = "OAUTH2")]
@@ -15,4 +14,76 @@ public enum CredentialWebhookDtoAuthMode
 
     [EnumMember(Value = "BASIC")]
     Basic,
+}
+
+internal class CredentialWebhookDtoAuthModeSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<CredentialWebhookDtoAuthMode>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        CredentialWebhookDtoAuthMode
+    > _stringToEnum = new()
+    {
+        { "OAUTH2", CredentialWebhookDtoAuthMode.Oauth2 },
+        { "API_KEY", CredentialWebhookDtoAuthMode.ApiKey },
+        { "BASIC", CredentialWebhookDtoAuthMode.Basic },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        CredentialWebhookDtoAuthMode,
+        string
+    > _enumToString = new()
+    {
+        { CredentialWebhookDtoAuthMode.Oauth2, "OAUTH2" },
+        { CredentialWebhookDtoAuthMode.ApiKey, "API_KEY" },
+        { CredentialWebhookDtoAuthMode.Basic, "BASIC" },
+    };
+
+    public override CredentialWebhookDtoAuthMode Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        CredentialWebhookDtoAuthMode value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override CredentialWebhookDtoAuthMode ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        CredentialWebhookDtoAuthMode value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

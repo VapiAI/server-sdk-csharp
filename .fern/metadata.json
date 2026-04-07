@@ -1,0 +1,17 @@
+{
+  "cliVersion": "4.62.4",
+  "generatorName": "fernapi/fern-csharp-sdk",
+  "generatorVersion": "2.55.3",
+  "generatorConfig": {
+    "namespace": "Vapi.Net",
+    "client-class-name": "VapiClient",
+    "additional-properties": false,
+    "enable-forward-compatible-enums": false,
+    "generate-mock-server-tests": false,
+    "inline-path-parameters": false,
+    "simplify-object-dictionaries": true,
+    "use-discriminated-unions": false
+  },
+  "originGitCommit": "7353542e713a4907a187bb55b184fb955cb6c5e9",
+  "sdkVersion": "1.0.0"
+}

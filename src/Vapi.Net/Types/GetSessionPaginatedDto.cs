@@ -1,12 +1,22 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record GetSessionPaginatedDto
+public record GetSessionPaginatedDto : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the unique identifier for the session to filter by.
+    /// </summary>
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
+
     /// <summary>
     /// This is the name of the session to filter by.
     /// </summary>
@@ -18,6 +28,12 @@ public record GetSessionPaginatedDto
     /// </summary>
     [JsonPropertyName("assistantId")]
     public string? AssistantId { get; set; }
+
+    /// <summary>
+    /// Filter by multiple assistant IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonPropertyName("assistantIdAny")]
+    public string? AssistantIdAny { get; set; }
 
     /// <summary>
     /// This is the ID of the squad to filter sessions by.
@@ -36,6 +52,24 @@ public record GetSessionPaginatedDto
     /// </summary>
     [JsonPropertyName("customer")]
     public CreateCustomerDto? Customer { get; set; }
+
+    /// <summary>
+    /// Filter by any of the specified customer phone numbers (comma-separated).
+    /// </summary>
+    [JsonPropertyName("customerNumberAny")]
+    public string? CustomerNumberAny { get; set; }
+
+    /// <summary>
+    /// This will return sessions with the specified phoneNumberId.
+    /// </summary>
+    [JsonPropertyName("phoneNumberId")]
+    public string? PhoneNumberId { get; set; }
+
+    /// <summary>
+    /// This will return sessions with any of the specified phoneNumberIds.
+    /// </summary>
+    [JsonPropertyName("phoneNumberIdAny")]
+    public IEnumerable<string>? PhoneNumberIdAny { get; set; }
 
     /// <summary>
     /// This is the page number to return. Defaults to 1.
@@ -103,15 +137,11 @@ public record GetSessionPaginatedDto
     [JsonPropertyName("updatedAtLe")]
     public DateTime? UpdatedAtLe { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

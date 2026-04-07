@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<OpenAiModelToolStrictCompatibilityMode>))]
+[JsonConverter(typeof(OpenAiModelToolStrictCompatibilityModeSerializer))]
 public enum OpenAiModelToolStrictCompatibilityMode
 {
     [EnumMember(Value = "strip-parameters-with-unsupported-validation")]
@@ -12,4 +11,86 @@ public enum OpenAiModelToolStrictCompatibilityMode
 
     [EnumMember(Value = "strip-unsupported-validation")]
     StripUnsupportedValidation,
+}
+
+internal class OpenAiModelToolStrictCompatibilityModeSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<OpenAiModelToolStrictCompatibilityMode>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        OpenAiModelToolStrictCompatibilityMode
+    > _stringToEnum = new()
+    {
+        {
+            "strip-parameters-with-unsupported-validation",
+            OpenAiModelToolStrictCompatibilityMode.StripParametersWithUnsupportedValidation
+        },
+        {
+            "strip-unsupported-validation",
+            OpenAiModelToolStrictCompatibilityMode.StripUnsupportedValidation
+        },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        OpenAiModelToolStrictCompatibilityMode,
+        string
+    > _enumToString = new()
+    {
+        {
+            OpenAiModelToolStrictCompatibilityMode.StripParametersWithUnsupportedValidation,
+            "strip-parameters-with-unsupported-validation"
+        },
+        {
+            OpenAiModelToolStrictCompatibilityMode.StripUnsupportedValidation,
+            "strip-unsupported-validation"
+        },
+    };
+
+    public override OpenAiModelToolStrictCompatibilityMode Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        OpenAiModelToolStrictCompatibilityMode value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override OpenAiModelToolStrictCompatibilityMode ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        OpenAiModelToolStrictCompatibilityMode value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

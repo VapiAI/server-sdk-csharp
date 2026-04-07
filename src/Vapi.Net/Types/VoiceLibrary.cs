@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record VoiceLibrary
+public record VoiceLibrary : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the voice provider that will be used.
     /// </summary>
@@ -74,6 +78,12 @@ public record VoiceLibrary
     public string? PreviewUrl { get; set; }
 
     /// <summary>
+    /// The sort order of the voice for display purposes. Lower values appear first.
+    /// </summary>
+    [JsonPropertyName("sortOrder")]
+    public double? SortOrder { get; set; }
+
+    /// <summary>
     /// The description of the voice.
     /// </summary>
     [JsonPropertyName("description")]
@@ -121,15 +131,11 @@ public record VoiceLibrary
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

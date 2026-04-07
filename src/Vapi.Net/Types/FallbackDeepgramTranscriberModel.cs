@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<FallbackDeepgramTranscriberModel>))]
+[JsonConverter(typeof(FallbackDeepgramTranscriberModelSerializer))]
 public enum FallbackDeepgramTranscriberModel
 {
     [EnumMember(Value = "flux-general-en")]
@@ -105,4 +104,136 @@ public enum FallbackDeepgramTranscriberModel
 
     [EnumMember(Value = "whisper")]
     Whisper,
+}
+
+internal class FallbackDeepgramTranscriberModelSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<FallbackDeepgramTranscriberModel>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        FallbackDeepgramTranscriberModel
+    > _stringToEnum = new()
+    {
+        { "flux-general-en", FallbackDeepgramTranscriberModel.FluxGeneralEn },
+        { "nova-3", FallbackDeepgramTranscriberModel.Nova3 },
+        { "nova-3-general", FallbackDeepgramTranscriberModel.Nova3General },
+        { "nova-3-medical", FallbackDeepgramTranscriberModel.Nova3Medical },
+        { "nova-2", FallbackDeepgramTranscriberModel.Nova2 },
+        { "nova-2-general", FallbackDeepgramTranscriberModel.Nova2General },
+        { "nova-2-meeting", FallbackDeepgramTranscriberModel.Nova2Meeting },
+        { "nova-2-phonecall", FallbackDeepgramTranscriberModel.Nova2Phonecall },
+        { "nova-2-finance", FallbackDeepgramTranscriberModel.Nova2Finance },
+        { "nova-2-conversationalai", FallbackDeepgramTranscriberModel.Nova2Conversationalai },
+        { "nova-2-voicemail", FallbackDeepgramTranscriberModel.Nova2Voicemail },
+        { "nova-2-video", FallbackDeepgramTranscriberModel.Nova2Video },
+        { "nova-2-medical", FallbackDeepgramTranscriberModel.Nova2Medical },
+        { "nova-2-drivethru", FallbackDeepgramTranscriberModel.Nova2Drivethru },
+        { "nova-2-automotive", FallbackDeepgramTranscriberModel.Nova2Automotive },
+        { "nova", FallbackDeepgramTranscriberModel.Nova },
+        { "nova-general", FallbackDeepgramTranscriberModel.NovaGeneral },
+        { "nova-phonecall", FallbackDeepgramTranscriberModel.NovaPhonecall },
+        { "nova-medical", FallbackDeepgramTranscriberModel.NovaMedical },
+        { "enhanced", FallbackDeepgramTranscriberModel.Enhanced },
+        { "enhanced-general", FallbackDeepgramTranscriberModel.EnhancedGeneral },
+        { "enhanced-meeting", FallbackDeepgramTranscriberModel.EnhancedMeeting },
+        { "enhanced-phonecall", FallbackDeepgramTranscriberModel.EnhancedPhonecall },
+        { "enhanced-finance", FallbackDeepgramTranscriberModel.EnhancedFinance },
+        { "base", FallbackDeepgramTranscriberModel.Base },
+        { "base-general", FallbackDeepgramTranscriberModel.BaseGeneral },
+        { "base-meeting", FallbackDeepgramTranscriberModel.BaseMeeting },
+        { "base-phonecall", FallbackDeepgramTranscriberModel.BasePhonecall },
+        { "base-finance", FallbackDeepgramTranscriberModel.BaseFinance },
+        { "base-conversationalai", FallbackDeepgramTranscriberModel.BaseConversationalai },
+        { "base-voicemail", FallbackDeepgramTranscriberModel.BaseVoicemail },
+        { "base-video", FallbackDeepgramTranscriberModel.BaseVideo },
+        { "whisper", FallbackDeepgramTranscriberModel.Whisper },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        FallbackDeepgramTranscriberModel,
+        string
+    > _enumToString = new()
+    {
+        { FallbackDeepgramTranscriberModel.FluxGeneralEn, "flux-general-en" },
+        { FallbackDeepgramTranscriberModel.Nova3, "nova-3" },
+        { FallbackDeepgramTranscriberModel.Nova3General, "nova-3-general" },
+        { FallbackDeepgramTranscriberModel.Nova3Medical, "nova-3-medical" },
+        { FallbackDeepgramTranscriberModel.Nova2, "nova-2" },
+        { FallbackDeepgramTranscriberModel.Nova2General, "nova-2-general" },
+        { FallbackDeepgramTranscriberModel.Nova2Meeting, "nova-2-meeting" },
+        { FallbackDeepgramTranscriberModel.Nova2Phonecall, "nova-2-phonecall" },
+        { FallbackDeepgramTranscriberModel.Nova2Finance, "nova-2-finance" },
+        { FallbackDeepgramTranscriberModel.Nova2Conversationalai, "nova-2-conversationalai" },
+        { FallbackDeepgramTranscriberModel.Nova2Voicemail, "nova-2-voicemail" },
+        { FallbackDeepgramTranscriberModel.Nova2Video, "nova-2-video" },
+        { FallbackDeepgramTranscriberModel.Nova2Medical, "nova-2-medical" },
+        { FallbackDeepgramTranscriberModel.Nova2Drivethru, "nova-2-drivethru" },
+        { FallbackDeepgramTranscriberModel.Nova2Automotive, "nova-2-automotive" },
+        { FallbackDeepgramTranscriberModel.Nova, "nova" },
+        { FallbackDeepgramTranscriberModel.NovaGeneral, "nova-general" },
+        { FallbackDeepgramTranscriberModel.NovaPhonecall, "nova-phonecall" },
+        { FallbackDeepgramTranscriberModel.NovaMedical, "nova-medical" },
+        { FallbackDeepgramTranscriberModel.Enhanced, "enhanced" },
+        { FallbackDeepgramTranscriberModel.EnhancedGeneral, "enhanced-general" },
+        { FallbackDeepgramTranscriberModel.EnhancedMeeting, "enhanced-meeting" },
+        { FallbackDeepgramTranscriberModel.EnhancedPhonecall, "enhanced-phonecall" },
+        { FallbackDeepgramTranscriberModel.EnhancedFinance, "enhanced-finance" },
+        { FallbackDeepgramTranscriberModel.Base, "base" },
+        { FallbackDeepgramTranscriberModel.BaseGeneral, "base-general" },
+        { FallbackDeepgramTranscriberModel.BaseMeeting, "base-meeting" },
+        { FallbackDeepgramTranscriberModel.BasePhonecall, "base-phonecall" },
+        { FallbackDeepgramTranscriberModel.BaseFinance, "base-finance" },
+        { FallbackDeepgramTranscriberModel.BaseConversationalai, "base-conversationalai" },
+        { FallbackDeepgramTranscriberModel.BaseVoicemail, "base-voicemail" },
+        { FallbackDeepgramTranscriberModel.BaseVideo, "base-video" },
+        { FallbackDeepgramTranscriberModel.Whisper, "whisper" },
+    };
+
+    public override FallbackDeepgramTranscriberModel Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackDeepgramTranscriberModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override FallbackDeepgramTranscriberModel ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackDeepgramTranscriberModel value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

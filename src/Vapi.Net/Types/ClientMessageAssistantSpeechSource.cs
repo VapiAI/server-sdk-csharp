@@ -1,0 +1,89 @@
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
+
+namespace Vapi.Net;
+
+[JsonConverter(typeof(ClientMessageAssistantSpeechSourceSerializer))]
+public enum ClientMessageAssistantSpeechSource
+{
+    [EnumMember(Value = "model")]
+    Model,
+
+    [EnumMember(Value = "force-say")]
+    ForceSay,
+
+    [EnumMember(Value = "custom-voice")]
+    CustomVoice,
+}
+
+internal class ClientMessageAssistantSpeechSourceSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<ClientMessageAssistantSpeechSource>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        ClientMessageAssistantSpeechSource
+    > _stringToEnum = new()
+    {
+        { "model", ClientMessageAssistantSpeechSource.Model },
+        { "force-say", ClientMessageAssistantSpeechSource.ForceSay },
+        { "custom-voice", ClientMessageAssistantSpeechSource.CustomVoice },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        ClientMessageAssistantSpeechSource,
+        string
+    > _enumToString = new()
+    {
+        { ClientMessageAssistantSpeechSource.Model, "model" },
+        { ClientMessageAssistantSpeechSource.ForceSay, "force-say" },
+        { ClientMessageAssistantSpeechSource.CustomVoice, "custom-voice" },
+    };
+
+    public override ClientMessageAssistantSpeechSource Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        ClientMessageAssistantSpeechSource value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override ClientMessageAssistantSpeechSource ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        ClientMessageAssistantSpeechSource value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
+}

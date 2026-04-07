@@ -1,13 +1,17 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record CreateAssistantDto
+public record CreateAssistantDto : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// These are the options for the assistant's transcriber.
     /// </summary>
@@ -93,8 +97,6 @@ public record CreateAssistantDto
     /// <summary>
     /// This determines whether the model's output is used in conversation history rather than the transcription of assistant's speech.
     ///
-    /// Default `false` while in beta.
-    ///
     /// @default false
     /// </summary>
     [JsonPropertyName("modelOutputInMessagesEnabled")]
@@ -129,7 +131,8 @@ public record CreateAssistantDto
             CallHookCallEnding,
             CallHookAssistantSpeechInterrupted,
             CallHookCustomerSpeechInterrupted,
-            CallHookCustomerSpeechTimeout
+            CallHookCustomerSpeechTimeout,
+            SessionCreatedHook
         >
     >? Hooks { get; set; }
 
@@ -230,6 +233,7 @@ public record CreateAssistantDto
     /// Usage:
     /// - To enable live listening of the assistant's calls, set `monitorPlan.listenEnabled` to `true`.
     /// - To enable live control of the assistant's calls, set `monitorPlan.controlEnabled` to `true`.
+    /// - To attach monitors to the assistant, set `monitorPlan.monitorIds` to the set of monitor ids.
     /// </summary>
     [JsonPropertyName("monitorPlan")]
     public MonitorPlan? MonitorPlan { get; set; }
@@ -255,15 +259,11 @@ public record CreateAssistantDto
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -1,13 +1,17 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record TransferAssistant
+public record TransferAssistant : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Optional name for the transfer assistant
     /// </summary>
@@ -49,6 +53,16 @@ public record TransferAssistant
     public OneOf<TransferAssistantBackgroundSoundZero, string>? BackgroundSound { get; set; }
 
     /// <summary>
+    /// This is the plan for when the transfer assistant should start talking.
+    ///
+    /// You should configure this if the transfer assistant needs different endpointing behavior than the base assistant.
+    ///
+    /// If this is not set, the transfer assistant will inherit the start speaking plan from the base assistant.
+    /// </summary>
+    [JsonPropertyName("startSpeakingPlan")]
+    public StartSpeakingPlan? StartSpeakingPlan { get; set; }
+
+    /// <summary>
     /// This is the mode for the first message. Default is 'assistant-speaks-first'.
     ///
     /// Use:
@@ -70,6 +84,22 @@ public record TransferAssistant
     public double? MaxDurationSeconds { get; set; }
 
     /// <summary>
+    /// This enables filtering of noise and background speech while the user is talking.
+    ///
+    /// Features:
+    /// - Smart denoising using Krisp
+    /// - Fourier denoising
+    ///
+    /// Smart denoising can be combined with or used independently of Fourier denoising.
+    ///
+    /// Order of precedence:
+    /// - Smart denoising
+    /// - Fourier denoising
+    /// </summary>
+    [JsonPropertyName("backgroundSpeechDenoisingPlan")]
+    public BackgroundSpeechDenoisingPlan? BackgroundSpeechDenoisingPlan { get; set; }
+
+    /// <summary>
     /// This is the number of seconds of silence to wait before ending the call. Defaults to 30.
     ///
     /// @default 30
@@ -77,15 +107,11 @@ public record TransferAssistant
     [JsonPropertyName("silenceTimeoutSeconds")]
     public double? SilenceTimeoutSeconds { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

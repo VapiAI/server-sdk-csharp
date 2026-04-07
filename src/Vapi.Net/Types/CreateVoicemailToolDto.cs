@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record CreateVoicemailToolDto
+public record CreateVoicemailToolDto : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// These are the messages that will be spoken to the user as the tool is running.
     ///
@@ -14,12 +18,6 @@ public record CreateVoicemailToolDto
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
-
-    /// <summary>
-    /// The type of tool. "voicemail" for Voicemail tool.
-    /// </summary>
-    [JsonPropertyName("type")]
-    public required CreateVoicemailToolDtoType Type { get; set; }
 
     /// <summary>
     /// This is the flag that enables beep detection for voicemail detection and applies only for twilio based calls.
@@ -112,15 +110,11 @@ public record CreateVoicemailToolDto
     [JsonPropertyName("rejectionPlan")]
     public ToolRejectionPlan? RejectionPlan { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

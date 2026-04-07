@@ -1,12 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record Server
+public record Server : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the timeout in seconds for the request. Defaults to 20 seconds.
     ///
@@ -28,6 +32,12 @@ public record Server
     /// </summary>
     [JsonPropertyName("staticIpAddressesEnabled")]
     public bool? StaticIpAddressesEnabled { get; set; }
+
+    /// <summary>
+    /// This is the paths to encrypt in the request body if credentialId and encryptionPlan are defined.
+    /// </summary>
+    [JsonPropertyName("encryptedPaths")]
+    public IEnumerable<string>? EncryptedPaths { get; set; }
 
     /// <summary>
     /// This is where the request will be sent.
@@ -53,15 +63,11 @@ public record Server
     [JsonPropertyName("backoffPlan")]
     public BackoffPlan? BackoffPlan { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

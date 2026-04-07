@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<GladiaTranscriberLanguages>))]
+[JsonConverter(typeof(GladiaTranscriberLanguagesSerializer))]
 public enum GladiaTranscriberLanguages
 {
     [EnumMember(Value = "af")]
@@ -303,4 +302,268 @@ public enum GladiaTranscriberLanguages
 
     [EnumMember(Value = "yo")]
     Yo,
+}
+
+internal class GladiaTranscriberLanguagesSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<GladiaTranscriberLanguages>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        GladiaTranscriberLanguages
+    > _stringToEnum = new()
+    {
+        { "af", GladiaTranscriberLanguages.Af },
+        { "sq", GladiaTranscriberLanguages.Sq },
+        { "am", GladiaTranscriberLanguages.Am },
+        { "ar", GladiaTranscriberLanguages.Ar },
+        { "hy", GladiaTranscriberLanguages.Hy },
+        { "as", GladiaTranscriberLanguages.As },
+        { "az", GladiaTranscriberLanguages.Az },
+        { "ba", GladiaTranscriberLanguages.Ba },
+        { "eu", GladiaTranscriberLanguages.Eu },
+        { "be", GladiaTranscriberLanguages.Be },
+        { "bn", GladiaTranscriberLanguages.Bn },
+        { "bs", GladiaTranscriberLanguages.Bs },
+        { "br", GladiaTranscriberLanguages.Br },
+        { "bg", GladiaTranscriberLanguages.Bg },
+        { "ca", GladiaTranscriberLanguages.Ca },
+        { "zh", GladiaTranscriberLanguages.Zh },
+        { "hr", GladiaTranscriberLanguages.Hr },
+        { "cs", GladiaTranscriberLanguages.Cs },
+        { "da", GladiaTranscriberLanguages.Da },
+        { "nl", GladiaTranscriberLanguages.Nl },
+        { "en", GladiaTranscriberLanguages.En },
+        { "et", GladiaTranscriberLanguages.Et },
+        { "fo", GladiaTranscriberLanguages.Fo },
+        { "fi", GladiaTranscriberLanguages.Fi },
+        { "fr", GladiaTranscriberLanguages.Fr },
+        { "gl", GladiaTranscriberLanguages.Gl },
+        { "ka", GladiaTranscriberLanguages.Ka },
+        { "de", GladiaTranscriberLanguages.De },
+        { "el", GladiaTranscriberLanguages.El },
+        { "gu", GladiaTranscriberLanguages.Gu },
+        { "ht", GladiaTranscriberLanguages.Ht },
+        { "ha", GladiaTranscriberLanguages.Ha },
+        { "haw", GladiaTranscriberLanguages.Haw },
+        { "he", GladiaTranscriberLanguages.He },
+        { "hi", GladiaTranscriberLanguages.Hi },
+        { "hu", GladiaTranscriberLanguages.Hu },
+        { "is", GladiaTranscriberLanguages.Is },
+        { "id", GladiaTranscriberLanguages.Id },
+        { "it", GladiaTranscriberLanguages.It },
+        { "ja", GladiaTranscriberLanguages.Ja },
+        { "jv", GladiaTranscriberLanguages.Jv },
+        { "kn", GladiaTranscriberLanguages.Kn },
+        { "kk", GladiaTranscriberLanguages.Kk },
+        { "km", GladiaTranscriberLanguages.Km },
+        { "ko", GladiaTranscriberLanguages.Ko },
+        { "lo", GladiaTranscriberLanguages.Lo },
+        { "la", GladiaTranscriberLanguages.La },
+        { "lv", GladiaTranscriberLanguages.Lv },
+        { "ln", GladiaTranscriberLanguages.Ln },
+        { "lt", GladiaTranscriberLanguages.Lt },
+        { "lb", GladiaTranscriberLanguages.Lb },
+        { "mk", GladiaTranscriberLanguages.Mk },
+        { "mg", GladiaTranscriberLanguages.Mg },
+        { "ms", GladiaTranscriberLanguages.Ms },
+        { "ml", GladiaTranscriberLanguages.Ml },
+        { "mt", GladiaTranscriberLanguages.Mt },
+        { "mi", GladiaTranscriberLanguages.Mi },
+        { "mr", GladiaTranscriberLanguages.Mr },
+        { "mn", GladiaTranscriberLanguages.Mn },
+        { "my", GladiaTranscriberLanguages.My },
+        { "ne", GladiaTranscriberLanguages.Ne },
+        { "no", GladiaTranscriberLanguages.No },
+        { "nn", GladiaTranscriberLanguages.Nn },
+        { "oc", GladiaTranscriberLanguages.Oc },
+        { "ps", GladiaTranscriberLanguages.Ps },
+        { "fa", GladiaTranscriberLanguages.Fa },
+        { "pl", GladiaTranscriberLanguages.Pl },
+        { "pt", GladiaTranscriberLanguages.Pt },
+        { "pa", GladiaTranscriberLanguages.Pa },
+        { "ro", GladiaTranscriberLanguages.Ro },
+        { "ru", GladiaTranscriberLanguages.Ru },
+        { "sa", GladiaTranscriberLanguages.Sa },
+        { "sr", GladiaTranscriberLanguages.Sr },
+        { "sn", GladiaTranscriberLanguages.Sn },
+        { "sd", GladiaTranscriberLanguages.Sd },
+        { "si", GladiaTranscriberLanguages.Si },
+        { "sk", GladiaTranscriberLanguages.Sk },
+        { "sl", GladiaTranscriberLanguages.Sl },
+        { "so", GladiaTranscriberLanguages.So },
+        { "es", GladiaTranscriberLanguages.Es },
+        { "su", GladiaTranscriberLanguages.Su },
+        { "sw", GladiaTranscriberLanguages.Sw },
+        { "sv", GladiaTranscriberLanguages.Sv },
+        { "tl", GladiaTranscriberLanguages.Tl },
+        { "tg", GladiaTranscriberLanguages.Tg },
+        { "ta", GladiaTranscriberLanguages.Ta },
+        { "tt", GladiaTranscriberLanguages.Tt },
+        { "te", GladiaTranscriberLanguages.Te },
+        { "th", GladiaTranscriberLanguages.Th },
+        { "bo", GladiaTranscriberLanguages.Bo },
+        { "tr", GladiaTranscriberLanguages.Tr },
+        { "tk", GladiaTranscriberLanguages.Tk },
+        { "uk", GladiaTranscriberLanguages.Uk },
+        { "ur", GladiaTranscriberLanguages.Ur },
+        { "uz", GladiaTranscriberLanguages.Uz },
+        { "vi", GladiaTranscriberLanguages.Vi },
+        { "cy", GladiaTranscriberLanguages.Cy },
+        { "yi", GladiaTranscriberLanguages.Yi },
+        { "yo", GladiaTranscriberLanguages.Yo },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        GladiaTranscriberLanguages,
+        string
+    > _enumToString = new()
+    {
+        { GladiaTranscriberLanguages.Af, "af" },
+        { GladiaTranscriberLanguages.Sq, "sq" },
+        { GladiaTranscriberLanguages.Am, "am" },
+        { GladiaTranscriberLanguages.Ar, "ar" },
+        { GladiaTranscriberLanguages.Hy, "hy" },
+        { GladiaTranscriberLanguages.As, "as" },
+        { GladiaTranscriberLanguages.Az, "az" },
+        { GladiaTranscriberLanguages.Ba, "ba" },
+        { GladiaTranscriberLanguages.Eu, "eu" },
+        { GladiaTranscriberLanguages.Be, "be" },
+        { GladiaTranscriberLanguages.Bn, "bn" },
+        { GladiaTranscriberLanguages.Bs, "bs" },
+        { GladiaTranscriberLanguages.Br, "br" },
+        { GladiaTranscriberLanguages.Bg, "bg" },
+        { GladiaTranscriberLanguages.Ca, "ca" },
+        { GladiaTranscriberLanguages.Zh, "zh" },
+        { GladiaTranscriberLanguages.Hr, "hr" },
+        { GladiaTranscriberLanguages.Cs, "cs" },
+        { GladiaTranscriberLanguages.Da, "da" },
+        { GladiaTranscriberLanguages.Nl, "nl" },
+        { GladiaTranscriberLanguages.En, "en" },
+        { GladiaTranscriberLanguages.Et, "et" },
+        { GladiaTranscriberLanguages.Fo, "fo" },
+        { GladiaTranscriberLanguages.Fi, "fi" },
+        { GladiaTranscriberLanguages.Fr, "fr" },
+        { GladiaTranscriberLanguages.Gl, "gl" },
+        { GladiaTranscriberLanguages.Ka, "ka" },
+        { GladiaTranscriberLanguages.De, "de" },
+        { GladiaTranscriberLanguages.El, "el" },
+        { GladiaTranscriberLanguages.Gu, "gu" },
+        { GladiaTranscriberLanguages.Ht, "ht" },
+        { GladiaTranscriberLanguages.Ha, "ha" },
+        { GladiaTranscriberLanguages.Haw, "haw" },
+        { GladiaTranscriberLanguages.He, "he" },
+        { GladiaTranscriberLanguages.Hi, "hi" },
+        { GladiaTranscriberLanguages.Hu, "hu" },
+        { GladiaTranscriberLanguages.Is, "is" },
+        { GladiaTranscriberLanguages.Id, "id" },
+        { GladiaTranscriberLanguages.It, "it" },
+        { GladiaTranscriberLanguages.Ja, "ja" },
+        { GladiaTranscriberLanguages.Jv, "jv" },
+        { GladiaTranscriberLanguages.Kn, "kn" },
+        { GladiaTranscriberLanguages.Kk, "kk" },
+        { GladiaTranscriberLanguages.Km, "km" },
+        { GladiaTranscriberLanguages.Ko, "ko" },
+        { GladiaTranscriberLanguages.Lo, "lo" },
+        { GladiaTranscriberLanguages.La, "la" },
+        { GladiaTranscriberLanguages.Lv, "lv" },
+        { GladiaTranscriberLanguages.Ln, "ln" },
+        { GladiaTranscriberLanguages.Lt, "lt" },
+        { GladiaTranscriberLanguages.Lb, "lb" },
+        { GladiaTranscriberLanguages.Mk, "mk" },
+        { GladiaTranscriberLanguages.Mg, "mg" },
+        { GladiaTranscriberLanguages.Ms, "ms" },
+        { GladiaTranscriberLanguages.Ml, "ml" },
+        { GladiaTranscriberLanguages.Mt, "mt" },
+        { GladiaTranscriberLanguages.Mi, "mi" },
+        { GladiaTranscriberLanguages.Mr, "mr" },
+        { GladiaTranscriberLanguages.Mn, "mn" },
+        { GladiaTranscriberLanguages.My, "my" },
+        { GladiaTranscriberLanguages.Ne, "ne" },
+        { GladiaTranscriberLanguages.No, "no" },
+        { GladiaTranscriberLanguages.Nn, "nn" },
+        { GladiaTranscriberLanguages.Oc, "oc" },
+        { GladiaTranscriberLanguages.Ps, "ps" },
+        { GladiaTranscriberLanguages.Fa, "fa" },
+        { GladiaTranscriberLanguages.Pl, "pl" },
+        { GladiaTranscriberLanguages.Pt, "pt" },
+        { GladiaTranscriberLanguages.Pa, "pa" },
+        { GladiaTranscriberLanguages.Ro, "ro" },
+        { GladiaTranscriberLanguages.Ru, "ru" },
+        { GladiaTranscriberLanguages.Sa, "sa" },
+        { GladiaTranscriberLanguages.Sr, "sr" },
+        { GladiaTranscriberLanguages.Sn, "sn" },
+        { GladiaTranscriberLanguages.Sd, "sd" },
+        { GladiaTranscriberLanguages.Si, "si" },
+        { GladiaTranscriberLanguages.Sk, "sk" },
+        { GladiaTranscriberLanguages.Sl, "sl" },
+        { GladiaTranscriberLanguages.So, "so" },
+        { GladiaTranscriberLanguages.Es, "es" },
+        { GladiaTranscriberLanguages.Su, "su" },
+        { GladiaTranscriberLanguages.Sw, "sw" },
+        { GladiaTranscriberLanguages.Sv, "sv" },
+        { GladiaTranscriberLanguages.Tl, "tl" },
+        { GladiaTranscriberLanguages.Tg, "tg" },
+        { GladiaTranscriberLanguages.Ta, "ta" },
+        { GladiaTranscriberLanguages.Tt, "tt" },
+        { GladiaTranscriberLanguages.Te, "te" },
+        { GladiaTranscriberLanguages.Th, "th" },
+        { GladiaTranscriberLanguages.Bo, "bo" },
+        { GladiaTranscriberLanguages.Tr, "tr" },
+        { GladiaTranscriberLanguages.Tk, "tk" },
+        { GladiaTranscriberLanguages.Uk, "uk" },
+        { GladiaTranscriberLanguages.Ur, "ur" },
+        { GladiaTranscriberLanguages.Uz, "uz" },
+        { GladiaTranscriberLanguages.Vi, "vi" },
+        { GladiaTranscriberLanguages.Cy, "cy" },
+        { GladiaTranscriberLanguages.Yi, "yi" },
+        { GladiaTranscriberLanguages.Yo, "yo" },
+    };
+
+    public override GladiaTranscriberLanguages Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        GladiaTranscriberLanguages value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override GladiaTranscriberLanguages ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        GladiaTranscriberLanguages value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

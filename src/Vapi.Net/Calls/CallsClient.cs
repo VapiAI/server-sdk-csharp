@@ -1,84 +1,53 @@
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
+using global::System.Text.Json;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
-public partial class CallsClient
+public partial class CallsClient : ICallsClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal CallsClient(RawClient client)
     {
         _client = client;
     }
 
-    public async Task<IEnumerable<Call>> ListAsync(
+    private async Task<WithRawResponse<IEnumerable<Call>>> ListAsyncCore(
         ListCallsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Id != null)
-        {
-            _query["id"] = request.Id;
-        }
-        if (request.AssistantId != null)
-        {
-            _query["assistantId"] = request.AssistantId;
-        }
-        if (request.PhoneNumberId != null)
-        {
-            _query["phoneNumberId"] = request.PhoneNumberId;
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.CreatedAtGt != null)
-        {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtLt != null)
-        {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtGe != null)
-        {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtLe != null)
-        {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtGt != null)
-        {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtLt != null)
-        {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtGe != null)
-        {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtLe != null)
-        {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
-        }
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+            .Add("id", request.Id)
+            .Add("assistantId", request.AssistantId)
+            .Add("phoneNumberId", request.PhoneNumberId)
+            .Add("limit", request.Limit)
+            .Add("createdAtGt", request.CreatedAtGt)
+            .Add("createdAtLt", request.CreatedAtLt)
+            .Add("createdAtGe", request.CreatedAtGe)
+            .Add("createdAtLe", request.CreatedAtLe)
+            .Add("updatedAtGt", request.UpdatedAtGt)
+            .Add("updatedAtLt", request.UpdatedAtLt)
+            .Add("updatedAtGe", request.UpdatedAtGe)
+            .Add("updatedAtLe", request.UpdatedAtLe)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "call",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -86,19 +55,37 @@ public partial class CallsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<IEnumerable<Call>>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<IEnumerable<Call>>(responseBody)!;
+                return new WithRawResponse<IEnumerable<Call>>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -107,20 +94,26 @@ public partial class CallsClient
         }
     }
 
-    public async Task<OneOf<Call, CallBatchResponse>> CreateAsync(
+    private async Task<WithRawResponse<OneOf<Call, CallBatchResponse>>> CreateAsyncCore(
         CreateCallDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "call",
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -129,167 +122,39 @@ public partial class CallsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<OneOf<Call, CallBatchResponse>>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new VapiClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new VapiClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    public async Task<CallPaginatedResponse> CallControllerFindAllPaginatedAsync(
-        CallControllerFindAllPaginatedRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _query = new Dictionary<string, object>();
-        _query["idAny"] = request.IdAny;
-        if (request.AssistantOverrides != null)
-        {
-            _query["assistantOverrides"] = JsonUtils.Serialize(request.AssistantOverrides);
-        }
-        if (request.Customer != null)
-        {
-            _query["customer"] = JsonUtils.Serialize(request.Customer);
-        }
-        if (request.AssistantId != null)
-        {
-            _query["assistantId"] = request.AssistantId;
-        }
-        if (request.AssistantName != null)
-        {
-            _query["assistantName"] = request.AssistantName;
-        }
-        if (request.SquadId != null)
-        {
-            _query["squadId"] = request.SquadId;
-        }
-        if (request.SquadName != null)
-        {
-            _query["squadName"] = request.SquadName;
-        }
-        if (request.Id != null)
-        {
-            _query["id"] = request.Id;
-        }
-        if (request.CostLe != null)
-        {
-            _query["costLe"] = request.CostLe.Value.ToString();
-        }
-        if (request.CostGe != null)
-        {
-            _query["costGe"] = request.CostGe.Value.ToString();
-        }
-        if (request.Cost != null)
-        {
-            _query["cost"] = request.Cost.Value.ToString();
-        }
-        if (request.SuccessEvaluation != null)
-        {
-            _query["successEvaluation"] = request.SuccessEvaluation;
-        }
-        if (request.EndedReason != null)
-        {
-            _query["endedReason"] = request.EndedReason;
-        }
-        if (request.PhoneNumberId != null)
-        {
-            _query["phoneNumberId"] = request.PhoneNumberId;
-        }
-        if (request.StructuredOutputs != null)
-        {
-            _query["structuredOutputs"] = JsonUtils.Serialize(request.StructuredOutputs);
-        }
-        if (request.Score != null)
-        {
-            _query["score"] = request.Score;
-        }
-        if (request.Page != null)
-        {
-            _query["page"] = request.Page.Value.ToString();
-        }
-        if (request.SortOrder != null)
-        {
-            _query["sortOrder"] = request.SortOrder.Value.Stringify();
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.CreatedAtGt != null)
-        {
-            _query["createdAtGt"] = request.CreatedAtGt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtLt != null)
-        {
-            _query["createdAtLt"] = request.CreatedAtLt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtGe != null)
-        {
-            _query["createdAtGe"] = request.CreatedAtGe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.CreatedAtLe != null)
-        {
-            _query["createdAtLe"] = request.CreatedAtLe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtGt != null)
-        {
-            _query["updatedAtGt"] = request.UpdatedAtGt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtLt != null)
-        {
-            _query["updatedAtLt"] = request.UpdatedAtLt.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtGe != null)
-        {
-            _query["updatedAtGe"] = request.UpdatedAtGe.Value.ToString(Constants.DateTimeFormat);
-        }
-        if (request.UpdatedAtLe != null)
-        {
-            _query["updatedAtLe"] = request.UpdatedAtLe.Value.ToString(Constants.DateTimeFormat);
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
+                var responseData = JsonUtils.Deserialize<OneOf<Call, CallBatchResponse>>(
+                    responseBody
+                )!;
+                return new WithRawResponse<OneOf<Call, CallBatchResponse>>()
                 {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "v2/call",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<CallPaginatedResponse>(responseBody)!;
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -298,20 +163,26 @@ public partial class CallsClient
         }
     }
 
-    public async Task<Call> GetAsync(
+    private async Task<WithRawResponse<Call>> GetAsyncCore(
         string id,
         GetCallsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format("call/{0}", ValueConvert.ToPathParameterString(id)),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -319,19 +190,37 @@ public partial class CallsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<Call>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<Call>(responseBody)!;
+                return new WithRawResponse<Call>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -340,21 +229,27 @@ public partial class CallsClient
         }
     }
 
-    public async Task<Call> DeleteAsync(
+    private async Task<WithRawResponse<Call>> DeleteAsyncCore(
         string id,
         DeleteCallDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = string.Format("call/{0}", ValueConvert.ToPathParameterString(id)),
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -363,19 +258,37 @@ public partial class CallsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<Call>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<Call>(responseBody)!;
+                return new WithRawResponse<Call>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -384,21 +297,27 @@ public partial class CallsClient
         }
     }
 
-    public async Task<Call> UpdateAsync(
+    private async Task<WithRawResponse<Call>> UpdateAsyncCore(
         string id,
         UpdateCallDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format("call/{0}", ValueConvert.ToPathParameterString(id)),
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -407,24 +326,98 @@ public partial class CallsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<Call>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<Call>(responseBody)!;
+                return new WithRawResponse<Call>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new VapiClientException("Failed to deserialize response", e);
+                throw new VapiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
             );
         }
+    }
+
+    public WithRawResponseTask<IEnumerable<Call>> ListAsync(
+        ListCallsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<IEnumerable<Call>>(
+            ListAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    public WithRawResponseTask<OneOf<Call, CallBatchResponse>> CreateAsync(
+        CreateCallDto request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<OneOf<Call, CallBatchResponse>>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    public WithRawResponseTask<Call> GetAsync(
+        string id,
+        GetCallsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<Call>(GetAsyncCore(id, request, options, cancellationToken));
+    }
+
+    public WithRawResponseTask<Call> DeleteAsync(
+        string id,
+        DeleteCallDto request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<Call>(
+            DeleteAsyncCore(id, request, options, cancellationToken)
+        );
+    }
+
+    public WithRawResponseTask<Call> UpdateAsync(
+        string id,
+        UpdateCallDto request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<Call>(
+            UpdateAsyncCore(id, request, options, cancellationToken)
+        );
     }
 }

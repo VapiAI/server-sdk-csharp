@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Vapi.Net.Test/Vapi.Net.Test.csproj" />
+  <Project Path="src/Vapi.Net/Vapi.Net.csproj" />
+</Solution>

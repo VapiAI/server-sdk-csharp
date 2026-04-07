@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<FallbackGladiaTranscriberLanguage>))]
+[JsonConverter(typeof(FallbackGladiaTranscriberLanguageSerializer))]
 public enum FallbackGladiaTranscriberLanguage
 {
     [EnumMember(Value = "af")]
@@ -303,4 +302,268 @@ public enum FallbackGladiaTranscriberLanguage
 
     [EnumMember(Value = "yo")]
     Yo,
+}
+
+internal class FallbackGladiaTranscriberLanguageSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<FallbackGladiaTranscriberLanguage>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        FallbackGladiaTranscriberLanguage
+    > _stringToEnum = new()
+    {
+        { "af", FallbackGladiaTranscriberLanguage.Af },
+        { "sq", FallbackGladiaTranscriberLanguage.Sq },
+        { "am", FallbackGladiaTranscriberLanguage.Am },
+        { "ar", FallbackGladiaTranscriberLanguage.Ar },
+        { "hy", FallbackGladiaTranscriberLanguage.Hy },
+        { "as", FallbackGladiaTranscriberLanguage.As },
+        { "az", FallbackGladiaTranscriberLanguage.Az },
+        { "ba", FallbackGladiaTranscriberLanguage.Ba },
+        { "eu", FallbackGladiaTranscriberLanguage.Eu },
+        { "be", FallbackGladiaTranscriberLanguage.Be },
+        { "bn", FallbackGladiaTranscriberLanguage.Bn },
+        { "bs", FallbackGladiaTranscriberLanguage.Bs },
+        { "br", FallbackGladiaTranscriberLanguage.Br },
+        { "bg", FallbackGladiaTranscriberLanguage.Bg },
+        { "ca", FallbackGladiaTranscriberLanguage.Ca },
+        { "zh", FallbackGladiaTranscriberLanguage.Zh },
+        { "hr", FallbackGladiaTranscriberLanguage.Hr },
+        { "cs", FallbackGladiaTranscriberLanguage.Cs },
+        { "da", FallbackGladiaTranscriberLanguage.Da },
+        { "nl", FallbackGladiaTranscriberLanguage.Nl },
+        { "en", FallbackGladiaTranscriberLanguage.En },
+        { "et", FallbackGladiaTranscriberLanguage.Et },
+        { "fo", FallbackGladiaTranscriberLanguage.Fo },
+        { "fi", FallbackGladiaTranscriberLanguage.Fi },
+        { "fr", FallbackGladiaTranscriberLanguage.Fr },
+        { "gl", FallbackGladiaTranscriberLanguage.Gl },
+        { "ka", FallbackGladiaTranscriberLanguage.Ka },
+        { "de", FallbackGladiaTranscriberLanguage.De },
+        { "el", FallbackGladiaTranscriberLanguage.El },
+        { "gu", FallbackGladiaTranscriberLanguage.Gu },
+        { "ht", FallbackGladiaTranscriberLanguage.Ht },
+        { "ha", FallbackGladiaTranscriberLanguage.Ha },
+        { "haw", FallbackGladiaTranscriberLanguage.Haw },
+        { "he", FallbackGladiaTranscriberLanguage.He },
+        { "hi", FallbackGladiaTranscriberLanguage.Hi },
+        { "hu", FallbackGladiaTranscriberLanguage.Hu },
+        { "is", FallbackGladiaTranscriberLanguage.Is },
+        { "id", FallbackGladiaTranscriberLanguage.Id },
+        { "it", FallbackGladiaTranscriberLanguage.It },
+        { "ja", FallbackGladiaTranscriberLanguage.Ja },
+        { "jv", FallbackGladiaTranscriberLanguage.Jv },
+        { "kn", FallbackGladiaTranscriberLanguage.Kn },
+        { "kk", FallbackGladiaTranscriberLanguage.Kk },
+        { "km", FallbackGladiaTranscriberLanguage.Km },
+        { "ko", FallbackGladiaTranscriberLanguage.Ko },
+        { "lo", FallbackGladiaTranscriberLanguage.Lo },
+        { "la", FallbackGladiaTranscriberLanguage.La },
+        { "lv", FallbackGladiaTranscriberLanguage.Lv },
+        { "ln", FallbackGladiaTranscriberLanguage.Ln },
+        { "lt", FallbackGladiaTranscriberLanguage.Lt },
+        { "lb", FallbackGladiaTranscriberLanguage.Lb },
+        { "mk", FallbackGladiaTranscriberLanguage.Mk },
+        { "mg", FallbackGladiaTranscriberLanguage.Mg },
+        { "ms", FallbackGladiaTranscriberLanguage.Ms },
+        { "ml", FallbackGladiaTranscriberLanguage.Ml },
+        { "mt", FallbackGladiaTranscriberLanguage.Mt },
+        { "mi", FallbackGladiaTranscriberLanguage.Mi },
+        { "mr", FallbackGladiaTranscriberLanguage.Mr },
+        { "mn", FallbackGladiaTranscriberLanguage.Mn },
+        { "my", FallbackGladiaTranscriberLanguage.My },
+        { "ne", FallbackGladiaTranscriberLanguage.Ne },
+        { "no", FallbackGladiaTranscriberLanguage.No },
+        { "nn", FallbackGladiaTranscriberLanguage.Nn },
+        { "oc", FallbackGladiaTranscriberLanguage.Oc },
+        { "ps", FallbackGladiaTranscriberLanguage.Ps },
+        { "fa", FallbackGladiaTranscriberLanguage.Fa },
+        { "pl", FallbackGladiaTranscriberLanguage.Pl },
+        { "pt", FallbackGladiaTranscriberLanguage.Pt },
+        { "pa", FallbackGladiaTranscriberLanguage.Pa },
+        { "ro", FallbackGladiaTranscriberLanguage.Ro },
+        { "ru", FallbackGladiaTranscriberLanguage.Ru },
+        { "sa", FallbackGladiaTranscriberLanguage.Sa },
+        { "sr", FallbackGladiaTranscriberLanguage.Sr },
+        { "sn", FallbackGladiaTranscriberLanguage.Sn },
+        { "sd", FallbackGladiaTranscriberLanguage.Sd },
+        { "si", FallbackGladiaTranscriberLanguage.Si },
+        { "sk", FallbackGladiaTranscriberLanguage.Sk },
+        { "sl", FallbackGladiaTranscriberLanguage.Sl },
+        { "so", FallbackGladiaTranscriberLanguage.So },
+        { "es", FallbackGladiaTranscriberLanguage.Es },
+        { "su", FallbackGladiaTranscriberLanguage.Su },
+        { "sw", FallbackGladiaTranscriberLanguage.Sw },
+        { "sv", FallbackGladiaTranscriberLanguage.Sv },
+        { "tl", FallbackGladiaTranscriberLanguage.Tl },
+        { "tg", FallbackGladiaTranscriberLanguage.Tg },
+        { "ta", FallbackGladiaTranscriberLanguage.Ta },
+        { "tt", FallbackGladiaTranscriberLanguage.Tt },
+        { "te", FallbackGladiaTranscriberLanguage.Te },
+        { "th", FallbackGladiaTranscriberLanguage.Th },
+        { "bo", FallbackGladiaTranscriberLanguage.Bo },
+        { "tr", FallbackGladiaTranscriberLanguage.Tr },
+        { "tk", FallbackGladiaTranscriberLanguage.Tk },
+        { "uk", FallbackGladiaTranscriberLanguage.Uk },
+        { "ur", FallbackGladiaTranscriberLanguage.Ur },
+        { "uz", FallbackGladiaTranscriberLanguage.Uz },
+        { "vi", FallbackGladiaTranscriberLanguage.Vi },
+        { "cy", FallbackGladiaTranscriberLanguage.Cy },
+        { "yi", FallbackGladiaTranscriberLanguage.Yi },
+        { "yo", FallbackGladiaTranscriberLanguage.Yo },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        FallbackGladiaTranscriberLanguage,
+        string
+    > _enumToString = new()
+    {
+        { FallbackGladiaTranscriberLanguage.Af, "af" },
+        { FallbackGladiaTranscriberLanguage.Sq, "sq" },
+        { FallbackGladiaTranscriberLanguage.Am, "am" },
+        { FallbackGladiaTranscriberLanguage.Ar, "ar" },
+        { FallbackGladiaTranscriberLanguage.Hy, "hy" },
+        { FallbackGladiaTranscriberLanguage.As, "as" },
+        { FallbackGladiaTranscriberLanguage.Az, "az" },
+        { FallbackGladiaTranscriberLanguage.Ba, "ba" },
+        { FallbackGladiaTranscriberLanguage.Eu, "eu" },
+        { FallbackGladiaTranscriberLanguage.Be, "be" },
+        { FallbackGladiaTranscriberLanguage.Bn, "bn" },
+        { FallbackGladiaTranscriberLanguage.Bs, "bs" },
+        { FallbackGladiaTranscriberLanguage.Br, "br" },
+        { FallbackGladiaTranscriberLanguage.Bg, "bg" },
+        { FallbackGladiaTranscriberLanguage.Ca, "ca" },
+        { FallbackGladiaTranscriberLanguage.Zh, "zh" },
+        { FallbackGladiaTranscriberLanguage.Hr, "hr" },
+        { FallbackGladiaTranscriberLanguage.Cs, "cs" },
+        { FallbackGladiaTranscriberLanguage.Da, "da" },
+        { FallbackGladiaTranscriberLanguage.Nl, "nl" },
+        { FallbackGladiaTranscriberLanguage.En, "en" },
+        { FallbackGladiaTranscriberLanguage.Et, "et" },
+        { FallbackGladiaTranscriberLanguage.Fo, "fo" },
+        { FallbackGladiaTranscriberLanguage.Fi, "fi" },
+        { FallbackGladiaTranscriberLanguage.Fr, "fr" },
+        { FallbackGladiaTranscriberLanguage.Gl, "gl" },
+        { FallbackGladiaTranscriberLanguage.Ka, "ka" },
+        { FallbackGladiaTranscriberLanguage.De, "de" },
+        { FallbackGladiaTranscriberLanguage.El, "el" },
+        { FallbackGladiaTranscriberLanguage.Gu, "gu" },
+        { FallbackGladiaTranscriberLanguage.Ht, "ht" },
+        { FallbackGladiaTranscriberLanguage.Ha, "ha" },
+        { FallbackGladiaTranscriberLanguage.Haw, "haw" },
+        { FallbackGladiaTranscriberLanguage.He, "he" },
+        { FallbackGladiaTranscriberLanguage.Hi, "hi" },
+        { FallbackGladiaTranscriberLanguage.Hu, "hu" },
+        { FallbackGladiaTranscriberLanguage.Is, "is" },
+        { FallbackGladiaTranscriberLanguage.Id, "id" },
+        { FallbackGladiaTranscriberLanguage.It, "it" },
+        { FallbackGladiaTranscriberLanguage.Ja, "ja" },
+        { FallbackGladiaTranscriberLanguage.Jv, "jv" },
+        { FallbackGladiaTranscriberLanguage.Kn, "kn" },
+        { FallbackGladiaTranscriberLanguage.Kk, "kk" },
+        { FallbackGladiaTranscriberLanguage.Km, "km" },
+        { FallbackGladiaTranscriberLanguage.Ko, "ko" },
+        { FallbackGladiaTranscriberLanguage.Lo, "lo" },
+        { FallbackGladiaTranscriberLanguage.La, "la" },
+        { FallbackGladiaTranscriberLanguage.Lv, "lv" },
+        { FallbackGladiaTranscriberLanguage.Ln, "ln" },
+        { FallbackGladiaTranscriberLanguage.Lt, "lt" },
+        { FallbackGladiaTranscriberLanguage.Lb, "lb" },
+        { FallbackGladiaTranscriberLanguage.Mk, "mk" },
+        { FallbackGladiaTranscriberLanguage.Mg, "mg" },
+        { FallbackGladiaTranscriberLanguage.Ms, "ms" },
+        { FallbackGladiaTranscriberLanguage.Ml, "ml" },
+        { FallbackGladiaTranscriberLanguage.Mt, "mt" },
+        { FallbackGladiaTranscriberLanguage.Mi, "mi" },
+        { FallbackGladiaTranscriberLanguage.Mr, "mr" },
+        { FallbackGladiaTranscriberLanguage.Mn, "mn" },
+        { FallbackGladiaTranscriberLanguage.My, "my" },
+        { FallbackGladiaTranscriberLanguage.Ne, "ne" },
+        { FallbackGladiaTranscriberLanguage.No, "no" },
+        { FallbackGladiaTranscriberLanguage.Nn, "nn" },
+        { FallbackGladiaTranscriberLanguage.Oc, "oc" },
+        { FallbackGladiaTranscriberLanguage.Ps, "ps" },
+        { FallbackGladiaTranscriberLanguage.Fa, "fa" },
+        { FallbackGladiaTranscriberLanguage.Pl, "pl" },
+        { FallbackGladiaTranscriberLanguage.Pt, "pt" },
+        { FallbackGladiaTranscriberLanguage.Pa, "pa" },
+        { FallbackGladiaTranscriberLanguage.Ro, "ro" },
+        { FallbackGladiaTranscriberLanguage.Ru, "ru" },
+        { FallbackGladiaTranscriberLanguage.Sa, "sa" },
+        { FallbackGladiaTranscriberLanguage.Sr, "sr" },
+        { FallbackGladiaTranscriberLanguage.Sn, "sn" },
+        { FallbackGladiaTranscriberLanguage.Sd, "sd" },
+        { FallbackGladiaTranscriberLanguage.Si, "si" },
+        { FallbackGladiaTranscriberLanguage.Sk, "sk" },
+        { FallbackGladiaTranscriberLanguage.Sl, "sl" },
+        { FallbackGladiaTranscriberLanguage.So, "so" },
+        { FallbackGladiaTranscriberLanguage.Es, "es" },
+        { FallbackGladiaTranscriberLanguage.Su, "su" },
+        { FallbackGladiaTranscriberLanguage.Sw, "sw" },
+        { FallbackGladiaTranscriberLanguage.Sv, "sv" },
+        { FallbackGladiaTranscriberLanguage.Tl, "tl" },
+        { FallbackGladiaTranscriberLanguage.Tg, "tg" },
+        { FallbackGladiaTranscriberLanguage.Ta, "ta" },
+        { FallbackGladiaTranscriberLanguage.Tt, "tt" },
+        { FallbackGladiaTranscriberLanguage.Te, "te" },
+        { FallbackGladiaTranscriberLanguage.Th, "th" },
+        { FallbackGladiaTranscriberLanguage.Bo, "bo" },
+        { FallbackGladiaTranscriberLanguage.Tr, "tr" },
+        { FallbackGladiaTranscriberLanguage.Tk, "tk" },
+        { FallbackGladiaTranscriberLanguage.Uk, "uk" },
+        { FallbackGladiaTranscriberLanguage.Ur, "ur" },
+        { FallbackGladiaTranscriberLanguage.Uz, "uz" },
+        { FallbackGladiaTranscriberLanguage.Vi, "vi" },
+        { FallbackGladiaTranscriberLanguage.Cy, "cy" },
+        { FallbackGladiaTranscriberLanguage.Yi, "yi" },
+        { FallbackGladiaTranscriberLanguage.Yo, "yo" },
+    };
+
+    public override FallbackGladiaTranscriberLanguage Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackGladiaTranscriberLanguage value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override FallbackGladiaTranscriberLanguage ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackGladiaTranscriberLanguage value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

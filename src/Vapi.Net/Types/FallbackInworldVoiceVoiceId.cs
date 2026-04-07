@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<FallbackInworldVoiceVoiceId>))]
+[JsonConverter(typeof(FallbackInworldVoiceVoiceIdSerializer))]
 public enum FallbackInworldVoiceVoiceId
 {
     [EnumMember(Value = "Alex")]
@@ -66,6 +65,21 @@ public enum FallbackInworldVoiceVoiceId
 
     [EnumMember(Value = "Dominus")]
     Dominus,
+
+    [EnumMember(Value = "Hana")]
+    Hana,
+
+    [EnumMember(Value = "Clive")]
+    Clive,
+
+    [EnumMember(Value = "Carter")]
+    Carter,
+
+    [EnumMember(Value = "Blake")]
+    Blake,
+
+    [EnumMember(Value = "Luna")]
+    Luna,
 
     [EnumMember(Value = "Yichen")]
     Yichen,
@@ -156,4 +170,230 @@ public enum FallbackInworldVoiceVoiceId
 
     [EnumMember(Value = "Rafael")]
     Rafael,
+
+    [EnumMember(Value = "Svetlana")]
+    Svetlana,
+
+    [EnumMember(Value = "Elena")]
+    Elena,
+
+    [EnumMember(Value = "Dmitry")]
+    Dmitry,
+
+    [EnumMember(Value = "Nikolai")]
+    Nikolai,
+
+    [EnumMember(Value = "Riya")]
+    Riya,
+
+    [EnumMember(Value = "Manoj")]
+    Manoj,
+
+    [EnumMember(Value = "Yael")]
+    Yael,
+
+    [EnumMember(Value = "Oren")]
+    Oren,
+
+    [EnumMember(Value = "Nour")]
+    Nour,
+
+    [EnumMember(Value = "Omar")]
+    Omar,
+}
+
+internal class FallbackInworldVoiceVoiceIdSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<FallbackInworldVoiceVoiceId>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        FallbackInworldVoiceVoiceId
+    > _stringToEnum = new()
+    {
+        { "Alex", FallbackInworldVoiceVoiceId.Alex },
+        { "Ashley", FallbackInworldVoiceVoiceId.Ashley },
+        { "Craig", FallbackInworldVoiceVoiceId.Craig },
+        { "Deborah", FallbackInworldVoiceVoiceId.Deborah },
+        { "Dennis", FallbackInworldVoiceVoiceId.Dennis },
+        { "Edward", FallbackInworldVoiceVoiceId.Edward },
+        { "Elizabeth", FallbackInworldVoiceVoiceId.Elizabeth },
+        { "Hades", FallbackInworldVoiceVoiceId.Hades },
+        { "Julia", FallbackInworldVoiceVoiceId.Julia },
+        { "Pixie", FallbackInworldVoiceVoiceId.Pixie },
+        { "Mark", FallbackInworldVoiceVoiceId.Mark },
+        { "Olivia", FallbackInworldVoiceVoiceId.Olivia },
+        { "Priya", FallbackInworldVoiceVoiceId.Priya },
+        { "Ronald", FallbackInworldVoiceVoiceId.Ronald },
+        { "Sarah", FallbackInworldVoiceVoiceId.Sarah },
+        { "Shaun", FallbackInworldVoiceVoiceId.Shaun },
+        { "Theodore", FallbackInworldVoiceVoiceId.Theodore },
+        { "Timothy", FallbackInworldVoiceVoiceId.Timothy },
+        { "Wendy", FallbackInworldVoiceVoiceId.Wendy },
+        { "Dominus", FallbackInworldVoiceVoiceId.Dominus },
+        { "Hana", FallbackInworldVoiceVoiceId.Hana },
+        { "Clive", FallbackInworldVoiceVoiceId.Clive },
+        { "Carter", FallbackInworldVoiceVoiceId.Carter },
+        { "Blake", FallbackInworldVoiceVoiceId.Blake },
+        { "Luna", FallbackInworldVoiceVoiceId.Luna },
+        { "Yichen", FallbackInworldVoiceVoiceId.Yichen },
+        { "Xiaoyin", FallbackInworldVoiceVoiceId.Xiaoyin },
+        { "Xinyi", FallbackInworldVoiceVoiceId.Xinyi },
+        { "Jing", FallbackInworldVoiceVoiceId.Jing },
+        { "Erik", FallbackInworldVoiceVoiceId.Erik },
+        { "Katrien", FallbackInworldVoiceVoiceId.Katrien },
+        { "Lennart", FallbackInworldVoiceVoiceId.Lennart },
+        { "Lore", FallbackInworldVoiceVoiceId.Lore },
+        { "Alain", FallbackInworldVoiceVoiceId.Alain },
+        { "Hélène", FallbackInworldVoiceVoiceId.Helene },
+        { "Mathieu", FallbackInworldVoiceVoiceId.Mathieu },
+        { "Étienne", FallbackInworldVoiceVoiceId.Etienne },
+        { "Johanna", FallbackInworldVoiceVoiceId.Johanna },
+        { "Josef", FallbackInworldVoiceVoiceId.Josef },
+        { "Gianni", FallbackInworldVoiceVoiceId.Gianni },
+        { "Orietta", FallbackInworldVoiceVoiceId.Orietta },
+        { "Asuka", FallbackInworldVoiceVoiceId.Asuka },
+        { "Satoshi", FallbackInworldVoiceVoiceId.Satoshi },
+        { "Hyunwoo", FallbackInworldVoiceVoiceId.Hyunwoo },
+        { "Minji", FallbackInworldVoiceVoiceId.Minji },
+        { "Seojun", FallbackInworldVoiceVoiceId.Seojun },
+        { "Yoona", FallbackInworldVoiceVoiceId.Yoona },
+        { "Szymon", FallbackInworldVoiceVoiceId.Szymon },
+        { "Wojciech", FallbackInworldVoiceVoiceId.Wojciech },
+        { "Heitor", FallbackInworldVoiceVoiceId.Heitor },
+        { "Maitê", FallbackInworldVoiceVoiceId.Maite },
+        { "Diego", FallbackInworldVoiceVoiceId.Diego },
+        { "Lupita", FallbackInworldVoiceVoiceId.Lupita },
+        { "Miguel", FallbackInworldVoiceVoiceId.Miguel },
+        { "Rafael", FallbackInworldVoiceVoiceId.Rafael },
+        { "Svetlana", FallbackInworldVoiceVoiceId.Svetlana },
+        { "Elena", FallbackInworldVoiceVoiceId.Elena },
+        { "Dmitry", FallbackInworldVoiceVoiceId.Dmitry },
+        { "Nikolai", FallbackInworldVoiceVoiceId.Nikolai },
+        { "Riya", FallbackInworldVoiceVoiceId.Riya },
+        { "Manoj", FallbackInworldVoiceVoiceId.Manoj },
+        { "Yael", FallbackInworldVoiceVoiceId.Yael },
+        { "Oren", FallbackInworldVoiceVoiceId.Oren },
+        { "Nour", FallbackInworldVoiceVoiceId.Nour },
+        { "Omar", FallbackInworldVoiceVoiceId.Omar },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        FallbackInworldVoiceVoiceId,
+        string
+    > _enumToString = new()
+    {
+        { FallbackInworldVoiceVoiceId.Alex, "Alex" },
+        { FallbackInworldVoiceVoiceId.Ashley, "Ashley" },
+        { FallbackInworldVoiceVoiceId.Craig, "Craig" },
+        { FallbackInworldVoiceVoiceId.Deborah, "Deborah" },
+        { FallbackInworldVoiceVoiceId.Dennis, "Dennis" },
+        { FallbackInworldVoiceVoiceId.Edward, "Edward" },
+        { FallbackInworldVoiceVoiceId.Elizabeth, "Elizabeth" },
+        { FallbackInworldVoiceVoiceId.Hades, "Hades" },
+        { FallbackInworldVoiceVoiceId.Julia, "Julia" },
+        { FallbackInworldVoiceVoiceId.Pixie, "Pixie" },
+        { FallbackInworldVoiceVoiceId.Mark, "Mark" },
+        { FallbackInworldVoiceVoiceId.Olivia, "Olivia" },
+        { FallbackInworldVoiceVoiceId.Priya, "Priya" },
+        { FallbackInworldVoiceVoiceId.Ronald, "Ronald" },
+        { FallbackInworldVoiceVoiceId.Sarah, "Sarah" },
+        { FallbackInworldVoiceVoiceId.Shaun, "Shaun" },
+        { FallbackInworldVoiceVoiceId.Theodore, "Theodore" },
+        { FallbackInworldVoiceVoiceId.Timothy, "Timothy" },
+        { FallbackInworldVoiceVoiceId.Wendy, "Wendy" },
+        { FallbackInworldVoiceVoiceId.Dominus, "Dominus" },
+        { FallbackInworldVoiceVoiceId.Hana, "Hana" },
+        { FallbackInworldVoiceVoiceId.Clive, "Clive" },
+        { FallbackInworldVoiceVoiceId.Carter, "Carter" },
+        { FallbackInworldVoiceVoiceId.Blake, "Blake" },
+        { FallbackInworldVoiceVoiceId.Luna, "Luna" },
+        { FallbackInworldVoiceVoiceId.Yichen, "Yichen" },
+        { FallbackInworldVoiceVoiceId.Xiaoyin, "Xiaoyin" },
+        { FallbackInworldVoiceVoiceId.Xinyi, "Xinyi" },
+        { FallbackInworldVoiceVoiceId.Jing, "Jing" },
+        { FallbackInworldVoiceVoiceId.Erik, "Erik" },
+        { FallbackInworldVoiceVoiceId.Katrien, "Katrien" },
+        { FallbackInworldVoiceVoiceId.Lennart, "Lennart" },
+        { FallbackInworldVoiceVoiceId.Lore, "Lore" },
+        { FallbackInworldVoiceVoiceId.Alain, "Alain" },
+        { FallbackInworldVoiceVoiceId.Helene, "Hélène" },
+        { FallbackInworldVoiceVoiceId.Mathieu, "Mathieu" },
+        { FallbackInworldVoiceVoiceId.Etienne, "Étienne" },
+        { FallbackInworldVoiceVoiceId.Johanna, "Johanna" },
+        { FallbackInworldVoiceVoiceId.Josef, "Josef" },
+        { FallbackInworldVoiceVoiceId.Gianni, "Gianni" },
+        { FallbackInworldVoiceVoiceId.Orietta, "Orietta" },
+        { FallbackInworldVoiceVoiceId.Asuka, "Asuka" },
+        { FallbackInworldVoiceVoiceId.Satoshi, "Satoshi" },
+        { FallbackInworldVoiceVoiceId.Hyunwoo, "Hyunwoo" },
+        { FallbackInworldVoiceVoiceId.Minji, "Minji" },
+        { FallbackInworldVoiceVoiceId.Seojun, "Seojun" },
+        { FallbackInworldVoiceVoiceId.Yoona, "Yoona" },
+        { FallbackInworldVoiceVoiceId.Szymon, "Szymon" },
+        { FallbackInworldVoiceVoiceId.Wojciech, "Wojciech" },
+        { FallbackInworldVoiceVoiceId.Heitor, "Heitor" },
+        { FallbackInworldVoiceVoiceId.Maite, "Maitê" },
+        { FallbackInworldVoiceVoiceId.Diego, "Diego" },
+        { FallbackInworldVoiceVoiceId.Lupita, "Lupita" },
+        { FallbackInworldVoiceVoiceId.Miguel, "Miguel" },
+        { FallbackInworldVoiceVoiceId.Rafael, "Rafael" },
+        { FallbackInworldVoiceVoiceId.Svetlana, "Svetlana" },
+        { FallbackInworldVoiceVoiceId.Elena, "Elena" },
+        { FallbackInworldVoiceVoiceId.Dmitry, "Dmitry" },
+        { FallbackInworldVoiceVoiceId.Nikolai, "Nikolai" },
+        { FallbackInworldVoiceVoiceId.Riya, "Riya" },
+        { FallbackInworldVoiceVoiceId.Manoj, "Manoj" },
+        { FallbackInworldVoiceVoiceId.Yael, "Yael" },
+        { FallbackInworldVoiceVoiceId.Oren, "Oren" },
+        { FallbackInworldVoiceVoiceId.Nour, "Nour" },
+        { FallbackInworldVoiceVoiceId.Omar, "Omar" },
+    };
+
+    public override FallbackInworldVoiceVoiceId Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackInworldVoiceVoiceId value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override FallbackInworldVoiceVoiceId ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        FallbackInworldVoiceVoiceId value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

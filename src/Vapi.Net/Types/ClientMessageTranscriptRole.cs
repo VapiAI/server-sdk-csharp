@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<ClientMessageTranscriptRole>))]
+[JsonConverter(typeof(ClientMessageTranscriptRoleSerializer))]
 public enum ClientMessageTranscriptRole
 {
     [EnumMember(Value = "assistant")]
@@ -12,4 +11,74 @@ public enum ClientMessageTranscriptRole
 
     [EnumMember(Value = "user")]
     User,
+}
+
+internal class ClientMessageTranscriptRoleSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<ClientMessageTranscriptRole>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        ClientMessageTranscriptRole
+    > _stringToEnum = new()
+    {
+        { "assistant", ClientMessageTranscriptRole.Assistant },
+        { "user", ClientMessageTranscriptRole.User },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        ClientMessageTranscriptRole,
+        string
+    > _enumToString = new()
+    {
+        { ClientMessageTranscriptRole.Assistant, "assistant" },
+        { ClientMessageTranscriptRole.User, "user" },
+    };
+
+    public override ClientMessageTranscriptRole Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        ClientMessageTranscriptRole value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override ClientMessageTranscriptRole ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        ClientMessageTranscriptRole value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

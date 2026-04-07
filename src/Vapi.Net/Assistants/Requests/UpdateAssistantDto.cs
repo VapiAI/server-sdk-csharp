@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
@@ -92,8 +92,6 @@ public record UpdateAssistantDto
     /// <summary>
     /// This determines whether the model's output is used in conversation history rather than the transcription of assistant's speech.
     ///
-    /// Default `false` while in beta.
-    ///
     /// @default false
     /// </summary>
     [JsonPropertyName("modelOutputInMessagesEnabled")]
@@ -128,7 +126,8 @@ public record UpdateAssistantDto
             CallHookCallEnding,
             CallHookAssistantSpeechInterrupted,
             CallHookCustomerSpeechInterrupted,
-            CallHookCustomerSpeechTimeout
+            CallHookCustomerSpeechTimeout,
+            SessionCreatedHook
         >
     >? Hooks { get; set; }
 
@@ -229,6 +228,7 @@ public record UpdateAssistantDto
     /// Usage:
     /// - To enable live listening of the assistant's calls, set `monitorPlan.listenEnabled` to `true`.
     /// - To enable live control of the assistant's calls, set `monitorPlan.controlEnabled` to `true`.
+    /// - To attach monitors to the assistant, set `monitorPlan.monitorIds` to the set of monitor ids.
     /// </summary>
     [JsonPropertyName("monitorPlan")]
     public MonitorPlan? MonitorPlan { get; set; }

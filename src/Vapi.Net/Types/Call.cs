@@ -1,13 +1,17 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record Call
+public record Call : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// This is the type of call.
     /// </summary>
@@ -52,6 +56,12 @@ public record Call
     /// </summary>
     [JsonPropertyName("endedReason")]
     public CallEndedReason? EndedReason { get; set; }
+
+    /// <summary>
+    /// This is the message that adds more context to the ended reason. It can be used to provide potential error messages or warnings.
+    /// </summary>
+    [JsonPropertyName("endedMessage")]
+    public string? EndedMessage { get; set; }
 
     /// <summary>
     /// This is the destination where the call ended up being transferred to. If the call was not transferred, this will be empty.
@@ -286,15 +296,11 @@ public record Call
     [JsonPropertyName("transport")]
     public object? Transport { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

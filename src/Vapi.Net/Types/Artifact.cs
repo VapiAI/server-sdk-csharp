@@ -1,13 +1,17 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record Artifact
+public record Artifact : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// These are the messages that were spoken during the call.
     /// </summary>
@@ -77,6 +81,12 @@ public record Artifact
     public IEnumerable<NodeArtifact>? Nodes { get; set; }
 
     /// <summary>
+    /// Ordered list of assistants that were active during the call, including after transfers and handoffs.
+    /// </summary>
+    [JsonPropertyName("assistantActivations")]
+    public IEnumerable<AssistantActivation>? AssistantActivations { get; set; }
+
+    /// <summary>
     /// These are the variable values at the end of the workflow execution.
     /// </summary>
     [JsonPropertyName("variableValues")]
@@ -114,15 +124,11 @@ public record Artifact
     [JsonPropertyName("structuredOutputsLastUpdatedAt")]
     public DateTime? StructuredOutputsLastUpdatedAt { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

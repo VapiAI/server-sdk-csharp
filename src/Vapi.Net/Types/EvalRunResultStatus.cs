@@ -1,10 +1,9 @@
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Vapi.Net.Core;
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(EnumSerializer<EvalRunResultStatus>))]
+[JsonConverter(typeof(EvalRunResultStatusSerializer))]
 public enum EvalRunResultStatus
 {
     [EnumMember(Value = "pass")]
@@ -12,4 +11,74 @@ public enum EvalRunResultStatus
 
     [EnumMember(Value = "fail")]
     Fail,
+}
+
+internal class EvalRunResultStatusSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<EvalRunResultStatus>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        EvalRunResultStatus
+    > _stringToEnum = new()
+    {
+        { "pass", EvalRunResultStatus.Pass },
+        { "fail", EvalRunResultStatus.Fail },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        EvalRunResultStatus,
+        string
+    > _enumToString = new()
+    {
+        { EvalRunResultStatus.Pass, "pass" },
+        { EvalRunResultStatus.Fail, "fail" },
+    };
+
+    public override EvalRunResultStatus Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        EvalRunResultStatus value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override EvalRunResultStatus ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        EvalRunResultStatus value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
 }

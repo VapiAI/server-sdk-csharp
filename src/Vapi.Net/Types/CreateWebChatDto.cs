@@ -1,18 +1,28 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
 [Serializable]
-public record CreateWebChatDto
+public record CreateWebChatDto : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
-    /// The assistant ID to use for this chat
+    /// This is the assistant ID to use for this chat. To use a transient assistant, use `assistant` instead.
     /// </summary>
     [JsonPropertyName("assistantId")]
-    public required string AssistantId { get; set; }
+    public string? AssistantId { get; set; }
+
+    /// <summary>
+    /// This is the transient assistant configuration for this chat. To use an existing assistant, use `assistantId` instead.
+    /// </summary>
+    [JsonPropertyName("assistant")]
+    public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// This is the ID of the session that will be used for the chat.
@@ -70,15 +80,11 @@ public record CreateWebChatDto
     [JsonPropertyName("sessionEnd")]
     public bool? SessionEnd { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json.Serialization;
 using OneOf;
 using Vapi.Net.Core;
 
@@ -39,6 +39,14 @@ public record CreateSessionDto
     public CreateAssistantDto? Assistant { get; set; }
 
     /// <summary>
+    /// These are the overrides for the assistant configuration.
+    /// Use this to provide variable values and other overrides when using assistantId.
+    /// Variable substitution will be applied to the assistant's messages and other text-based fields.
+    /// </summary>
+    [JsonPropertyName("assistantOverrides")]
+    public AssistantOverrides? AssistantOverrides { get; set; }
+
+    /// <summary>
     /// This is the squad ID associated with this session. Use this when referencing an existing squad.
     /// </summary>
     [JsonPropertyName("squadId")]
@@ -64,6 +72,12 @@ public record CreateSessionDto
     /// </summary>
     [JsonPropertyName("customer")]
     public CreateCustomerDto? Customer { get; set; }
+
+    /// <summary>
+    /// This is the customerId of the customer associated with this session.
+    /// </summary>
+    [JsonPropertyName("customerId")]
+    public string? CustomerId { get; set; }
 
     /// <summary>
     /// This is the ID of the phone number associated with this session.

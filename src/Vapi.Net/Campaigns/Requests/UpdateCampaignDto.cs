@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json.Serialization;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -27,11 +27,25 @@ public record UpdateCampaignDto
     public string? WorkflowId { get; set; }
 
     /// <summary>
+    /// This is the squad ID that will be used for the campaign calls.
+    /// Can only be updated if campaign is not in progress or has ended.
+    /// </summary>
+    [JsonPropertyName("squadId")]
+    public string? SquadId { get; set; }
+
+    /// <summary>
     /// This is the phone number ID that will be used for the campaign calls.
     /// Can only be updated if campaign is not in progress or has ended.
+    /// Note: `phoneNumberId` and `dialPlan` are mutually exclusive.
     /// </summary>
     [JsonPropertyName("phoneNumberId")]
     public string? PhoneNumberId { get; set; }
+
+    /// <summary>
+    /// This is a list of dial entries, each specifying a phone number and the customers to call using that number. Can only be updated if campaign is not in progress or has ended. Note: phoneNumberId and dialPlan are mutually exclusive.
+    /// </summary>
+    [JsonPropertyName("dialPlan")]
+    public IEnumerable<DialPlanEntry>? DialPlan { get; set; }
 
     /// <summary>
     /// This is the schedule plan for the campaign.
