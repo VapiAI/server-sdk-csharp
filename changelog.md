@@ -1,3 +1,22 @@
+## 1.0.1 - 2026-04-10
+* fix: improve RFC 3986 compliant percent-encoding for query strings and path segments
+* Update `QueryStringBuilder` to properly distinguish between three encoding
+* contexts — query keys, query values, and path segments — per RFC 3986.
+* Previously, only unreserved characters (A-Z, a-z, 0-9, `-`, `_`, `.`, `~`)
+* were left unencoded, causing over-encoding of characters that are safe in
+* query strings and path segments (e.g., `@`, `:`, `?`, `=` in values, etc.).
+* Path parameter strings in `ValueConvert.ToPathParameterString` now use the
+* new `EncodePathSegment` method instead of plain string passthrough, ensuring
+* path segments are correctly encoded per RFC 3986 pchar rules.
+* Key changes:
+* Add `EncodePathSegment()` public method on `QueryStringBuilder` for RFC 3986 pchar-safe encoding
+* Introduce `EncodingContext` enum (`QueryKey`, `QueryValue`, `Path`) to differentiate encoding rules
+* Query values now allow `=`, `:`, `@`, `/`, `?`, and sub-delimiters (except `&`, `+`, `#`) unencoded
+* Query keys allow the same set minus `=`; path segments allow unreserved + sub-delims + `:` + `@`
+* `ValueConvert.ToPathParameterString(string)` now encodes path segments via `EncodePathSegment`
+* Expand test coverage with new cases for path segment encoding, OData-style keys, and `+`/`=` handling
+* 🌿 Generated with Fern
+
 ## 1.0.0 - 2026-04-07
 * The `CallControllerFindAllPaginatedRequest` request class and the associated `CallControllerFindAllPaginatedRequestSortOrder` enum have been removed from the SDK. If your code references either of these types, you will need to update it accordingly. Please refer to the latest API documentation for the replacement request model.
 * The following public types have been removed: `GenerateStructuredOutputSuggestionsDto`, `UpdateSupabaseCredentialDto`, and the `CreateVoicemailToolDtoType` enum. Additionally, `AnalyticsClient.GetAsync` now returns `WithRawResponseTask<IEnumerable<AnalyticsQueryResult>>` instead of `Task<IEnumerable<AnalyticsQueryResult>>`; callers must update to await `.Data` or use the `.WithRawResponse()` accessor. The `AnalyticsClient` now implements `IAnalyticsClient`.
