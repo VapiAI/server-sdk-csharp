@@ -15,7 +15,7 @@ public partial class VapiClient : IVapiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/1.0.1" },
+                { "User-Agent", "Vapi.Net/1.1.0" },
             }
         );
         foreach (var header in platformHeaders)

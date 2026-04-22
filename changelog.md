@@ -1,3 +1,7 @@
+## 1.1.0 - 2026-04-22
+### Added
+* **`Call.SubscriptionLimits`** — new optional property that exposes the org's subscription and concurrency limit information at the time of the call.
+
 ## 1.0.1 - 2026-04-10
 * fix: improve RFC 3986 compliant percent-encoding for query strings and path segments
 * Update `QueryStringBuilder` to properly distinguish between three encoding

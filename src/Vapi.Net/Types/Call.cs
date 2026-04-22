@@ -296,6 +296,12 @@ public record Call : IJsonOnDeserialized
     [JsonPropertyName("transport")]
     public object? Transport { get; set; }
 
+    /// <summary>
+    /// These are the subscription limits for the org at the time of the call. Includes concurrency limit information.
+    /// </summary>
+    [JsonPropertyName("subscriptionLimits")]
+    public SubscriptionLimits? SubscriptionLimits { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
