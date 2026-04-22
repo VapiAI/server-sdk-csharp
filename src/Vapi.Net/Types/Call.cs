@@ -291,6 +291,12 @@ public record Call : IJsonOnDeserialized
     public SchedulePlan? SchedulePlan { get; set; }
 
     /// <summary>
+    /// These are the subscription limits for the org.
+    /// </summary>
+    [JsonPropertyName("subscriptionLimits")]
+    public SubscriptionLimits? SubscriptionLimits { get; set; }
+
+    /// <summary>
     /// This is the transport of the call.
     /// </summary>
     [JsonPropertyName("transport")]
