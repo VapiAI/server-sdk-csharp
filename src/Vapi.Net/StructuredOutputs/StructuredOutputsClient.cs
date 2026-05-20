@@ -118,7 +118,6 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
                     Path = "structured-output",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

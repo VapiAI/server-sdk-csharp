@@ -113,7 +113,6 @@ public partial class InsightClient : IInsightClient
                     Path = "reporting/insight",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -460,7 +459,6 @@ public partial class InsightClient : IInsightClient
                     Path = "reporting/insight/preview",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

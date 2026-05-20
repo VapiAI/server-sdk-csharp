@@ -1,3 +1,18 @@
+## 1.1.1 - 2026-05-20
+* chore: remove explicit ContentType from internal POST request builders
+* Remove the redundant `ContentType = "application/json"` property from
+* internal request configuration objects across multiple clients. The HTTP
+* client already sets this header by default when a body is present, so
+* the explicit assignment was unnecessary.
+* Key changes:
+* Remove `ContentType = "application/json"` from `AssistantsClient` POST request
+* Remove `ContentType = "application/json"` from `EvalClient` POST request
+* Remove `ContentType = "application/json"` from `InsightClient` POST requests (two endpoints)
+* Remove `ContentType = "application/json"` from `ObservabilityScorecardClient` POST request
+* Remove `ContentType = "application/json"` from `PhoneNumbersClient` POST request
+* Remove `ContentType = "application/json"` from `SquadsClient`, `StructuredOutputsClient`, and `ToolsClient` POST requests
+* 🌿 Generated with Fern
+
 ## 1.1.0 - 2026-04-22
 ### Added
 * **`Call.SubscriptionLimits`** — new optional property that exposes the org's subscription and concurrency limit information at the time of the call.

@@ -110,7 +110,6 @@ public partial class SquadsClient : ISquadsClient
                     Path = "squad",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

@@ -110,7 +110,6 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
                     Path = "phone-number",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

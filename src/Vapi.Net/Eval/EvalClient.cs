@@ -113,7 +113,6 @@ public partial class EvalClient : IEvalClient
                     Path = "eval",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

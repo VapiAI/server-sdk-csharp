@@ -324,7 +324,6 @@ public partial class ObservabilityScorecardClient : IObservabilityScorecardClien
                     Path = "observability/scorecard",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

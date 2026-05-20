@@ -110,7 +110,6 @@ public partial class ToolsClient : IToolsClient
                     Path = "tool",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

@@ -110,7 +110,6 @@ public partial class AssistantsClient : IAssistantsClient
                     Path = "assistant",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
