@@ -3,5 +3,5 @@ namespace Vapi.Net;
 [Serializable]
 internal class Version
 {
-    public const string Current = "1.1.1";
+    public const string Current = "2.0.0";
 }

@@ -3,8 +3,8 @@ using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(FallbackAzureVoiceVoiceIdZeroSerializer))]
-public enum FallbackAzureVoiceVoiceIdZero
+[JsonConverter(typeof(FallbackAzureVoiceIdZeroSerializer))]
+public enum FallbackAzureVoiceIdZero
 {
     [EnumMember(Value = "andrew")]
     Andrew,
@@ -16,30 +16,30 @@ public enum FallbackAzureVoiceVoiceIdZero
     Emma,
 }
 
-internal class FallbackAzureVoiceVoiceIdZeroSerializer
-    : global::System.Text.Json.Serialization.JsonConverter<FallbackAzureVoiceVoiceIdZero>
+internal class FallbackAzureVoiceIdZeroSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<FallbackAzureVoiceIdZero>
 {
     private static readonly global::System.Collections.Generic.Dictionary<
         string,
-        FallbackAzureVoiceVoiceIdZero
+        FallbackAzureVoiceIdZero
     > _stringToEnum = new()
     {
-        { "andrew", FallbackAzureVoiceVoiceIdZero.Andrew },
-        { "brian", FallbackAzureVoiceVoiceIdZero.Brian },
-        { "emma", FallbackAzureVoiceVoiceIdZero.Emma },
+        { "andrew", FallbackAzureVoiceIdZero.Andrew },
+        { "brian", FallbackAzureVoiceIdZero.Brian },
+        { "emma", FallbackAzureVoiceIdZero.Emma },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
-        FallbackAzureVoiceVoiceIdZero,
+        FallbackAzureVoiceIdZero,
         string
     > _enumToString = new()
     {
-        { FallbackAzureVoiceVoiceIdZero.Andrew, "andrew" },
-        { FallbackAzureVoiceVoiceIdZero.Brian, "brian" },
-        { FallbackAzureVoiceVoiceIdZero.Emma, "emma" },
+        { FallbackAzureVoiceIdZero.Andrew, "andrew" },
+        { FallbackAzureVoiceIdZero.Brian, "brian" },
+        { FallbackAzureVoiceIdZero.Emma, "emma" },
     };
 
-    public override FallbackAzureVoiceVoiceIdZero Read(
+    public override FallbackAzureVoiceIdZero Read(
         ref global::System.Text.Json.Utf8JsonReader reader,
         global::System.Type typeToConvert,
         global::System.Text.Json.JsonSerializerOptions options
@@ -53,7 +53,7 @@ internal class FallbackAzureVoiceVoiceIdZeroSerializer
 
     public override void Write(
         global::System.Text.Json.Utf8JsonWriter writer,
-        FallbackAzureVoiceVoiceIdZero value,
+        FallbackAzureVoiceIdZero value,
         global::System.Text.Json.JsonSerializerOptions options
     )
     {
@@ -62,7 +62,7 @@ internal class FallbackAzureVoiceVoiceIdZeroSerializer
         );
     }
 
-    public override FallbackAzureVoiceVoiceIdZero ReadAsPropertyName(
+    public override FallbackAzureVoiceIdZero ReadAsPropertyName(
         ref global::System.Text.Json.Utf8JsonReader reader,
         global::System.Type typeToConvert,
         global::System.Text.Json.JsonSerializerOptions options
@@ -78,7 +78,7 @@ internal class FallbackAzureVoiceVoiceIdZeroSerializer
 
     public override void WriteAsPropertyName(
         global::System.Text.Json.Utf8JsonWriter writer,
-        FallbackAzureVoiceVoiceIdZero value,
+        FallbackAzureVoiceIdZero value,
         global::System.Text.Json.JsonSerializerOptions options
     )
     {

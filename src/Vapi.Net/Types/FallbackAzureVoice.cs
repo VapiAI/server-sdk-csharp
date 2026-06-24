@@ -22,7 +22,7 @@ public record FallbackAzureVoice : IJsonOnDeserialized
     /// This is the provider-specific ID that will be used.
     /// </summary>
     [JsonPropertyName("voiceId")]
-    public required OneOf<FallbackAzureVoiceVoiceIdZero, string> VoiceId { get; set; }
+    public required OneOf<FallbackAzureVoiceIdZero, string> VoiceId { get; set; }
 
     /// <summary>
     /// This is the speed multiplier that will be used.

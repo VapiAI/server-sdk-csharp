@@ -1,3 +1,8 @@
+## 2.0.0 - 2026-06-24
+### Breaking Changes
+* **`CartesiaExperimentalControlsSpeedZero`** has been renamed to **`CartesiaSpeedControlZero`**; update all references and the type argument in `CartesiaExperimentalControls.Speed` (`OneOf<CartesiaSpeedControlZero, double>?`).
+* **`FallbackAzureVoiceVoiceIdZero`** has been renamed to **`FallbackAzureVoiceIdZero`**; update all references and the type argument in `FallbackAzureVoice.VoiceId` (`OneOf<FallbackAzureVoiceIdZero, string>`).
+
 ## 1.1.1 - 2026-05-20
 * chore: remove explicit ContentType from internal POST request builders
 * Remove the redundant `ContentType = "application/json"` property from

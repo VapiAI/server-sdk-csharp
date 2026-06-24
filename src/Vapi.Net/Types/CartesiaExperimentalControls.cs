@@ -13,7 +13,7 @@ public record CartesiaExperimentalControls : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("speed")]
-    public OneOf<CartesiaExperimentalControlsSpeedZero, double>? Speed { get; set; }
+    public OneOf<CartesiaSpeedControlZero, double>? Speed { get; set; }
 
     [JsonPropertyName("emotion")]
     public CartesiaExperimentalControlsEmotion? Emotion { get; set; }

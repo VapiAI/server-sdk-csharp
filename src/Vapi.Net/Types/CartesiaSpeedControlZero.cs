@@ -3,8 +3,8 @@ using global::System.Text.Json.Serialization;
 
 namespace Vapi.Net;
 
-[JsonConverter(typeof(CartesiaExperimentalControlsSpeedZeroSerializer))]
-public enum CartesiaExperimentalControlsSpeedZero
+[JsonConverter(typeof(CartesiaSpeedControlZeroSerializer))]
+public enum CartesiaSpeedControlZero
 {
     [EnumMember(Value = "slowest")]
     Slowest,
@@ -22,34 +22,34 @@ public enum CartesiaExperimentalControlsSpeedZero
     Fastest,
 }
 
-internal class CartesiaExperimentalControlsSpeedZeroSerializer
-    : global::System.Text.Json.Serialization.JsonConverter<CartesiaExperimentalControlsSpeedZero>
+internal class CartesiaSpeedControlZeroSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<CartesiaSpeedControlZero>
 {
     private static readonly global::System.Collections.Generic.Dictionary<
         string,
-        CartesiaExperimentalControlsSpeedZero
+        CartesiaSpeedControlZero
     > _stringToEnum = new()
     {
-        { "slowest", CartesiaExperimentalControlsSpeedZero.Slowest },
-        { "slow", CartesiaExperimentalControlsSpeedZero.Slow },
-        { "normal", CartesiaExperimentalControlsSpeedZero.Normal },
-        { "fast", CartesiaExperimentalControlsSpeedZero.Fast },
-        { "fastest", CartesiaExperimentalControlsSpeedZero.Fastest },
+        { "slowest", CartesiaSpeedControlZero.Slowest },
+        { "slow", CartesiaSpeedControlZero.Slow },
+        { "normal", CartesiaSpeedControlZero.Normal },
+        { "fast", CartesiaSpeedControlZero.Fast },
+        { "fastest", CartesiaSpeedControlZero.Fastest },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
-        CartesiaExperimentalControlsSpeedZero,
+        CartesiaSpeedControlZero,
         string
     > _enumToString = new()
     {
-        { CartesiaExperimentalControlsSpeedZero.Slowest, "slowest" },
-        { CartesiaExperimentalControlsSpeedZero.Slow, "slow" },
-        { CartesiaExperimentalControlsSpeedZero.Normal, "normal" },
-        { CartesiaExperimentalControlsSpeedZero.Fast, "fast" },
-        { CartesiaExperimentalControlsSpeedZero.Fastest, "fastest" },
+        { CartesiaSpeedControlZero.Slowest, "slowest" },
+        { CartesiaSpeedControlZero.Slow, "slow" },
+        { CartesiaSpeedControlZero.Normal, "normal" },
+        { CartesiaSpeedControlZero.Fast, "fast" },
+        { CartesiaSpeedControlZero.Fastest, "fastest" },
     };
 
-    public override CartesiaExperimentalControlsSpeedZero Read(
+    public override CartesiaSpeedControlZero Read(
         ref global::System.Text.Json.Utf8JsonReader reader,
         global::System.Type typeToConvert,
         global::System.Text.Json.JsonSerializerOptions options
@@ -63,7 +63,7 @@ internal class CartesiaExperimentalControlsSpeedZeroSerializer
 
     public override void Write(
         global::System.Text.Json.Utf8JsonWriter writer,
-        CartesiaExperimentalControlsSpeedZero value,
+        CartesiaSpeedControlZero value,
         global::System.Text.Json.JsonSerializerOptions options
     )
     {
@@ -72,7 +72,7 @@ internal class CartesiaExperimentalControlsSpeedZeroSerializer
         );
     }
 
-    public override CartesiaExperimentalControlsSpeedZero ReadAsPropertyName(
+    public override CartesiaSpeedControlZero ReadAsPropertyName(
         ref global::System.Text.Json.Utf8JsonReader reader,
         global::System.Type typeToConvert,
         global::System.Text.Json.JsonSerializerOptions options
@@ -88,7 +88,7 @@ internal class CartesiaExperimentalControlsSpeedZeroSerializer
 
     public override void WriteAsPropertyName(
         global::System.Text.Json.Utf8JsonWriter writer,
-        CartesiaExperimentalControlsSpeedZero value,
+        CartesiaSpeedControlZero value,
         global::System.Text.Json.JsonSerializerOptions options
     )
     {
