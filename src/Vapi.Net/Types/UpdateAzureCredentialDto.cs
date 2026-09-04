@@ -11,6 +11,9 @@ public record UpdateAzureCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateAzureCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is the service being used in Azure.
     /// </summary>

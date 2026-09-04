@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for transcribing speech with Talkscriber, including model and language.
+/// </summary>
 [Serializable]
 public record FallbackTalkscriberTranscriber : IJsonOnDeserialized
 {

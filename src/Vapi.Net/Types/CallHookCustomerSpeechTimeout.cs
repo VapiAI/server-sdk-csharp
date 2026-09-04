@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Runs configured actions when the customer does not speak before the configured timeout, with support for trigger limits and named instances.
+/// </summary>
 [Serializable]
 public record CallHookCustomerSpeechTimeout : IJsonOnDeserialized
 {
@@ -24,7 +27,7 @@ public record CallHookCustomerSpeechTimeout : IJsonOnDeserialized
     public IEnumerable<object> Do { get; set; } = new List<object>();
 
     /// <summary>
-    /// This is the set of filters that must match for the hook to trigger
+    /// Controls the speech timeout, maximum trigger count, and counter reset behavior for this hook.
     /// </summary>
     [JsonPropertyName("options")]
     public CustomerSpeechTimeoutOptions? Options { get; set; }

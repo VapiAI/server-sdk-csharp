@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Selects whether an insight run returns raw data or Recharts-formatted data.
+/// </summary>
 [Serializable]
 public record InsightRunFormatPlan : IJsonOnDeserialized
 {

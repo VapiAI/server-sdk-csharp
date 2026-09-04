@@ -18,6 +18,15 @@ public record ServerMessageTranscript : IJsonOnDeserialized
     public object? PhoneNumber { get; set; }
 
     /// <summary>
+    /// This is the version label (e.g. `v3`) of the assistant the call was
+    /// configured with. `null` for inline assistants, squad/workflow calls,
+    /// pre-resolution assistant-request messages, and orgs not on
+    /// assistant versioning.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
     /// This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript.
     /// </summary>
     [JsonPropertyName("type")]
@@ -78,6 +87,20 @@ public record ServerMessageTranscript : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("transcript")]
     public required string Transcript { get; set; }
+
+    /// <summary>
+    /// The ID of the assistant that produced this transcript. Present on
+    /// assistant-role events when an active assistant ID is available.
+    /// </summary>
+    [JsonPropertyName("assistantId")]
+    public string? AssistantId { get; set; }
+
+    /// <summary>
+    /// The name of the assistant that produced this transcript. Present on
+    /// assistant-role events when an active assistant name is available.
+    /// </summary>
+    [JsonPropertyName("assistantName")]
+    public string? AssistantName { get; set; }
 
     /// <summary>
     /// Indicates if the transcript was filtered for security reasons.

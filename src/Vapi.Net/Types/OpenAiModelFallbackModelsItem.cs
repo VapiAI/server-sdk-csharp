@@ -6,6 +6,21 @@ namespace Vapi.Net;
 [JsonConverter(typeof(OpenAiModelFallbackModelsItemSerializer))]
 public enum OpenAiModelFallbackModelsItem
 {
+    [EnumMember(Value = "gpt-5.6-sol")]
+    Gpt56Sol,
+
+    [EnumMember(Value = "gpt-5.6-terra")]
+    Gpt56Terra,
+
+    [EnumMember(Value = "gpt-5.6-luna")]
+    Gpt56Luna,
+
+    [EnumMember(Value = "gpt-5.5")]
+    Gpt55,
+
+    [EnumMember(Value = "chat-latest")]
+    ChatLatest,
+
     [EnumMember(Value = "gpt-5.4")]
     Gpt54,
 
@@ -90,6 +105,9 @@ public enum OpenAiModelFallbackModelsItem
     [EnumMember(Value = "gpt-realtime-mini-2025-12-15")]
     GptRealtimeMini20251215,
 
+    [EnumMember(Value = "gpt-realtime-2")]
+    GptRealtime2,
+
     [EnumMember(Value = "gpt-4o-mini-2024-07-18")]
     Gpt4OMini20240718,
 
@@ -143,6 +161,93 @@ public enum OpenAiModelFallbackModelsItem
 
     [EnumMember(Value = "gpt-3.5-turbo-0613")]
     Gpt35Turbo0613,
+
+    [EnumMember(Value = "gpt-5.6-luna:westus3")]
+    Gpt56LunaWestus3,
+
+    [EnumMember(Value = "gpt-5.6-terra:westus3")]
+    Gpt56TerraWestus3,
+
+    [EnumMember(Value = "gpt-5.6-sol:westus3")]
+    Gpt56SolWestus3,
+
+    [EnumMember(Value = "gpt-5.4:eastus2")]
+    Gpt54Eastus2,
+
+    [EnumMember(Value = "gpt-5.4:swedencentral")]
+    Gpt54Swedencentral,
+
+    [EnumMember(Value = "gpt-5.4-mini:eastus2")]
+    Gpt54MiniEastus2,
+
+    [EnumMember(Value = "gpt-5.4-mini:swedencentral")]
+    Gpt54MiniSwedencentral,
+
+    [EnumMember(Value = "gpt-5.4-nano:eastus2")]
+    Gpt54NanoEastus2,
+
+    [EnumMember(Value = "gpt-5.4-nano:swedencentral")]
+    Gpt54NanoSwedencentral,
+
+    [EnumMember(Value = "gpt-5.2:eastus2")]
+    Gpt52Eastus2,
+
+    [EnumMember(Value = "gpt-5.2:swedencentral")]
+    Gpt52Swedencentral,
+
+    [EnumMember(Value = "gpt-5.1:eastus2")]
+    Gpt51Eastus2,
+
+    [EnumMember(Value = "gpt-5.1:swedencentral")]
+    Gpt51Swedencentral,
+
+    [EnumMember(Value = "gpt-5:eastus2")]
+    Gpt5Eastus2,
+
+    [EnumMember(Value = "gpt-5:swedencentral")]
+    Gpt5Swedencentral,
+
+    [EnumMember(Value = "gpt-5:canadaeast")]
+    Gpt5Canadaeast,
+
+    [EnumMember(Value = "gpt-5:eastus")]
+    Gpt5Eastus,
+
+    [EnumMember(Value = "gpt-5:westeurope")]
+    Gpt5Westeurope,
+
+    [EnumMember(Value = "gpt-5:germanywestcentral")]
+    Gpt5Germanywestcentral,
+
+    [EnumMember(Value = "gpt-5:polandcentral")]
+    Gpt5Polandcentral,
+
+    [EnumMember(Value = "gpt-5:spaincentral")]
+    Gpt5Spaincentral,
+
+    [EnumMember(Value = "gpt-5-mini:eastus2")]
+    Gpt5MiniEastus2,
+
+    [EnumMember(Value = "gpt-5-mini:swedencentral")]
+    Gpt5MiniSwedencentral,
+
+    [EnumMember(Value = "gpt-5-mini:westeurope")]
+    Gpt5MiniWesteurope,
+
+    [EnumMember(Value = "gpt-5-mini:germanywestcentral")]
+    Gpt5MiniGermanywestcentral,
+
+    [EnumMember(Value = "gpt-5-mini:polandcentral")]
+    Gpt5MiniPolandcentral,
+
+    [EnumMember(Value = "gpt-5-mini:spaincentral")]
+    Gpt5MiniSpaincentral,
+
+    [EnumMember(Value = "gpt-5-nano:eastus2")]
+    Gpt5NanoEastus2,
+
+    [EnumMember(Value = "gpt-5-nano:swedencentral")]
+    Gpt5NanoSwedencentral,
 
     [EnumMember(Value = "gpt-4.1-2025-04-14:westus")]
     Gpt4120250414Westus,
@@ -359,6 +464,15 @@ public enum OpenAiModelFallbackModelsItem
 
     [EnumMember(Value = "gpt-3.5-turbo-1106:westus")]
     Gpt35Turbo1106Westus,
+
+    [EnumMember(Value = "gpt-4.1:australiaeast")]
+    Gpt41Australiaeast,
+
+    [EnumMember(Value = "gpt-4o:australiaeast")]
+    Gpt4OAustraliaeast,
+
+    [EnumMember(Value = "gpt-5.4-mini:australiaeast")]
+    Gpt54MiniAustraliaeast,
 }
 
 internal class OpenAiModelFallbackModelsItemSerializer
@@ -369,6 +483,11 @@ internal class OpenAiModelFallbackModelsItemSerializer
         OpenAiModelFallbackModelsItem
     > _stringToEnum = new()
     {
+        { "gpt-5.6-sol", OpenAiModelFallbackModelsItem.Gpt56Sol },
+        { "gpt-5.6-terra", OpenAiModelFallbackModelsItem.Gpt56Terra },
+        { "gpt-5.6-luna", OpenAiModelFallbackModelsItem.Gpt56Luna },
+        { "gpt-5.5", OpenAiModelFallbackModelsItem.Gpt55 },
+        { "chat-latest", OpenAiModelFallbackModelsItem.ChatLatest },
         { "gpt-5.4", OpenAiModelFallbackModelsItem.Gpt54 },
         { "gpt-5.4-mini", OpenAiModelFallbackModelsItem.Gpt54Mini },
         { "gpt-5.4-nano", OpenAiModelFallbackModelsItem.Gpt54Nano },
@@ -406,6 +525,7 @@ internal class OpenAiModelFallbackModelsItemSerializer
         },
         { "gpt-realtime-2025-08-28", OpenAiModelFallbackModelsItem.GptRealtime20250828 },
         { "gpt-realtime-mini-2025-12-15", OpenAiModelFallbackModelsItem.GptRealtimeMini20251215 },
+        { "gpt-realtime-2", OpenAiModelFallbackModelsItem.GptRealtime2 },
         { "gpt-4o-mini-2024-07-18", OpenAiModelFallbackModelsItem.Gpt4OMini20240718 },
         { "gpt-4o-mini", OpenAiModelFallbackModelsItem.Gpt4OMini },
         { "gpt-4o", OpenAiModelFallbackModelsItem.Gpt4O },
@@ -424,6 +544,38 @@ internal class OpenAiModelFallbackModelsItemSerializer
         { "gpt-3.5-turbo-1106", OpenAiModelFallbackModelsItem.Gpt35Turbo1106 },
         { "gpt-3.5-turbo-16k", OpenAiModelFallbackModelsItem.Gpt35Turbo16K },
         { "gpt-3.5-turbo-0613", OpenAiModelFallbackModelsItem.Gpt35Turbo0613 },
+        { "gpt-5.6-luna:westus3", OpenAiModelFallbackModelsItem.Gpt56LunaWestus3 },
+        { "gpt-5.6-terra:westus3", OpenAiModelFallbackModelsItem.Gpt56TerraWestus3 },
+        { "gpt-5.6-sol:westus3", OpenAiModelFallbackModelsItem.Gpt56SolWestus3 },
+        { "gpt-5.4:eastus2", OpenAiModelFallbackModelsItem.Gpt54Eastus2 },
+        { "gpt-5.4:swedencentral", OpenAiModelFallbackModelsItem.Gpt54Swedencentral },
+        { "gpt-5.4-mini:eastus2", OpenAiModelFallbackModelsItem.Gpt54MiniEastus2 },
+        { "gpt-5.4-mini:swedencentral", OpenAiModelFallbackModelsItem.Gpt54MiniSwedencentral },
+        { "gpt-5.4-nano:eastus2", OpenAiModelFallbackModelsItem.Gpt54NanoEastus2 },
+        { "gpt-5.4-nano:swedencentral", OpenAiModelFallbackModelsItem.Gpt54NanoSwedencentral },
+        { "gpt-5.2:eastus2", OpenAiModelFallbackModelsItem.Gpt52Eastus2 },
+        { "gpt-5.2:swedencentral", OpenAiModelFallbackModelsItem.Gpt52Swedencentral },
+        { "gpt-5.1:eastus2", OpenAiModelFallbackModelsItem.Gpt51Eastus2 },
+        { "gpt-5.1:swedencentral", OpenAiModelFallbackModelsItem.Gpt51Swedencentral },
+        { "gpt-5:eastus2", OpenAiModelFallbackModelsItem.Gpt5Eastus2 },
+        { "gpt-5:swedencentral", OpenAiModelFallbackModelsItem.Gpt5Swedencentral },
+        { "gpt-5:canadaeast", OpenAiModelFallbackModelsItem.Gpt5Canadaeast },
+        { "gpt-5:eastus", OpenAiModelFallbackModelsItem.Gpt5Eastus },
+        { "gpt-5:westeurope", OpenAiModelFallbackModelsItem.Gpt5Westeurope },
+        { "gpt-5:germanywestcentral", OpenAiModelFallbackModelsItem.Gpt5Germanywestcentral },
+        { "gpt-5:polandcentral", OpenAiModelFallbackModelsItem.Gpt5Polandcentral },
+        { "gpt-5:spaincentral", OpenAiModelFallbackModelsItem.Gpt5Spaincentral },
+        { "gpt-5-mini:eastus2", OpenAiModelFallbackModelsItem.Gpt5MiniEastus2 },
+        { "gpt-5-mini:swedencentral", OpenAiModelFallbackModelsItem.Gpt5MiniSwedencentral },
+        { "gpt-5-mini:westeurope", OpenAiModelFallbackModelsItem.Gpt5MiniWesteurope },
+        {
+            "gpt-5-mini:germanywestcentral",
+            OpenAiModelFallbackModelsItem.Gpt5MiniGermanywestcentral
+        },
+        { "gpt-5-mini:polandcentral", OpenAiModelFallbackModelsItem.Gpt5MiniPolandcentral },
+        { "gpt-5-mini:spaincentral", OpenAiModelFallbackModelsItem.Gpt5MiniSpaincentral },
+        { "gpt-5-nano:eastus2", OpenAiModelFallbackModelsItem.Gpt5NanoEastus2 },
+        { "gpt-5-nano:swedencentral", OpenAiModelFallbackModelsItem.Gpt5NanoSwedencentral },
         { "gpt-4.1-2025-04-14:westus", OpenAiModelFallbackModelsItem.Gpt4120250414Westus },
         { "gpt-4.1-2025-04-14:eastus2", OpenAiModelFallbackModelsItem.Gpt4120250414Eastus2 },
         { "gpt-4.1-2025-04-14:eastus", OpenAiModelFallbackModelsItem.Gpt4120250414Eastus },
@@ -610,6 +762,9 @@ internal class OpenAiModelFallbackModelsItemSerializer
         },
         { "gpt-3.5-turbo-1106:canadaeast", OpenAiModelFallbackModelsItem.Gpt35Turbo1106Canadaeast },
         { "gpt-3.5-turbo-1106:westus", OpenAiModelFallbackModelsItem.Gpt35Turbo1106Westus },
+        { "gpt-4.1:australiaeast", OpenAiModelFallbackModelsItem.Gpt41Australiaeast },
+        { "gpt-4o:australiaeast", OpenAiModelFallbackModelsItem.Gpt4OAustraliaeast },
+        { "gpt-5.4-mini:australiaeast", OpenAiModelFallbackModelsItem.Gpt54MiniAustraliaeast },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -617,6 +772,11 @@ internal class OpenAiModelFallbackModelsItemSerializer
         string
     > _enumToString = new()
     {
+        { OpenAiModelFallbackModelsItem.Gpt56Sol, "gpt-5.6-sol" },
+        { OpenAiModelFallbackModelsItem.Gpt56Terra, "gpt-5.6-terra" },
+        { OpenAiModelFallbackModelsItem.Gpt56Luna, "gpt-5.6-luna" },
+        { OpenAiModelFallbackModelsItem.Gpt55, "gpt-5.5" },
+        { OpenAiModelFallbackModelsItem.ChatLatest, "chat-latest" },
         { OpenAiModelFallbackModelsItem.Gpt54, "gpt-5.4" },
         { OpenAiModelFallbackModelsItem.Gpt54Mini, "gpt-5.4-mini" },
         { OpenAiModelFallbackModelsItem.Gpt54Nano, "gpt-5.4-nano" },
@@ -654,6 +814,7 @@ internal class OpenAiModelFallbackModelsItemSerializer
         },
         { OpenAiModelFallbackModelsItem.GptRealtime20250828, "gpt-realtime-2025-08-28" },
         { OpenAiModelFallbackModelsItem.GptRealtimeMini20251215, "gpt-realtime-mini-2025-12-15" },
+        { OpenAiModelFallbackModelsItem.GptRealtime2, "gpt-realtime-2" },
         { OpenAiModelFallbackModelsItem.Gpt4OMini20240718, "gpt-4o-mini-2024-07-18" },
         { OpenAiModelFallbackModelsItem.Gpt4OMini, "gpt-4o-mini" },
         { OpenAiModelFallbackModelsItem.Gpt4O, "gpt-4o" },
@@ -672,6 +833,38 @@ internal class OpenAiModelFallbackModelsItemSerializer
         { OpenAiModelFallbackModelsItem.Gpt35Turbo1106, "gpt-3.5-turbo-1106" },
         { OpenAiModelFallbackModelsItem.Gpt35Turbo16K, "gpt-3.5-turbo-16k" },
         { OpenAiModelFallbackModelsItem.Gpt35Turbo0613, "gpt-3.5-turbo-0613" },
+        { OpenAiModelFallbackModelsItem.Gpt56LunaWestus3, "gpt-5.6-luna:westus3" },
+        { OpenAiModelFallbackModelsItem.Gpt56TerraWestus3, "gpt-5.6-terra:westus3" },
+        { OpenAiModelFallbackModelsItem.Gpt56SolWestus3, "gpt-5.6-sol:westus3" },
+        { OpenAiModelFallbackModelsItem.Gpt54Eastus2, "gpt-5.4:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt54Swedencentral, "gpt-5.4:swedencentral" },
+        { OpenAiModelFallbackModelsItem.Gpt54MiniEastus2, "gpt-5.4-mini:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt54MiniSwedencentral, "gpt-5.4-mini:swedencentral" },
+        { OpenAiModelFallbackModelsItem.Gpt54NanoEastus2, "gpt-5.4-nano:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt54NanoSwedencentral, "gpt-5.4-nano:swedencentral" },
+        { OpenAiModelFallbackModelsItem.Gpt52Eastus2, "gpt-5.2:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt52Swedencentral, "gpt-5.2:swedencentral" },
+        { OpenAiModelFallbackModelsItem.Gpt51Eastus2, "gpt-5.1:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt51Swedencentral, "gpt-5.1:swedencentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5Eastus2, "gpt-5:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt5Swedencentral, "gpt-5:swedencentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5Canadaeast, "gpt-5:canadaeast" },
+        { OpenAiModelFallbackModelsItem.Gpt5Eastus, "gpt-5:eastus" },
+        { OpenAiModelFallbackModelsItem.Gpt5Westeurope, "gpt-5:westeurope" },
+        { OpenAiModelFallbackModelsItem.Gpt5Germanywestcentral, "gpt-5:germanywestcentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5Polandcentral, "gpt-5:polandcentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5Spaincentral, "gpt-5:spaincentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5MiniEastus2, "gpt-5-mini:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt5MiniSwedencentral, "gpt-5-mini:swedencentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5MiniWesteurope, "gpt-5-mini:westeurope" },
+        {
+            OpenAiModelFallbackModelsItem.Gpt5MiniGermanywestcentral,
+            "gpt-5-mini:germanywestcentral"
+        },
+        { OpenAiModelFallbackModelsItem.Gpt5MiniPolandcentral, "gpt-5-mini:polandcentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5MiniSpaincentral, "gpt-5-mini:spaincentral" },
+        { OpenAiModelFallbackModelsItem.Gpt5NanoEastus2, "gpt-5-nano:eastus2" },
+        { OpenAiModelFallbackModelsItem.Gpt5NanoSwedencentral, "gpt-5-nano:swedencentral" },
         { OpenAiModelFallbackModelsItem.Gpt4120250414Westus, "gpt-4.1-2025-04-14:westus" },
         { OpenAiModelFallbackModelsItem.Gpt4120250414Eastus2, "gpt-4.1-2025-04-14:eastus2" },
         { OpenAiModelFallbackModelsItem.Gpt4120250414Eastus, "gpt-4.1-2025-04-14:eastus" },
@@ -858,6 +1051,9 @@ internal class OpenAiModelFallbackModelsItemSerializer
         },
         { OpenAiModelFallbackModelsItem.Gpt35Turbo1106Canadaeast, "gpt-3.5-turbo-1106:canadaeast" },
         { OpenAiModelFallbackModelsItem.Gpt35Turbo1106Westus, "gpt-3.5-turbo-1106:westus" },
+        { OpenAiModelFallbackModelsItem.Gpt41Australiaeast, "gpt-4.1:australiaeast" },
+        { OpenAiModelFallbackModelsItem.Gpt4OAustraliaeast, "gpt-4o:australiaeast" },
+        { OpenAiModelFallbackModelsItem.Gpt54MiniAustraliaeast, "gpt-5.4-mini:australiaeast" },
     };
 
     public override OpenAiModelFallbackModelsItem Read(

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An environment variable supplied to code-tool execution, with support for Liquid templates in its value.
+/// </summary>
 [Serializable]
 public record CodeToolEnvironmentVariable : IJsonOnDeserialized
 {

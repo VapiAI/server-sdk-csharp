@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Sesame, including voice and model selection, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackSesameVoice : IJsonOnDeserialized
 {

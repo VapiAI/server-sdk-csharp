@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls how an evaluation proceeds after judging an assistant message, including failure handling and optional message overrides.
+/// </summary>
 [Serializable]
 public record AssistantMessageEvaluationContinuePlan : IJsonOnDeserialized
 {

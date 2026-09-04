@@ -30,7 +30,7 @@ public record SimulationRunItem : IJsonOnDeserialized
     public required string SimulationId { get; set; }
 
     /// <summary>
-    /// This is the current status of the run.
+    /// The run item's current status.
     /// </summary>
     [JsonPropertyName("status")]
     public required SimulationRunItemStatus Status { get; set; }
@@ -66,13 +66,13 @@ public record SimulationRunItem : IJsonOnDeserialized
     public DateTime? CanceledAt { get; set; }
 
     /// <summary>
-    /// This is the reason for failure.
+    /// Why the run item failed, when applicable.
     /// </summary>
     [JsonPropertyName("failureReason")]
     public string? FailureReason { get; set; }
 
     /// <summary>
-    /// This is the ID of the target Vapi call (the assistant being tested).
+    /// The ID of the call that ran this item.
     /// </summary>
     [JsonPropertyName("callId")]
     public string? CallId { get; set; }
@@ -102,7 +102,7 @@ public record SimulationRunItem : IJsonOnDeserialized
     public IEnumerable<object>? Hooks { get; set; }
 
     /// <summary>
-    /// This is the iteration number (1-indexed) when run with iterations &gt; 1.
+    /// Which iteration of the simulation this item represents.
     /// </summary>
     [JsonPropertyName("iterationNumber")]
     public double? IterationNumber { get; set; }
@@ -114,13 +114,13 @@ public record SimulationRunItem : IJsonOnDeserialized
     public string? SessionId { get; set; }
 
     /// <summary>
-    /// This is the scenario ID at run creation time.
+    /// The ID of the scenario used for this run item.
     /// </summary>
     [JsonPropertyName("scenarioId")]
     public string? ScenarioId { get; set; }
 
     /// <summary>
-    /// This is the personality ID at run creation time.
+    /// The ID of the personality used for this run item.
     /// </summary>
     [JsonPropertyName("personalityId")]
     public string? PersonalityId { get; set; }
@@ -132,13 +132,13 @@ public record SimulationRunItem : IJsonOnDeserialized
     public SimulationRunItemMetadata? Metadata { get; set; }
 
     /// <summary>
-    /// This is the results of the simulation run.
+    /// The evaluation results for this run item.
     /// </summary>
     [JsonPropertyName("results")]
     public SimulationRunItemResults? Results { get; set; }
 
     /// <summary>
-    /// This is the AI-generated improvement suggestions for failed runs.
+    /// AI-generated suggestions for improving the assistant or squad's system prompt, tools, and scenarios after a failed run.
     /// </summary>
     [JsonPropertyName("improvementSuggestions")]
     public SimulationRunItemImprovements? ImprovementSuggestions { get; set; }

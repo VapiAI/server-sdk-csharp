@@ -45,6 +45,9 @@ public enum WorkflowAnthropicModelModel
     [EnumMember(Value = "claude-sonnet-4-6")]
     ClaudeSonnet46,
 
+    [EnumMember(Value = "claude-sonnet-5")]
+    ClaudeSonnet5,
+
     [EnumMember(Value = "claude-haiku-4-5-20251001")]
     ClaudeHaiku4520251001,
 }
@@ -70,6 +73,7 @@ internal class WorkflowAnthropicModelModelSerializer
         { "claude-sonnet-4-20250514", WorkflowAnthropicModelModel.ClaudeSonnet420250514 },
         { "claude-sonnet-4-5-20250929", WorkflowAnthropicModelModel.ClaudeSonnet4520250929 },
         { "claude-sonnet-4-6", WorkflowAnthropicModelModel.ClaudeSonnet46 },
+        { "claude-sonnet-5", WorkflowAnthropicModelModel.ClaudeSonnet5 },
         { "claude-haiku-4-5-20251001", WorkflowAnthropicModelModel.ClaudeHaiku4520251001 },
     };
 
@@ -91,6 +95,7 @@ internal class WorkflowAnthropicModelModelSerializer
         { WorkflowAnthropicModelModel.ClaudeSonnet420250514, "claude-sonnet-4-20250514" },
         { WorkflowAnthropicModelModel.ClaudeSonnet4520250929, "claude-sonnet-4-5-20250929" },
         { WorkflowAnthropicModelModel.ClaudeSonnet46, "claude-sonnet-4-6" },
+        { WorkflowAnthropicModelModel.ClaudeSonnet5, "claude-sonnet-5" },
         { WorkflowAnthropicModelModel.ClaudeHaiku4520251001, "claude-haiku-4-5-20251001" },
     };
 

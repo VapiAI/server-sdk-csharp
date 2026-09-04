@@ -12,6 +12,9 @@ public enum AnthropicBedrockCredentialRegion
     [EnumMember(Value = "us-west-2")]
     UsWest2,
 
+    [EnumMember(Value = "eu-central-1")]
+    EuCentral1,
+
     [EnumMember(Value = "eu-west-1")]
     EuWest1,
 
@@ -35,6 +38,7 @@ internal class AnthropicBedrockCredentialRegionSerializer
     {
         { "us-east-1", AnthropicBedrockCredentialRegion.UsEast1 },
         { "us-west-2", AnthropicBedrockCredentialRegion.UsWest2 },
+        { "eu-central-1", AnthropicBedrockCredentialRegion.EuCentral1 },
         { "eu-west-1", AnthropicBedrockCredentialRegion.EuWest1 },
         { "eu-west-3", AnthropicBedrockCredentialRegion.EuWest3 },
         { "ap-northeast-1", AnthropicBedrockCredentialRegion.ApNortheast1 },
@@ -48,6 +52,7 @@ internal class AnthropicBedrockCredentialRegionSerializer
     {
         { AnthropicBedrockCredentialRegion.UsEast1, "us-east-1" },
         { AnthropicBedrockCredentialRegion.UsWest2, "us-west-2" },
+        { AnthropicBedrockCredentialRegion.EuCentral1, "eu-central-1" },
         { AnthropicBedrockCredentialRegion.EuWest1, "eu-west-1" },
         { AnthropicBedrockCredentialRegion.EuWest3, "eu-west-3" },
         { AnthropicBedrockCredentialRegion.ApNortheast1, "ap-northeast-1" },

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for generating assistant responses with Cerebras, including model, prompts, tools, knowledge-base access, and generation settings.
+/// </summary>
 [Serializable]
 public record CerebrasModel : IJsonOnDeserialized
 {
@@ -34,6 +37,15 @@ public record CerebrasModel : IJsonOnDeserialized
     public IEnumerable<string>? ToolIds { get; set; }
 
     /// <summary>
+    /// These are version-pinned references to tools. Each entry pins a specific
+    /// version of a tool by `(toolId, version)`. When the same `toolId` appears
+    /// in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+    /// `toolIds` entry is dropped at write time).
+    /// </summary>
+    [JsonPropertyName("toolRefs")]
+    public IEnumerable<ToolRef>? ToolRefs { get; set; }
+
+    /// <summary>
     /// These are the options for the knowledge base.
     /// </summary>
     [JsonPropertyName("knowledgeBase")]
@@ -46,7 +58,7 @@ public record CerebrasModel : IJsonOnDeserialized
     public required CerebrasModelModel Model { get; set; }
 
     /// <summary>
-    /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
+    /// This is the temperature that will be used for calls. Default is 0.5.
     /// </summary>
     [JsonPropertyName("temperature")]
     public double? Temperature { get; set; }

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Enables or disables one regular-expression matching option for a text replacement.
+/// </summary>
 [Serializable]
 public record RegexOption : IJsonOnDeserialized
 {

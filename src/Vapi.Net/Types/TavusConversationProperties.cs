@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Tavus conversation behavior and media settings, including duration, participant timeouts, recording, transcription, background, language, and recording storage.
+/// </summary>
 [Serializable]
 public record TavusConversationProperties : IJsonOnDeserialized
 {

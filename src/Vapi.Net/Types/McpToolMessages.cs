@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Per-tool message overrides for a tool discovered through an MCP server.
+/// </summary>
 [Serializable]
 public record McpToolMessages : IJsonOnDeserialized
 {
@@ -18,7 +21,7 @@ public record McpToolMessages : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Custom messages for this specific tool. Set to an empty array to suppress all messages for this tool. If not provided, the tool will use the default messages from the parent MCP tool configuration.
+    /// Custom messages for this specific tool. Set to an empty array to suppress all messages for this tool. If not provided, the tool will use the default messages from the parent MCP tool configuration. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates.
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }

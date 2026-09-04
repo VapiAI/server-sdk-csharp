@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters call records by comparing or searching a string-valued field.
+/// </summary>
 [Serializable]
 public record FilterStringTypeColumnOnCallTable : IJsonOnDeserialized
 {

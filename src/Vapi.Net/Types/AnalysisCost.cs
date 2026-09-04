@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Cost for an individual analysis request, including analysis type, model, token usage, and amount.
+/// </summary>
 [Serializable]
 public record AnalysisCost : IJsonOnDeserialized
 {
@@ -40,6 +43,16 @@ public record AnalysisCost : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("cachedPromptTokens")]
     public double? CachedPromptTokens { get; set; }
+
+    /// <summary>
+    /// This is the per-structured-output breakdown of this cost. The `cost`, `promptTokens`, `completionTokens` and `cachedPromptTokens` above are the sums of these rows.
+    ///
+    /// This is only set when `analysisType` is `structuredOutput`, and it is omitted entirely rather than partially populated, so when it is present the rows always reconcile to the totals above.
+    ///
+    /// A structured output that was skipped, or that extracts via regex, makes no LLM call and so has no row here — this is not a complete list of the call's configured structured outputs. There is one row per evaluation, so a `structuredOutputId` can appear more than once if it was evaluated more than once; sum the rows rather than indexing them by id.
+    /// </summary>
+    [JsonPropertyName("structuredOutputBreakdown")]
+    public IEnumerable<StructuredOutputCostBreakdown>? StructuredOutputBreakdown { get; set; }
 
     /// <summary>
     /// This is the cost of the component in USD.

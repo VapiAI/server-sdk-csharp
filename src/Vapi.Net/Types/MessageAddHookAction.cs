@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A hook action that adds an OpenAI-format message to the conversation and can trigger an assistant response.
+/// </summary>
 [Serializable]
 public record MessageAddHookAction : IJsonOnDeserialized
 {

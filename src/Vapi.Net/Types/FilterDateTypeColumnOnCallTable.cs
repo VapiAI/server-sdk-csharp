@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters call records by comparing a start or end timestamp with a date.
+/// </summary>
 [Serializable]
 public record FilterDateTypeColumnOnCallTable : IJsonOnDeserialized
 {

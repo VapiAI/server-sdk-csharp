@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Runs configured actions when the language model does not respond before its timeout.
+/// </summary>
 [Serializable]
 public record CallHookModelResponseTimeout : IJsonOnDeserialized
 {

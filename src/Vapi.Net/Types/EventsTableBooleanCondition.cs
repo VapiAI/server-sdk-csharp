@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters event data by comparing a boolean field with an expected value.
+/// </summary>
 [Serializable]
 public record EventsTableBooleanCondition : IJsonOnDeserialized
 {

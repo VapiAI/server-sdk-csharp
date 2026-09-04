@@ -6,6 +6,9 @@ namespace Vapi.Net;
 [Serializable]
 public record UpdateStructuredOutputDto
 {
+    /// <summary>
+    /// Set to the string `true` to allow changing the schema's top-level type. Other values do not enable schema type changes.
+    /// </summary>
     [JsonIgnore]
     public required string SchemaOverride { get; set; }
 
@@ -56,6 +59,12 @@ public record UpdateStructuredOutputDto
     /// </summary>
     [JsonPropertyName("compliancePlan")]
     public ComplianceOverride? CompliancePlan { get; set; }
+
+    /// <summary>
+    /// These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate.
+    /// </summary>
+    [JsonPropertyName("conditions")]
+    public IEnumerable<object>? Conditions { get; set; }
 
     /// <summary>
     /// This is the name of the structured output.

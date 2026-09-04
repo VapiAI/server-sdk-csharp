@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An aggregation or history operation applied to an analytics column, with an optional response alias.
+/// </summary>
 [Serializable]
 public record AnalyticsOperation : IJsonOnDeserialized
 {

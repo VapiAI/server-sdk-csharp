@@ -72,6 +72,14 @@ public record ListSessionsRequest
     public string? AssistantOverrides { get; set; }
 
     /// <summary>
+    /// These are the overrides applied when the call targets a `squadId`. Mirrors
+    /// the call-level `squadOverrides` — use this instead of `assistantOverrides`
+    /// when the campaign or call is squad-based.
+    /// </summary>
+    [JsonIgnore]
+    public string? SquadOverrides { get; set; }
+
+    /// <summary>
     /// This is the number of the customer.
     /// </summary>
     [JsonIgnore]
@@ -102,6 +110,12 @@ public record ListSessionsRequest
     public string? CustomerNumberAny { get; set; }
 
     /// <summary>
+    /// Filter by multiple session IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonIgnore]
+    public string? IdAny { get; set; }
+
+    /// <summary>
     /// This will return sessions with the specified phoneNumberId.
     /// </summary>
     [JsonIgnore]
@@ -124,6 +138,12 @@ public record ListSessionsRequest
     /// </summary>
     [JsonIgnore]
     public ListSessionsRequestSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonIgnore]
+    public ListSessionsRequestSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

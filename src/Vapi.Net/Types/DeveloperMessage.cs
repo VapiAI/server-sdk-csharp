@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A developer-authored instruction message supplied to the language model.
+/// </summary>
 [Serializable]
 public record DeveloperMessage : IJsonOnDeserialized
 {

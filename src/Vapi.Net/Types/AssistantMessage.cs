@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An assistant-authored message, including content, refusal text, tool calls, participant name, and metadata.
+/// </summary>
 [Serializable]
 public record AssistantMessage : IJsonOnDeserialized
 {

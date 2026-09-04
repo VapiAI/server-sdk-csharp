@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Combines nested regular-expression, Liquid, or grouped conditions with an `AND` or `OR` operator.
+/// </summary>
 [Serializable]
 public record GroupCondition : IJsonOnDeserialized
 {

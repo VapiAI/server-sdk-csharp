@@ -164,10 +164,11 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 13)
             .Add("search", request.Search)
             .Add("page", request.Page)
             .Add("sortOrder", request.SortOrder)
+            .Add("sortBy", request.SortBy)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -450,6 +451,9 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
         }
     }
 
+    /// <summary>
+    /// Returns phone numbers for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+    /// </summary>
     public WithRawResponseTask<IEnumerable<object>> ListAsync(
         ListPhoneNumbersRequest request,
         RequestOptions? options = null,
@@ -461,6 +465,9 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
         );
     }
 
+    /// <summary>
+    /// Creates a Vapi phone number or imports a phone number from a supported provider, including Twilio, Vonage, Telnyx, or a bring-your-own provider.
+    /// </summary>
     public WithRawResponseTask<object> CreateAsync(
         object request,
         RequestOptions? options = null,
@@ -472,6 +479,9 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
         );
     }
 
+    /// <summary>
+    /// Returns a paginated list of phone numbers for the authenticated organization. Search by name, number, or SIP URI using a partial, case-insensitive match, and filter by creation or update timestamps.
+    /// </summary>
     public WithRawResponseTask<PhoneNumberPaginatedResponse> PhoneNumberControllerFindAllPaginatedAsync(
         PhoneNumberControllerFindAllPaginatedRequest request,
         RequestOptions? options = null,
@@ -483,6 +493,9 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
         );
     }
 
+    /// <summary>
+    /// Returns the phone number resource identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> GetAsync(
         string id,
         GetPhoneNumbersRequest request,
@@ -495,6 +508,9 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
         );
     }
 
+    /// <summary>
+    /// Deletes the phone number resource identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> DeleteAsync(
         string id,
         DeletePhoneNumbersRequest request,
@@ -507,6 +523,9 @@ public partial class PhoneNumbersClient : IPhoneNumbersClient
         );
     }
 
+    /// <summary>
+    /// Updates the specified fields of the phone number resource identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> UpdateAsync(
         string id,
         UpdatePhoneNumbersRequest request,

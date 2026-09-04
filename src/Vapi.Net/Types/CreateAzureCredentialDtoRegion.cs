@@ -60,6 +60,12 @@ public enum CreateAzureCredentialDtoRegion
     [EnumMember(Value = "switzerland")]
     Switzerland,
 
+    [EnumMember(Value = "switzerlandnorth")]
+    Switzerlandnorth,
+
+    [EnumMember(Value = "switzerlandwest")]
+    Switzerlandwest,
+
     [EnumMember(Value = "uaenorth")]
     Uaenorth,
 
@@ -102,6 +108,8 @@ internal class CreateAzureCredentialDtoRegionSerializer
         { "spaincentral", CreateAzureCredentialDtoRegion.Spaincentral },
         { "swedencentral", CreateAzureCredentialDtoRegion.Swedencentral },
         { "switzerland", CreateAzureCredentialDtoRegion.Switzerland },
+        { "switzerlandnorth", CreateAzureCredentialDtoRegion.Switzerlandnorth },
+        { "switzerlandwest", CreateAzureCredentialDtoRegion.Switzerlandwest },
         { "uaenorth", CreateAzureCredentialDtoRegion.Uaenorth },
         { "uk", CreateAzureCredentialDtoRegion.Uk },
         { "westeurope", CreateAzureCredentialDtoRegion.Westeurope },
@@ -132,6 +140,8 @@ internal class CreateAzureCredentialDtoRegionSerializer
         { CreateAzureCredentialDtoRegion.Spaincentral, "spaincentral" },
         { CreateAzureCredentialDtoRegion.Swedencentral, "swedencentral" },
         { CreateAzureCredentialDtoRegion.Switzerland, "switzerland" },
+        { CreateAzureCredentialDtoRegion.Switzerlandnorth, "switzerlandnorth" },
+        { CreateAzureCredentialDtoRegion.Switzerlandwest, "switzerlandwest" },
         { CreateAzureCredentialDtoRegion.Uaenorth, "uaenorth" },
         { CreateAzureCredentialDtoRegion.Uk, "uk" },
         { CreateAzureCredentialDtoRegion.Westeurope, "westeurope" },

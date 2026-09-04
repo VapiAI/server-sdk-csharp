@@ -20,6 +20,15 @@ public enum XaiModelModel
 
     [EnumMember(Value = "grok-4-fast-non-reasoning")]
     Grok4FastNonReasoning,
+
+    [EnumMember(Value = "grok-4.20-0309-reasoning")]
+    Grok4200309Reasoning,
+
+    [EnumMember(Value = "grok-4.20-0309-non-reasoning")]
+    Grok4200309NonReasoning,
+
+    [EnumMember(Value = "grok-4.3")]
+    Grok43,
 }
 
 internal class XaiModelModelSerializer
@@ -35,6 +44,9 @@ internal class XaiModelModelSerializer
         { "grok-3", XaiModelModel.Grok3 },
         { "grok-4-fast-reasoning", XaiModelModel.Grok4FastReasoning },
         { "grok-4-fast-non-reasoning", XaiModelModel.Grok4FastNonReasoning },
+        { "grok-4.20-0309-reasoning", XaiModelModel.Grok4200309Reasoning },
+        { "grok-4.20-0309-non-reasoning", XaiModelModel.Grok4200309NonReasoning },
+        { "grok-4.3", XaiModelModel.Grok43 },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -47,6 +59,9 @@ internal class XaiModelModelSerializer
         { XaiModelModel.Grok3, "grok-3" },
         { XaiModelModel.Grok4FastReasoning, "grok-4-fast-reasoning" },
         { XaiModelModel.Grok4FastNonReasoning, "grok-4-fast-non-reasoning" },
+        { XaiModelModel.Grok4200309Reasoning, "grok-4.20-0309-reasoning" },
+        { XaiModelModel.Grok4200309NonReasoning, "grok-4.20-0309-non-reasoning" },
+        { XaiModelModel.Grok43, "grok-4.3" },
     };
 
     public override XaiModelModel Read(

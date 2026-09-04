@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Replaces an exact word or phrase before text is sent to a voice provider.
+/// </summary>
 [Serializable]
 public record ExactReplacement : IJsonOnDeserialized
 {
