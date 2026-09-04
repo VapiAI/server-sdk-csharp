@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters string-valued call fields using a list of values or an emptiness test.
+/// </summary>
 [Serializable]
 public record FilterStringArrayTypeColumnOnCallTable : IJsonOnDeserialized
 {

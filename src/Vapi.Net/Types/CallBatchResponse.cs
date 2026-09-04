@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// The result of a batch call creation request, containing successfully created calls, per-call failures, and subscription limits recorded at the end of the batch.
+/// </summary>
 [Serializable]
 public record CallBatchResponse : IJsonOnDeserialized
 {

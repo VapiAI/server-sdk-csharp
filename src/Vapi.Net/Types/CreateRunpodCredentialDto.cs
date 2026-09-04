@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating assistant model requests through Runpod.
+/// </summary>
 [Serializable]
 public record CreateRunpodCredentialDto : IJsonOnDeserialized
 {

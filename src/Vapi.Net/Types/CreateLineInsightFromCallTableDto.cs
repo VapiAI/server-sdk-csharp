@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a line-chart insight from call data using metric queries, formulas, grouping, and a stepped time range.
+/// </summary>
 [Serializable]
 public record CreateLineInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -44,6 +47,9 @@ public record CreateLineInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("metadata")]
     public LineInsightMetadata? Metadata { get; set; }
 
+    /// <summary>
+    /// The time range and interval used to aggregate the line-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRangeWithStep? TimeRange { get; set; }
 

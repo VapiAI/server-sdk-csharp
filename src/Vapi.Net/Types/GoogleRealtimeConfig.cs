@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Realtime Gemini generation and speech-output settings, including sampling, repetition penalties, and voice configuration.
+/// </summary>
 [Serializable]
 public record GoogleRealtimeConfig : IJsonOnDeserialized
 {

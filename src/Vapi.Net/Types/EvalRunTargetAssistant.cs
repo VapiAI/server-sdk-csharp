@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An assistant evaluation target provided as a saved assistant ID or a transient assistant, with optional assistant overrides.
+/// </summary>
 [Serializable]
 public record EvalRunTargetAssistant : IJsonOnDeserialized
 {

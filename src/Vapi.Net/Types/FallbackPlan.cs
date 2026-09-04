@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Lists backup voice configurations that can be used if the primary voice provider fails.
+/// </summary>
 [Serializable]
 public record FallbackPlan : IJsonOnDeserialized
 {

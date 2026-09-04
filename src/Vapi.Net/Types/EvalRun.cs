@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A record of an eval execution, including its target, status, results, costs, completion details, and lifecycle timestamps.
+/// </summary>
 [Serializable]
 public record EvalRun : IJsonOnDeserialized
 {
@@ -41,18 +44,33 @@ public record EvalRun : IJsonOnDeserialized
     [JsonPropertyName("target")]
     public required object Target { get; set; }
 
+    /// <summary>
+    /// The unique identifier for the eval run.
+    /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
+    /// <summary>
+    /// The unique identifier for the organization that owns the run.
+    /// </summary>
     [JsonPropertyName("orgId")]
     public required string OrgId { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval run was created.
+    /// </summary>
     [JsonPropertyName("createdAt")]
     public required DateTime CreatedAt { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval run started.
+    /// </summary>
     [JsonPropertyName("startedAt")]
     public required DateTime StartedAt { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval run ended.
+    /// </summary>
     [JsonPropertyName("endedAt")]
     public required DateTime EndedAt { get; set; }
 

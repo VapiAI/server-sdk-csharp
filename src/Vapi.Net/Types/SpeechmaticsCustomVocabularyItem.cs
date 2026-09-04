@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A word or phrase to prioritize during Speechmatics transcription, with optional phonetic alternatives.
+/// </summary>
 [Serializable]
 public record SpeechmaticsCustomVocabularyItem : IJsonOnDeserialized
 {

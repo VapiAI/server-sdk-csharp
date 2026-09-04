@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Overrides storage behavior for an output when HIPAA compliance is enabled.
+/// </summary>
 [Serializable]
 public record ComplianceOverride : IJsonOnDeserialized
 {

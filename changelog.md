@@ -1,3 +1,5 @@
+## [2.0.1] - 2026-09-04
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`CartesiaExperimentalControlsSpeedZero`** has been renamed to **`CartesiaSpeedControlZero`**; update all references and the type argument in `CartesiaExperimentalControls.Speed` (`OneOf<CartesiaSpeedControlZero, double>?`).

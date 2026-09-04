@@ -1,5 +1,6 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -15,7 +16,7 @@ public record InviteUserDto : IJsonOnDeserialized
     public IEnumerable<string> Emails { get; set; } = new List<string>();
 
     [JsonPropertyName("role")]
-    public required InviteUserDtoRole Role { get; set; }
+    public required OneOf<InviteUserDtoRoleZero, string> Role { get; set; }
 
     [JsonPropertyName("redirectTo")]
     public string? RedirectTo { get; set; }

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// OAuth 2.0 session tokens and expiration used to authenticate integration requests.
+/// </summary>
 [Serializable]
 public record Oauth2AuthenticationSession : IJsonOnDeserialized
 {

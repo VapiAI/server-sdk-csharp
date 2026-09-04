@@ -60,6 +60,12 @@ public enum UpdateAzureOpenAiCredentialDtoRegion
     [EnumMember(Value = "switzerland")]
     Switzerland,
 
+    [EnumMember(Value = "switzerlandnorth")]
+    Switzerlandnorth,
+
+    [EnumMember(Value = "switzerlandwest")]
+    Switzerlandwest,
+
     [EnumMember(Value = "uaenorth")]
     Uaenorth,
 
@@ -102,6 +108,8 @@ internal class UpdateAzureOpenAiCredentialDtoRegionSerializer
         { "spaincentral", UpdateAzureOpenAiCredentialDtoRegion.Spaincentral },
         { "swedencentral", UpdateAzureOpenAiCredentialDtoRegion.Swedencentral },
         { "switzerland", UpdateAzureOpenAiCredentialDtoRegion.Switzerland },
+        { "switzerlandnorth", UpdateAzureOpenAiCredentialDtoRegion.Switzerlandnorth },
+        { "switzerlandwest", UpdateAzureOpenAiCredentialDtoRegion.Switzerlandwest },
         { "uaenorth", UpdateAzureOpenAiCredentialDtoRegion.Uaenorth },
         { "uk", UpdateAzureOpenAiCredentialDtoRegion.Uk },
         { "westeurope", UpdateAzureOpenAiCredentialDtoRegion.Westeurope },
@@ -132,6 +140,8 @@ internal class UpdateAzureOpenAiCredentialDtoRegionSerializer
         { UpdateAzureOpenAiCredentialDtoRegion.Spaincentral, "spaincentral" },
         { UpdateAzureOpenAiCredentialDtoRegion.Swedencentral, "swedencentral" },
         { UpdateAzureOpenAiCredentialDtoRegion.Switzerland, "switzerland" },
+        { UpdateAzureOpenAiCredentialDtoRegion.Switzerlandnorth, "switzerlandnorth" },
+        { UpdateAzureOpenAiCredentialDtoRegion.Switzerlandwest, "switzerlandwest" },
         { UpdateAzureOpenAiCredentialDtoRegion.Uaenorth, "uaenorth" },
         { UpdateAzureOpenAiCredentialDtoRegion.Uk, "uk" },
         { UpdateAzureOpenAiCredentialDtoRegion.Westeurope, "westeurope" },

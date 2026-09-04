@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Analysis costs and token usage grouped by summary, structured data, success evaluation, and structured-output generation.
+/// </summary>
 [Serializable]
 public record AnalysisCostBreakdown : IJsonOnDeserialized
 {

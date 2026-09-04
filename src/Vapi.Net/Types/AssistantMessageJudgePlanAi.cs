@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Evaluates an assistant message with an LLM judge and a configured evaluation model.
+/// </summary>
 [Serializable]
 public record AssistantMessageJudgePlanAi : IJsonOnDeserialized
 {

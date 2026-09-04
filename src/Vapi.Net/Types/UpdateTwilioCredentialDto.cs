@@ -11,6 +11,9 @@ public record UpdateTwilioCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateTwilioCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is not returned in the API.
     /// </summary>

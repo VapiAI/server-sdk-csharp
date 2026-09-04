@@ -6,9 +6,15 @@ namespace Vapi.Net;
 [Serializable]
 public record ProviderResourceControllerGetProviderResourcesPaginatedRequest
 {
+    /// <summary>
+    /// Filters provider resources by their resource ID.
+    /// </summary>
     [JsonIgnore]
     public string? Id { get; set; }
 
+    /// <summary>
+    /// Filters provider resources by their provider-specific resource ID.
+    /// </summary>
     [JsonIgnore]
     public string? ResourceId { get; set; }
 
@@ -23,6 +29,12 @@ public record ProviderResourceControllerGetProviderResourcesPaginatedRequest
     /// </summary>
     [JsonIgnore]
     public ProviderResourceControllerGetProviderResourcesPaginatedRequestSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonIgnore]
+    public ProviderResourceControllerGetProviderResourcesPaginatedRequestSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

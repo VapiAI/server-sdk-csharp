@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Hume, including model and voice selection, custom voice metadata, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackHumeVoice : IJsonOnDeserialized
 {

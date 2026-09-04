@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Evaluates whether targeted conversation-message content matches a regular expression.
+/// </summary>
 [Serializable]
 public record RegexCondition : IJsonOnDeserialized
 {

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A custom endpointing rule that matches the assistant's last message and applies a configured timeout.
+/// </summary>
 [Serializable]
 public record AssistantCustomEndpointingRule : IJsonOnDeserialized
 {

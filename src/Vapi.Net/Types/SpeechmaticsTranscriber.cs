@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for transcribing speech during assistant conversations with Speechmatics, including language, region, diarization, vocabulary, endpointing, formatting, and fallback settings.
+/// </summary>
 [Serializable]
 public record SpeechmaticsTranscriber : IJsonOnDeserialized
 {
@@ -17,6 +20,9 @@ public record SpeechmaticsTranscriber : IJsonOnDeserialized
     [JsonPropertyName("model")]
     public SpeechmaticsTranscriberModel? Model { get; set; }
 
+    /// <summary>
+    /// Language used for transcription. Set to `auto` to detect the language automatically.
+    /// </summary>
     [JsonPropertyName("language")]
     public SpeechmaticsTranscriberLanguage? Language { get; set; }
 
@@ -52,6 +58,9 @@ public record SpeechmaticsTranscriber : IJsonOnDeserialized
     [JsonPropertyName("maxDelay")]
     public double? MaxDelay { get; set; }
 
+    /// <summary>
+    /// Words and phrases that Speechmatics should recognize more accurately, with optional phonetic alternatives.
+    /// </summary>
     [JsonPropertyName("customVocabulary")]
     public IEnumerable<SpeechmaticsCustomVocabularyItem> CustomVocabulary { get; set; } =
         new List<SpeechmaticsCustomVocabularyItem>();

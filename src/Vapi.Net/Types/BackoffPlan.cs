@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls retry behavior for failed server requests, including strategy, maximum retries, base delay, and status codes excluded from retries.
+/// </summary>
 [Serializable]
 public record BackoffPlan : IJsonOnDeserialized
 {
@@ -28,14 +31,13 @@ public record BackoffPlan : IJsonOnDeserialized
     public required double MaxRetries { get; set; }
 
     /// <summary>
-    /// This is the base delay in seconds. For linear backoff, this is the delay between each retry. For exponential backoff, this is the initial delay.
+    /// Base delay in seconds. For fixed backoff, this is the delay between retries. For exponential backoff, this is the initial delay.
     /// </summary>
     [JsonPropertyName("baseDelaySeconds")]
     public required double BaseDelaySeconds { get; set; }
 
     /// <summary>
-    /// This is the excluded status codes. If the response status code is in this list, the request will not be retried.
-    /// By default, the request will be retried for any non-2xx status code.
+    /// HTTP status codes that should not trigger a retry. By default, any non-2xx status code not listed here can be retried.
     /// </summary>
     [JsonPropertyName("excludedStatusCodes")]
     public IEnumerable<object>? ExcludedStatusCodes { get; set; }

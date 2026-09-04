@@ -1,0 +1,96 @@
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
+using Vapi.Net.Core;
+
+namespace Vapi.Net;
+
+[Serializable]
+public record ServerMessageCampaignPredial : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the phone number that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("phoneNumber")]
+    public object? PhoneNumber { get; set; }
+
+    /// <summary>
+    /// This is the version label (e.g. `v3`) of the assistant the call was
+    /// configured with. `null` for inline assistants, squad/workflow calls,
+    /// pre-resolution assistant-request messages, and orgs not on
+    /// assistant versioning.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
+    /// This is the type of the message. "campaign.predial" is sent to the campaign's server before each contact is dialed, so the server can decide whether the contact is eligible to be called. It is only sent when the campaign's `predialPlan` is set (and not disabled).
+    /// </summary>
+    [JsonPropertyName("type")]
+    public required ServerMessageCampaignPredialType Type { get; set; }
+
+    /// <summary>
+    /// This is the ID of the campaign the contact belongs to.
+    /// </summary>
+    [JsonPropertyName("campaignId")]
+    public required string CampaignId { get; set; }
+
+    /// <summary>
+    /// This is the contact that is about to be dialed.
+    /// </summary>
+    [JsonPropertyName("contact")]
+    public required CampaignContact Contact { get; set; }
+
+    /// <summary>
+    /// This is the timestamp of the message.
+    /// </summary>
+    [JsonPropertyName("timestamp")]
+    public double? Timestamp { get; set; }
+
+    /// <summary>
+    /// This is a live version of the `call.artifact`.
+    ///
+    /// This matches what is stored on `call.artifact` after the call.
+    /// </summary>
+    [JsonPropertyName("artifact")]
+    public Artifact? Artifact { get; set; }
+
+    /// <summary>
+    /// This is the assistant that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("assistant")]
+    public CreateAssistantDto? Assistant { get; set; }
+
+    /// <summary>
+    /// This is the customer that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("customer")]
+    public CreateCustomerDto? Customer { get; set; }
+
+    /// <summary>
+    /// This is the call that the message is associated with.
+    /// </summary>
+    [JsonPropertyName("call")]
+    public Call? Call { get; set; }
+
+    /// <summary>
+    /// This is the chat object.
+    /// </summary>
+    [JsonPropertyName("chat")]
+    public Chat? Chat { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

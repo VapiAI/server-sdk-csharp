@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Service-account credentials for Google Cloud resources and optional call-artifact storage, including region, bucket configuration, and upload fallback order.
+/// </summary>
 [Serializable]
 public record CreateGcpCredentialDto : IJsonOnDeserialized
 {
@@ -31,6 +34,9 @@ public record CreateGcpCredentialDto : IJsonOnDeserialized
     [JsonPropertyName("region")]
     public string? Region { get; set; }
 
+    /// <summary>
+    /// Bucket configuration used to store call artifacts in Google Cloud Storage.
+    /// </summary>
     [JsonPropertyName("bucketPlan")]
     public BucketPlan? BucketPlan { get; set; }
 

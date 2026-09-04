@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Compliance information captured for a call, including recording consent.
+/// </summary>
 [Serializable]
 public record Compliance : IJsonOnDeserialized
 {

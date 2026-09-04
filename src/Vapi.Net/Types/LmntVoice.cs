@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for synthesizing assistant speech with LMNT, including voice selection, language, speed, chunking, caching, and fallback settings.
+/// </summary>
 [Serializable]
 public record LmntVoice : IJsonOnDeserialized
 {

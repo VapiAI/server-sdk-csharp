@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Evaluates assistant-message content and tool-call arguments using regular-expression patterns.
+/// </summary>
 [Serializable]
 public record AssistantMessageJudgePlanRegex : IJsonOnDeserialized
 {

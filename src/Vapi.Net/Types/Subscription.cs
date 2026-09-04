@@ -30,6 +30,14 @@ public record Subscription : IJsonOnDeserialized
     public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
+    /// This is the display name for the subscription, used to tell subscriptions
+    /// apart in the dashboard. It is unique across all subscriptions and does not
+    /// appear on invoices, which use the company details on the invoice plan.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    /// <summary>
     /// This is the type / tier of the subscription.
     /// </summary>
     [JsonPropertyName("type")]
@@ -104,18 +112,6 @@ public record Subscription : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("stripePaymentMethodId")]
     public string? StripePaymentMethodId { get; set; }
-
-    /// <summary>
-    /// If this flag is true, then the user has purchased slack support.
-    /// </summary>
-    [JsonPropertyName("slackSupportEnabled")]
-    public bool? SlackSupportEnabled { get; set; }
-
-    /// <summary>
-    /// If this subscription has a slack support subscription, the slack channel's ID will be stored here.
-    /// </summary>
-    [JsonPropertyName("slackChannelId")]
-    public string? SlackChannelId { get; set; }
 
     /// <summary>
     /// This is the HIPAA enabled flag for the subscription. It determines whether orgs under this

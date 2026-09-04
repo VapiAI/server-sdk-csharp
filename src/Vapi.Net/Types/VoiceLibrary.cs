@@ -131,6 +131,21 @@ public record VoiceLibrary : IJsonOnDeserialized
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
 
+    /// <summary>
+    /// Whether this voice was cloned by the org from their own audio, as opposed
+    /// to a seeded/preset voice. Drives the cloned filter and tag. Backed by a
+    /// NOT NULL DEFAULT false column, so it is always present at read time.
+    /// </summary>
+    [JsonPropertyName("isCloned")]
+    public bool? IsCloned { get; set; }
+
+    /// <summary>
+    /// The provider that produced the clone (e.g. 'xai'). The voice `provider`
+    /// stays 'vapi'; this records the underlying backend. Unset for non-cloned voices.
+    /// </summary>
+    [JsonPropertyName("cloneBackend")]
+    public string? CloneBackend { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

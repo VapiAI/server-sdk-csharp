@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A conversation message represented in OpenAI chat format.
+/// </summary>
 [Serializable]
 public record OpenAiMessage : IJsonOnDeserialized
 {
@@ -11,9 +14,15 @@ public record OpenAiMessage : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Content of the conversation message.
+    /// </summary>
     [JsonPropertyName("content")]
     public string? Content { get; set; }
 
+    /// <summary>
+    /// Role associated with the conversation message.
+    /// </summary>
     [JsonPropertyName("role")]
     public required OpenAiMessageRole Role { get; set; }
 

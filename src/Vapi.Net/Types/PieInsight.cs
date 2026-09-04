@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved pie-chart insight containing its call-data queries, formulas, grouping, time range, and lifecycle information.
+/// </summary>
 [Serializable]
 public record PieInsight : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record PieInsight : IJsonOnDeserialized
     [JsonPropertyName("formulas")]
     public IEnumerable<InsightFormula>? Formulas { get; set; }
 
+    /// <summary>
+    /// The time range used to query the pie-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRange? TimeRange { get; set; }
 
@@ -91,6 +97,12 @@ public record PieInsight : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Stable server-owned identifier for system-created insights.
+    /// </summary>
+    [JsonPropertyName("systemKey")]
+    public string? SystemKey { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

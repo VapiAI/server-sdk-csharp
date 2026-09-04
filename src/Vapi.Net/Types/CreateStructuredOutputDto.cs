@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a structured-output definition that extracts validated data from calls using an AI model or regular expression.
+/// </summary>
 [Serializable]
 public record CreateStructuredOutputDto : IJsonOnDeserialized
 {
@@ -60,6 +63,12 @@ public record CreateStructuredOutputDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("compliancePlan")]
     public ComplianceOverride? CompliancePlan { get; set; }
+
+    /// <summary>
+    /// These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate.
+    /// </summary>
+    [JsonPropertyName("conditions")]
+    public IEnumerable<object>? Conditions { get; set; }
 
     /// <summary>
     /// This is the name of the structured output.

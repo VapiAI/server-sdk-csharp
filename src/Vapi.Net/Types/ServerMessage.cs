@@ -50,7 +50,9 @@ public record ServerMessage : IJsonOnDeserialized
         ServerMessageSessionUpdated,
         ServerMessageSessionDeleted,
         ServerMessageCallDeleted,
-        ServerMessageCallDeleteFailed
+        ServerMessageCallDeleteFailed,
+        ServerMessageCallArtifactUpload,
+        ServerMessageCampaignPredial
     > Message { get; set; }
 
     [JsonIgnore]

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for authenticating outbound requests with a bearer token, including header name and optional `Bearer` prefix.
+/// </summary>
 [Serializable]
 public record BearerAuthenticationPlan : IJsonOnDeserialized
 {
