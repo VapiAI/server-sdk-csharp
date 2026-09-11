@@ -11,6 +11,9 @@ public record UpdateGoogleCalendarOAuth2AuthorizationCredentialDto : IJsonOnDese
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateGoogleCalendarOAuth2AuthorizationCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// The authorization ID for the OAuth2 authorization
     /// </summary>

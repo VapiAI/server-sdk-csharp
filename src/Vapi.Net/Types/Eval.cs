@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved eval definition containing its mock conversation, checkpoints, descriptive metadata, type, and lifecycle information.
+/// </summary>
 [Serializable]
 public record Eval : IJsonOnDeserialized
 {
@@ -41,15 +44,27 @@ public record Eval : IJsonOnDeserialized
             >
         >();
 
+    /// <summary>
+    /// The unique identifier for the eval.
+    /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
+    /// <summary>
+    /// The unique identifier for the organization that owns the eval.
+    /// </summary>
     [JsonPropertyName("orgId")]
     public required string OrgId { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval was created.
+    /// </summary>
     [JsonPropertyName("createdAt")]
     public required DateTime CreatedAt { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval was last updated.
+    /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
 

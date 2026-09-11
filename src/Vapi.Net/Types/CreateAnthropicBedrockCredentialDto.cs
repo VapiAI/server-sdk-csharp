@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating Anthropic model requests through Amazon Bedrock, including AWS region and authentication method.
+/// </summary>
 [Serializable]
 public record CreateAnthropicBedrockCredentialDto : IJsonOnDeserialized
 {

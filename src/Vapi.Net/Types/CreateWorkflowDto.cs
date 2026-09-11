@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for creating a graph-based workflow, including conversation and tool nodes, directed edges, global prompts, shared providers, hooks, credentials, and call behavior.
+/// </summary>
 [Serializable]
 public record CreateWorkflowDto : IJsonOnDeserialized
 {
@@ -12,6 +15,9 @@ public record CreateWorkflowDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Nodes that make up the workflow graph. Conversation nodes interact with the customer, while tool nodes invoke configured tools.
+    /// </summary>
     [JsonPropertyName("nodes")]
     public IEnumerable<object> Nodes { get; set; } = new List<object>();
 
@@ -96,12 +102,21 @@ public record CreateWorkflowDto : IJsonOnDeserialized
     [JsonPropertyName("maxDurationSeconds")]
     public double? MaxDurationSeconds { get; set; }
 
+    /// <summary>
+    /// Name used to identify the workflow.
+    /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
+    /// <summary>
+    /// Directed connections that determine transitions between nodes.
+    /// </summary>
     [JsonPropertyName("edges")]
     public IEnumerable<Edge> Edges { get; set; } = new List<Edge>();
 
+    /// <summary>
+    /// Prompt applied across the workflow's conversation nodes.
+    /// </summary>
     [JsonPropertyName("globalPrompt")]
     public string? GlobalPrompt { get; set; }
 

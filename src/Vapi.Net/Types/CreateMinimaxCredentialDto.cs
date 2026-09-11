@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating assistant model and voice synthesis requests with MiniMax, including the MiniMax group identifier.
+/// </summary>
 [Serializable]
 public record CreateMinimaxCredentialDto : IJsonOnDeserialized
 {

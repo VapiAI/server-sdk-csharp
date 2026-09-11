@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Start, end, timezone, and aggregation step used for a time-series insight query.
+/// </summary>
 [Serializable]
 public record InsightTimeRangeWithStep : IJsonOnDeserialized
 {

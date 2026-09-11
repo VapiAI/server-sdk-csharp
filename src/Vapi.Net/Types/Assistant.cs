@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved assistant configuration returned by the Vapi API. It defines how the assistant listens, reasons, speaks, handles conversations, sends events, and produces artifacts and analysis.
+/// </summary>
 [Serializable]
 public record Assistant : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record Assistant : IJsonOnDeserialized
     [JsonPropertyName("firstMessage")]
     public string? FirstMessage { get; set; }
 
+    /// <summary>
+    /// Set to `true` to allow the user to interrupt the assistant while it speaks the first message. Default is `false`.
+    /// </summary>
     [JsonPropertyName("firstMessageInterruptionsEnabled")]
     public bool? FirstMessageInterruptionsEnabled { get; set; }
 
@@ -137,6 +143,15 @@ public record Assistant : IJsonOnDeserialized
     >? Hooks { get; set; }
 
     /// <summary>
+    /// This is the latest version label (e.g. `v3`) of the assistant in the
+    /// version history. `null` while the org is not yet
+    /// onboarded to versioning, or for assistants that have not yet been
+    /// published under it.
+    /// </summary>
+    [JsonPropertyName("latestVersion")]
+    public string? LatestVersion { get; set; }
+
+    /// <summary>
     /// This is the name of the assistant.
     ///
     /// This is required when you want to transfer between assistants in a call.
@@ -166,6 +181,9 @@ public record Assistant : IJsonOnDeserialized
     [JsonPropertyName("endCallPhrases")]
     public IEnumerable<string>? EndCallPhrases { get; set; }
 
+    /// <summary>
+    /// Compliance settings for the assistant, including HIPAA and PCI behavior, security filtering, and recording consent.
+    /// </summary>
     [JsonPropertyName("compliancePlan")]
     public CompliancePlan? CompliancePlan { get; set; }
 
@@ -256,6 +274,9 @@ public record Assistant : IJsonOnDeserialized
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
 
+    /// <summary>
+    /// Configuration for collecting and processing DTMF keypad input during calls.
+    /// </summary>
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }
 

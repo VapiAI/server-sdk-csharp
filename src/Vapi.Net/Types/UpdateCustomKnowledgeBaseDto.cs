@@ -12,6 +12,12 @@ public record UpdateCustomKnowledgeBaseDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// This knowledge base is bring your own knowledge base implementation.
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public UpdateCustomKnowledgeBaseDtoProvider? Provider { get; set; }
+
+    /// <summary>
     /// This is where the knowledge base request will be sent.
     ///
     /// Request Example:

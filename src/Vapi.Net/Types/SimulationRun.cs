@@ -24,7 +24,7 @@ public record SimulationRun : IJsonOnDeserialized
     public required string OrgId { get; set; }
 
     /// <summary>
-    /// Current status of the run
+    /// The run's current status. One of `queued`, `running`, or `ended`.
     /// </summary>
     [JsonPropertyName("status")]
     public required SimulationRunStatus Status { get; set; }
@@ -48,7 +48,7 @@ public record SimulationRun : IJsonOnDeserialized
     public DateTime? EndedAt { get; set; }
 
     /// <summary>
-    /// Reason the run ended
+    /// Why the run ended, when applicable.
     /// </summary>
     [JsonPropertyName("endedReason")]
     public string? EndedReason { get; set; }
@@ -66,31 +66,31 @@ public record SimulationRun : IJsonOnDeserialized
     public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
-    /// Aggregate counts of run items by status
+    /// Aggregate counts of the run's items by status.
     /// </summary>
     [JsonPropertyName("itemCounts")]
     public SimulationRunItemCounts? ItemCounts { get; set; }
 
     /// <summary>
-    /// Array of simulations and/or suites to run
+    /// The simulations and suites included in the run.
     /// </summary>
     [JsonPropertyName("simulations")]
     public IEnumerable<object> Simulations { get; set; } = new List<object>();
 
     /// <summary>
-    /// Target to test against
+    /// The assistant or squad the run was tested against.
     /// </summary>
     [JsonPropertyName("target")]
     public required object Target { get; set; }
 
     /// <summary>
-    /// Number of times to run each simulation (default: 1)
+    /// The number of times each simulation was run. Defaults to 1.
     /// </summary>
     [JsonPropertyName("iterations")]
     public double? Iterations { get; set; }
 
     /// <summary>
-    /// Transport configuration for the simulation runs
+    /// The transport used for the run, either voice or chat.
     /// </summary>
     [JsonPropertyName("transport")]
     public SimulationRunTransportConfiguration? Transport { get; set; }

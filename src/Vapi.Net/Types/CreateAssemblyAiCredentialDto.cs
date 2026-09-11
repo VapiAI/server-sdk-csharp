@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating transcription requests with AssemblyAI.
+/// </summary>
 [Serializable]
 public record CreateAssemblyAiCredentialDto : IJsonOnDeserialized
 {

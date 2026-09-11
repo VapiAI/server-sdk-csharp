@@ -280,6 +280,18 @@ public partial class ToolsClient : IToolsClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 409:
+                        throw new ConflictError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -356,6 +368,9 @@ public partial class ToolsClient : IToolsClient
         }
     }
 
+    /// <summary>
+    /// Returns reusable tools for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+    /// </summary>
     public WithRawResponseTask<IEnumerable<object>> ListAsync(
         ListToolsRequest request,
         RequestOptions? options = null,
@@ -367,6 +382,9 @@ public partial class ToolsClient : IToolsClient
         );
     }
 
+    /// <summary>
+    /// Creates a reusable tool that assistants can invoke during conversations.
+    /// </summary>
     public WithRawResponseTask<object> CreateAsync(
         object request,
         RequestOptions? options = null,
@@ -378,6 +396,9 @@ public partial class ToolsClient : IToolsClient
         );
     }
 
+    /// <summary>
+    /// Returns the tool identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> GetAsync(
         string id,
         GetToolsRequest request,
@@ -390,6 +411,9 @@ public partial class ToolsClient : IToolsClient
         );
     }
 
+    /// <summary>
+    /// Deletes the tool identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> DeleteAsync(
         string id,
         DeleteToolsRequest request,
@@ -402,6 +426,9 @@ public partial class ToolsClient : IToolsClient
         );
     }
 
+    /// <summary>
+    /// Updates the specified fields of the tool identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> UpdateAsync(
         string id,
         UpdateToolsRequest request,

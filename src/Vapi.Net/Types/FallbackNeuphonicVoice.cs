@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Neuphonic, including voice and model selection, language, speed, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackNeuphonicVoice : IJsonOnDeserialized
 {

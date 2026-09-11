@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Associates a catalog key with a structured data extraction plan.
+/// </summary>
 [Serializable]
 public record StructuredDataMultiPlan : IJsonOnDeserialized
 {

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for generating assistant responses with OpenAI, including model selection, fallback models, prompts, tools, prompt caching, and generation settings.
+/// </summary>
 [Serializable]
 public record OpenAiModel : IJsonOnDeserialized
 {
@@ -32,6 +35,15 @@ public record OpenAiModel : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("toolIds")]
     public IEnumerable<string>? ToolIds { get; set; }
+
+    /// <summary>
+    /// These are version-pinned references to tools. Each entry pins a specific
+    /// version of a tool by `(toolId, version)`. When the same `toolId` appears
+    /// in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+    /// `toolIds` entry is dropped at write time).
+    /// </summary>
+    [JsonPropertyName("toolRefs")]
+    public IEnumerable<ToolRef>? ToolRefs { get; set; }
 
     /// <summary>
     /// These are the options for the knowledge base.
@@ -73,7 +85,7 @@ public record OpenAiModel : IJsonOnDeserialized
     /// - `in_memory`: Default behavior, cache retained in GPU memory only
     /// - `24h`: Extended caching, keeps cached prefixes active for up to 24 hours by offloading to GPU-local storage
     ///
-    /// Only applies to models: gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
+    /// Only applies to models: gpt-5.6-sol, gpt-5.6-terra, gpt-5.6-luna, gpt-5.5, chat-latest, gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
     ///
     /// @default undefined (uses API default which is 'in_memory')
     /// </summary>
@@ -91,7 +103,16 @@ public record OpenAiModel : IJsonOnDeserialized
     public string? PromptCacheKey { get; set; }
 
     /// <summary>
-    /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
+    /// Reasoning effort for reasoning-capable OpenAI models.
+    /// For `gpt-realtime-2`: forwarded to V2 stream's session.update as `reasoning.effort`.
+    /// For non-realtime OpenAI models, model-aware validation limits newly public
+    /// values while preserving the existing four-value storage contract.
+    /// </summary>
+    [JsonPropertyName("reasoningEffort")]
+    public OpenAiModelReasoningEffort? ReasoningEffort { get; set; }
+
+    /// <summary>
+    /// This is the temperature that will be used for calls. Default is 0.5.
     /// </summary>
     [JsonPropertyName("temperature")]
     public double? Temperature { get; set; }

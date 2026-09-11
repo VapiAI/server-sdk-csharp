@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Time window that controls the earliest and latest time a call may begin.
+/// </summary>
 [Serializable]
 public record SchedulePlan : IJsonOnDeserialized
 {

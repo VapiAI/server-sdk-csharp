@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved text-value insight containing its call-data queries, formula, time range, and lifecycle information.
+/// </summary>
 [Serializable]
 public record TextInsight : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record TextInsight : IJsonOnDeserialized
     [JsonPropertyName("formula")]
     public object? Formula { get; set; }
 
+    /// <summary>
+    /// The time range used to query the text-value data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRange? TimeRange { get; set; }
 
@@ -84,6 +90,12 @@ public record TextInsight : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Stable server-owned identifier for system-created insights.
+    /// </summary>
+    [JsonPropertyName("systemKey")]
+    public string? SystemKey { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

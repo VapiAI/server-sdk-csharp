@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Telephony transport cost for a call, including provider, billable minutes, and amount.
+/// </summary>
 [Serializable]
 public record TransportCost : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record TransportCost : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Telephony or transport provider that generated the cost.
+    /// </summary>
     [JsonPropertyName("provider")]
     public TransportCostProvider? Provider { get; set; }
 

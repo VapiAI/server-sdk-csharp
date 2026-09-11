@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A workflow node where the assistant conducts a conversation using optional node-specific providers, tools, prompt, and variable extraction.
+/// </summary>
 [Serializable]
 public record ConversationNode : IJsonOnDeserialized
 {
@@ -51,6 +54,9 @@ public record ConversationNode : IJsonOnDeserialized
     [JsonPropertyName("toolIds")]
     public IEnumerable<string>? ToolIds { get; set; }
 
+    /// <summary>
+    /// Prompt that guides the assistant while this node is active.
+    /// </summary>
     [JsonPropertyName("prompt")]
     public string? Prompt { get; set; }
 
@@ -112,6 +118,9 @@ public record ConversationNode : IJsonOnDeserialized
     [JsonPropertyName("variableExtractionPlan")]
     public VariableExtractionPlan? VariableExtractionPlan { get; set; }
 
+    /// <summary>
+    /// Unique name used to identify this workflow node.
+    /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 

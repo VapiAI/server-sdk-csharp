@@ -6,6 +6,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(WorkflowGoogleModelModelSerializer))]
 public enum WorkflowGoogleModelModel
 {
+    [EnumMember(Value = "gemini-3.5-flash")]
+    Gemini35Flash,
+
+    [EnumMember(Value = "gemini-3.1-flash-lite")]
+    Gemini31FlashLite,
+
     [EnumMember(Value = "gemini-3-flash-preview")]
     Gemini3FlashPreview,
 
@@ -60,6 +66,8 @@ internal class WorkflowGoogleModelModelSerializer
         WorkflowGoogleModelModel
     > _stringToEnum = new()
     {
+        { "gemini-3.5-flash", WorkflowGoogleModelModel.Gemini35Flash },
+        { "gemini-3.1-flash-lite", WorkflowGoogleModelModel.Gemini31FlashLite },
         { "gemini-3-flash-preview", WorkflowGoogleModelModel.Gemini3FlashPreview },
         { "gemini-2.5-pro", WorkflowGoogleModelModel.Gemini25Pro },
         { "gemini-2.5-flash", WorkflowGoogleModelModel.Gemini25Flash },
@@ -82,6 +90,8 @@ internal class WorkflowGoogleModelModelSerializer
         string
     > _enumToString = new()
     {
+        { WorkflowGoogleModelModel.Gemini35Flash, "gemini-3.5-flash" },
+        { WorkflowGoogleModelModel.Gemini31FlashLite, "gemini-3.1-flash-lite" },
         { WorkflowGoogleModelModel.Gemini3FlashPreview, "gemini-3-flash-preview" },
         { WorkflowGoogleModelModel.Gemini25Pro, "gemini-2.5-pro" },
         { WorkflowGoogleModelModel.Gemini25Flash, "gemini-2.5-flash" },

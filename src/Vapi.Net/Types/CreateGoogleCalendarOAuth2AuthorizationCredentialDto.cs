@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Stored OAuth 2.0 authorization for Google Calendar operations.
+/// </summary>
 [Serializable]
 public record CreateGoogleCalendarOAuth2AuthorizationCredentialDto : IJsonOnDeserialized
 {

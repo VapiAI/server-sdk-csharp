@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a pie-chart insight from call data using metric queries, formulas, grouping, and a time range.
+/// </summary>
 [Serializable]
 public record CreatePieInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record CreatePieInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("formulas")]
     public IEnumerable<InsightFormula>? Formulas { get; set; }
 
+    /// <summary>
+    /// The time range used to query the pie-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRange? TimeRange { get; set; }
 

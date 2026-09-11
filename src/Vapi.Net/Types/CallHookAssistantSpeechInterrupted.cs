@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Runs configured actions when the customer's speech interrupts the assistant.
+/// </summary>
 [Serializable]
 public record CallHookAssistantSpeechInterrupted : IJsonOnDeserialized
 {

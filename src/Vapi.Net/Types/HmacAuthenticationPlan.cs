@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for signing outbound requests with an HMAC secret, including algorithm, headers, payload format, and signature encoding.
+/// </summary>
 [Serializable]
 public record HmacAuthenticationPlan : IJsonOnDeserialized
 {

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Groups analytics results by a selected assistant variable-value key.
+/// </summary>
 [Serializable]
 public record VariableValueGroupBy : IJsonOnDeserialized
 {

@@ -6,6 +6,21 @@ namespace Vapi.Net;
 [JsonConverter(typeof(OpenAiModelModelSerializer))]
 public enum OpenAiModelModel
 {
+    [EnumMember(Value = "gpt-5.6-sol")]
+    Gpt56Sol,
+
+    [EnumMember(Value = "gpt-5.6-terra")]
+    Gpt56Terra,
+
+    [EnumMember(Value = "gpt-5.6-luna")]
+    Gpt56Luna,
+
+    [EnumMember(Value = "gpt-5.5")]
+    Gpt55,
+
+    [EnumMember(Value = "chat-latest")]
+    ChatLatest,
+
     [EnumMember(Value = "gpt-5.4")]
     Gpt54,
 
@@ -90,6 +105,9 @@ public enum OpenAiModelModel
     [EnumMember(Value = "gpt-realtime-mini-2025-12-15")]
     GptRealtimeMini20251215,
 
+    [EnumMember(Value = "gpt-realtime-2")]
+    GptRealtime2,
+
     [EnumMember(Value = "gpt-4o-mini-2024-07-18")]
     Gpt4OMini20240718,
 
@@ -143,6 +161,93 @@ public enum OpenAiModelModel
 
     [EnumMember(Value = "gpt-3.5-turbo-0613")]
     Gpt35Turbo0613,
+
+    [EnumMember(Value = "gpt-5.6-luna:westus3")]
+    Gpt56LunaWestus3,
+
+    [EnumMember(Value = "gpt-5.6-terra:westus3")]
+    Gpt56TerraWestus3,
+
+    [EnumMember(Value = "gpt-5.6-sol:westus3")]
+    Gpt56SolWestus3,
+
+    [EnumMember(Value = "gpt-5.4:eastus2")]
+    Gpt54Eastus2,
+
+    [EnumMember(Value = "gpt-5.4:swedencentral")]
+    Gpt54Swedencentral,
+
+    [EnumMember(Value = "gpt-5.4-mini:eastus2")]
+    Gpt54MiniEastus2,
+
+    [EnumMember(Value = "gpt-5.4-mini:swedencentral")]
+    Gpt54MiniSwedencentral,
+
+    [EnumMember(Value = "gpt-5.4-nano:eastus2")]
+    Gpt54NanoEastus2,
+
+    [EnumMember(Value = "gpt-5.4-nano:swedencentral")]
+    Gpt54NanoSwedencentral,
+
+    [EnumMember(Value = "gpt-5.2:eastus2")]
+    Gpt52Eastus2,
+
+    [EnumMember(Value = "gpt-5.2:swedencentral")]
+    Gpt52Swedencentral,
+
+    [EnumMember(Value = "gpt-5.1:eastus2")]
+    Gpt51Eastus2,
+
+    [EnumMember(Value = "gpt-5.1:swedencentral")]
+    Gpt51Swedencentral,
+
+    [EnumMember(Value = "gpt-5:eastus2")]
+    Gpt5Eastus2,
+
+    [EnumMember(Value = "gpt-5:swedencentral")]
+    Gpt5Swedencentral,
+
+    [EnumMember(Value = "gpt-5:canadaeast")]
+    Gpt5Canadaeast,
+
+    [EnumMember(Value = "gpt-5:eastus")]
+    Gpt5Eastus,
+
+    [EnumMember(Value = "gpt-5:westeurope")]
+    Gpt5Westeurope,
+
+    [EnumMember(Value = "gpt-5:germanywestcentral")]
+    Gpt5Germanywestcentral,
+
+    [EnumMember(Value = "gpt-5:polandcentral")]
+    Gpt5Polandcentral,
+
+    [EnumMember(Value = "gpt-5:spaincentral")]
+    Gpt5Spaincentral,
+
+    [EnumMember(Value = "gpt-5-mini:eastus2")]
+    Gpt5MiniEastus2,
+
+    [EnumMember(Value = "gpt-5-mini:swedencentral")]
+    Gpt5MiniSwedencentral,
+
+    [EnumMember(Value = "gpt-5-mini:westeurope")]
+    Gpt5MiniWesteurope,
+
+    [EnumMember(Value = "gpt-5-mini:germanywestcentral")]
+    Gpt5MiniGermanywestcentral,
+
+    [EnumMember(Value = "gpt-5-mini:polandcentral")]
+    Gpt5MiniPolandcentral,
+
+    [EnumMember(Value = "gpt-5-mini:spaincentral")]
+    Gpt5MiniSpaincentral,
+
+    [EnumMember(Value = "gpt-5-nano:eastus2")]
+    Gpt5NanoEastus2,
+
+    [EnumMember(Value = "gpt-5-nano:swedencentral")]
+    Gpt5NanoSwedencentral,
 
     [EnumMember(Value = "gpt-4.1-2025-04-14:westus")]
     Gpt4120250414Westus,
@@ -359,6 +464,15 @@ public enum OpenAiModelModel
 
     [EnumMember(Value = "gpt-3.5-turbo-1106:westus")]
     Gpt35Turbo1106Westus,
+
+    [EnumMember(Value = "gpt-4.1:australiaeast")]
+    Gpt41Australiaeast,
+
+    [EnumMember(Value = "gpt-4o:australiaeast")]
+    Gpt4OAustraliaeast,
+
+    [EnumMember(Value = "gpt-5.4-mini:australiaeast")]
+    Gpt54MiniAustraliaeast,
 }
 
 internal class OpenAiModelModelSerializer
@@ -369,6 +483,11 @@ internal class OpenAiModelModelSerializer
         OpenAiModelModel
     > _stringToEnum = new()
     {
+        { "gpt-5.6-sol", OpenAiModelModel.Gpt56Sol },
+        { "gpt-5.6-terra", OpenAiModelModel.Gpt56Terra },
+        { "gpt-5.6-luna", OpenAiModelModel.Gpt56Luna },
+        { "gpt-5.5", OpenAiModelModel.Gpt55 },
+        { "chat-latest", OpenAiModelModel.ChatLatest },
         { "gpt-5.4", OpenAiModelModel.Gpt54 },
         { "gpt-5.4-mini", OpenAiModelModel.Gpt54Mini },
         { "gpt-5.4-nano", OpenAiModelModel.Gpt54Nano },
@@ -400,6 +519,7 @@ internal class OpenAiModelModelSerializer
         },
         { "gpt-realtime-2025-08-28", OpenAiModelModel.GptRealtime20250828 },
         { "gpt-realtime-mini-2025-12-15", OpenAiModelModel.GptRealtimeMini20251215 },
+        { "gpt-realtime-2", OpenAiModelModel.GptRealtime2 },
         { "gpt-4o-mini-2024-07-18", OpenAiModelModel.Gpt4OMini20240718 },
         { "gpt-4o-mini", OpenAiModelModel.Gpt4OMini },
         { "gpt-4o", OpenAiModelModel.Gpt4O },
@@ -418,6 +538,35 @@ internal class OpenAiModelModelSerializer
         { "gpt-3.5-turbo-1106", OpenAiModelModel.Gpt35Turbo1106 },
         { "gpt-3.5-turbo-16k", OpenAiModelModel.Gpt35Turbo16K },
         { "gpt-3.5-turbo-0613", OpenAiModelModel.Gpt35Turbo0613 },
+        { "gpt-5.6-luna:westus3", OpenAiModelModel.Gpt56LunaWestus3 },
+        { "gpt-5.6-terra:westus3", OpenAiModelModel.Gpt56TerraWestus3 },
+        { "gpt-5.6-sol:westus3", OpenAiModelModel.Gpt56SolWestus3 },
+        { "gpt-5.4:eastus2", OpenAiModelModel.Gpt54Eastus2 },
+        { "gpt-5.4:swedencentral", OpenAiModelModel.Gpt54Swedencentral },
+        { "gpt-5.4-mini:eastus2", OpenAiModelModel.Gpt54MiniEastus2 },
+        { "gpt-5.4-mini:swedencentral", OpenAiModelModel.Gpt54MiniSwedencentral },
+        { "gpt-5.4-nano:eastus2", OpenAiModelModel.Gpt54NanoEastus2 },
+        { "gpt-5.4-nano:swedencentral", OpenAiModelModel.Gpt54NanoSwedencentral },
+        { "gpt-5.2:eastus2", OpenAiModelModel.Gpt52Eastus2 },
+        { "gpt-5.2:swedencentral", OpenAiModelModel.Gpt52Swedencentral },
+        { "gpt-5.1:eastus2", OpenAiModelModel.Gpt51Eastus2 },
+        { "gpt-5.1:swedencentral", OpenAiModelModel.Gpt51Swedencentral },
+        { "gpt-5:eastus2", OpenAiModelModel.Gpt5Eastus2 },
+        { "gpt-5:swedencentral", OpenAiModelModel.Gpt5Swedencentral },
+        { "gpt-5:canadaeast", OpenAiModelModel.Gpt5Canadaeast },
+        { "gpt-5:eastus", OpenAiModelModel.Gpt5Eastus },
+        { "gpt-5:westeurope", OpenAiModelModel.Gpt5Westeurope },
+        { "gpt-5:germanywestcentral", OpenAiModelModel.Gpt5Germanywestcentral },
+        { "gpt-5:polandcentral", OpenAiModelModel.Gpt5Polandcentral },
+        { "gpt-5:spaincentral", OpenAiModelModel.Gpt5Spaincentral },
+        { "gpt-5-mini:eastus2", OpenAiModelModel.Gpt5MiniEastus2 },
+        { "gpt-5-mini:swedencentral", OpenAiModelModel.Gpt5MiniSwedencentral },
+        { "gpt-5-mini:westeurope", OpenAiModelModel.Gpt5MiniWesteurope },
+        { "gpt-5-mini:germanywestcentral", OpenAiModelModel.Gpt5MiniGermanywestcentral },
+        { "gpt-5-mini:polandcentral", OpenAiModelModel.Gpt5MiniPolandcentral },
+        { "gpt-5-mini:spaincentral", OpenAiModelModel.Gpt5MiniSpaincentral },
+        { "gpt-5-nano:eastus2", OpenAiModelModel.Gpt5NanoEastus2 },
+        { "gpt-5-nano:swedencentral", OpenAiModelModel.Gpt5NanoSwedencentral },
         { "gpt-4.1-2025-04-14:westus", OpenAiModelModel.Gpt4120250414Westus },
         { "gpt-4.1-2025-04-14:eastus2", OpenAiModelModel.Gpt4120250414Eastus2 },
         { "gpt-4.1-2025-04-14:eastus", OpenAiModelModel.Gpt4120250414Eastus },
@@ -520,6 +669,9 @@ internal class OpenAiModelModelSerializer
         { "gpt-3.5-turbo-0125:southcentralus", OpenAiModelModel.Gpt35Turbo0125Southcentralus },
         { "gpt-3.5-turbo-1106:canadaeast", OpenAiModelModel.Gpt35Turbo1106Canadaeast },
         { "gpt-3.5-turbo-1106:westus", OpenAiModelModel.Gpt35Turbo1106Westus },
+        { "gpt-4.1:australiaeast", OpenAiModelModel.Gpt41Australiaeast },
+        { "gpt-4o:australiaeast", OpenAiModelModel.Gpt4OAustraliaeast },
+        { "gpt-5.4-mini:australiaeast", OpenAiModelModel.Gpt54MiniAustraliaeast },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -527,6 +679,11 @@ internal class OpenAiModelModelSerializer
         string
     > _enumToString = new()
     {
+        { OpenAiModelModel.Gpt56Sol, "gpt-5.6-sol" },
+        { OpenAiModelModel.Gpt56Terra, "gpt-5.6-terra" },
+        { OpenAiModelModel.Gpt56Luna, "gpt-5.6-luna" },
+        { OpenAiModelModel.Gpt55, "gpt-5.5" },
+        { OpenAiModelModel.ChatLatest, "chat-latest" },
         { OpenAiModelModel.Gpt54, "gpt-5.4" },
         { OpenAiModelModel.Gpt54Mini, "gpt-5.4-mini" },
         { OpenAiModelModel.Gpt54Nano, "gpt-5.4-nano" },
@@ -558,6 +715,7 @@ internal class OpenAiModelModelSerializer
         },
         { OpenAiModelModel.GptRealtime20250828, "gpt-realtime-2025-08-28" },
         { OpenAiModelModel.GptRealtimeMini20251215, "gpt-realtime-mini-2025-12-15" },
+        { OpenAiModelModel.GptRealtime2, "gpt-realtime-2" },
         { OpenAiModelModel.Gpt4OMini20240718, "gpt-4o-mini-2024-07-18" },
         { OpenAiModelModel.Gpt4OMini, "gpt-4o-mini" },
         { OpenAiModelModel.Gpt4O, "gpt-4o" },
@@ -576,6 +734,35 @@ internal class OpenAiModelModelSerializer
         { OpenAiModelModel.Gpt35Turbo1106, "gpt-3.5-turbo-1106" },
         { OpenAiModelModel.Gpt35Turbo16K, "gpt-3.5-turbo-16k" },
         { OpenAiModelModel.Gpt35Turbo0613, "gpt-3.5-turbo-0613" },
+        { OpenAiModelModel.Gpt56LunaWestus3, "gpt-5.6-luna:westus3" },
+        { OpenAiModelModel.Gpt56TerraWestus3, "gpt-5.6-terra:westus3" },
+        { OpenAiModelModel.Gpt56SolWestus3, "gpt-5.6-sol:westus3" },
+        { OpenAiModelModel.Gpt54Eastus2, "gpt-5.4:eastus2" },
+        { OpenAiModelModel.Gpt54Swedencentral, "gpt-5.4:swedencentral" },
+        { OpenAiModelModel.Gpt54MiniEastus2, "gpt-5.4-mini:eastus2" },
+        { OpenAiModelModel.Gpt54MiniSwedencentral, "gpt-5.4-mini:swedencentral" },
+        { OpenAiModelModel.Gpt54NanoEastus2, "gpt-5.4-nano:eastus2" },
+        { OpenAiModelModel.Gpt54NanoSwedencentral, "gpt-5.4-nano:swedencentral" },
+        { OpenAiModelModel.Gpt52Eastus2, "gpt-5.2:eastus2" },
+        { OpenAiModelModel.Gpt52Swedencentral, "gpt-5.2:swedencentral" },
+        { OpenAiModelModel.Gpt51Eastus2, "gpt-5.1:eastus2" },
+        { OpenAiModelModel.Gpt51Swedencentral, "gpt-5.1:swedencentral" },
+        { OpenAiModelModel.Gpt5Eastus2, "gpt-5:eastus2" },
+        { OpenAiModelModel.Gpt5Swedencentral, "gpt-5:swedencentral" },
+        { OpenAiModelModel.Gpt5Canadaeast, "gpt-5:canadaeast" },
+        { OpenAiModelModel.Gpt5Eastus, "gpt-5:eastus" },
+        { OpenAiModelModel.Gpt5Westeurope, "gpt-5:westeurope" },
+        { OpenAiModelModel.Gpt5Germanywestcentral, "gpt-5:germanywestcentral" },
+        { OpenAiModelModel.Gpt5Polandcentral, "gpt-5:polandcentral" },
+        { OpenAiModelModel.Gpt5Spaincentral, "gpt-5:spaincentral" },
+        { OpenAiModelModel.Gpt5MiniEastus2, "gpt-5-mini:eastus2" },
+        { OpenAiModelModel.Gpt5MiniSwedencentral, "gpt-5-mini:swedencentral" },
+        { OpenAiModelModel.Gpt5MiniWesteurope, "gpt-5-mini:westeurope" },
+        { OpenAiModelModel.Gpt5MiniGermanywestcentral, "gpt-5-mini:germanywestcentral" },
+        { OpenAiModelModel.Gpt5MiniPolandcentral, "gpt-5-mini:polandcentral" },
+        { OpenAiModelModel.Gpt5MiniSpaincentral, "gpt-5-mini:spaincentral" },
+        { OpenAiModelModel.Gpt5NanoEastus2, "gpt-5-nano:eastus2" },
+        { OpenAiModelModel.Gpt5NanoSwedencentral, "gpt-5-nano:swedencentral" },
         { OpenAiModelModel.Gpt4120250414Westus, "gpt-4.1-2025-04-14:westus" },
         { OpenAiModelModel.Gpt4120250414Eastus2, "gpt-4.1-2025-04-14:eastus2" },
         { OpenAiModelModel.Gpt4120250414Eastus, "gpt-4.1-2025-04-14:eastus" },
@@ -678,6 +865,9 @@ internal class OpenAiModelModelSerializer
         { OpenAiModelModel.Gpt35Turbo0125Southcentralus, "gpt-3.5-turbo-0125:southcentralus" },
         { OpenAiModelModel.Gpt35Turbo1106Canadaeast, "gpt-3.5-turbo-1106:canadaeast" },
         { OpenAiModelModel.Gpt35Turbo1106Westus, "gpt-3.5-turbo-1106:westus" },
+        { OpenAiModelModel.Gpt41Australiaeast, "gpt-4.1:australiaeast" },
+        { OpenAiModelModel.Gpt4OAustraliaeast, "gpt-4o:australiaeast" },
+        { OpenAiModelModel.Gpt54MiniAustraliaeast, "gpt-5.4-mini:australiaeast" },
     };
 
     public override OpenAiModelModel Read(

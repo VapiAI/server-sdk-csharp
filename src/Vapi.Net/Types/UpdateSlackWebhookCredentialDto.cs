@@ -11,6 +11,9 @@ public record UpdateSlackWebhookCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateSlackWebhookCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// Slack incoming webhook URL. See https://api.slack.com/messaging/webhooks for setup instructions. This is not returned in the API.
     /// </summary>
