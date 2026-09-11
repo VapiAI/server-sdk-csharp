@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls extraction of post-call structured data, including prompt messages, JSON schema, enablement, and request timeout.
+/// </summary>
 [Serializable]
 public record StructuredDataPlan : IJsonOnDeserialized
 {

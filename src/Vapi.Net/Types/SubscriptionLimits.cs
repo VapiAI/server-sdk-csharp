@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Organization concurrency limits and remaining concurrent call capacity.
+/// </summary>
 [Serializable]
 public record SubscriptionLimits : IJsonOnDeserialized
 {

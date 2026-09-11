@@ -11,6 +11,9 @@ public record UpdateGoogleCalendarOAuth2ClientCredentialDto : IJsonOnDeserialize
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateGoogleCalendarOAuth2ClientCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is the name of credential. This is just for your reference.
     /// </summary>

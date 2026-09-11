@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for transcribing speech with ElevenLabs, including model, language, and speech thresholds.
+/// </summary>
 [Serializable]
 public record FallbackElevenLabsTranscriber : IJsonOnDeserialized
 {

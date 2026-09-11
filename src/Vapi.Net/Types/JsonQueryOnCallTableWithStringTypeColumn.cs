@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// VapiQL JSON query that counts values from a string-valued call-table column with optional call filters.
+/// </summary>
 [Serializable]
 public record JsonQueryOnCallTableWithStringTypeColumn : IJsonOnDeserialized
 {

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An entry in the call message history that records the result and metadata for a completed tool call.
+/// </summary>
 [Serializable]
 public record ToolCallResultMessage : IJsonOnDeserialized
 {
@@ -52,6 +55,13 @@ public record ToolCallResultMessage : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("metadata")]
     public object? Metadata { get; set; }
+
+    /// <summary>
+    /// Warnings raised for this tool call result, e.g. when the response is
+    /// larger than recommended for voice AI context windows.
+    /// </summary>
+    [JsonPropertyName("warnings")]
+    public IEnumerable<ToolCallResultMessageWarning>? Warnings { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

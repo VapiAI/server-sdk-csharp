@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A provider-managed pronunciation-dictionary resource mirrored in Vapi, including its provider identifiers, resource data, and lifecycle information.
+/// </summary>
 [Serializable]
 public record ProviderResource : IJsonOnDeserialized
 {

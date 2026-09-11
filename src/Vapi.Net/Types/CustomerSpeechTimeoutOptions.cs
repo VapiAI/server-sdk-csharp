@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls how long a hook waits for customer speech, how often it can trigger, and when its trigger counter resets.
+/// </summary>
 [Serializable]
 public record CustomerSpeechTimeoutOptions : IJsonOnDeserialized
 {
@@ -12,10 +15,18 @@ public record CustomerSpeechTimeoutOptions : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Controls whether the hook's trigger counter resets after the customer speaks. Defaults to `never`.
+    /// </summary>
+    [JsonPropertyName("triggerResetMode")]
+    public CustomerSpeechTimeoutOptionsTriggerResetMode? TriggerResetMode { get; set; }
+
+    /// <summary>
     /// This is the timeout in seconds before action is triggered.
     /// The clock starts when the assistant finishes speaking and remains active until the user speaks.
     ///
     /// @default 7.5
+    /// @minimum 2
+    /// @maximum 1000
     /// </summary>
     [JsonPropertyName("timeoutSeconds")]
     public required double TimeoutSeconds { get; set; }
@@ -27,14 +38,6 @@ public record CustomerSpeechTimeoutOptions : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("triggerMaxCount")]
     public double? TriggerMaxCount { get; set; }
-
-    /// <summary>
-    /// This is whether the counter for hook trigger resets the user speaks.
-    ///
-    /// @default never
-    /// </summary>
-    [JsonPropertyName("triggerResetMode")]
-    public object? TriggerResetMode { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

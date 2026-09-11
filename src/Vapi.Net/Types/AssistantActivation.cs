@@ -4,12 +4,24 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Identifies an assistant that became active during a call.
+/// </summary>
 [Serializable]
 public record AssistantActivation : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the version label (e.g. `v3`) of the assistant active when
+    /// the activation row was recorded. `null` for inline assistants,
+    /// orgs not on assistant versioning, and parent assistants that have
+    /// not yet been published under it.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
 
     /// <summary>
     /// This is the name of the assistant that was active during the call.

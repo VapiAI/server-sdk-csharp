@@ -12,6 +12,12 @@ public record UpdateByoSipTrunkCredentialDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// This can be used to bring your own SIP trunks or to connect to a Carrier.
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public UpdateByoSipTrunkCredentialDtoProvider? Provider { get; set; }
+
+    /// <summary>
     /// This is the name of credential. This is just for your reference.
     /// </summary>
     [JsonPropertyName("name")]
@@ -51,12 +57,6 @@ public record UpdateByoSipTrunkCredentialDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("sipDiversionHeader")]
     public string? SipDiversionHeader { get; set; }
-
-    /// <summary>
-    /// This is an advanced configuration for enterprise deployments. This uses the onprem SBC to trunk into the SIP trunk's `gateways`, rather than the managed SBC provided by Vapi.
-    /// </summary>
-    [JsonPropertyName("sbcConfiguration")]
-    public SbcConfiguration? SbcConfiguration { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

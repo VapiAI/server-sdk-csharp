@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update a Vapi-managed phone number or SIP URI, including its authentication, routing, hooks, and server settings.
+/// </summary>
 [Serializable]
 public record UpdateVapiPhoneNumberDto : IJsonOnDeserialized
 {

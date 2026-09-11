@@ -47,6 +47,9 @@ public enum AnthropicBedrockModelModel
 
     [EnumMember(Value = "claude-haiku-4-5-20251001")]
     ClaudeHaiku4520251001,
+
+    [EnumMember(Value = "global.anthropic.claude-haiku-4-5-20251001-v1:0")]
+    GlobalAnthropicClaudeHaiku4520251001V10,
 }
 
 internal class AnthropicBedrockModelModelSerializer
@@ -71,6 +74,10 @@ internal class AnthropicBedrockModelModelSerializer
         { "claude-sonnet-4-5-20250929", AnthropicBedrockModelModel.ClaudeSonnet4520250929 },
         { "claude-sonnet-4-6", AnthropicBedrockModelModel.ClaudeSonnet46 },
         { "claude-haiku-4-5-20251001", AnthropicBedrockModelModel.ClaudeHaiku4520251001 },
+        {
+            "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+            AnthropicBedrockModelModel.GlobalAnthropicClaudeHaiku4520251001V10
+        },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -92,6 +99,10 @@ internal class AnthropicBedrockModelModelSerializer
         { AnthropicBedrockModelModel.ClaudeSonnet4520250929, "claude-sonnet-4-5-20250929" },
         { AnthropicBedrockModelModel.ClaudeSonnet46, "claude-sonnet-4-6" },
         { AnthropicBedrockModelModel.ClaudeHaiku4520251001, "claude-haiku-4-5-20251001" },
+        {
+            AnthropicBedrockModelModel.GlobalAnthropicClaudeHaiku4520251001V10,
+            "global.anthropic.claude-haiku-4-5-20251001-v1:0"
+        },
     };
 
     public override AnthropicBedrockModelModel Read(

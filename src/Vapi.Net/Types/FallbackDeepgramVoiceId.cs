@@ -170,6 +170,27 @@ public enum FallbackDeepgramVoiceId
 
     [EnumMember(Value = "javier")]
     Javier,
+
+    [EnumMember(Value = "viktoria")]
+    Viktoria,
+
+    [EnumMember(Value = "kara")]
+    Kara,
+
+    [EnumMember(Value = "fabian")]
+    Fabian,
+
+    [EnumMember(Value = "julius")]
+    Julius,
+
+    [EnumMember(Value = "lara")]
+    Lara,
+
+    [EnumMember(Value = "elara")]
+    Elara,
+
+    [EnumMember(Value = "aurelia")]
+    Aurelia,
 }
 
 internal class FallbackDeepgramVoiceIdSerializer
@@ -235,6 +256,13 @@ internal class FallbackDeepgramVoiceIdSerializer
         { "aquila", FallbackDeepgramVoiceId.Aquila },
         { "selena", FallbackDeepgramVoiceId.Selena },
         { "javier", FallbackDeepgramVoiceId.Javier },
+        { "viktoria", FallbackDeepgramVoiceId.Viktoria },
+        { "kara", FallbackDeepgramVoiceId.Kara },
+        { "fabian", FallbackDeepgramVoiceId.Fabian },
+        { "julius", FallbackDeepgramVoiceId.Julius },
+        { "lara", FallbackDeepgramVoiceId.Lara },
+        { "elara", FallbackDeepgramVoiceId.Elara },
+        { "aurelia", FallbackDeepgramVoiceId.Aurelia },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -297,6 +325,13 @@ internal class FallbackDeepgramVoiceIdSerializer
         { FallbackDeepgramVoiceId.Aquila, "aquila" },
         { FallbackDeepgramVoiceId.Selena, "selena" },
         { FallbackDeepgramVoiceId.Javier, "javier" },
+        { FallbackDeepgramVoiceId.Viktoria, "viktoria" },
+        { FallbackDeepgramVoiceId.Kara, "kara" },
+        { FallbackDeepgramVoiceId.Fabian, "fabian" },
+        { FallbackDeepgramVoiceId.Julius, "julius" },
+        { FallbackDeepgramVoiceId.Lara, "lara" },
+        { FallbackDeepgramVoiceId.Elara, "elara" },
+        { FallbackDeepgramVoiceId.Aurelia, "aurelia" },
     };
 
     public override FallbackDeepgramVoiceId Read(

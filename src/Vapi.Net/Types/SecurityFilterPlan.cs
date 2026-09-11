@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls filtering of transcripts for security threats before content is sent to the assistant's language model, including filter selection, handling mode, and replacement text.
+/// </summary>
 [Serializable]
 public record SecurityFilterPlan : IJsonOnDeserialized
 {

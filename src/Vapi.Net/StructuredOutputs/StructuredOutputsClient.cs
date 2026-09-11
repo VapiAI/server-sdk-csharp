@@ -1,4 +1,5 @@
 using global::System.Text.Json;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -20,11 +21,12 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 13)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 14)
             .Add("id", request.Id)
             .Add("name", request.Name)
             .Add("page", request.Page)
             .Add("sortOrder", request.SortOrder)
+            .Add("sortBy", request.SortBy)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -380,7 +382,11 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         }
     }
 
-    private async Task<WithRawResponse<StructuredOutput>> StructuredOutputControllerRunAsyncCore(
+    private async Task<
+        WithRawResponse<
+            OneOf<StructuredOutputControllerRunResponseZero, StructuredOutputRerunResponse>
+        >
+    > StructuredOutputControllerRunAsyncCore(
         StructuredOutputRunDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -413,8 +419,12 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<StructuredOutput>(responseBody)!;
-                return new WithRawResponse<StructuredOutput>()
+                var responseData = JsonUtils.Deserialize<
+                    OneOf<StructuredOutputControllerRunResponseZero, StructuredOutputRerunResponse>
+                >(responseBody)!;
+                return new WithRawResponse<
+                    OneOf<StructuredOutputControllerRunResponseZero, StructuredOutputRerunResponse>
+                >()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -447,6 +457,9 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         }
     }
 
+    /// <summary>
+    /// Returns structured-output definitions for the authenticated organization. Filter results by ID, name, or creation and update timestamps.
+    /// </summary>
     public WithRawResponseTask<StructuredOutputPaginatedResponse> StructuredOutputControllerFindAllAsync(
         StructuredOutputControllerFindAllRequest request,
         RequestOptions? options = null,
@@ -458,6 +471,9 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         );
     }
 
+    /// <summary>
+    /// Creates a reusable definition for extracting validated data from conversations using an AI model or regular expression.
+    /// </summary>
     public WithRawResponseTask<StructuredOutput> StructuredOutputControllerCreateAsync(
         CreateStructuredOutputDto request,
         RequestOptions? options = null,
@@ -469,6 +485,9 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         );
     }
 
+    /// <summary>
+    /// Returns the structured-output definition identified by its ID.
+    /// </summary>
     public WithRawResponseTask<StructuredOutput> StructuredOutputControllerFindOneAsync(
         string id,
         StructuredOutputControllerFindOneRequest request,
@@ -481,6 +500,9 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         );
     }
 
+    /// <summary>
+    /// Deletes the structured-output definition identified by its ID.
+    /// </summary>
     public WithRawResponseTask<StructuredOutput> StructuredOutputControllerRemoveAsync(
         string id,
         StructuredOutputControllerRemoveRequest request,
@@ -493,6 +515,9 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         );
     }
 
+    /// <summary>
+    /// Updates the structured-output definition identified by its ID.
+    /// </summary>
     public WithRawResponseTask<StructuredOutput> StructuredOutputControllerUpdateAsync(
         string id,
         UpdateStructuredOutputDto request,
@@ -505,14 +530,19 @@ public partial class StructuredOutputsClient : IStructuredOutputsClient
         );
     }
 
-    public WithRawResponseTask<StructuredOutput> StructuredOutputControllerRunAsync(
+    /// <summary>
+    /// Runs a saved or transient structured-output definition against one or more calls, optionally returning a preview without updating call artifacts.
+    /// </summary>
+    public WithRawResponseTask<
+        OneOf<StructuredOutputControllerRunResponseZero, StructuredOutputRerunResponse>
+    > StructuredOutputControllerRunAsync(
         StructuredOutputRunDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<StructuredOutput>(
-            StructuredOutputControllerRunAsyncCore(request, options, cancellationToken)
-        );
+        return new WithRawResponseTask<
+            OneOf<StructuredOutputControllerRunResponseZero, StructuredOutputRerunResponse>
+        >(StructuredOutputControllerRunAsyncCore(request, options, cancellationToken));
     }
 }

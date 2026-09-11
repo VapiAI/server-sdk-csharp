@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Anthropic model configuration for an LLM judge, including its messages, generation settings, and optional extended thinking.
+/// </summary>
 [Serializable]
 public record EvalAnthropicModel : IJsonOnDeserialized
 {

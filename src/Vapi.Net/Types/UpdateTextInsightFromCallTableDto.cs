@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update a text-value insight, including its queries, formula, time range, and name.
+/// </summary>
 [Serializable]
 public record UpdateTextInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record UpdateTextInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("formula")]
     public object? Formula { get; set; }
 
+    /// <summary>
+    /// The time range used to query the text-value data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRange? TimeRange { get; set; }
 

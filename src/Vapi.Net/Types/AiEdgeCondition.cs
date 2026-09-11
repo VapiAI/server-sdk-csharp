@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An AI-evaluated boolean condition that determines whether a workflow follows an edge.
+/// </summary>
 [Serializable]
 public record AiEdgeCondition : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record AiEdgeCondition : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Selects an AI-evaluated workflow edge condition.
+    /// </summary>
     [JsonPropertyName("type")]
     public required AiEdgeConditionType Type { get; set; }
 

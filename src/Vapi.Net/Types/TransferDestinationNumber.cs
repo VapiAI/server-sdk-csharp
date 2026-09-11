@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Transfers a call to a phone number, with optional extension, caller ID, message, transfer plan, and number validation.
+/// </summary>
 [Serializable]
 public record TransferDestinationNumber : IJsonOnDeserialized
 {
@@ -62,6 +65,8 @@ public record TransferDestinationNumber : IJsonOnDeserialized
     /// - Set to '{{phoneNumber.number}}' to always use the phone number of the assistant as the caller ID.
     /// - Set to any E164 number to always use that number as the caller ID. This needs to be a number that is owned or verified by your Transport provider like Twilio.
     ///
+    /// Note: on Twilio, a caller who withheld their number has no caller ID the destination carrier will accept, so the assistant's phone number is presented instead and the transfer goes through. This applies when `callerId` is not provided and when it is set to '{{customer.number}}'.
+    ///
     /// For Twilio, you can read up more here: https://www.twilio.com/docs/voice/twiml/dial#callerid
     /// </summary>
     [JsonPropertyName("callerId")]
@@ -74,6 +79,21 @@ public record TransferDestinationNumber : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("transferPlan")]
     public TransferPlan? TransferPlan { get; set; }
+
+    /// <summary>
+    /// This is the name of the transfer destination. This is just for your own reference.
+    ///
+    /// Usage:
+    /// - Optional. Stored with the destination wherever it is supplied. For `number`
+    ///   and `sip` destinations it is also persisted on the transfer record in the
+    ///   call artifact after a transfer and displayed in the dashboard call log (on
+    ///   the transfer divider in the transcript view) alongside the destination.
+    ///   When omitted, everything behaves exactly as before.
+    /// - Display-only. Unlike `description`, it is never included in prompts or tool
+    ///   descriptions and has no effect on model behavior or destination choice.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
 
     /// <summary>
     /// This is the description of the destination, used by the AI to choose when and how to transfer the call.

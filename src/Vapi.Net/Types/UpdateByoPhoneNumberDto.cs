@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update a bring-your-own phone number, including its credential, number, routing, hooks, and server settings.
+/// </summary>
 [Serializable]
 public record UpdateByoPhoneNumberDto : IJsonOnDeserialized
 {

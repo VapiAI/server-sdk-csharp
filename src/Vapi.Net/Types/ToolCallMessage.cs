@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An entry in the call message history that records one or more tool calls requested during the conversation.
+/// </summary>
 [Serializable]
 public record ToolCallMessage : IJsonOnDeserialized
 {

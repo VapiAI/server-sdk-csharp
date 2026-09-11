@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating telephony requests with Twilio using an account SID and either an auth token or API key credentials.
+/// </summary>
 [Serializable]
 public record CreateTwilioCredentialDto : IJsonOnDeserialized
 {
@@ -29,6 +32,9 @@ public record CreateTwilioCredentialDto : IJsonOnDeserialized
     [JsonPropertyName("apiSecret")]
     public string? ApiSecret { get; set; }
 
+    /// <summary>
+    /// Twilio Account SID associated with the credential.
+    /// </summary>
     [JsonPropertyName("accountSid")]
     public required string AccountSid { get; set; }
 

@@ -6,6 +6,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(FallbackCartesiaVoiceModelSerializer))]
 public enum FallbackCartesiaVoiceModel
 {
+    [EnumMember(Value = "sonic-3.5")]
+    Sonic35,
+
+    [EnumMember(Value = "sonic-3.5-2026-05-04")]
+    Sonic3520260504,
+
     [EnumMember(Value = "sonic-3")]
     Sonic3,
 
@@ -42,6 +48,8 @@ internal class FallbackCartesiaVoiceModelSerializer
         FallbackCartesiaVoiceModel
     > _stringToEnum = new()
     {
+        { "sonic-3.5", FallbackCartesiaVoiceModel.Sonic35 },
+        { "sonic-3.5-2026-05-04", FallbackCartesiaVoiceModel.Sonic3520260504 },
         { "sonic-3", FallbackCartesiaVoiceModel.Sonic3 },
         { "sonic-3-2026-01-12", FallbackCartesiaVoiceModel.Sonic320260112 },
         { "sonic-3-2025-10-27", FallbackCartesiaVoiceModel.Sonic320251027 },
@@ -58,6 +66,8 @@ internal class FallbackCartesiaVoiceModelSerializer
         string
     > _enumToString = new()
     {
+        { FallbackCartesiaVoiceModel.Sonic35, "sonic-3.5" },
+        { FallbackCartesiaVoiceModel.Sonic3520260504, "sonic-3.5-2026-05-04" },
         { FallbackCartesiaVoiceModel.Sonic3, "sonic-3" },
         { FallbackCartesiaVoiceModel.Sonic320260112, "sonic-3-2026-01-12" },
         { FallbackCartesiaVoiceModel.Sonic320251027, "sonic-3-2025-10-27" },

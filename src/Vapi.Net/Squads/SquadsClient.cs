@@ -18,7 +18,8 @@ public partial class SquadsClient : ISquadsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 9)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 10)
+            .Add("idAny", request.IdAny)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -356,6 +357,9 @@ public partial class SquadsClient : ISquadsClient
         }
     }
 
+    /// <summary>
+    /// Returns squads for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+    /// </summary>
     public WithRawResponseTask<IEnumerable<Squad>> ListAsync(
         ListSquadsRequest request,
         RequestOptions? options = null,
@@ -367,6 +371,9 @@ public partial class SquadsClient : ISquadsClient
         );
     }
 
+    /// <summary>
+    /// Creates a squad that coordinates multiple assistants and their handoffs during a conversation.
+    /// </summary>
     public WithRawResponseTask<Squad> CreateAsync(
         CreateSquadDto request,
         RequestOptions? options = null,
@@ -376,6 +383,9 @@ public partial class SquadsClient : ISquadsClient
         return new WithRawResponseTask<Squad>(CreateAsyncCore(request, options, cancellationToken));
     }
 
+    /// <summary>
+    /// Returns the squad identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Squad> GetAsync(
         string id,
         GetSquadsRequest request,
@@ -388,6 +398,9 @@ public partial class SquadsClient : ISquadsClient
         );
     }
 
+    /// <summary>
+    /// Deletes the squad identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Squad> DeleteAsync(
         string id,
         DeleteSquadsRequest request,
@@ -400,6 +413,9 @@ public partial class SquadsClient : ISquadsClient
         );
     }
 
+    /// <summary>
+    /// Updates the specified fields of the squad identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Squad> UpdateAsync(
         string id,
         UpdateSquadDto request,

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Lists backup transcriber configurations that can be used if the primary transcriber fails.
+/// </summary>
 [Serializable]
 public record FallbackTranscriberPlan : IJsonOnDeserialized
 {
@@ -11,8 +14,11 @@ public record FallbackTranscriberPlan : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Transcriber configurations available when the primary transcriber fails.
+    /// </summary>
     [JsonPropertyName("transcribers")]
-    public IEnumerable<object> Transcribers { get; set; } = new List<object>();
+    public IEnumerable<object>? Transcribers { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

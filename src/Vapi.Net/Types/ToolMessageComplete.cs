@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Message spoken when a tool call completes, with optional language variants, argument conditions, role, and end-call behavior.
+/// </summary>
 [Serializable]
 public record ToolMessageComplete : IJsonOnDeserialized
 {

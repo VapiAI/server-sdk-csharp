@@ -5,12 +5,21 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A hook action that makes the assistant speak exact text or generate a response from a prompt.
+/// </summary>
 [Serializable]
 public record SayHookAction : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the exact message to say. When a string array is provided, one is randomly selected.
+    /// </summary>
+    [JsonPropertyName("exact")]
+    public OneOf<string, IEnumerable<string>>? Exact { get; set; }
 
     /// <summary>
     /// This is the prompt for the assistant to generate a response based on existing conversation.
@@ -23,12 +32,6 @@ public record SayHookAction : IJsonOnDeserialized
             OneOf<SystemMessage, UserMessage, AssistantMessage, ToolMessage, DeveloperMessage>
         >
     >? Prompt { get; set; }
-
-    /// <summary>
-    /// This is the message to say
-    /// </summary>
-    [JsonPropertyName("exact")]
-    public object? Exact { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

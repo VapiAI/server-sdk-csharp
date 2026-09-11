@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating speech recognition and voice synthesis requests with Cartesia.
+/// </summary>
 [Serializable]
 public record CreateCartesiaCredentialDto : IJsonOnDeserialized
 {
@@ -16,6 +19,12 @@ public record CreateCartesiaCredentialDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("apiKey")]
     public required string ApiKey { get; set; }
+
+    /// <summary>
+    /// This can be used to point to an onprem Cartesia instance. Defaults to api.cartesia.ai.
+    /// </summary>
+    [JsonPropertyName("apiUrl")]
+    public string? ApiUrl { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

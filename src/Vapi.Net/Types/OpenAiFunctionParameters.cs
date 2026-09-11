@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// JSON object schema defining the properties accepted by a function and which properties are required.
+/// </summary>
 [Serializable]
 public record OpenAiFunctionParameters : IJsonOnDeserialized
 {

@@ -12,6 +12,12 @@ public record UpdateS3CredentialDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Credential provider. Only allowed value is s3
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public UpdateS3CredentialDtoProvider? Provider { get; set; }
+
+    /// <summary>
     /// AWS access key ID.
     /// </summary>
     [JsonPropertyName("awsAccessKeyId")]

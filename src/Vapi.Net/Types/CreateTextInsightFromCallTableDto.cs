@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a text-value insight from call data using metric queries, a formula, and a time range.
+/// </summary>
 [Serializable]
 public record CreateTextInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record CreateTextInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("formula")]
     public object? Formula { get; set; }
 
+    /// <summary>
+    /// The time range used to query the text-value data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRange? TimeRange { get; set; }
 

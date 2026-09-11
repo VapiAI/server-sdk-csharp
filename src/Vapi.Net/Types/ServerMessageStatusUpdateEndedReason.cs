@@ -78,6 +78,9 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "call.start.error-enterprise-feature-not-available-recording-consent")]
     CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent,
 
+    [EnumMember(Value = "call.start.assistant-version-error-validation")]
+    CallStartAssistantVersionErrorValidation,
+
     [EnumMember(Value = "assistant-not-valid")]
     AssistantNotValid,
 
@@ -135,6 +138,15 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "pipeline-error-wellsaid-voice-failed")]
     PipelineErrorWellsaidVoiceFailed,
 
+    [EnumMember(Value = "pipeline-error-xai-voice-failed")]
+    PipelineErrorXaiVoiceFailed,
+
+    [EnumMember(Value = "pipeline-error-microsoft-voice-failed")]
+    PipelineErrorMicrosoftVoiceFailed,
+
+    [EnumMember(Value = "pipeline-error-microsoft-voice-request-canceled")]
+    PipelineErrorMicrosoftVoiceRequestCanceled,
+
     [EnumMember(Value = "pipeline-error-tavus-video-failed")]
     PipelineErrorTavusVideoFailed,
 
@@ -186,6 +198,12 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "call.in-progress.error-vapifault-wellsaid-voice-failed")]
     CallInProgressErrorVapifaultWellsaidVoiceFailed,
 
+    [EnumMember(Value = "call.in-progress.error-vapifault-xai-voice-failed")]
+    CallInProgressErrorVapifaultXaiVoiceFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-microsoft-voice-failed")]
+    CallInProgressErrorVapifaultMicrosoftVoiceFailed,
+
     [EnumMember(Value = "call.in-progress.error-vapifault-tavus-video-failed")]
     CallInProgressErrorVapifaultTavusVideoFailed,
 
@@ -213,6 +231,9 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "call.in-progress.error-providerfault-vapi-llm-failed")]
     CallInProgressErrorProviderfaultVapiLlmFailed,
 
+    [EnumMember(Value = "call.in-progress.error-vapifault-vapi-llm-failed")]
+    CallInProgressErrorVapifaultVapiLlmFailed,
+
     [EnumMember(Value = "call.in-progress.error-vapifault-vapi-400-bad-request-validation-failed")]
     CallInProgressErrorVapifaultVapi400BadRequestValidationFailed,
 
@@ -230,6 +251,18 @@ public enum ServerMessageStatusUpdateEndedReason
 
     [EnumMember(Value = "call.in-progress.error-providerfault-vapi-503-server-overloaded-error")]
     CallInProgressErrorProviderfaultVapi503ServerOverloadedError,
+
+    [EnumMember(Value = "pipeline-error-vapi-transcriber-failed")]
+    PipelineErrorVapiTranscriberFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-vapi-transcriber-failed")]
+    CallInProgressErrorVapifaultVapiTranscriberFailed,
+
+    [EnumMember(Value = "call.in-progress.error-providerfault-vapi-transcriber-failed")]
+    CallInProgressErrorProviderfaultVapiTranscriberFailed,
+
+    [EnumMember(Value = "call.in-progress.error-providerfault-vapi-voice-failed")]
+    CallInProgressErrorProviderfaultVapiVoiceFailed,
 
     [EnumMember(Value = "pipeline-error-deepgram-transcriber-failed")]
     PipelineErrorDeepgramTranscriberFailed,
@@ -358,6 +391,42 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "call.in-progress.error-vapifault-soniox-transcriber-failed")]
     CallInProgressErrorVapifaultSonioxTranscriberFailed,
 
+    [EnumMember(Value = "pipeline-error-xai-transcriber-auth-failed")]
+    PipelineErrorXaiTranscriberAuthFailed,
+
+    [EnumMember(Value = "pipeline-error-xai-transcriber-rate-limited")]
+    PipelineErrorXaiTranscriberRateLimited,
+
+    [EnumMember(Value = "pipeline-error-xai-transcriber-invalid-config")]
+    PipelineErrorXaiTranscriberInvalidConfig,
+
+    [EnumMember(Value = "pipeline-error-xai-transcriber-server-error")]
+    PipelineErrorXaiTranscriberServerError,
+
+    [EnumMember(Value = "pipeline-error-xai-transcriber-failed")]
+    PipelineErrorXaiTranscriberFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-xai-transcriber-auth-failed")]
+    CallInProgressErrorVapifaultXaiTranscriberAuthFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-xai-transcriber-rate-limited")]
+    CallInProgressErrorVapifaultXaiTranscriberRateLimited,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-xai-transcriber-invalid-config")]
+    CallInProgressErrorVapifaultXaiTranscriberInvalidConfig,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-xai-transcriber-server-error")]
+    CallInProgressErrorVapifaultXaiTranscriberServerError,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-xai-transcriber-failed")]
+    CallInProgressErrorVapifaultXaiTranscriberFailed,
+
+    [EnumMember(Value = "pipeline-error-cartesia-transcriber-failed")]
+    PipelineErrorCartesiaTranscriberFailed,
+
+    [EnumMember(Value = "call.in-progress.error-vapifault-cartesia-transcriber-failed")]
+    CallInProgressErrorVapifaultCartesiaTranscriberFailed,
+
     [EnumMember(Value = "call.in-progress.error-pipeline-no-available-llm-model")]
     CallInProgressErrorPipelineNoAvailableLlmModel,
 
@@ -451,6 +520,12 @@ public enum ServerMessageStatusUpdateEndedReason
 
     [EnumMember(Value = "call.in-progress.error-vapifault-chat-pipeline-failed-to-start")]
     CallInProgressErrorVapifaultChatPipelineFailedToStart,
+
+    [EnumMember(Value = "call.in-progress.error-configfault-model-unsupported-in-squad")]
+    CallInProgressErrorConfigfaultModelUnsupportedInSquad,
+
+    [EnumMember(Value = "call.in-progress.error-configfault-transport-unsupported-for-model")]
+    CallInProgressErrorConfigfaultTransportUnsupportedForModel,
 
     [EnumMember(Value = "pipeline-error-openai-400-bad-request-validation-failed")]
     PipelineErrorOpenai400BadRequestValidationFailed,
@@ -1806,6 +1881,9 @@ public enum ServerMessageStatusUpdateEndedReason
     [EnumMember(Value = "call.forwarding.operator-busy")]
     CallForwardingOperatorBusy,
 
+    [EnumMember(Value = "call.forwarding.no-answer")]
+    CallForwardingNoAnswer,
+
     [EnumMember(Value = "silence-timed-out")]
     SilenceTimedOut,
 
@@ -1954,6 +2032,10 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             "call.start.error-enterprise-feature-not-available-recording-consent",
             ServerMessageStatusUpdateEndedReason.CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent
         },
+        {
+            "call.start.assistant-version-error-validation",
+            ServerMessageStatusUpdateEndedReason.CallStartAssistantVersionErrorValidation
+        },
         { "assistant-not-valid", ServerMessageStatusUpdateEndedReason.AssistantNotValid },
         {
             "call.start.error-vapifault-database-error",
@@ -2025,6 +2107,18 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             ServerMessageStatusUpdateEndedReason.PipelineErrorWellsaidVoiceFailed
         },
         {
+            "pipeline-error-xai-voice-failed",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiVoiceFailed
+        },
+        {
+            "pipeline-error-microsoft-voice-failed",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorMicrosoftVoiceFailed
+        },
+        {
+            "pipeline-error-microsoft-voice-request-canceled",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorMicrosoftVoiceRequestCanceled
+        },
+        {
             "pipeline-error-tavus-video-failed",
             ServerMessageStatusUpdateEndedReason.PipelineErrorTavusVideoFailed
         },
@@ -2093,6 +2187,14 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultWellsaidVoiceFailed
         },
         {
+            "call.in-progress.error-vapifault-xai-voice-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiVoiceFailed
+        },
+        {
+            "call.in-progress.error-vapifault-microsoft-voice-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultMicrosoftVoiceFailed
+        },
+        {
             "call.in-progress.error-vapifault-tavus-video-failed",
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultTavusVideoFailed
         },
@@ -2129,6 +2231,10 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorProviderfaultVapiLlmFailed
         },
         {
+            "call.in-progress.error-vapifault-vapi-llm-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultVapiLlmFailed
+        },
+        {
             "call.in-progress.error-vapifault-vapi-400-bad-request-validation-failed",
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultVapi400BadRequestValidationFailed
         },
@@ -2151,6 +2257,22 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
         {
             "call.in-progress.error-providerfault-vapi-503-server-overloaded-error",
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorProviderfaultVapi503ServerOverloadedError
+        },
+        {
+            "pipeline-error-vapi-transcriber-failed",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorVapiTranscriberFailed
+        },
+        {
+            "call.in-progress.error-vapifault-vapi-transcriber-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultVapiTranscriberFailed
+        },
+        {
+            "call.in-progress.error-providerfault-vapi-transcriber-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorProviderfaultVapiTranscriberFailed
+        },
+        {
+            "call.in-progress.error-providerfault-vapi-voice-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorProviderfaultVapiVoiceFailed
         },
         {
             "pipeline-error-deepgram-transcriber-failed",
@@ -2309,6 +2431,54 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultSonioxTranscriberFailed
         },
         {
+            "pipeline-error-xai-transcriber-auth-failed",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberAuthFailed
+        },
+        {
+            "pipeline-error-xai-transcriber-rate-limited",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberRateLimited
+        },
+        {
+            "pipeline-error-xai-transcriber-invalid-config",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberInvalidConfig
+        },
+        {
+            "pipeline-error-xai-transcriber-server-error",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberServerError
+        },
+        {
+            "pipeline-error-xai-transcriber-failed",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberFailed
+        },
+        {
+            "call.in-progress.error-vapifault-xai-transcriber-auth-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberAuthFailed
+        },
+        {
+            "call.in-progress.error-vapifault-xai-transcriber-rate-limited",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberRateLimited
+        },
+        {
+            "call.in-progress.error-vapifault-xai-transcriber-invalid-config",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberInvalidConfig
+        },
+        {
+            "call.in-progress.error-vapifault-xai-transcriber-server-error",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberServerError
+        },
+        {
+            "call.in-progress.error-vapifault-xai-transcriber-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberFailed
+        },
+        {
+            "pipeline-error-cartesia-transcriber-failed",
+            ServerMessageStatusUpdateEndedReason.PipelineErrorCartesiaTranscriberFailed
+        },
+        {
+            "call.in-progress.error-vapifault-cartesia-transcriber-failed",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultCartesiaTranscriberFailed
+        },
+        {
             "call.in-progress.error-pipeline-no-available-llm-model",
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorPipelineNoAvailableLlmModel
         },
@@ -2418,6 +2588,14 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
         {
             "call.in-progress.error-vapifault-chat-pipeline-failed-to-start",
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultChatPipelineFailedToStart
+        },
+        {
+            "call.in-progress.error-configfault-model-unsupported-in-squad",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorConfigfaultModelUnsupportedInSquad
+        },
+        {
+            "call.in-progress.error-configfault-transport-unsupported-for-model",
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorConfigfaultTransportUnsupportedForModel
         },
         {
             "pipeline-error-openai-400-bad-request-validation-failed",
@@ -4043,6 +4221,10 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             "call.forwarding.operator-busy",
             ServerMessageStatusUpdateEndedReason.CallForwardingOperatorBusy
         },
+        {
+            "call.forwarding.no-answer",
+            ServerMessageStatusUpdateEndedReason.CallForwardingNoAnswer
+        },
         { "silence-timed-out", ServerMessageStatusUpdateEndedReason.SilenceTimedOut },
         {
             "call.in-progress.error-providerfault-outbound-sip-403-forbidden",
@@ -4188,6 +4370,10 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             ServerMessageStatusUpdateEndedReason.CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent,
             "call.start.error-enterprise-feature-not-available-recording-consent"
         },
+        {
+            ServerMessageStatusUpdateEndedReason.CallStartAssistantVersionErrorValidation,
+            "call.start.assistant-version-error-validation"
+        },
         { ServerMessageStatusUpdateEndedReason.AssistantNotValid, "assistant-not-valid" },
         {
             ServerMessageStatusUpdateEndedReason.CallStartErrorVapifaultDatabaseError,
@@ -4259,6 +4445,18 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             "pipeline-error-wellsaid-voice-failed"
         },
         {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiVoiceFailed,
+            "pipeline-error-xai-voice-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorMicrosoftVoiceFailed,
+            "pipeline-error-microsoft-voice-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorMicrosoftVoiceRequestCanceled,
+            "pipeline-error-microsoft-voice-request-canceled"
+        },
+        {
             ServerMessageStatusUpdateEndedReason.PipelineErrorTavusVideoFailed,
             "pipeline-error-tavus-video-failed"
         },
@@ -4327,6 +4525,14 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             "call.in-progress.error-vapifault-wellsaid-voice-failed"
         },
         {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiVoiceFailed,
+            "call.in-progress.error-vapifault-xai-voice-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultMicrosoftVoiceFailed,
+            "call.in-progress.error-vapifault-microsoft-voice-failed"
+        },
+        {
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultTavusVideoFailed,
             "call.in-progress.error-vapifault-tavus-video-failed"
         },
@@ -4363,6 +4569,10 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             "call.in-progress.error-providerfault-vapi-llm-failed"
         },
         {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultVapiLlmFailed,
+            "call.in-progress.error-vapifault-vapi-llm-failed"
+        },
+        {
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultVapi400BadRequestValidationFailed,
             "call.in-progress.error-vapifault-vapi-400-bad-request-validation-failed"
         },
@@ -4385,6 +4595,22 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
         {
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorProviderfaultVapi503ServerOverloadedError,
             "call.in-progress.error-providerfault-vapi-503-server-overloaded-error"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorVapiTranscriberFailed,
+            "pipeline-error-vapi-transcriber-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultVapiTranscriberFailed,
+            "call.in-progress.error-vapifault-vapi-transcriber-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorProviderfaultVapiTranscriberFailed,
+            "call.in-progress.error-providerfault-vapi-transcriber-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorProviderfaultVapiVoiceFailed,
+            "call.in-progress.error-providerfault-vapi-voice-failed"
         },
         {
             ServerMessageStatusUpdateEndedReason.PipelineErrorDeepgramTranscriberFailed,
@@ -4543,6 +4769,54 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
             "call.in-progress.error-vapifault-soniox-transcriber-failed"
         },
         {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberAuthFailed,
+            "pipeline-error-xai-transcriber-auth-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberRateLimited,
+            "pipeline-error-xai-transcriber-rate-limited"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberInvalidConfig,
+            "pipeline-error-xai-transcriber-invalid-config"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberServerError,
+            "pipeline-error-xai-transcriber-server-error"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorXaiTranscriberFailed,
+            "pipeline-error-xai-transcriber-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberAuthFailed,
+            "call.in-progress.error-vapifault-xai-transcriber-auth-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberRateLimited,
+            "call.in-progress.error-vapifault-xai-transcriber-rate-limited"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberInvalidConfig,
+            "call.in-progress.error-vapifault-xai-transcriber-invalid-config"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberServerError,
+            "call.in-progress.error-vapifault-xai-transcriber-server-error"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultXaiTranscriberFailed,
+            "call.in-progress.error-vapifault-xai-transcriber-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.PipelineErrorCartesiaTranscriberFailed,
+            "pipeline-error-cartesia-transcriber-failed"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultCartesiaTranscriberFailed,
+            "call.in-progress.error-vapifault-cartesia-transcriber-failed"
+        },
+        {
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorPipelineNoAvailableLlmModel,
             "call.in-progress.error-pipeline-no-available-llm-model"
         },
@@ -4652,6 +4926,14 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
         {
             ServerMessageStatusUpdateEndedReason.CallInProgressErrorVapifaultChatPipelineFailedToStart,
             "call.in-progress.error-vapifault-chat-pipeline-failed-to-start"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorConfigfaultModelUnsupportedInSquad,
+            "call.in-progress.error-configfault-model-unsupported-in-squad"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallInProgressErrorConfigfaultTransportUnsupportedForModel,
+            "call.in-progress.error-configfault-transport-unsupported-for-model"
         },
         {
             ServerMessageStatusUpdateEndedReason.PipelineErrorOpenai400BadRequestValidationFailed,
@@ -6276,6 +6558,10 @@ internal class ServerMessageStatusUpdateEndedReasonSerializer
         {
             ServerMessageStatusUpdateEndedReason.CallForwardingOperatorBusy,
             "call.forwarding.operator-busy"
+        },
+        {
+            ServerMessageStatusUpdateEndedReason.CallForwardingNoAnswer,
+            "call.forwarding.no-answer"
         },
         { ServerMessageStatusUpdateEndedReason.SilenceTimedOut, "silence-timed-out" },
         {

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A knowledge-base configuration, including its provider, model, description, and associated files.
+/// </summary>
 [Serializable]
 public record KnowledgeBase : IJsonOnDeserialized
 {

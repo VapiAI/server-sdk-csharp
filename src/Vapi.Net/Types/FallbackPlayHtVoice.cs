@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with PlayHT, including voice and model selection, language, emotion and style guidance, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackPlayHtVoice : IJsonOnDeserialized
 {

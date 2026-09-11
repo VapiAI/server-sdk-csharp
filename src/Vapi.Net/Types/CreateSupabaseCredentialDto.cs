@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for storing call artifacts in Supabase's S3-compatible storage, including bucket configuration and upload fallback order.
+/// </summary>
 [Serializable]
 public record CreateSupabaseCredentialDto : IJsonOnDeserialized
 {
@@ -17,6 +20,9 @@ public record CreateSupabaseCredentialDto : IJsonOnDeserialized
     [JsonPropertyName("fallbackIndex")]
     public double? FallbackIndex { get; set; }
 
+    /// <summary>
+    /// Supabase S3-compatible bucket configuration used to store call artifacts.
+    /// </summary>
     [JsonPropertyName("bucketPlan")]
     public SupabaseBucketPlan? BucketPlan { get; set; }
 

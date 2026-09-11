@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating assistant model requests with OpenRouter.
+/// </summary>
 [Serializable]
 public record CreateOpenRouterCredentialDto : IJsonOnDeserialized
 {

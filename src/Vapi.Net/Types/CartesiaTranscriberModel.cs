@@ -8,6 +8,9 @@ public enum CartesiaTranscriberModel
 {
     [EnumMember(Value = "ink-whisper")]
     InkWhisper,
+
+    [EnumMember(Value = "ink-2")]
+    Ink2,
 }
 
 internal class CartesiaTranscriberModelSerializer
@@ -16,12 +19,20 @@ internal class CartesiaTranscriberModelSerializer
     private static readonly global::System.Collections.Generic.Dictionary<
         string,
         CartesiaTranscriberModel
-    > _stringToEnum = new() { { "ink-whisper", CartesiaTranscriberModel.InkWhisper } };
+    > _stringToEnum = new()
+    {
+        { "ink-whisper", CartesiaTranscriberModel.InkWhisper },
+        { "ink-2", CartesiaTranscriberModel.Ink2 },
+    };
 
     private static readonly global::System.Collections.Generic.Dictionary<
         CartesiaTranscriberModel,
         string
-    > _enumToString = new() { { CartesiaTranscriberModel.InkWhisper, "ink-whisper" } };
+    > _enumToString = new()
+    {
+        { CartesiaTranscriberModel.InkWhisper, "ink-whisper" },
+        { CartesiaTranscriberModel.Ink2, "ink-2" },
+    };
 
     public override CartesiaTranscriberModel Read(
         ref global::System.Text.Json.Utf8JsonReader reader,

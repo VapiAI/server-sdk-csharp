@@ -1,0 +1,150 @@
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
+using Vapi.Net.Core;
+
+namespace Vapi.Net;
+
+[Serializable]
+public record KnowledgeBaseTool : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("latestVersion")]
+    public string? LatestVersion { get; set; }
+
+    /// <summary>
+    /// Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates.
+    /// </summary>
+    [JsonPropertyName("messages")]
+    public IEnumerable<object>? Messages { get; set; }
+
+    /// <summary>
+    /// The knowledge base this tool searches. At most one search tool references a knowledge base. Deleting the base also deletes its generated tool; null references are retained only for backward compatibility and are inert.
+    /// </summary>
+    [JsonPropertyName("knowledgeBaseId")]
+    public string? KnowledgeBaseId { get; set; }
+
+    [JsonPropertyName("function")]
+    public required KnowledgeBaseToolFunction Function { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the tool.
+    /// </summary>
+    [JsonPropertyName("id")]
+    public required string Id { get; set; }
+
+    /// <summary>
+    /// This is the unique identifier for the organization that this tool belongs to.
+    /// </summary>
+    [JsonPropertyName("orgId")]
+    public required string OrgId { get; set; }
+
+    /// <summary>
+    /// This is the ISO 8601 date-time string of when the tool was created.
+    /// </summary>
+    [JsonPropertyName("createdAt")]
+    public required DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// This is the ISO 8601 date-time string of when the tool was last updated.
+    /// </summary>
+    [JsonPropertyName("updatedAt")]
+    public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// This is the plan to reject a tool call based on the conversation state.
+    ///
+    /// // Example 1: Reject endCall if user didn't say goodbye
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'regex',
+    ///     regex: '(?i)\\b(bye|goodbye|farewell|see you later|take care)\\b',
+    ///     target: { position: -1, role: 'user' },
+    ///     negate: true  // Reject if pattern does NOT match
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 2: Reject transfer if user is actually asking a question
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'regex',
+    ///     regex: '\\?',
+    ///     target: { position: -1, role: 'user' }
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 3: Reject transfer if user didn't mention transfer recently
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'liquid',
+    ///     liquid: `{% assign recentMessages = messages | last: 5 %}
+    /// {% assign userMessages = recentMessages | where: 'role', 'user' %}
+    /// {% assign mentioned = false %}
+    /// {% for msg in userMessages %}
+    ///   {% if msg.content contains 'transfer' or msg.content contains 'connect' or msg.content contains 'speak to' %}
+    ///     {% assign mentioned = true %}
+    ///     {% break %}
+    ///   {% endif %}
+    /// {% endfor %}
+    /// {% if mentioned %}
+    ///   false
+    /// {% else %}
+    ///   true
+    /// {% endif %}`
+    ///   }]
+    /// }
+    /// ```
+    ///
+    /// // Example 4: Reject endCall if the bot is looping and trying to exit
+    /// ```json
+    /// {
+    ///   conditions: [{
+    ///     type: 'liquid',
+    ///     liquid: `{% assign recentMessages = messages | last: 6 %}
+    /// {% assign userMessages = recentMessages | where: 'role', 'user' | reverse %}
+    /// {% if userMessages.size &lt; 3 %}
+    ///   false
+    /// {% else %}
+    ///   {% assign msg1 = userMessages[0].content | downcase %}
+    ///   {% assign msg2 = userMessages[1].content | downcase %}
+    ///   {% assign msg3 = userMessages[2].content | downcase %}
+    ///   {% comment %} Check for repetitive messages {% endcomment %}
+    ///   {% if msg1 == msg2 or msg1 == msg3 or msg2 == msg3 %}
+    ///     true
+    ///   {% comment %} Check for common loop phrases {% endcomment %}
+    ///   {% elsif msg1 contains 'cool thanks' or msg2 contains 'cool thanks' or msg3 contains 'cool thanks' %}
+    ///     true
+    ///   {% elsif msg1 contains 'okay thanks' or msg2 contains 'okay thanks' or msg3 contains 'okay thanks' %}
+    ///     true
+    ///   {% elsif msg1 contains 'got it' or msg2 contains 'got it' or msg3 contains 'got it' %}
+    ///     true
+    ///   {% else %}
+    ///     false
+    ///   {% endif %}
+    /// {% endif %}`
+    ///   }]
+    /// }
+    /// ```
+    /// </summary>
+    [JsonPropertyName("rejectionPlan")]
+    public ToolRejectionPlan? RejectionPlan { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

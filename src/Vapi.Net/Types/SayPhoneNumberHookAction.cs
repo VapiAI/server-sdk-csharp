@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A phone-number hook action that speaks an exact message to the caller.
+/// </summary>
 [Serializable]
 public record SayPhoneNumberHookAction : IJsonOnDeserialized
 {

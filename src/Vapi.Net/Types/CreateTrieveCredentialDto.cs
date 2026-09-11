@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating knowledge-base requests with Trieve.
+/// </summary>
 [Serializable]
 public record CreateTrieveCredentialDto : IJsonOnDeserialized
 {
@@ -12,16 +15,10 @@ public record CreateTrieveCredentialDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This is not returned in the API.
+    /// Selects Trieve as the credential provider.
     /// </summary>
-    [JsonPropertyName("apiKey")]
-    public required string ApiKey { get; set; }
-
-    /// <summary>
-    /// This is the name of credential. This is just for your reference.
-    /// </summary>
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    [JsonPropertyName("provider")]
+    public object? Provider { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Selects a conversation message by participant role and position for condition evaluation.
+/// </summary>
 [Serializable]
 public record MessageTarget : IJsonOnDeserialized
 {
