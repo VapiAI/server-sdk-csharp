@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for using LiveKit smart endpointing, including provider selection and wait-function behavior.
+/// </summary>
 [Serializable]
 public record LivekitSmartEndpointingPlan : IJsonOnDeserialized
 {

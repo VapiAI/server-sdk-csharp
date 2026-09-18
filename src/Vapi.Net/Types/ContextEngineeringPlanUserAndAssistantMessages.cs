@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Includes only user and assistant messages when constructing context for a handoff.
+/// </summary>
 [Serializable]
 public record ContextEngineeringPlanUserAndAssistantMessages : IJsonOnDeserialized
 {

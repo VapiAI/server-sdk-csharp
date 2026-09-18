@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating transcription requests with Speechmatics.
+/// </summary>
 [Serializable]
 public record CreateSpeechmaticsCredentialDto : IJsonOnDeserialized
 {

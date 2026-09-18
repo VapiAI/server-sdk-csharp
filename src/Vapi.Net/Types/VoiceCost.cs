@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Voice-synthesis cost for a call, including voice, character usage, and amount.
+/// </summary>
 [Serializable]
 public record VoiceCost : IJsonOnDeserialized
 {

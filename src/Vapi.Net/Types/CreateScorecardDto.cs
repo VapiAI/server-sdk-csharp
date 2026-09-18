@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a scorecard containing evaluation metrics, scoring conditions, and optional assistant associations.
+/// </summary>
 [Serializable]
 public record CreateScorecardDto : IJsonOnDeserialized
 {

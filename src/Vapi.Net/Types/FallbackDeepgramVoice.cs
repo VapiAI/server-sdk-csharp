@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Deepgram, including voice and model selection, model-improvement preferences, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackDeepgramVoice : IJsonOnDeserialized
 {

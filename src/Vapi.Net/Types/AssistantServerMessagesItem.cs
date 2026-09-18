@@ -86,6 +86,9 @@ public enum AssistantServerMessagesItem
 
     [EnumMember(Value = "call.delete.failed")]
     CallDeleteFailed,
+
+    [EnumMember(Value = "call.artifact.upload")]
+    CallArtifactUpload,
 }
 
 internal class AssistantServerMessagesItemSerializer
@@ -126,6 +129,7 @@ internal class AssistantServerMessagesItemSerializer
         { "session.deleted", AssistantServerMessagesItem.SessionDeleted },
         { "call.deleted", AssistantServerMessagesItem.CallDeleted },
         { "call.delete.failed", AssistantServerMessagesItem.CallDeleteFailed },
+        { "call.artifact.upload", AssistantServerMessagesItem.CallArtifactUpload },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -163,6 +167,7 @@ internal class AssistantServerMessagesItemSerializer
         { AssistantServerMessagesItem.SessionDeleted, "session.deleted" },
         { AssistantServerMessagesItem.CallDeleted, "call.deleted" },
         { AssistantServerMessagesItem.CallDeleteFailed, "call.delete.failed" },
+        { AssistantServerMessagesItem.CallArtifactUpload, "call.artifact.upload" },
     };
 
     public override AssistantServerMessagesItem Read(

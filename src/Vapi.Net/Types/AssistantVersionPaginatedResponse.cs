@@ -12,13 +12,10 @@ public record AssistantVersionPaginatedResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("results")]
-    public IEnumerable<object> Results { get; set; } = new List<object>();
+    public IEnumerable<AssistantVersion> Results { get; set; } = new List<AssistantVersion>();
 
     [JsonPropertyName("metadata")]
-    public required PaginationMeta Metadata { get; set; }
-
-    [JsonPropertyName("nextPageState")]
-    public string? NextPageState { get; set; }
+    public required AssistantVersionPaginatedMetadata Metadata { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

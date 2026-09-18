@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration passed to Twilio for assistant calls, including ring timeout and Twilio recording behavior.
+/// </summary>
 [Serializable]
 public record TransportConfigurationTwilio : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record TransportConfigurationTwilio : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Selects Twilio as the call transport provider.
+    /// </summary>
     [JsonPropertyName("provider")]
     public required TransportConfigurationTwilioProvider Provider { get; set; }
 

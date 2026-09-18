@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Per-call or handoff overrides for an assistant's providers, messages, tools, credentials, call behavior, and server configuration.
+/// </summary>
 [Serializable]
 public record AssistantOverrides : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record AssistantOverrides : IJsonOnDeserialized
     [JsonPropertyName("firstMessage")]
     public string? FirstMessage { get; set; }
 
+    /// <summary>
+    /// Set to `true` to allow the user to interrupt the assistant while it speaks the first message. Default is `false`.
+    /// </summary>
     [JsonPropertyName("firstMessageInterruptionsEnabled")]
     public bool? FirstMessageInterruptionsEnabled { get; set; }
 
@@ -136,6 +142,9 @@ public record AssistantOverrides : IJsonOnDeserialized
         >
     >? Hooks { get; set; }
 
+    /// <summary>
+    /// Tools to append to the assistant's existing tool configuration.
+    /// </summary>
     [JsonPropertyName("tools:append")]
     public IEnumerable<object>? ToolsAppend { get; set; }
 
@@ -181,6 +190,9 @@ public record AssistantOverrides : IJsonOnDeserialized
     [JsonPropertyName("endCallPhrases")]
     public IEnumerable<string>? EndCallPhrases { get; set; }
 
+    /// <summary>
+    /// Compliance settings to apply, including HIPAA and PCI behavior, security filtering, and recording consent.
+    /// </summary>
     [JsonPropertyName("compliancePlan")]
     public CompliancePlan? CompliancePlan { get; set; }
 
@@ -271,6 +283,9 @@ public record AssistantOverrides : IJsonOnDeserialized
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
 
+    /// <summary>
+    /// Configuration for collecting and processing DTMF keypad input.
+    /// </summary>
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }
 

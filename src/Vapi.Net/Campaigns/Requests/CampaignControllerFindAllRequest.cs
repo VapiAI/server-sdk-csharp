@@ -6,9 +6,15 @@ namespace Vapi.Net;
 [Serializable]
 public record CampaignControllerFindAllRequest
 {
+    /// <summary>
+    /// Filters campaigns by ID.
+    /// </summary>
     [JsonIgnore]
     public string? Id { get; set; }
 
+    /// <summary>
+    /// Filters campaigns by status.
+    /// </summary>
     [JsonIgnore]
     public CampaignControllerFindAllRequestStatus? Status { get; set; }
 
@@ -23,6 +29,12 @@ public record CampaignControllerFindAllRequest
     /// </summary>
     [JsonIgnore]
     public CampaignControllerFindAllRequestSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonIgnore]
+    public CampaignControllerFindAllRequestSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

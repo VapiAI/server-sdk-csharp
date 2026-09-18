@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters transcript content that matches a custom regular expression.
+/// </summary>
 [Serializable]
 public record RegexSecurityFilter : IJsonOnDeserialized
 {

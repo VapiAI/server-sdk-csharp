@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for transcribing speech during assistant conversations with AssemblyAI, including language, streaming model, endpointing, vocabulary, and fallback settings.
+/// </summary>
 [Serializable]
 public record AssemblyAiTranscriber : IJsonOnDeserialized
 {
@@ -74,8 +77,35 @@ public record AssemblyAiTranscriber : IJsonOnDeserialized
     public bool? VadAssistedEndpointingEnabled { get; set; }
 
     /// <summary>
+    /// This is the transcription mode used by the `universal-3-5-pro` speech model. Only applies to the `universal-3-5-pro` speech model.
+    ///
+    /// @default 'balanced'
+    /// </summary>
+    [JsonPropertyName("mode")]
+    public AssemblyAiTranscriberMode? Mode { get; set; }
+
+    /// <summary>
+    /// This is a prompt that provides additional context to the transcription model. Only applies to the `universal-3-5-pro` speech model.
+    /// </summary>
+    [JsonPropertyName("prompt")]
+    public string? Prompt { get; set; }
+
+    /// <summary>
+    /// This is context about the voice agent that guides the transcription model. Only applies to the `universal-3-5-pro` speech model.
+    /// </summary>
+    [JsonPropertyName("agentContext")]
+    public string? AgentContext { get; set; }
+
+    /// <summary>
+    /// These are language codes used to steer automatic language detection. Only applies to the `universal-3-5-pro` speech model.
+    /// </summary>
+    [JsonPropertyName("languageCodes")]
+    public IEnumerable<AssemblyAiTranscriberLanguageCodesItem>? LanguageCodes { get; set; }
+
+    /// <summary>
     /// This is the speech model used for the streaming session.
-    /// Note: Keyterms prompting is not supported with multilingual streaming.
+    /// Keyterms prompting is supported on universal-streaming-english and universal-3-5-pro.
+    /// universal-3-5-pro is AssemblyAI's most accurate voice-agent model.
     /// @default 'universal-streaming-english'
     /// </summary>
     [JsonPropertyName("speechModel")]
@@ -96,7 +126,7 @@ public record AssemblyAiTranscriber : IJsonOnDeserialized
     /// <summary>
     /// Keyterms prompting improves recognition accuracy for specific words and phrases.
     /// Can include up to 100 keyterms, each up to 50 characters.
-    /// Costs an additional $0.04/hour when enabled.
+    /// Costs an additional $0.04/hour on universal-streaming-english and is included at no extra cost on universal-3-5-pro.
     /// </summary>
     [JsonPropertyName("keytermsPrompt")]
     public IEnumerable<string>? KeytermsPrompt { get; set; }

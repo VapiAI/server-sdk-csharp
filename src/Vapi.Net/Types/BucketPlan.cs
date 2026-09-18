@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Google Cloud Storage bucket configuration for call artifacts, including bucket name, region, path, and optional HMAC credentials.
+/// </summary>
 [Serializable]
 public record BucketPlan : IJsonOnDeserialized
 {

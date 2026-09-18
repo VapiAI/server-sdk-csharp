@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Routes a handoff to a saved or transient squad, with optional entry assistant, context engineering, variable extraction, and overrides.
+/// </summary>
 [Serializable]
 public record HandoffDestinationSquad : IJsonOnDeserialized
 {
