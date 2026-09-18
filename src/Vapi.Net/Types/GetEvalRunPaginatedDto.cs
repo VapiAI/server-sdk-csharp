@@ -27,6 +27,12 @@ public record GetEvalRunPaginatedDto : IJsonOnDeserialized
     public GetEvalRunPaginatedDtoSortOrder? SortOrder { get; set; }
 
     /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonPropertyName("sortBy")]
+    public GetEvalRunPaginatedDtoSortBy? SortBy { get; set; }
+
+    /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.
     /// </summary>
     [JsonPropertyName("limit")]

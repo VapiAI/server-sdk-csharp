@@ -31,6 +31,12 @@ public record StructuredOutputControllerFindAllRequest
     public StructuredOutputControllerFindAllRequestSortOrder? SortOrder { get; set; }
 
     /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonIgnore]
+    public StructuredOutputControllerFindAllRequestSortBy? SortBy { get; set; }
+
+    /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.
     /// </summary>
     [JsonIgnore]

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An expected assistant turn in an evaluation, including the judge plan and how the evaluation should continue afterward.
+/// </summary>
 [Serializable]
 public record ChatEvalAssistantMessageEvaluation : IJsonOnDeserialized
 {

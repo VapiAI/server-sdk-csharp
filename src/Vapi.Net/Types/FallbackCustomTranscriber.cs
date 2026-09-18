@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for sending conversation audio to a custom WebSocket transcription server.
+/// </summary>
 [Serializable]
 public record FallbackCustomTranscriber : IJsonOnDeserialized
 {

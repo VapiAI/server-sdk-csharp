@@ -11,6 +11,9 @@ public record UpdateEmailCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateEmailCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// The recipient email address for alerts
     /// </summary>

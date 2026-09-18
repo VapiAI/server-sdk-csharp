@@ -14,6 +14,12 @@ public enum CampaignControllerFindAllRequestStatus
 
     [EnumMember(Value = "ended")]
     Ended,
+
+    [EnumMember(Value = "cancelled")]
+    Cancelled,
+
+    [EnumMember(Value = "archived")]
+    Archived,
 }
 
 internal class CampaignControllerFindAllRequestStatusSerializer
@@ -27,6 +33,8 @@ internal class CampaignControllerFindAllRequestStatusSerializer
         { "scheduled", CampaignControllerFindAllRequestStatus.Scheduled },
         { "in-progress", CampaignControllerFindAllRequestStatus.InProgress },
         { "ended", CampaignControllerFindAllRequestStatus.Ended },
+        { "cancelled", CampaignControllerFindAllRequestStatus.Cancelled },
+        { "archived", CampaignControllerFindAllRequestStatus.Archived },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -37,6 +45,8 @@ internal class CampaignControllerFindAllRequestStatusSerializer
         { CampaignControllerFindAllRequestStatus.Scheduled, "scheduled" },
         { CampaignControllerFindAllRequestStatus.InProgress, "in-progress" },
         { CampaignControllerFindAllRequestStatus.Ended, "ended" },
+        { CampaignControllerFindAllRequestStatus.Cancelled, "cancelled" },
+        { CampaignControllerFindAllRequestStatus.Archived, "archived" },
     };
 
     public override CampaignControllerFindAllRequestStatus Read(

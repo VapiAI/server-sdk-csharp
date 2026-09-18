@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Per-call overrides for values used in workflow template variables.
+/// </summary>
 [Serializable]
 public record WorkflowOverrides : IJsonOnDeserialized
 {

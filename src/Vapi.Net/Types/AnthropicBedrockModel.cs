@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for generating assistant responses with Anthropic models through Amazon Bedrock, including model, prompts, tools, knowledge-base access, reasoning, and generation settings.
+/// </summary>
 [Serializable]
 public record AnthropicBedrockModel : IJsonOnDeserialized
 {
@@ -34,6 +37,15 @@ public record AnthropicBedrockModel : IJsonOnDeserialized
     public IEnumerable<string>? ToolIds { get; set; }
 
     /// <summary>
+    /// These are version-pinned references to tools. Each entry pins a specific
+    /// version of a tool by `(toolId, version)`. When the same `toolId` appears
+    /// in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+    /// `toolIds` entry is dropped at write time).
+    /// </summary>
+    [JsonPropertyName("toolRefs")]
+    public IEnumerable<ToolRef>? ToolRefs { get; set; }
+
+    /// <summary>
     /// These are the options for the knowledge base.
     /// </summary>
     [JsonPropertyName("knowledgeBase")]
@@ -46,6 +58,12 @@ public record AnthropicBedrockModel : IJsonOnDeserialized
     public required AnthropicBedrockModelModel Model { get; set; }
 
     /// <summary>
+    /// At most one same-provider Bedrock fallback model, tried if the primary fails. Cannot be combined with thinking in this release. Resolution uses the call's Bedrock credential region (or ANTHROPIC_BEDROCK_AWS_REGION). Names with no inference profile in that region are skipped and warned, never remapped to US or global. On Vapi EU, fallback names without an EU inference profile are rejected at write time.
+    /// </summary>
+    [JsonPropertyName("fallbackModels")]
+    public IEnumerable<AnthropicBedrockModelFallbackModelsItem>? FallbackModels { get; set; }
+
+    /// <summary>
     /// Optional configuration for Anthropic's thinking feature.
     /// Only applicable for claude-3-7-sonnet-20250219 model.
     /// If provided, maxTokens must be greater than thinking.budgetTokens.
@@ -54,7 +72,7 @@ public record AnthropicBedrockModel : IJsonOnDeserialized
     public AnthropicThinkingConfig? Thinking { get; set; }
 
     /// <summary>
-    /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
+    /// This is the temperature that will be used for calls. Default is 0.5.
     /// </summary>
     [JsonPropertyName("temperature")]
     public double? Temperature { get; set; }

@@ -6,6 +6,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(GoogleModelModelSerializer))]
 public enum GoogleModelModel
 {
+    [EnumMember(Value = "gemini-3.5-flash")]
+    Gemini35Flash,
+
+    [EnumMember(Value = "gemini-3.1-flash-lite")]
+    Gemini31FlashLite,
+
     [EnumMember(Value = "gemini-3-flash-preview")]
     Gemini3FlashPreview,
 
@@ -60,6 +66,8 @@ internal class GoogleModelModelSerializer
         GoogleModelModel
     > _stringToEnum = new()
     {
+        { "gemini-3.5-flash", GoogleModelModel.Gemini35Flash },
+        { "gemini-3.1-flash-lite", GoogleModelModel.Gemini31FlashLite },
         { "gemini-3-flash-preview", GoogleModelModel.Gemini3FlashPreview },
         { "gemini-2.5-pro", GoogleModelModel.Gemini25Pro },
         { "gemini-2.5-flash", GoogleModelModel.Gemini25Flash },
@@ -82,6 +90,8 @@ internal class GoogleModelModelSerializer
         string
     > _enumToString = new()
     {
+        { GoogleModelModel.Gemini35Flash, "gemini-3.5-flash" },
+        { GoogleModelModel.Gemini31FlashLite, "gemini-3.1-flash-lite" },
         { GoogleModelModel.Gemini3FlashPreview, "gemini-3-flash-preview" },
         { GoogleModelModel.Gemini25Pro, "gemini-2.5-pro" },
         { GoogleModelModel.Gemini25Flash, "gemini-2.5-flash" },

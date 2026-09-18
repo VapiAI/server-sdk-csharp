@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Identifies a specific version of an ElevenLabs pronunciation dictionary.
+/// </summary>
 [Serializable]
 public record ElevenLabsPronunciationDictionaryLocator : IJsonOnDeserialized
 {
@@ -19,9 +22,11 @@ public record ElevenLabsPronunciationDictionaryLocator : IJsonOnDeserialized
 
     /// <summary>
     /// This is the version ID of the pronunciation dictionary to use.
+    ///
+    /// Omit to use the dictionary's latest version.
     /// </summary>
     [JsonPropertyName("versionId")]
-    public required string VersionId { get; set; }
+    public string? VersionId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

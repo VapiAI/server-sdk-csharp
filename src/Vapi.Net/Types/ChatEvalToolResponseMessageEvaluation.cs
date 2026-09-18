@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An expected tool-response turn evaluated by a configured LLM judge.
+/// </summary>
 [Serializable]
 public record ChatEvalToolResponseMessageEvaluation : IJsonOnDeserialized
 {

@@ -6,6 +6,9 @@ namespace Vapi.Net;
 [Serializable]
 public record InsightControllerFindAllRequest
 {
+    /// <summary>
+    /// Filters reporting insights by ID.
+    /// </summary>
     [JsonIgnore]
     public string? Id { get; set; }
 
@@ -20,6 +23,12 @@ public record InsightControllerFindAllRequest
     /// </summary>
     [JsonIgnore]
     public InsightControllerFindAllRequestSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonIgnore]
+    public InsightControllerFindAllRequestSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

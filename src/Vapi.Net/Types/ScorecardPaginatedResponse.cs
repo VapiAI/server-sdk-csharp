@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A paginated collection of scorecards and metadata describing the result set.
+/// </summary>
 [Serializable]
 public record ScorecardPaginatedResponse : IJsonOnDeserialized
 {
@@ -11,9 +14,15 @@ public record ScorecardPaginatedResponse : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// The scorecards returned for the current page.
+    /// </summary>
     [JsonPropertyName("results")]
     public IEnumerable<Scorecard> Results { get; set; } = new List<Scorecard>();
 
+    /// <summary>
+    /// Pagination metadata for the scorecard result set.
+    /// </summary>
     [JsonPropertyName("metadata")]
     public required PaginationMeta Metadata { get; set; }
 

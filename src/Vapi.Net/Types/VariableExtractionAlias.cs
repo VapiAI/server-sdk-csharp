@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Defines an additional Liquid-based variable from values extracted during a call.
+/// </summary>
 [Serializable]
 public record VariableExtractionAlias : IJsonOnDeserialized
 {

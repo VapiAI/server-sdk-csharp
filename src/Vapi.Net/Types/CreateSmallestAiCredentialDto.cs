@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating voice synthesis requests with Smallest AI.
+/// </summary>
 [Serializable]
 public record CreateSmallestAiCredentialDto : IJsonOnDeserialized
 {

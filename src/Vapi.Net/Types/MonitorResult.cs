@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Result of evaluating an attached monitor's filter for a call.
+/// </summary>
 [Serializable]
 public record MonitorResult : IJsonOnDeserialized
 {
@@ -11,9 +14,15 @@ public record MonitorResult : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Unique identifier of the monitor that produced this result.
+    /// </summary>
     [JsonPropertyName("monitorId")]
     public required string MonitorId { get; set; }
 
+    /// <summary>
+    /// Whether the monitor's filter matched the call.
+    /// </summary>
     [JsonPropertyName("filterPassed")]
     public required bool FilterPassed { get; set; }
 

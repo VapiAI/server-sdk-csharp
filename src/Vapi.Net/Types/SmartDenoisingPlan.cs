@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls whether Krisp smart denoising filters background speech and noise.
+/// </summary>
 [Serializable]
 public record SmartDenoisingPlan : IJsonOnDeserialized
 {

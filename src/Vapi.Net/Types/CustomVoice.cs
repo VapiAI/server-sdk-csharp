@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for synthesizing assistant speech through a custom server, including voice selection, server connection, chunking, caching, and fallback settings.
+/// </summary>
 [Serializable]
 public record CustomVoice : IJsonOnDeserialized
 {

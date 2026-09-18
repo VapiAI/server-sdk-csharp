@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls endpointing delays based on whether customer speech ends with punctuation, without punctuation, or with a number.
+/// </summary>
 [Serializable]
 public record TranscriptionEndpointingPlan : IJsonOnDeserialized
 {

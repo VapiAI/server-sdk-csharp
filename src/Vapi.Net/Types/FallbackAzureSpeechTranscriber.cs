@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for transcribing speech with Azure Speech, including language and segmentation.
+/// </summary>
 [Serializable]
 public record FallbackAzureSpeechTranscriber : IJsonOnDeserialized
 {

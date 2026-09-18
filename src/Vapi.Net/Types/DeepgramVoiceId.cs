@@ -170,6 +170,27 @@ public enum DeepgramVoiceId
 
     [EnumMember(Value = "javier")]
     Javier,
+
+    [EnumMember(Value = "viktoria")]
+    Viktoria,
+
+    [EnumMember(Value = "kara")]
+    Kara,
+
+    [EnumMember(Value = "fabian")]
+    Fabian,
+
+    [EnumMember(Value = "julius")]
+    Julius,
+
+    [EnumMember(Value = "lara")]
+    Lara,
+
+    [EnumMember(Value = "elara")]
+    Elara,
+
+    [EnumMember(Value = "aurelia")]
+    Aurelia,
 }
 
 internal class DeepgramVoiceIdSerializer
@@ -235,6 +256,13 @@ internal class DeepgramVoiceIdSerializer
         { "aquila", DeepgramVoiceId.Aquila },
         { "selena", DeepgramVoiceId.Selena },
         { "javier", DeepgramVoiceId.Javier },
+        { "viktoria", DeepgramVoiceId.Viktoria },
+        { "kara", DeepgramVoiceId.Kara },
+        { "fabian", DeepgramVoiceId.Fabian },
+        { "julius", DeepgramVoiceId.Julius },
+        { "lara", DeepgramVoiceId.Lara },
+        { "elara", DeepgramVoiceId.Elara },
+        { "aurelia", DeepgramVoiceId.Aurelia },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -297,6 +325,13 @@ internal class DeepgramVoiceIdSerializer
         { DeepgramVoiceId.Aquila, "aquila" },
         { DeepgramVoiceId.Selena, "selena" },
         { DeepgramVoiceId.Javier, "javier" },
+        { DeepgramVoiceId.Viktoria, "viktoria" },
+        { DeepgramVoiceId.Kara, "kara" },
+        { DeepgramVoiceId.Fabian, "fabian" },
+        { DeepgramVoiceId.Julius, "julius" },
+        { DeepgramVoiceId.Lara, "lara" },
+        { DeepgramVoiceId.Elara, "elara" },
+        { DeepgramVoiceId.Aurelia, "aurelia" },
     };
 
     public override DeepgramVoiceId Read(

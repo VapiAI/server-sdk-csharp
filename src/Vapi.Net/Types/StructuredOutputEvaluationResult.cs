@@ -26,6 +26,24 @@ public record StructuredOutputEvaluationResult : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
+    /// This is the optional dot-notation path evaluated within an object structured output.
+    /// </summary>
+    [JsonPropertyName("path")]
+    public string? Path { get; set; }
+
+    /// <summary>
+    /// This is the structured output description captured when the evaluation ran.
+    /// </summary>
+    [JsonPropertyName("description")]
+    public string? Description { get; set; }
+
+    /// <summary>
+    /// This is the structured output schema captured when the evaluation ran.
+    /// </summary>
+    [JsonPropertyName("schema")]
+    public JsonSchema? Schema { get; set; }
+
+    /// <summary>
     /// This is the value extracted from the call by the structured output.
     /// </summary>
     [JsonPropertyName("extractedValue")]

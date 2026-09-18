@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// OAuth 2.0 session credentials for authenticating GoHighLevel MCP requests.
+/// </summary>
 [Serializable]
 public record CreateGoHighLevelMcpCredentialDto : IJsonOnDeserialized
 {

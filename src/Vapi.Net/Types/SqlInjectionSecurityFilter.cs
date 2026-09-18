@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters potential SQL injection patterns from transcripts.
+/// </summary>
 [Serializable]
 public record SqlInjectionSecurityFilter : IJsonOnDeserialized
 {

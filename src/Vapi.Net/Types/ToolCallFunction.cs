@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// The function name and serialized arguments associated with a tool call.
+/// </summary>
 [Serializable]
 public record ToolCallFunction : IJsonOnDeserialized
 {

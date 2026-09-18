@@ -155,6 +155,27 @@ public enum RimeAiVoiceIdEnum
 
     [EnumMember(Value = "parapet")]
     Parapet,
+
+    [EnumMember(Value = "clementine")]
+    Clementine,
+
+    [EnumMember(Value = "walnut")]
+    Walnut,
+
+    [EnumMember(Value = "eyre")]
+    Eyre,
+
+    [EnumMember(Value = "bancroft")]
+    Bancroft,
+
+    [EnumMember(Value = "hesse")]
+    Hesse,
+
+    [EnumMember(Value = "beatty")]
+    Beatty,
+
+    [EnumMember(Value = "godfrey")]
+    Godfrey,
 }
 
 internal class RimeAiVoiceIdEnumSerializer
@@ -215,6 +236,13 @@ internal class RimeAiVoiceIdEnumSerializer
         { "masonry", RimeAiVoiceIdEnum.Masonry },
         { "albion", RimeAiVoiceIdEnum.Albion },
         { "parapet", RimeAiVoiceIdEnum.Parapet },
+        { "clementine", RimeAiVoiceIdEnum.Clementine },
+        { "walnut", RimeAiVoiceIdEnum.Walnut },
+        { "eyre", RimeAiVoiceIdEnum.Eyre },
+        { "bancroft", RimeAiVoiceIdEnum.Bancroft },
+        { "hesse", RimeAiVoiceIdEnum.Hesse },
+        { "beatty", RimeAiVoiceIdEnum.Beatty },
+        { "godfrey", RimeAiVoiceIdEnum.Godfrey },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -272,6 +300,13 @@ internal class RimeAiVoiceIdEnumSerializer
         { RimeAiVoiceIdEnum.Masonry, "masonry" },
         { RimeAiVoiceIdEnum.Albion, "albion" },
         { RimeAiVoiceIdEnum.Parapet, "parapet" },
+        { RimeAiVoiceIdEnum.Clementine, "clementine" },
+        { RimeAiVoiceIdEnum.Walnut, "walnut" },
+        { RimeAiVoiceIdEnum.Eyre, "eyre" },
+        { RimeAiVoiceIdEnum.Bancroft, "bancroft" },
+        { RimeAiVoiceIdEnum.Hesse, "hesse" },
+        { RimeAiVoiceIdEnum.Beatty, "beatty" },
+        { RimeAiVoiceIdEnum.Godfrey, "godfrey" },
     };
 
     public override RimeAiVoiceIdEnum Read(

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Selects Vapi smart endpointing to determine when customer speech is complete.
+/// </summary>
 [Serializable]
 public record VapiSmartEndpointingPlan : IJsonOnDeserialized
 {
