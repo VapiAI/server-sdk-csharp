@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved outbound calling campaign, including its calling configuration, schedule, status, customers, calls, and call-progress counters.
+/// </summary>
 [Serializable]
 public record Campaign : IJsonOnDeserialized
 {
@@ -66,10 +69,46 @@ public record Campaign : IJsonOnDeserialized
     public SchedulePlan? SchedulePlan { get; set; }
 
     /// <summary>
-    /// These are the customers that will be called in the campaign. Required if dialPlan is not provided.
+    /// These are the customers that will be called in the campaign. Required if dialPlan is not provided. Maximum of 10000 customers per campaign.
     /// </summary>
     [JsonPropertyName("customers")]
     public IEnumerable<CreateCustomerDto>? Customers { get; set; }
+
+    /// <summary>
+    /// This is the maximum number of concurrent calls that will be made for the campaign. Defaults to 10. Maximum of 500, and may not exceed your organization's concurrency limit.
+    /// </summary>
+    [JsonPropertyName("maxConcurrency")]
+    public double? MaxConcurrency { get; set; }
+
+    /// <summary>
+    /// These are the overrides for the assistant's settings and template variables for the campaign. Use this when the campaign targets an `assistantId`.
+    /// </summary>
+    [JsonPropertyName("assistantOverrides")]
+    public AssistantOverrides? AssistantOverrides { get; set; }
+
+    /// <summary>
+    /// These are the overrides for the squad and template variables for the campaign. Use this when the campaign targets a `squadId`. Per-contact `squadOverrides` are deep-merged on top of this at dispatch time.
+    /// </summary>
+    [JsonPropertyName("squadOverrides")]
+    public AssistantOverrides? SquadOverrides { get; set; }
+
+    /// <summary>
+    /// This is the server (URL, auth headers, timeout, etc.) for the campaign webhooks.
+    /// </summary>
+    [JsonPropertyName("server")]
+    public Server? Server { get; set; }
+
+    /// <summary>
+    /// These are the messages that will be sent to your Server URL.
+    /// </summary>
+    [JsonPropertyName("serverMessages")]
+    public IEnumerable<CampaignServerMessagesItem>? ServerMessages { get; set; }
+
+    /// <summary>
+    /// This opts the campaign into the blocking `campaign.predial` eligibility webhook. When set, every contact triggers a `campaign.predial` POST to the Server URL before dialing, and the response `{ eligible: boolean }` decides whether the call is placed. Requires `server`. When unset, no pre-dial webhook is sent.
+    /// </summary>
+    [JsonPropertyName("predialPlan")]
+    public CampaignPredialPlan? PredialPlan { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the campaign.

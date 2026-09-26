@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Stored OAuth 2.0 authorization for Slack operations.
+/// </summary>
 [Serializable]
 public record CreateSlackOAuth2AuthorizationCredentialDto : IJsonOnDeserialized
 {

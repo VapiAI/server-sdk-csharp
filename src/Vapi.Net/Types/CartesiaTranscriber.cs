@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for transcribing speech during assistant conversations with Cartesia, including model, language, and fallback settings.
+/// </summary>
 [Serializable]
 public record CartesiaTranscriber : IJsonOnDeserialized
 {
@@ -11,9 +14,15 @@ public record CartesiaTranscriber : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// The Cartesia speech-to-text model used for transcription.
+    /// </summary>
     [JsonPropertyName("model")]
     public CartesiaTranscriberModel? Model { get; set; }
 
+    /// <summary>
+    /// The language code used for transcription.
+    /// </summary>
     [JsonPropertyName("language")]
     public CartesiaTranscriberLanguage? Language { get; set; }
 

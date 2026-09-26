@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for storing call artifacts in Cloudflare R2, including account details, bucket configuration, and upload fallback order.
+/// </summary>
 [Serializable]
 public record CreateCloudflareCredentialDto : IJsonOnDeserialized
 {

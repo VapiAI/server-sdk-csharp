@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for generating assistant responses with OpenAI, including model selection, fallback models, prompts, tools, prompt caching, and generation settings.
+/// </summary>
 [Serializable]
 public record OpenAiModel : IJsonOnDeserialized
 {
@@ -34,13 +37,35 @@ public record OpenAiModel : IJsonOnDeserialized
     public IEnumerable<string>? ToolIds { get; set; }
 
     /// <summary>
+    /// These are version-pinned references to tools. Each entry pins a specific
+    /// version of a tool by `(toolId, version)`. When the same `toolId` appears
+    /// in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+    /// `toolIds` entry is dropped at write time).
+    /// </summary>
+    [JsonPropertyName("toolRefs")]
+    public IEnumerable<ToolRef>? ToolRefs { get; set; }
+
+    /// <summary>
     /// These are the options for the knowledge base.
     /// </summary>
     [JsonPropertyName("knowledgeBase")]
     public CreateCustomKnowledgeBaseDto? KnowledgeBase { get; set; }
 
     /// <summary>
+    /// Configuration for the GPT-Live speaker.
+    /// </summary>
+    [JsonPropertyName("speaker")]
+    public OpenAiSpeaker? Speaker { get; set; }
+
+    /// <summary>
+    /// Configuration for the reasoner supporting the GPT-Live speaker.
+    /// </summary>
+    [JsonPropertyName("reasoner")]
+    public OpenAiReasoner? Reasoner { get; set; }
+
+    /// <summary>
     /// This is the OpenAI model that will be used.
+    /// For GPT-Live configuration and supported settings, see https://docs.vapi.ai/gpt-live/overview.
     ///
     /// When using Vapi OpenAI or your own Azure Credentials, you have the option to specify the region for the selected model. This shouldn't be specified unless you have a specific reason to do so. Vapi will automatically find the fastest region that make sense.
     /// This is helpful when you are required to comply with Data Residency rules. Learn more about Azure regions here https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/.
@@ -73,7 +98,7 @@ public record OpenAiModel : IJsonOnDeserialized
     /// - `in_memory`: Default behavior, cache retained in GPU memory only
     /// - `24h`: Extended caching, keeps cached prefixes active for up to 24 hours by offloading to GPU-local storage
     ///
-    /// Only applies to models: gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
+    /// Only applies to models: gpt-5.6-sol, gpt-5.6-terra, gpt-5.6-luna, gpt-5.5, chat-latest, gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
     ///
     /// @default undefined (uses API default which is 'in_memory')
     /// </summary>
@@ -91,7 +116,30 @@ public record OpenAiModel : IJsonOnDeserialized
     public string? PromptCacheKey { get; set; }
 
     /// <summary>
-    /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
+    /// This is the OpenAI service tier used for chat completions requests.
+    ///
+    /// - `fast`: OpenAI's fast processing tier (renamed from `priority` on 2026-07-30; both values are accepted and billed identically) — up to ~2.5x faster inference at 2x the standard token rates. OpenAI may silently downgrade a fast request to standard processing under ramp limits; when that happens the response reports the served tier and the request is billed at standard rates.
+    /// - `auto`: uses the service tier configured for the OpenAI project.
+    /// - `default`: standard processing and billing.
+    ///
+    /// Only applies to models that support fast processing: gpt-5.6-sol, gpt-5.6-terra, gpt-5.6-luna, gpt-5.5. Ignored for other models.
+    ///
+    /// @default undefined (uses the service tier configured for the OpenAI project)
+    /// </summary>
+    [JsonPropertyName("serviceTier")]
+    public OpenAiModelServiceTier? ServiceTier { get; set; }
+
+    /// <summary>
+    /// Reasoning effort for reasoning-capable OpenAI models.
+    /// For `gpt-realtime-2`: forwarded to V2 stream's session.update as `reasoning.effort`.
+    /// For non-realtime OpenAI models, model-aware validation limits newly public
+    /// values while preserving the existing four-value storage contract.
+    /// </summary>
+    [JsonPropertyName("reasoningEffort")]
+    public OpenAiModelReasoningEffort? ReasoningEffort { get; set; }
+
+    /// <summary>
+    /// This is the temperature that will be used for calls. Default is 0.5.
     /// </summary>
     [JsonPropertyName("temperature")]
     public double? Temperature { get; set; }

@@ -82,12 +82,6 @@ public record ByoSipTrunkCredential : IJsonOnDeserialized
     [JsonPropertyName("sipDiversionHeader")]
     public string? SipDiversionHeader { get; set; }
 
-    /// <summary>
-    /// This is an advanced configuration for enterprise deployments. This uses the onprem SBC to trunk into the SIP trunk's `gateways`, rather than the managed SBC provided by Vapi.
-    /// </summary>
-    [JsonPropertyName("sbcConfiguration")]
-    public SbcConfiguration? SbcConfiguration { get; set; }
-
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

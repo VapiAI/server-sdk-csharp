@@ -11,8 +11,15 @@ public partial interface IVapiClient
     public IPhoneNumbersClient PhoneNumbers { get; }
     public IToolsClient Tools { get; }
     public IFilesClient Files { get; }
+    public IKnowledgeBasesV2Client KnowledgeBasesV2 { get; }
     public IStructuredOutputsClient StructuredOutputs { get; }
+    public ISimulationPersonalitiesClient SimulationPersonalities { get; }
+    public ISimulationScenariosClient SimulationScenarios { get; }
+    public ISimulationRunsClient SimulationRuns { get; }
+    public ISimulationSuitesClient SimulationSuites { get; }
+    public ISimulationsClient Simulations { get; }
     public IInsightClient Insight { get; }
+    public IBoardClient Board { get; }
     public IEvalClient Eval { get; }
     public IObservabilityScorecardClient ObservabilityScorecard { get; }
     public IProviderResourcesClient ProviderResources { get; }

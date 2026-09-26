@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a bar-chart insight from call data using metric queries, formulas, grouping, and a stepped time range.
+/// </summary>
 [Serializable]
 public record CreateBarInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -44,6 +47,9 @@ public record CreateBarInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("metadata")]
     public BarInsightMetadata? Metadata { get; set; }
 
+    /// <summary>
+    /// The time range and interval used to aggregate the bar-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRangeWithStep? TimeRange { get; set; }
 

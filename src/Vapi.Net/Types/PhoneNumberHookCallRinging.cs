@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Runs configured transfer or message actions when an incoming call rings and its caller-number prefix filters match.
+/// </summary>
 [Serializable]
 public record PhoneNumberHookCallRinging : IJsonOnDeserialized
 {

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for Azure Speech or Blob Storage, including service, region, and optional storage bucket settings.
+/// </summary>
 [Serializable]
 public record CreateAzureCredentialDto : IJsonOnDeserialized
 {

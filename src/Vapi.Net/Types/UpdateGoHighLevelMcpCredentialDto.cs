@@ -11,6 +11,9 @@ public record UpdateGoHighLevelMcpCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateGoHighLevelMcpCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is the authentication session for the credential.
     /// </summary>

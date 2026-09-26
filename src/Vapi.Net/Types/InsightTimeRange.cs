@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Start, end, and timezone used to limit an insight query by time.
+/// </summary>
 [Serializable]
 public record InsightTimeRange : IJsonOnDeserialized
 {
