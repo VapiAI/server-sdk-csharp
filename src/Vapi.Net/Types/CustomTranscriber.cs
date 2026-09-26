@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for sending conversation audio to a custom WebSocket transcription server.
+/// </summary>
 [Serializable]
 public record CustomTranscriber : IJsonOnDeserialized
 {

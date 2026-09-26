@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Replaces text matching a regular expression before it is sent to a voice provider.
+/// </summary>
 [Serializable]
 public record RegexReplacement : IJsonOnDeserialized
 {

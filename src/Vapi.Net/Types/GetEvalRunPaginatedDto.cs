@@ -11,20 +11,17 @@ public record GetEvalRunPaginatedDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("sortBy")]
+    public GetEvalRunPaginatedDtoSortBy? SortBy { get; set; }
+
+    /// <summary>
+    /// Literal, case-insensitive search across eval and assistant names.
+    /// </summary>
+    [JsonPropertyName("search")]
+    public string? Search { get; set; }
+
     [JsonPropertyName("id")]
     public string? Id { get; set; }
-
-    /// <summary>
-    /// This is the page number to return. Defaults to 1.
-    /// </summary>
-    [JsonPropertyName("page")]
-    public double? Page { get; set; }
-
-    /// <summary>
-    /// This is the sort order for pagination. Defaults to 'DESC'.
-    /// </summary>
-    [JsonPropertyName("sortOrder")]
-    public GetEvalRunPaginatedDtoSortOrder? SortOrder { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.
@@ -79,6 +76,18 @@ public record GetEvalRunPaginatedDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updatedAtLe")]
     public DateTime? UpdatedAtLe { get; set; }
+
+    /// <summary>
+    /// This is the page number to return. Defaults to 1.
+    /// </summary>
+    [JsonPropertyName("page")]
+    public double? Page { get; set; }
+
+    /// <summary>
+    /// This is the sort order for pagination. Defaults to 'DESC'.
+    /// </summary>
+    [JsonPropertyName("sortOrder")]
+    public GetEvalRunPaginatedDtoSortOrder? SortOrder { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

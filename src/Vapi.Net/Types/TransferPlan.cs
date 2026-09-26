@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls how a call transfer is executed, including blind and warm transfer modes, dialing and SIP behavior, hold audio, context, summary, and failure handling.
+/// </summary>
 [Serializable]
 public record TransferPlan : IJsonOnDeserialized
 {
@@ -144,8 +147,10 @@ public record TransferPlan : IJsonOnDeserialized
     /// This configures the fallback plan when the transfer fails (destination unreachable, busy, or not human).
     ///
     /// Usage:
-    /// - Used only when `mode` is `warm-transfer-experimental`.
-    /// - If not provided when using `warm-transfer-experimental`, a default message will be used.
+    /// - Used when `mode` is `warm-transfer-experimental`. If not provided, a default message will be used.
+    /// - Used for SIP cold transfers (`blind-transfer` modes) when transfer outcome detection and fallback
+    ///   are enabled for the organization: on a failed transfer, the assistant speaks `message`, then ends
+    ///   the call or continues with the customer per `endCallEnabled`.
     /// </summary>
     [JsonPropertyName("fallbackPlan")]
     public TransferFallbackPlan? FallbackPlan { get; set; }

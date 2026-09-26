@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating telephony requests with Vonage.
+/// </summary>
 [Serializable]
 public record CreateVonageCredentialDto : IJsonOnDeserialized
 {
@@ -17,6 +20,9 @@ public record CreateVonageCredentialDto : IJsonOnDeserialized
     [JsonPropertyName("apiSecret")]
     public required string ApiSecret { get; set; }
 
+    /// <summary>
+    /// Vonage API key associated with the credential.
+    /// </summary>
     [JsonPropertyName("apiKey")]
     public required string ApiKey { get; set; }
 

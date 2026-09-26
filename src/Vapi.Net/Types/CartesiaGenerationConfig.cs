@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Generation controls for Cartesia Sonic 3 voices, including speed, volume, and accent localization.
+/// </summary>
 [Serializable]
 public record CartesiaGenerationConfig : IJsonOnDeserialized
 {

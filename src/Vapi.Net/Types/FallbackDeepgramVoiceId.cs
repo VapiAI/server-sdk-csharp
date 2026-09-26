@@ -170,6 +170,135 @@ public enum FallbackDeepgramVoiceId
 
     [EnumMember(Value = "javier")]
     Javier,
+
+    [EnumMember(Value = "viktoria")]
+    Viktoria,
+
+    [EnumMember(Value = "kara")]
+    Kara,
+
+    [EnumMember(Value = "fabian")]
+    Fabian,
+
+    [EnumMember(Value = "julius")]
+    Julius,
+
+    [EnumMember(Value = "lara")]
+    Lara,
+
+    [EnumMember(Value = "elara")]
+    Elara,
+
+    [EnumMember(Value = "aurelia")]
+    Aurelia,
+
+    [EnumMember(Value = "hannah")]
+    Hannah,
+
+    [EnumMember(Value = "kit")]
+    Kit,
+
+    [EnumMember(Value = "alexis")]
+    Alexis,
+
+    [EnumMember(Value = "cliff")]
+    Cliff,
+
+    [EnumMember(Value = "sienna")]
+    Sienna,
+
+    [EnumMember(Value = "cole")]
+    Cole,
+
+    [EnumMember(Value = "brooke")]
+    Brooke,
+
+    [EnumMember(Value = "colin")]
+    Colin,
+
+    [EnumMember(Value = "gemma")]
+    Gemma,
+
+    [EnumMember(Value = "haley")]
+    Haley,
+
+    [EnumMember(Value = "heather")]
+    Heather,
+
+    [EnumMember(Value = "miles")]
+    Miles,
+
+    [EnumMember(Value = "sean")]
+    Sean,
+
+    [EnumMember(Value = "bree")]
+    Bree,
+
+    [EnumMember(Value = "brittany")]
+    Brittany,
+
+    [EnumMember(Value = "bruce")]
+    Bruce,
+
+    [EnumMember(Value = "conor")]
+    Conor,
+
+    [EnumMember(Value = "donovan")]
+    Donovan,
+
+    [EnumMember(Value = "drew")]
+    Drew,
+
+    [EnumMember(Value = "elise")]
+    Elise,
+
+    [EnumMember(Value = "jack")]
+    Jack,
+
+    [EnumMember(Value = "kai")]
+    Kai,
+
+    [EnumMember(Value = "kelsey")]
+    Kelsey,
+
+    [EnumMember(Value = "maeve")]
+    Maeve,
+
+    [EnumMember(Value = "marcelo")]
+    Marcelo,
+
+    [EnumMember(Value = "marcus")]
+    Marcus,
+
+    [EnumMember(Value = "meena")]
+    Meena,
+
+    [EnumMember(Value = "meghan")]
+    Meghan,
+
+    [EnumMember(Value = "naveen")]
+    Naveen,
+
+    [EnumMember(Value = "paige")]
+    Paige,
+
+    [EnumMember(Value = "priya")]
+    Priya,
+
+    [EnumMember(Value = "rufus")]
+    Rufus,
+
+    [EnumMember(Value = "sharon")]
+    Sharon,
+
+    [EnumMember(Value = "tanner")]
+    Tanner,
+
+    [EnumMember(Value = "wade")]
+    Wade,
+
+    [EnumMember(Value = "wes")]
+    Wes,
 }
 
 internal class FallbackDeepgramVoiceIdSerializer
@@ -235,6 +364,49 @@ internal class FallbackDeepgramVoiceIdSerializer
         { "aquila", FallbackDeepgramVoiceId.Aquila },
         { "selena", FallbackDeepgramVoiceId.Selena },
         { "javier", FallbackDeepgramVoiceId.Javier },
+        { "viktoria", FallbackDeepgramVoiceId.Viktoria },
+        { "kara", FallbackDeepgramVoiceId.Kara },
+        { "fabian", FallbackDeepgramVoiceId.Fabian },
+        { "julius", FallbackDeepgramVoiceId.Julius },
+        { "lara", FallbackDeepgramVoiceId.Lara },
+        { "elara", FallbackDeepgramVoiceId.Elara },
+        { "aurelia", FallbackDeepgramVoiceId.Aurelia },
+        { "hannah", FallbackDeepgramVoiceId.Hannah },
+        { "kit", FallbackDeepgramVoiceId.Kit },
+        { "alexis", FallbackDeepgramVoiceId.Alexis },
+        { "cliff", FallbackDeepgramVoiceId.Cliff },
+        { "sienna", FallbackDeepgramVoiceId.Sienna },
+        { "cole", FallbackDeepgramVoiceId.Cole },
+        { "brooke", FallbackDeepgramVoiceId.Brooke },
+        { "colin", FallbackDeepgramVoiceId.Colin },
+        { "gemma", FallbackDeepgramVoiceId.Gemma },
+        { "haley", FallbackDeepgramVoiceId.Haley },
+        { "heather", FallbackDeepgramVoiceId.Heather },
+        { "miles", FallbackDeepgramVoiceId.Miles },
+        { "sean", FallbackDeepgramVoiceId.Sean },
+        { "bree", FallbackDeepgramVoiceId.Bree },
+        { "brittany", FallbackDeepgramVoiceId.Brittany },
+        { "bruce", FallbackDeepgramVoiceId.Bruce },
+        { "conor", FallbackDeepgramVoiceId.Conor },
+        { "donovan", FallbackDeepgramVoiceId.Donovan },
+        { "drew", FallbackDeepgramVoiceId.Drew },
+        { "elise", FallbackDeepgramVoiceId.Elise },
+        { "jack", FallbackDeepgramVoiceId.Jack },
+        { "kai", FallbackDeepgramVoiceId.Kai },
+        { "kelsey", FallbackDeepgramVoiceId.Kelsey },
+        { "maeve", FallbackDeepgramVoiceId.Maeve },
+        { "marcelo", FallbackDeepgramVoiceId.Marcelo },
+        { "marcus", FallbackDeepgramVoiceId.Marcus },
+        { "meena", FallbackDeepgramVoiceId.Meena },
+        { "meghan", FallbackDeepgramVoiceId.Meghan },
+        { "naveen", FallbackDeepgramVoiceId.Naveen },
+        { "paige", FallbackDeepgramVoiceId.Paige },
+        { "priya", FallbackDeepgramVoiceId.Priya },
+        { "rufus", FallbackDeepgramVoiceId.Rufus },
+        { "sharon", FallbackDeepgramVoiceId.Sharon },
+        { "tanner", FallbackDeepgramVoiceId.Tanner },
+        { "wade", FallbackDeepgramVoiceId.Wade },
+        { "wes", FallbackDeepgramVoiceId.Wes },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -297,6 +469,49 @@ internal class FallbackDeepgramVoiceIdSerializer
         { FallbackDeepgramVoiceId.Aquila, "aquila" },
         { FallbackDeepgramVoiceId.Selena, "selena" },
         { FallbackDeepgramVoiceId.Javier, "javier" },
+        { FallbackDeepgramVoiceId.Viktoria, "viktoria" },
+        { FallbackDeepgramVoiceId.Kara, "kara" },
+        { FallbackDeepgramVoiceId.Fabian, "fabian" },
+        { FallbackDeepgramVoiceId.Julius, "julius" },
+        { FallbackDeepgramVoiceId.Lara, "lara" },
+        { FallbackDeepgramVoiceId.Elara, "elara" },
+        { FallbackDeepgramVoiceId.Aurelia, "aurelia" },
+        { FallbackDeepgramVoiceId.Hannah, "hannah" },
+        { FallbackDeepgramVoiceId.Kit, "kit" },
+        { FallbackDeepgramVoiceId.Alexis, "alexis" },
+        { FallbackDeepgramVoiceId.Cliff, "cliff" },
+        { FallbackDeepgramVoiceId.Sienna, "sienna" },
+        { FallbackDeepgramVoiceId.Cole, "cole" },
+        { FallbackDeepgramVoiceId.Brooke, "brooke" },
+        { FallbackDeepgramVoiceId.Colin, "colin" },
+        { FallbackDeepgramVoiceId.Gemma, "gemma" },
+        { FallbackDeepgramVoiceId.Haley, "haley" },
+        { FallbackDeepgramVoiceId.Heather, "heather" },
+        { FallbackDeepgramVoiceId.Miles, "miles" },
+        { FallbackDeepgramVoiceId.Sean, "sean" },
+        { FallbackDeepgramVoiceId.Bree, "bree" },
+        { FallbackDeepgramVoiceId.Brittany, "brittany" },
+        { FallbackDeepgramVoiceId.Bruce, "bruce" },
+        { FallbackDeepgramVoiceId.Conor, "conor" },
+        { FallbackDeepgramVoiceId.Donovan, "donovan" },
+        { FallbackDeepgramVoiceId.Drew, "drew" },
+        { FallbackDeepgramVoiceId.Elise, "elise" },
+        { FallbackDeepgramVoiceId.Jack, "jack" },
+        { FallbackDeepgramVoiceId.Kai, "kai" },
+        { FallbackDeepgramVoiceId.Kelsey, "kelsey" },
+        { FallbackDeepgramVoiceId.Maeve, "maeve" },
+        { FallbackDeepgramVoiceId.Marcelo, "marcelo" },
+        { FallbackDeepgramVoiceId.Marcus, "marcus" },
+        { FallbackDeepgramVoiceId.Meena, "meena" },
+        { FallbackDeepgramVoiceId.Meghan, "meghan" },
+        { FallbackDeepgramVoiceId.Naveen, "naveen" },
+        { FallbackDeepgramVoiceId.Paige, "paige" },
+        { FallbackDeepgramVoiceId.Priya, "priya" },
+        { FallbackDeepgramVoiceId.Rufus, "rufus" },
+        { FallbackDeepgramVoiceId.Sharon, "sharon" },
+        { FallbackDeepgramVoiceId.Tanner, "tanner" },
+        { FallbackDeepgramVoiceId.Wade, "wade" },
+        { FallbackDeepgramVoiceId.Wes, "wes" },
     };
 
     public override FallbackDeepgramVoiceId Read(

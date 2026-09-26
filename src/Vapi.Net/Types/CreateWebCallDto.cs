@@ -11,6 +11,20 @@ public record CreateWebCallDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// This is the assistant version to use for this call. Supported only with
+    /// direct `assistantId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
+    /// This is the squad version to use for this call. Supported only with
+    /// direct `squadId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("squadVersion")]
+    public string? SquadVersion { get; set; }
+
     [JsonPropertyName("roomDeleteOnUserLeaveEnabled")]
     public bool? RoomDeleteOnUserLeaveEnabled { get; set; }
 

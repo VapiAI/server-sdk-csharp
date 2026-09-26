@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update a line-chart insight, including its queries, formulas, grouping, time range, metadata, and name.
+/// </summary>
 [Serializable]
 public record UpdateLineInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -44,6 +47,9 @@ public record UpdateLineInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("metadata")]
     public LineInsightMetadata? Metadata { get; set; }
 
+    /// <summary>
+    /// The time range and interval used to aggregate the line-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRangeWithStep? TimeRange { get; set; }
 

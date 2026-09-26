@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for sending assistant call traces to a Langfuse project, including its public key, secret key, and host URL.
+/// </summary>
 [Serializable]
 public record CreateLangfuseCredentialDto : IJsonOnDeserialized
 {

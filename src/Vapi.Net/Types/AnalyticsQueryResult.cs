@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// The result of a named analytics query, including the evaluated time range and returned metric data.
+/// </summary>
 [Serializable]
 public record AnalyticsQueryResult : IJsonOnDeserialized
 {
