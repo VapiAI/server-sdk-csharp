@@ -4,12 +4,29 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved squad configuration that coordinates a group of assistants during a conversation. The first member starts the call, and member destinations control transfers between assistants.
+/// </summary>
 [Serializable]
 public record Squad : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// This is the latest version label (e.g. `v3`) of the squad in the version
+    /// history. `null` while the org is not yet onboarded to versioning, or for
+    /// squads that have not yet been published under it.
+    /// </summary>
+    [JsonPropertyName("latestVersion")]
+    public string? LatestVersion { get; set; }
+
+    /// <summary>
+    /// Read-only. Present only when a model this configuration uses is deprecated or retired in Vapi's model deprecation registry, judged on the day of the response. Each entry names the slot that carries the model (for example `model` or `model.fallbackModels[1]`), the deprecation and retirement dates as `YYYY-MM-DD` in UTC, and the recommended replacement model: the registry's replacement, followed through any further retirements as of the response date, so it names a model that is alive on that day. Ignored if sent back in a create or update request.
+    /// </summary>
+    [JsonPropertyName("modelDeprecations")]
+    public IEnumerable<ModelDeprecationNotice>? ModelDeprecations { get; set; }
 
     /// <summary>
     /// This is the name of the squad.

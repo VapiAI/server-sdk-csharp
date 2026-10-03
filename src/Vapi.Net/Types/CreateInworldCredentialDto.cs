@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating voice synthesis requests with Inworld.
+/// </summary>
 [Serializable]
 public record CreateInworldCredentialDto : IJsonOnDeserialized
 {

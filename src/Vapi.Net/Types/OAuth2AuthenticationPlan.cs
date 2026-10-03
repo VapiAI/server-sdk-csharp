@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Client-credentials configuration for obtaining an OAuth 2.0 access token used to authenticate outbound requests.
+/// </summary>
 [Serializable]
 public record OAuth2AuthenticationPlan : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record OAuth2AuthenticationPlan : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Selects OAuth 2.0 authentication.
+    /// </summary>
     [JsonPropertyName("type")]
     public required OAuth2AuthenticationPlanType Type { get; set; }
 

@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Cartesia voice controls for speed and emotion.
+/// </summary>
 [Serializable]
 public record CartesiaExperimentalControls : IJsonOnDeserialized
 {
@@ -12,9 +15,15 @@ public record CartesiaExperimentalControls : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Speaking-speed control expressed as a preset or a value from -1 to 1.
+    /// </summary>
     [JsonPropertyName("speed")]
     public OneOf<CartesiaSpeedControlZero, double>? Speed { get; set; }
 
+    /// <summary>
+    /// Emotion and intensity applied to the Cartesia voice.
+    /// </summary>
     [JsonPropertyName("emotion")]
     public CartesiaExperimentalControlsEmotion? Emotion { get; set; }
 

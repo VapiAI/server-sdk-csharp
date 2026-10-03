@@ -11,6 +11,9 @@ public record UpdateAzureOpenAiCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateAzureOpenAiCredentialDtoProvider? Provider { get; set; }
+
     [JsonPropertyName("region")]
     public UpdateAzureOpenAiCredentialDtoRegion? Region { get; set; }
 

@@ -33,6 +33,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("firstMessage")]
     public string? FirstMessage { get; set; }
 
+    /// <summary>
+    /// Set to `true` to allow the user to interrupt the assistant while it speaks the first message. Default is `false`.
+    /// </summary>
     [JsonPropertyName("firstMessageInterruptionsEnabled")]
     public bool? FirstMessageInterruptionsEnabled { get; set; }
 
@@ -161,6 +164,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("endCallPhrases")]
     public IEnumerable<string>? EndCallPhrases { get; set; }
 
+    /// <summary>
+    /// Compliance settings for the assistant, including HIPAA and PCI behavior, security filtering, and recording consent.
+    /// </summary>
     [JsonPropertyName("compliancePlan")]
     public CompliancePlan? CompliancePlan { get; set; }
 
@@ -251,6 +257,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
 
+    /// <summary>
+    /// Configuration for collecting and processing DTMF keypad input during calls.
+    /// </summary>
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }
 

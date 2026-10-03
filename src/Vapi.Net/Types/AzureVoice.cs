@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for synthesizing assistant speech with Azure, including voice selection, speed, chunking, caching, and fallback settings.
+/// </summary>
 [Serializable]
 public record AzureVoice : IJsonOnDeserialized
 {

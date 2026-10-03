@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A reusable tool that sends HTTP requests to a configured API and can authenticate, retry failures, and extract variables from responses.
+/// </summary>
 [Serializable]
 public record ApiRequestTool : IJsonOnDeserialized
 {
@@ -11,14 +14,26 @@ public record ApiRequestTool : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("latestVersion")]
+    public string? LatestVersion { get; set; }
+
     /// <summary>
-    /// These are the messages that will be spoken to the user as the tool is running.
-    ///
-    /// For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
+    /// Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates.
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
 
+    /// <summary>
+    /// This is the name of the tool. This will be passed to the model.
+    ///
+    /// Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// The HTTP method used for the API request.
+    /// </summary>
     [JsonPropertyName("method")]
     public required ApiRequestToolMethod Method { get; set; }
 
@@ -154,14 +169,6 @@ public record ApiRequestTool : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("rejectionPlan")]
     public ToolRejectionPlan? RejectionPlan { get; set; }
-
-    /// <summary>
-    /// This is the name of the tool. This will be passed to the model.
-    ///
-    /// Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
-    /// </summary>
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
 
     /// <summary>
     /// This is the description of the tool. This will be passed to the model.

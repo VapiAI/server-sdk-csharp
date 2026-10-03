@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Smallest AI, including voice and model selection, speed, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackSmallestAiVoice : IJsonOnDeserialized
 {

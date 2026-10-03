@@ -48,6 +48,12 @@ public record GetChatPaginatedDto : IJsonOnDeserialized
     public string? PreviousChatId { get; set; }
 
     /// <summary>
+    /// Filter by multiple chat IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonPropertyName("idAny")]
+    public string? IdAny { get; set; }
+
+    /// <summary>
     /// This is the page number to return. Defaults to 1.
     /// </summary>
     [JsonPropertyName("page")]
@@ -58,6 +64,12 @@ public record GetChatPaginatedDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("sortOrder")]
     public GetChatPaginatedDtoSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonPropertyName("sortBy")]
+    public GetChatPaginatedDtoSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

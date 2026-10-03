@@ -11,6 +11,9 @@ public record UpdateMakeCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateMakeCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// Team ID
     /// </summary>

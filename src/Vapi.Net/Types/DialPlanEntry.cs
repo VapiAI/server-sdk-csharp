@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Associates a phone number with the customers to dial through that number in a batch call plan.
+/// </summary>
 [Serializable]
 public record DialPlanEntry : IJsonOnDeserialized
 {

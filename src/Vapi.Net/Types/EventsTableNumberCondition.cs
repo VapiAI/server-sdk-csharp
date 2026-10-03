@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters event data by comparing a numeric field with a value.
+/// </summary>
 [Serializable]
 public record EventsTableNumberCondition : IJsonOnDeserialized
 {

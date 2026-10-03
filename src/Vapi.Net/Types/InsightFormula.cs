@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A formula used to calculate an insight from its query results, with an optional display name.
+/// </summary>
 [Serializable]
 public record InsightFormula : IJsonOnDeserialized
 {

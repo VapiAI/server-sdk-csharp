@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved insight returned by the API, including its visualization type, identity, organization, and lifecycle timestamps.
+/// </summary>
 [Serializable]
 public record Insight : IJsonOnDeserialized
 {
@@ -46,6 +49,12 @@ public record Insight : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Stable server-owned identifier for system-created insights.
+    /// </summary>
+    [JsonPropertyName("systemKey")]
+    public string? SystemKey { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

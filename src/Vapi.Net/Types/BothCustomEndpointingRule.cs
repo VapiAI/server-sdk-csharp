@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A custom endpointing rule that matches both the assistant's last message and the customer's current speech before applying a configured timeout.
+/// </summary>
 [Serializable]
 public record BothCustomEndpointingRule : IJsonOnDeserialized
 {
@@ -32,6 +35,9 @@ public record BothCustomEndpointingRule : IJsonOnDeserialized
     [JsonPropertyName("assistantRegexOptions")]
     public IEnumerable<RegexOption>? AssistantRegexOptions { get; set; }
 
+    /// <summary>
+    /// The regular expression pattern matched against the customer's speech.
+    /// </summary>
     [JsonPropertyName("customerRegex")]
     public required string CustomerRegex { get; set; }
 

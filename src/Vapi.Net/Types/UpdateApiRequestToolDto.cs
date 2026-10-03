@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update an API-request tool, including its URL, HTTP method, authentication, request data, retries, and response handling.
+/// </summary>
 [Serializable]
 public record UpdateApiRequestToolDto : IJsonOnDeserialized
 {
@@ -12,13 +15,22 @@ public record UpdateApiRequestToolDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// These are the messages that will be spoken to the user as the tool is running.
-    ///
-    /// For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
+    /// Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates.
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
 
+    /// <summary>
+    /// This is the name of the tool. This will be passed to the model.
+    ///
+    /// Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// The HTTP method used for the API request.
+    /// </summary>
     [JsonPropertyName("method")]
     public UpdateApiRequestToolDtoMethod? Method { get; set; }
 
@@ -130,14 +142,6 @@ public record UpdateApiRequestToolDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("rejectionPlan")]
     public ToolRejectionPlan? RejectionPlan { get; set; }
-
-    /// <summary>
-    /// This is the name of the tool. This will be passed to the model.
-    ///
-    /// Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
-    /// </summary>
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
 
     /// <summary>
     /// This is the description of the tool. This will be passed to the model.

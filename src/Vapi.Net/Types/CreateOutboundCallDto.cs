@@ -12,6 +12,26 @@ public record CreateOutboundCallDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// This is the assistant version to use for this call. Supported only with
+    /// direct `assistantId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
+    /// This is the squad version to use for this call. Supported only with
+    /// direct `squadId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("squadVersion")]
+    public string? SquadVersion { get; set; }
+
+    /// <summary>
+    /// This is the transport of the call.
+    /// </summary>
+    [JsonPropertyName("transport")]
+    public object? Transport { get; set; }
+
+    /// <summary>
     /// This is used to issue batch calls to multiple customers.
     ///
     /// Only relevant for `outboundPhoneCall`. To call a single customer, use `customer` instead.
@@ -30,12 +50,6 @@ public record CreateOutboundCallDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("schedulePlan")]
     public SchedulePlan? SchedulePlan { get; set; }
-
-    /// <summary>
-    /// This is the transport of the call.
-    /// </summary>
-    [JsonPropertyName("transport")]
-    public object? Transport { get; set; }
 
     /// <summary>
     /// This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.

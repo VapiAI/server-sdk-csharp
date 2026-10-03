@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A simulated system message in an evaluation conversation.
+/// </summary>
 [Serializable]
 public record ChatEvalSystemMessageMock : IJsonOnDeserialized
 {

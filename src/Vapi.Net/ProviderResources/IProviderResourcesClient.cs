@@ -2,6 +2,9 @@ namespace Vapi.Net;
 
 public partial interface IProviderResourcesClient
 {
+    /// <summary>
+    /// Returns a paginated list of provider resources for the authenticated organization. Filter pronunciation dictionaries by provider, resource ID, or creation and update timestamps.
+    /// </summary>
     WithRawResponseTask<ProviderResourcePaginatedResponse> ProviderResourceControllerGetProviderResourcesPaginatedAsync(
         ProviderResourceControllerGetProviderResourcesPaginatedRequestProvider provider,
         ProviderResourceControllerGetProviderResourcesPaginatedRequestResourceName resourceName,
@@ -10,6 +13,9 @@ public partial interface IProviderResourcesClient
         CancellationToken cancellationToken = default
     );
 
+    /// <summary>
+    /// Creates a pronunciation-dictionary resource for a supported provider, currently Cartesia or ElevenLabs.
+    /// </summary>
     WithRawResponseTask<ProviderResource> ProviderResourceControllerCreateProviderResourceAsync(
         ProviderResourceControllerCreateProviderResourceRequestProvider provider,
         ProviderResourceControllerCreateProviderResourceRequestResourceName resourceName,
@@ -18,6 +24,9 @@ public partial interface IProviderResourcesClient
         CancellationToken cancellationToken = default
     );
 
+    /// <summary>
+    /// Returns the provider resource identified by its Vapi resource ID.
+    /// </summary>
     WithRawResponseTask<ProviderResource> ProviderResourceControllerGetProviderResourceAsync(
         ProviderResourceControllerGetProviderResourceRequestProvider provider,
         ProviderResourceControllerGetProviderResourceRequestResourceName resourceName,
@@ -27,6 +36,9 @@ public partial interface IProviderResourcesClient
         CancellationToken cancellationToken = default
     );
 
+    /// <summary>
+    /// Deletes the provider resource identified by its Vapi resource ID.
+    /// </summary>
     WithRawResponseTask<ProviderResource> ProviderResourceControllerDeleteProviderResourceAsync(
         ProviderResourceControllerDeleteProviderResourceRequestProvider provider,
         ProviderResourceControllerDeleteProviderResourceRequestResourceName resourceName,
@@ -36,6 +48,9 @@ public partial interface IProviderResourcesClient
         CancellationToken cancellationToken = default
     );
 
+    /// <summary>
+    /// Updates the provider resource identified by its Vapi resource ID.
+    /// </summary>
     WithRawResponseTask<ProviderResource> ProviderResourceControllerUpdateProviderResourceAsync(
         ProviderResourceControllerUpdateProviderResourceRequestProvider provider,
         ProviderResourceControllerUpdateProviderResourceRequestResourceName resourceName,

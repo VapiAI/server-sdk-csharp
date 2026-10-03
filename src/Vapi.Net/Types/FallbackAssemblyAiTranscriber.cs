@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for transcribing speech with AssemblyAI, including language, streaming model, endpointing, and vocabulary.
+/// </summary>
 [Serializable]
 public record FallbackAssemblyAiTranscriber : IJsonOnDeserialized
 {
@@ -74,8 +77,46 @@ public record FallbackAssemblyAiTranscriber : IJsonOnDeserialized
     public bool? VadAssistedEndpointingEnabled { get; set; }
 
     /// <summary>
+    /// This is the transcription mode used by the Universal Pro speech models. Only applies to `universal-3-5-pro` and `universal-3-6-pro`.
+    ///
+    /// @default 'balanced'
+    /// </summary>
+    [JsonPropertyName("mode")]
+    public FallbackAssemblyAiTranscriberMode? Mode { get; set; }
+
+    /// <summary>
+    /// This is a prompt that provides additional context to the transcription model. Only applies to `universal-3-5-pro` and `universal-3-6-pro`.
+    /// </summary>
+    [JsonPropertyName("prompt")]
+    public string? Prompt { get; set; }
+
+    /// <summary>
+    /// This is context about the voice agent that guides the transcription model. Only applies to `universal-3-5-pro` and `universal-3-6-pro`.
+    /// </summary>
+    [JsonPropertyName("agentContext")]
+    public string? AgentContext { get; set; }
+
+    /// <summary>
+    /// When true, the text the assistant just spoke is sent to AssemblyAI as `agent_context` after every assistant turn, replacing the previous value, so the user's reply is transcribed in the context of the question it answers.
+    /// `agentContext` still seeds the first turn. Text longer than 1750 characters keeps its last 1750 characters. Turns the user interrupted are not sent when the interruption is detected by voice activity (the default, `stopSpeakingPlan.numWords: 0`).
+    /// Only applies to `universal-3-5-pro` and `universal-3-6-pro`.
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("agentContextAutoUpdateEnabled")]
+    public bool? AgentContextAutoUpdateEnabled { get; set; }
+
+    /// <summary>
+    /// These are language codes used to steer automatic language detection. Only applies to `universal-3-5-pro` and `universal-3-6-pro`.
+    /// `ur`, `ru`, `ko`, `ca`, `gl`, `ro`, `et`, `fa`, `yue`, `af`, `mr`, `zu`, `xh` and `nn` were added with `universal-3-6-pro`.
+    /// </summary>
+    [JsonPropertyName("languageCodes")]
+    public IEnumerable<FallbackAssemblyAiTranscriberLanguageCodesItem>? LanguageCodes { get; set; }
+
+    /// <summary>
     /// This is the speech model used for the streaming session.
-    /// Note: Keyterms prompting is not supported with multilingual streaming.
+    /// Keyterms prompting is supported on universal-streaming-english, universal-3-5-pro and universal-3-6-pro.
+    /// universal-3-6-pro is AssemblyAI's newest and most accurate voice-agent model.
     /// @default 'universal-streaming-english'
     /// </summary>
     [JsonPropertyName("speechModel")]
@@ -96,7 +137,7 @@ public record FallbackAssemblyAiTranscriber : IJsonOnDeserialized
     /// <summary>
     /// Keyterms prompting improves recognition accuracy for specific words and phrases.
     /// Can include up to 100 keyterms, each up to 50 characters.
-    /// Costs an additional $0.04/hour when enabled.
+    /// Costs an additional $0.04/hour on universal-streaming-english and is included at no extra cost on the Universal Pro models (universal-3-5-pro, universal-3-6-pro).
     /// </summary>
     [JsonPropertyName("keytermsPrompt")]
     public IEnumerable<string>? KeytermsPrompt { get; set; }

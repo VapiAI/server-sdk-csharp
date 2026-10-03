@@ -6,6 +6,21 @@ namespace Vapi.Net;
 [JsonConverter(typeof(EvalOpenAiModelModelSerializer))]
 public enum EvalOpenAiModelModel
 {
+    [EnumMember(Value = "gpt-5.6-sol")]
+    Gpt56Sol,
+
+    [EnumMember(Value = "gpt-5.6-terra")]
+    Gpt56Terra,
+
+    [EnumMember(Value = "gpt-5.6-luna")]
+    Gpt56Luna,
+
+    [EnumMember(Value = "gpt-5.5")]
+    Gpt55,
+
+    [EnumMember(Value = "chat-latest")]
+    ChatLatest,
+
     [EnumMember(Value = "gpt-5.4")]
     Gpt54,
 
@@ -128,6 +143,93 @@ public enum EvalOpenAiModelModel
 
     [EnumMember(Value = "gpt-3.5-turbo-0613")]
     Gpt35Turbo0613,
+
+    [EnumMember(Value = "gpt-5.6-luna:westus3")]
+    Gpt56LunaWestus3,
+
+    [EnumMember(Value = "gpt-5.6-terra:westus3")]
+    Gpt56TerraWestus3,
+
+    [EnumMember(Value = "gpt-5.6-sol:westus3")]
+    Gpt56SolWestus3,
+
+    [EnumMember(Value = "gpt-5.4:eastus2")]
+    Gpt54Eastus2,
+
+    [EnumMember(Value = "gpt-5.4:swedencentral")]
+    Gpt54Swedencentral,
+
+    [EnumMember(Value = "gpt-5.4-mini:eastus2")]
+    Gpt54MiniEastus2,
+
+    [EnumMember(Value = "gpt-5.4-mini:swedencentral")]
+    Gpt54MiniSwedencentral,
+
+    [EnumMember(Value = "gpt-5.4-nano:eastus2")]
+    Gpt54NanoEastus2,
+
+    [EnumMember(Value = "gpt-5.4-nano:swedencentral")]
+    Gpt54NanoSwedencentral,
+
+    [EnumMember(Value = "gpt-5.2:eastus2")]
+    Gpt52Eastus2,
+
+    [EnumMember(Value = "gpt-5.2:swedencentral")]
+    Gpt52Swedencentral,
+
+    [EnumMember(Value = "gpt-5.1:eastus2")]
+    Gpt51Eastus2,
+
+    [EnumMember(Value = "gpt-5.1:swedencentral")]
+    Gpt51Swedencentral,
+
+    [EnumMember(Value = "gpt-5:eastus2")]
+    Gpt5Eastus2,
+
+    [EnumMember(Value = "gpt-5:swedencentral")]
+    Gpt5Swedencentral,
+
+    [EnumMember(Value = "gpt-5:canadaeast")]
+    Gpt5Canadaeast,
+
+    [EnumMember(Value = "gpt-5:eastus")]
+    Gpt5Eastus,
+
+    [EnumMember(Value = "gpt-5:westeurope")]
+    Gpt5Westeurope,
+
+    [EnumMember(Value = "gpt-5:germanywestcentral")]
+    Gpt5Germanywestcentral,
+
+    [EnumMember(Value = "gpt-5:polandcentral")]
+    Gpt5Polandcentral,
+
+    [EnumMember(Value = "gpt-5:spaincentral")]
+    Gpt5Spaincentral,
+
+    [EnumMember(Value = "gpt-5-mini:eastus2")]
+    Gpt5MiniEastus2,
+
+    [EnumMember(Value = "gpt-5-mini:swedencentral")]
+    Gpt5MiniSwedencentral,
+
+    [EnumMember(Value = "gpt-5-mini:westeurope")]
+    Gpt5MiniWesteurope,
+
+    [EnumMember(Value = "gpt-5-mini:germanywestcentral")]
+    Gpt5MiniGermanywestcentral,
+
+    [EnumMember(Value = "gpt-5-mini:polandcentral")]
+    Gpt5MiniPolandcentral,
+
+    [EnumMember(Value = "gpt-5-mini:spaincentral")]
+    Gpt5MiniSpaincentral,
+
+    [EnumMember(Value = "gpt-5-nano:eastus2")]
+    Gpt5NanoEastus2,
+
+    [EnumMember(Value = "gpt-5-nano:swedencentral")]
+    Gpt5NanoSwedencentral,
 
     [EnumMember(Value = "gpt-4.1-2025-04-14:westus")]
     Gpt4120250414Westus,
@@ -344,6 +446,15 @@ public enum EvalOpenAiModelModel
 
     [EnumMember(Value = "gpt-3.5-turbo-1106:westus")]
     Gpt35Turbo1106Westus,
+
+    [EnumMember(Value = "gpt-4.1:australiaeast")]
+    Gpt41Australiaeast,
+
+    [EnumMember(Value = "gpt-4o:australiaeast")]
+    Gpt4OAustraliaeast,
+
+    [EnumMember(Value = "gpt-5.4-mini:australiaeast")]
+    Gpt54MiniAustraliaeast,
 }
 
 internal class EvalOpenAiModelModelSerializer
@@ -354,6 +465,11 @@ internal class EvalOpenAiModelModelSerializer
         EvalOpenAiModelModel
     > _stringToEnum = new()
     {
+        { "gpt-5.6-sol", EvalOpenAiModelModel.Gpt56Sol },
+        { "gpt-5.6-terra", EvalOpenAiModelModel.Gpt56Terra },
+        { "gpt-5.6-luna", EvalOpenAiModelModel.Gpt56Luna },
+        { "gpt-5.5", EvalOpenAiModelModel.Gpt55 },
+        { "chat-latest", EvalOpenAiModelModel.ChatLatest },
         { "gpt-5.4", EvalOpenAiModelModel.Gpt54 },
         { "gpt-5.4-mini", EvalOpenAiModelModel.Gpt54Mini },
         { "gpt-5.4-nano", EvalOpenAiModelModel.Gpt54Nano },
@@ -395,6 +511,35 @@ internal class EvalOpenAiModelModelSerializer
         { "gpt-3.5-turbo-1106", EvalOpenAiModelModel.Gpt35Turbo1106 },
         { "gpt-3.5-turbo-16k", EvalOpenAiModelModel.Gpt35Turbo16K },
         { "gpt-3.5-turbo-0613", EvalOpenAiModelModel.Gpt35Turbo0613 },
+        { "gpt-5.6-luna:westus3", EvalOpenAiModelModel.Gpt56LunaWestus3 },
+        { "gpt-5.6-terra:westus3", EvalOpenAiModelModel.Gpt56TerraWestus3 },
+        { "gpt-5.6-sol:westus3", EvalOpenAiModelModel.Gpt56SolWestus3 },
+        { "gpt-5.4:eastus2", EvalOpenAiModelModel.Gpt54Eastus2 },
+        { "gpt-5.4:swedencentral", EvalOpenAiModelModel.Gpt54Swedencentral },
+        { "gpt-5.4-mini:eastus2", EvalOpenAiModelModel.Gpt54MiniEastus2 },
+        { "gpt-5.4-mini:swedencentral", EvalOpenAiModelModel.Gpt54MiniSwedencentral },
+        { "gpt-5.4-nano:eastus2", EvalOpenAiModelModel.Gpt54NanoEastus2 },
+        { "gpt-5.4-nano:swedencentral", EvalOpenAiModelModel.Gpt54NanoSwedencentral },
+        { "gpt-5.2:eastus2", EvalOpenAiModelModel.Gpt52Eastus2 },
+        { "gpt-5.2:swedencentral", EvalOpenAiModelModel.Gpt52Swedencentral },
+        { "gpt-5.1:eastus2", EvalOpenAiModelModel.Gpt51Eastus2 },
+        { "gpt-5.1:swedencentral", EvalOpenAiModelModel.Gpt51Swedencentral },
+        { "gpt-5:eastus2", EvalOpenAiModelModel.Gpt5Eastus2 },
+        { "gpt-5:swedencentral", EvalOpenAiModelModel.Gpt5Swedencentral },
+        { "gpt-5:canadaeast", EvalOpenAiModelModel.Gpt5Canadaeast },
+        { "gpt-5:eastus", EvalOpenAiModelModel.Gpt5Eastus },
+        { "gpt-5:westeurope", EvalOpenAiModelModel.Gpt5Westeurope },
+        { "gpt-5:germanywestcentral", EvalOpenAiModelModel.Gpt5Germanywestcentral },
+        { "gpt-5:polandcentral", EvalOpenAiModelModel.Gpt5Polandcentral },
+        { "gpt-5:spaincentral", EvalOpenAiModelModel.Gpt5Spaincentral },
+        { "gpt-5-mini:eastus2", EvalOpenAiModelModel.Gpt5MiniEastus2 },
+        { "gpt-5-mini:swedencentral", EvalOpenAiModelModel.Gpt5MiniSwedencentral },
+        { "gpt-5-mini:westeurope", EvalOpenAiModelModel.Gpt5MiniWesteurope },
+        { "gpt-5-mini:germanywestcentral", EvalOpenAiModelModel.Gpt5MiniGermanywestcentral },
+        { "gpt-5-mini:polandcentral", EvalOpenAiModelModel.Gpt5MiniPolandcentral },
+        { "gpt-5-mini:spaincentral", EvalOpenAiModelModel.Gpt5MiniSpaincentral },
+        { "gpt-5-nano:eastus2", EvalOpenAiModelModel.Gpt5NanoEastus2 },
+        { "gpt-5-nano:swedencentral", EvalOpenAiModelModel.Gpt5NanoSwedencentral },
         { "gpt-4.1-2025-04-14:westus", EvalOpenAiModelModel.Gpt4120250414Westus },
         { "gpt-4.1-2025-04-14:eastus2", EvalOpenAiModelModel.Gpt4120250414Eastus2 },
         { "gpt-4.1-2025-04-14:eastus", EvalOpenAiModelModel.Gpt4120250414Eastus },
@@ -500,6 +645,9 @@ internal class EvalOpenAiModelModelSerializer
         { "gpt-3.5-turbo-0125:southcentralus", EvalOpenAiModelModel.Gpt35Turbo0125Southcentralus },
         { "gpt-3.5-turbo-1106:canadaeast", EvalOpenAiModelModel.Gpt35Turbo1106Canadaeast },
         { "gpt-3.5-turbo-1106:westus", EvalOpenAiModelModel.Gpt35Turbo1106Westus },
+        { "gpt-4.1:australiaeast", EvalOpenAiModelModel.Gpt41Australiaeast },
+        { "gpt-4o:australiaeast", EvalOpenAiModelModel.Gpt4OAustraliaeast },
+        { "gpt-5.4-mini:australiaeast", EvalOpenAiModelModel.Gpt54MiniAustraliaeast },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -507,6 +655,11 @@ internal class EvalOpenAiModelModelSerializer
         string
     > _enumToString = new()
     {
+        { EvalOpenAiModelModel.Gpt56Sol, "gpt-5.6-sol" },
+        { EvalOpenAiModelModel.Gpt56Terra, "gpt-5.6-terra" },
+        { EvalOpenAiModelModel.Gpt56Luna, "gpt-5.6-luna" },
+        { EvalOpenAiModelModel.Gpt55, "gpt-5.5" },
+        { EvalOpenAiModelModel.ChatLatest, "chat-latest" },
         { EvalOpenAiModelModel.Gpt54, "gpt-5.4" },
         { EvalOpenAiModelModel.Gpt54Mini, "gpt-5.4-mini" },
         { EvalOpenAiModelModel.Gpt54Nano, "gpt-5.4-nano" },
@@ -548,6 +701,35 @@ internal class EvalOpenAiModelModelSerializer
         { EvalOpenAiModelModel.Gpt35Turbo1106, "gpt-3.5-turbo-1106" },
         { EvalOpenAiModelModel.Gpt35Turbo16K, "gpt-3.5-turbo-16k" },
         { EvalOpenAiModelModel.Gpt35Turbo0613, "gpt-3.5-turbo-0613" },
+        { EvalOpenAiModelModel.Gpt56LunaWestus3, "gpt-5.6-luna:westus3" },
+        { EvalOpenAiModelModel.Gpt56TerraWestus3, "gpt-5.6-terra:westus3" },
+        { EvalOpenAiModelModel.Gpt56SolWestus3, "gpt-5.6-sol:westus3" },
+        { EvalOpenAiModelModel.Gpt54Eastus2, "gpt-5.4:eastus2" },
+        { EvalOpenAiModelModel.Gpt54Swedencentral, "gpt-5.4:swedencentral" },
+        { EvalOpenAiModelModel.Gpt54MiniEastus2, "gpt-5.4-mini:eastus2" },
+        { EvalOpenAiModelModel.Gpt54MiniSwedencentral, "gpt-5.4-mini:swedencentral" },
+        { EvalOpenAiModelModel.Gpt54NanoEastus2, "gpt-5.4-nano:eastus2" },
+        { EvalOpenAiModelModel.Gpt54NanoSwedencentral, "gpt-5.4-nano:swedencentral" },
+        { EvalOpenAiModelModel.Gpt52Eastus2, "gpt-5.2:eastus2" },
+        { EvalOpenAiModelModel.Gpt52Swedencentral, "gpt-5.2:swedencentral" },
+        { EvalOpenAiModelModel.Gpt51Eastus2, "gpt-5.1:eastus2" },
+        { EvalOpenAiModelModel.Gpt51Swedencentral, "gpt-5.1:swedencentral" },
+        { EvalOpenAiModelModel.Gpt5Eastus2, "gpt-5:eastus2" },
+        { EvalOpenAiModelModel.Gpt5Swedencentral, "gpt-5:swedencentral" },
+        { EvalOpenAiModelModel.Gpt5Canadaeast, "gpt-5:canadaeast" },
+        { EvalOpenAiModelModel.Gpt5Eastus, "gpt-5:eastus" },
+        { EvalOpenAiModelModel.Gpt5Westeurope, "gpt-5:westeurope" },
+        { EvalOpenAiModelModel.Gpt5Germanywestcentral, "gpt-5:germanywestcentral" },
+        { EvalOpenAiModelModel.Gpt5Polandcentral, "gpt-5:polandcentral" },
+        { EvalOpenAiModelModel.Gpt5Spaincentral, "gpt-5:spaincentral" },
+        { EvalOpenAiModelModel.Gpt5MiniEastus2, "gpt-5-mini:eastus2" },
+        { EvalOpenAiModelModel.Gpt5MiniSwedencentral, "gpt-5-mini:swedencentral" },
+        { EvalOpenAiModelModel.Gpt5MiniWesteurope, "gpt-5-mini:westeurope" },
+        { EvalOpenAiModelModel.Gpt5MiniGermanywestcentral, "gpt-5-mini:germanywestcentral" },
+        { EvalOpenAiModelModel.Gpt5MiniPolandcentral, "gpt-5-mini:polandcentral" },
+        { EvalOpenAiModelModel.Gpt5MiniSpaincentral, "gpt-5-mini:spaincentral" },
+        { EvalOpenAiModelModel.Gpt5NanoEastus2, "gpt-5-nano:eastus2" },
+        { EvalOpenAiModelModel.Gpt5NanoSwedencentral, "gpt-5-nano:swedencentral" },
         { EvalOpenAiModelModel.Gpt4120250414Westus, "gpt-4.1-2025-04-14:westus" },
         { EvalOpenAiModelModel.Gpt4120250414Eastus2, "gpt-4.1-2025-04-14:eastus2" },
         { EvalOpenAiModelModel.Gpt4120250414Eastus, "gpt-4.1-2025-04-14:eastus" },
@@ -653,6 +835,9 @@ internal class EvalOpenAiModelModelSerializer
         { EvalOpenAiModelModel.Gpt35Turbo0125Southcentralus, "gpt-3.5-turbo-0125:southcentralus" },
         { EvalOpenAiModelModel.Gpt35Turbo1106Canadaeast, "gpt-3.5-turbo-1106:canadaeast" },
         { EvalOpenAiModelModel.Gpt35Turbo1106Westus, "gpt-3.5-turbo-1106:westus" },
+        { EvalOpenAiModelModel.Gpt41Australiaeast, "gpt-4.1:australiaeast" },
+        { EvalOpenAiModelModel.Gpt4OAustraliaeast, "gpt-4o:australiaeast" },
+        { EvalOpenAiModelModel.Gpt54MiniAustraliaeast, "gpt-5.4-mini:australiaeast" },
     };
 
     public override EvalOpenAiModelModel Read(

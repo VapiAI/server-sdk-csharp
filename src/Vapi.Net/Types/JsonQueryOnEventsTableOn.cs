@@ -171,6 +171,9 @@ public enum JsonQueryOnEventsTableOn
     [EnumMember(Value = "assistant.model.requestAttemptFailed")]
     AssistantModelRequestAttemptFailed,
 
+    [EnumMember(Value = "assistant.knowledgeBase.requestSucceeded")]
+    AssistantKnowledgeBaseRequestSucceeded,
+
     [EnumMember(Value = "assistant.model.connectionOpened")]
     AssistantModelConnectionOpened,
 
@@ -188,6 +191,9 @@ public enum JsonQueryOnEventsTableOn
 
     [EnumMember(Value = "assistant.model.responseFailed")]
     AssistantModelResponseFailed,
+
+    [EnumMember(Value = "assistant.model.responseEmpty")]
+    AssistantModelResponseEmpty,
 
     [EnumMember(Value = "assistant.model.toolCallsReceived")]
     AssistantModelToolCallsReceived,
@@ -258,8 +264,20 @@ public enum JsonQueryOnEventsTableOn
     [EnumMember(Value = "assistant.transcriber.languageSwitched")]
     AssistantTranscriberLanguageSwitched,
 
+    [EnumMember(Value = "assistant.analysis.structuredOutputRequest")]
+    AssistantAnalysisStructuredOutputRequest,
+
+    [EnumMember(Value = "assistant.analysis.structuredOutputResponse")]
+    AssistantAnalysisStructuredOutputResponse,
+
+    [EnumMember(Value = "assistant.analysis.structuredOutputError")]
+    AssistantAnalysisStructuredOutputError,
+
     [EnumMember(Value = "assistant.analysis.structuredOutputGenerated")]
     AssistantAnalysisStructuredOutputGenerated,
+
+    [EnumMember(Value = "assistant.analysis.structuredOutputSkipped")]
+    AssistantAnalysisStructuredOutputSkipped,
 
     [EnumMember(Value = "pipeline.turnStarted")]
     PipelineTurnStarted,
@@ -386,6 +404,10 @@ internal class JsonQueryOnEventsTableOnSerializer
             JsonQueryOnEventsTableOn.AssistantModelRequestAttemptFailed
         },
         {
+            "assistant.knowledgeBase.requestSucceeded",
+            JsonQueryOnEventsTableOn.AssistantKnowledgeBaseRequestSucceeded
+        },
+        {
             "assistant.model.connectionOpened",
             JsonQueryOnEventsTableOn.AssistantModelConnectionOpened
         },
@@ -403,6 +425,7 @@ internal class JsonQueryOnEventsTableOnSerializer
             JsonQueryOnEventsTableOn.AssistantModelResponseSucceeded
         },
         { "assistant.model.responseFailed", JsonQueryOnEventsTableOn.AssistantModelResponseFailed },
+        { "assistant.model.responseEmpty", JsonQueryOnEventsTableOn.AssistantModelResponseEmpty },
         {
             "assistant.model.toolCallsReceived",
             JsonQueryOnEventsTableOn.AssistantModelToolCallsReceived
@@ -469,8 +492,24 @@ internal class JsonQueryOnEventsTableOnSerializer
             JsonQueryOnEventsTableOn.AssistantTranscriberLanguageSwitched
         },
         {
+            "assistant.analysis.structuredOutputRequest",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputRequest
+        },
+        {
+            "assistant.analysis.structuredOutputResponse",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputResponse
+        },
+        {
+            "assistant.analysis.structuredOutputError",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputError
+        },
+        {
             "assistant.analysis.structuredOutputGenerated",
             JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputGenerated
+        },
+        {
+            "assistant.analysis.structuredOutputSkipped",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputSkipped
         },
         { "pipeline.turnStarted", JsonQueryOnEventsTableOn.PipelineTurnStarted },
         { "pipeline.cleared", JsonQueryOnEventsTableOn.PipelineCleared },
@@ -580,6 +619,10 @@ internal class JsonQueryOnEventsTableOnSerializer
             "assistant.model.requestAttemptFailed"
         },
         {
+            JsonQueryOnEventsTableOn.AssistantKnowledgeBaseRequestSucceeded,
+            "assistant.knowledgeBase.requestSucceeded"
+        },
+        {
             JsonQueryOnEventsTableOn.AssistantModelConnectionOpened,
             "assistant.model.connectionOpened"
         },
@@ -597,6 +640,7 @@ internal class JsonQueryOnEventsTableOnSerializer
             "assistant.model.responseSucceeded"
         },
         { JsonQueryOnEventsTableOn.AssistantModelResponseFailed, "assistant.model.responseFailed" },
+        { JsonQueryOnEventsTableOn.AssistantModelResponseEmpty, "assistant.model.responseEmpty" },
         {
             JsonQueryOnEventsTableOn.AssistantModelToolCallsReceived,
             "assistant.model.toolCallsReceived"
@@ -663,8 +707,24 @@ internal class JsonQueryOnEventsTableOnSerializer
             "assistant.transcriber.languageSwitched"
         },
         {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputRequest,
+            "assistant.analysis.structuredOutputRequest"
+        },
+        {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputResponse,
+            "assistant.analysis.structuredOutputResponse"
+        },
+        {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputError,
+            "assistant.analysis.structuredOutputError"
+        },
+        {
             JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputGenerated,
             "assistant.analysis.structuredOutputGenerated"
+        },
+        {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputSkipped,
+            "assistant.analysis.structuredOutputSkipped"
         },
         { JsonQueryOnEventsTableOn.PipelineTurnStarted, "pipeline.turnStarted" },
         { JsonQueryOnEventsTableOn.PipelineCleared, "pipeline.cleared" },

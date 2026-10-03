@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech through a custom server, including voice selection, server connection, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackCustomVoice : IJsonOnDeserialized
 {
