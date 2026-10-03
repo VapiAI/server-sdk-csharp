@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Call recording locations, including stereo, video, and separated mono recording URLs.
+/// </summary>
 [Serializable]
 public record Recording : IJsonOnDeserialized
 {

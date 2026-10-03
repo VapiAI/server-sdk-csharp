@@ -11,6 +11,9 @@ public enum DeepgramVoiceModel
 
     [EnumMember(Value = "aura-2")]
     Aura2,
+
+    [EnumMember(Value = "flux")]
+    Flux,
 }
 
 internal class DeepgramVoiceModelSerializer
@@ -23,6 +26,7 @@ internal class DeepgramVoiceModelSerializer
     {
         { "aura", DeepgramVoiceModel.Aura },
         { "aura-2", DeepgramVoiceModel.Aura2 },
+        { "flux", DeepgramVoiceModel.Flux },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +36,7 @@ internal class DeepgramVoiceModelSerializer
     {
         { DeepgramVoiceModel.Aura, "aura" },
         { DeepgramVoiceModel.Aura2, "aura-2" },
+        { DeepgramVoiceModel.Flux, "flux" },
     };
 
     public override DeepgramVoiceModel Read(

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating requests to a custom language model with an API key or OAuth 2.0 authentication plan.
+/// </summary>
 [Serializable]
 public record CreateCustomLlmCredentialDto : IJsonOnDeserialized
 {

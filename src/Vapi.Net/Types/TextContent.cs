@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Localized text content used as a language-specific message variant.
+/// </summary>
 [Serializable]
 public record TextContent : IJsonOnDeserialized
 {
@@ -11,12 +14,21 @@ public record TextContent : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Selects text as the content type.
+    /// </summary>
     [JsonPropertyName("type")]
     public required TextContentType Type { get; set; }
 
+    /// <summary>
+    /// Text spoken or displayed for this content variant.
+    /// </summary>
     [JsonPropertyName("text")]
     public required string Text { get; set; }
 
+    /// <summary>
+    /// Language code associated with this text variant.
+    /// </summary>
     [JsonPropertyName("language")]
     public required TextContentLanguage Language { get; set; }
 

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for connecting Vapi to a bring-your-own SIP trunk or carrier, including gateways, outbound authentication, number handling, and optional session border controller routing.
+/// </summary>
 [Serializable]
 public record CreateByoSipTrunkCredentialDto : IJsonOnDeserialized
 {
@@ -45,12 +48,6 @@ public record CreateByoSipTrunkCredentialDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("sipDiversionHeader")]
     public string? SipDiversionHeader { get; set; }
-
-    /// <summary>
-    /// This is an advanced configuration for enterprise deployments. This uses the onprem SBC to trunk into the SIP trunk's `gateways`, rather than the managed SBC provided by Vapi.
-    /// </summary>
-    [JsonPropertyName("sbcConfiguration")]
-    public SbcConfiguration? SbcConfiguration { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A message spoken by the assistant with optional language-specific content variants.
+/// </summary>
 [Serializable]
 public record CustomMessage : IJsonOnDeserialized
 {

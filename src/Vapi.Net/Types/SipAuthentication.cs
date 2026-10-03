@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Realm, username, and password used to authenticate SIP requests.
+/// </summary>
 [Serializable]
 public record SipAuthentication : IJsonOnDeserialized
 {
@@ -12,7 +15,7 @@ public record SipAuthentication : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This will be expected in the `realm` field of the `authorization` header of the SIP INVITE. Defaults to sip.vapi.ai.
+    /// This will be expected in the `realm` field of the `authorization` header of the SIP INVITE. Defaults to the SIP realm of the Vapi region serving the request (e.g. `sip.vapi.ai` for US, `sip.eu.vapi.ai` for EU).
     /// </summary>
     [JsonPropertyName("realm")]
     public string? Realm { get; set; }

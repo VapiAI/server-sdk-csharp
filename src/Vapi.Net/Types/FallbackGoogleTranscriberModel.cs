@@ -6,6 +6,12 @@ namespace Vapi.Net;
 [JsonConverter(typeof(FallbackGoogleTranscriberModelSerializer))]
 public enum FallbackGoogleTranscriberModel
 {
+    [EnumMember(Value = "gemini-3.5-flash")]
+    Gemini35Flash,
+
+    [EnumMember(Value = "gemini-3.1-flash-lite")]
+    Gemini31FlashLite,
+
     [EnumMember(Value = "gemini-3-flash-preview")]
     Gemini3FlashPreview,
 
@@ -60,6 +66,8 @@ internal class FallbackGoogleTranscriberModelSerializer
         FallbackGoogleTranscriberModel
     > _stringToEnum = new()
     {
+        { "gemini-3.5-flash", FallbackGoogleTranscriberModel.Gemini35Flash },
+        { "gemini-3.1-flash-lite", FallbackGoogleTranscriberModel.Gemini31FlashLite },
         { "gemini-3-flash-preview", FallbackGoogleTranscriberModel.Gemini3FlashPreview },
         { "gemini-2.5-pro", FallbackGoogleTranscriberModel.Gemini25Pro },
         { "gemini-2.5-flash", FallbackGoogleTranscriberModel.Gemini25Flash },
@@ -88,6 +96,8 @@ internal class FallbackGoogleTranscriberModelSerializer
         string
     > _enumToString = new()
     {
+        { FallbackGoogleTranscriberModel.Gemini35Flash, "gemini-3.5-flash" },
+        { FallbackGoogleTranscriberModel.Gemini31FlashLite, "gemini-3.1-flash-lite" },
         { FallbackGoogleTranscriberModel.Gemini3FlashPreview, "gemini-3-flash-preview" },
         { FallbackGoogleTranscriberModel.Gemini25Pro, "gemini-2.5-pro" },
         { FallbackGoogleTranscriberModel.Gemini25Flash, "gemini-2.5-flash" },

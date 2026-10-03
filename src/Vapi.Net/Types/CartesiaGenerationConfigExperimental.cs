@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Cartesia Sonic 3 generation controls, including accent localization.
+/// </summary>
 [Serializable]
 public record CartesiaGenerationConfigExperimental : IJsonOnDeserialized
 {

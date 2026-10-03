@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Reusable custom credentials for authenticating outbound requests, with optional public-key encryption for sensitive request data.
+/// </summary>
 [Serializable]
 public record CreateCustomCredentialDto : IJsonOnDeserialized
 {

@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved bar-chart insight containing its call-data queries, formulas, grouping, stepped time range, metadata, and lifecycle information.
+/// </summary>
 [Serializable]
 public record BarInsight : IJsonOnDeserialized
 {
@@ -44,6 +47,9 @@ public record BarInsight : IJsonOnDeserialized
     [JsonPropertyName("metadata")]
     public BarInsightMetadata? Metadata { get; set; }
 
+    /// <summary>
+    /// The time range and interval used to aggregate the bar-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRangeWithStep? TimeRange { get; set; }
 
@@ -99,6 +105,12 @@ public record BarInsight : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Stable server-owned identifier for system-created insights.
+    /// </summary>
+    [JsonPropertyName("systemKey")]
+    public string? SystemKey { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

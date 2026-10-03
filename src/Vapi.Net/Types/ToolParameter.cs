@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Static key-value parameter added to a tool request, with Liquid template support for string values.
+/// </summary>
 [Serializable]
 public record ToolParameter : IJsonOnDeserialized
 {

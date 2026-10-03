@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Matches an incoming caller's phone number against one or more prefixes before a ringing hook runs.
+/// </summary>
 [Serializable]
 public record PhoneNumberCallRingingHookFilter : IJsonOnDeserialized
 {

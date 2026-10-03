@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Model, voice, transcription, endpointing, and total latency measurements for a conversation turn.
+/// </summary>
 [Serializable]
 public record TurnLatency : IJsonOnDeserialized
 {

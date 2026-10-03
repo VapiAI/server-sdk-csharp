@@ -13,10 +13,15 @@ public partial class FilesClient : IFilesClient
     }
 
     private async Task<WithRawResponse<IEnumerable<File>>> ListAsyncCore(
+        ListFilesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("purpose", request.Purpose)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -29,6 +34,7 @@ public partial class FilesClient : IFilesClient
                 {
                     Method = HttpMethod.Get,
                     Path = "file",
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -96,6 +102,8 @@ public partial class FilesClient : IFilesClient
             Options = options,
         };
         multipartFormRequest_.AddFileParameterPart("file", request.File);
+        multipartFormRequest_.AddJsonPart("purpose", request.Purpose);
+        multipartFormRequest_.AddStringPart("metadata", request.Metadata);
         var response = await _client
             .SendRequestAsync(multipartFormRequest_, cancellationToken)
             .ConfigureAwait(false);
@@ -352,16 +360,23 @@ public partial class FilesClient : IFilesClient
         }
     }
 
+    /// <summary>
+    /// Returns files uploaded to the authenticated organization.
+    /// </summary>
     public WithRawResponseTask<IEnumerable<File>> ListAsync(
+        ListFilesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<IEnumerable<File>>(
-            ListAsyncCore(options, cancellationToken)
+            ListAsyncCore(request, options, cancellationToken)
         );
     }
 
+    /// <summary>
+    /// Uploads a file for use with a Vapi knowledge base.
+    /// </summary>
     public WithRawResponseTask<File> CreateAsync(
         CreateFileDto request,
         RequestOptions? options = null,
@@ -371,6 +386,9 @@ public partial class FilesClient : IFilesClient
         return new WithRawResponseTask<File>(CreateAsyncCore(request, options, cancellationToken));
     }
 
+    /// <summary>
+    /// Returns the uploaded file identified by its ID.
+    /// </summary>
     public WithRawResponseTask<File> GetAsync(
         string id,
         GetFilesRequest request,
@@ -381,6 +399,9 @@ public partial class FilesClient : IFilesClient
         return new WithRawResponseTask<File>(GetAsyncCore(id, request, options, cancellationToken));
     }
 
+    /// <summary>
+    /// Deletes the uploaded file identified by its ID.
+    /// </summary>
     public WithRawResponseTask<File> DeleteAsync(
         string id,
         DeleteFilesRequest request,
@@ -393,6 +414,9 @@ public partial class FilesClient : IFilesClient
         );
     }
 
+    /// <summary>
+    /// Updates the name of the uploaded file identified by its ID.
+    /// </summary>
     public WithRawResponseTask<File> UpdateAsync(
         string id,
         UpdateFileDto request,

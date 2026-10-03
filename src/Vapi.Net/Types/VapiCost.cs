@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Vapi platform cost for a call, including cost subtype, billable minutes, and amount.
+/// </summary>
 [Serializable]
 public record VapiCost : IJsonOnDeserialized
 {

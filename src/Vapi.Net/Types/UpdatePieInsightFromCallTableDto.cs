@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update a pie-chart insight, including its queries, formulas, grouping, time range, and name.
+/// </summary>
 [Serializable]
 public record UpdatePieInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record UpdatePieInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("formulas")]
     public IEnumerable<InsightFormula>? Formulas { get; set; }
 
+    /// <summary>
+    /// The time range used to query the pie-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRange? TimeRange { get; set; }
 
