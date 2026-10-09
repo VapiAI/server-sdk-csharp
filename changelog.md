@@ -1,3 +1,245 @@
+## [3.0.0] - 2026-10-09
+### Breaking Changes
+- **`CreateCampaignDto`** has been removed; callers that construct or reference this type must migrate to the updated campaign creation API.
+- **`CreateTrieveKnowledgeBaseDto`** has been removed; update any code that instantiates or references this record.
+- **`FallbackGladiaTranscriberLanguages`** enum has been removed; replace usages with the current transcriber language type.
+- **`FallbackVapiVoiceVoiceId`** enum has been removed; replace usages with the current Vapi voice ID type.
+- **`ByoSipTrunkCredential.SbcConfiguration`** property has been removed; remove any references to this field. Additionally, `EvalGroqModelModel.MetaLlamaLlama4Maverick17B128EInstruct` has been removed from the enum.
+
+### Breaking Changes
+- **`GladiaTranscriberLanguages`** enum has been removed; update any references to this type and its values.
+- **`VapiVoiceVoiceId`** enum has been removed; update any references to this type and its values.
+- **`TrieveKnowledgeBase`**, **`TrieveKnowledgeBaseChunkPlan`**, **`TrieveKnowledgeBaseSearchPlan`**, and **`UpdateTrieveKnowledgeBaseDto`** records have been removed; remove or replace any usages of these types.
+- **`GroqModelModel.MetaLlamaLlama4Maverick17B128EInstruct`** enum value has been removed; update any switch expressions or assignments referencing this value.
+
+### Added
+- **`CreateCallDto.AssistantVersion`** and **`CreateCallDto.SquadVersion`** — new optional properties to pin a call to a specific assistant or squad version.
+- **`CreateCallDto.Transport`** — new optional property to specify the transport configuration for a call.
+
+### Breaking Changes
+- **`ICampaignsClient.CampaignControllerUpdateAsync`** now accepts `CampaignControllerUpdateRequest` instead of `UpdateCampaignDto`; replace `UpdateCampaignDto` with `CampaignControllerUpdateRequest` at all call sites.
+- **`IFilesClient.ListAsync`** now requires a `ListFilesRequest` parameter; pass a `new ListFilesRequest()` (with optional `Purpose` filter) at all call sites.
+
+### Added
+- **Six new V2 campaign methods** on `ICampaignsClient`: `CampaignControllerFindAllV2Async`, `CampaignControllerCreateV2Async`, `CampaignControllerFindOneV2Async`, `CampaignControllerRemoveV2Async`, `CampaignControllerUpdateV2Async`, and `CampaignControllerGetCampaignV2ContactsAsync`.
+- **`XaiModel.ToolRefs`** — new optional property (`IEnumerable<ToolRef>?`) for version-pinned tool references; when the same `toolId` appears in both `ToolIds` and `ToolRefs`, the `ToolRefs` pin takes precedence.
+- **`sortBy` query parameter** added to list/paginated endpoints across `ChatsClient`, `EvalClient`, `InsightClient`, `ObservabilityScorecardClient`, `PhoneNumbersClient`, `ProviderResourcesClient`, and `SessionsClient`.
+
+### Changed
+- **`EvalClient`** now throws a typed `ForbiddenError` exception when the API returns HTTP 403, instead of a generic `VapiClientApiException`.
+
+### Breaking Changes
+- **`IStructuredOutputsClient.StructuredOutputControllerRunAsync`** now returns `WithRawResponseTask<OneOf<StructuredOutputRerunResponse, StructuredOutputControllerRunResponseOne>>` instead of `WithRawResponseTask<StructuredOutput>`; update call sites to handle the discriminated union result.
+- **`CerebrasModelModel.Llama3370B`** enum value has been removed; replace any references with a supported model value.
+
+### Added
+- **`CartesiaTranscriberModel.Ink2`** — new `"ink-2"` transcriber model option for Cartesia.
+- **`ListSquadsRequest.IdAny`** — new filter parameter to retrieve squads matching any of the specified IDs.
+
+### Changed
+- XML doc comments added or updated across all tool DTO types, `BackoffPlan`, `CallHookCustomerSpeechTimeout`, and `IStructuredOutputsClient` interface methods to improve IntelliSense documentation.
+
+### Added
+- **`FallbackCartesiaTranscriberModel.Ink2`** — new `ink-2` model value is now available for Cartesia fallback transcription.
+- **`FallbackSonioxTranscriberModel.SttRtV5`** — new `stt-rt-v5` model value is now available for Soniox fallback transcription.
+- **`ServerMessageCallArtifactUpload`** and **`ServerMessageCampaignPredial`** — two new variants added to the `ServerMessage.Message` union.
+- **`ServerMessageResponseCampaignPredial`** — new variant added to the `ServerMessageResponse.MessageResponse` union.
+
+### Changed
+- **`ElevenLabsVoice` and `FallbackElevenLabsVoice`** — doc comments for `SimilarityBoost`, `Style`, `UseSpeakerBoost`, `Speed`, `OptimizeStreamingLatency`, `EnableSsmlParsing`, and `AutoMode` now note these properties are ignored by `eleven_v4_turbo`; `Language` now documents Flash v2.5 and v4 Turbo support.
+- **`OpenAiVoice` and `FallbackOpenAiVoice`** — `VoiceId` doc updated to reflect GPT-Live-only voices (`quartz`, `ripple`, `vesper`, and others) replacing the previous realtime-model note.
+
+### Added
+- **`SonioxTranscriberModel.SttRtV5`** — new Soniox transcriber model value `stt-rt-v5` is now available for selection.
+- **`UpdateCampaignDtoStatus.Cancelled`** — new campaign status value `cancelled` can now be used when updating a campaign.
+
+### Changed
+- **`SipAuthentication.Realm`** — documentation clarifies that the default SIP realm is region-specific (e.g. `sip.vapi.ai` for US, `sip.eu.vapi.ai` for EU).
+- **`TransferPlan.FallbackPlan`** — documentation expanded to describe SIP cold-transfer fallback behavior when transfer outcome detection is enabled.
+- **XML doc comments** added to `SipAuthentication`, `SipTrunkGateway`, `SubscriptionLimits`, `ToolMessageDelayed`, `TransferPlan`, and all `Update*ToolDto` types for improved IntelliSense discoverability.
+
+### Added
+- **`BoardClient`** — new client (`IBoardClient`) for the `reporting/board` resource, supporting list, create, get, delete, update, and metrics-overview operations.
+- **`AssistantControllerValidateBackgroundSoundUrlAsync`** — new method on `AssistantsClient` / `IAssistantsClient` that validates a background sound URL by performing a ranged media request; accepts the new `ValidateBackgroundSoundUrlDto` and returns `BackgroundSoundUrlValidationResult`.
+- **`UpdateAssistantDtoServerMessagesItem.CallArtifactUpload`** — new enum value (`"call.artifact.upload"`) for subscribing to call artifact upload server messages.
+- **`ConflictError` (HTTP 409) handling** — `AssistantsClient.CreateAsync` now throws a typed `ConflictError` on 409 responses instead of a generic `VapiClientApiException`.
+
+### Added
+- **Board API** — new `CreateBoardDto`, `UpdateBoardDto`, `BoardControllerFindOneRequest`, `BoardControllerRemoveRequest`, `BoardControllerFindAllRequestSortBy`, and `BoardControllerFindAllRequestSortOrder` types to support creating, updating, and querying boards with widget layouts and time-range overrides.
+- **Call artifact download methods** — `CallArtifactControllerMonoRecordingDownloadAsync`, `CallArtifactControllerStereoRecordingDownloadAsync`, `CallArtifactControllerVideoRecordingDownloadAsync`, `CallArtifactControllerCustomerRecordingDownloadAsync`, `CallArtifactControllerAssistantRecordingDownloadAsync`, `CallArtifactControllerPcapDownloadAsync`, and `CallArtifactControllerCallLogsDownloadAsync` added to `ICallsClient` and `CallsClient`.
+- **`CampaignControllerFindAllRequest.SortBy`** — new optional `SortBy` property (type `CampaignControllerFindAllRequestSortBy`) for sorting campaign list results by column.
+
+### Changed
+- **`CallsClient`** error handling — existing list, create, get, delete, and update methods now throw typed exceptions (`BadRequestError`, `InternalServerError`, `ServiceUnavailableError`) for specific HTTP status codes instead of always falling through to a generic `VapiClientApiException`.
+
+### Added
+- **V2 campaign request types** — `CampaignControllerFindAllV2Request`, `CampaignControllerFindOneV2Request`, `CampaignControllerGetCampaignV2ContactsRequest`, `CampaignControllerRemoveV2Request`, `CampaignControllerUpdateV2Request`, and `CampaignControllerUpdateRequest` are now available for interacting with the V2 campaign endpoints.
+- **New campaign enums** — `CampaignControllerFindAllV2RequestStatus`, `CampaignControllerFindAllV2RequestSortBy`, `CampaignControllerFindAllV2RequestSortOrder`, `CampaignControllerGetCampaignV2ContactsRequestSortBy`, `CampaignControllerGetCampaignV2ContactsRequestStatusItem`, and `CampaignControllerFindAllRequestSortBy` support the new V2 filtering and sorting options.
+- **`CampaignControllerFindAllRequestStatus.Cancelled` and `.Archived`** — two new status values added to the existing campaign status enum for filtering cancelled and archived campaigns.
+- **`ListChatsRequest.IdAny`** — new optional property to filter chats by multiple IDs supplied as a comma-separated string.
+- **`ListChatsRequest.SortBy`** — new optional `ListChatsRequestSortBy` property to control the sort column when listing chats.
+
+### Added
+- **`IKnowledgeBasesV2Client`** — new client for managing v2 knowledge bases, including file attach/detach/retry operations; exposed as `VapiClient.KnowledgeBasesV2`.
+- **`ISimulationPersonalitiesClient`, `ISimulationScenariosClient`, `ISimulationRunsClient`, `ISimulationSuitesClient`, `ISimulationsClient`** — new simulation-related clients exposed on `IVapiClient` for running and managing eval simulations.
+- **`ITrafficAllocationsClient`** and **`IBoardClient`** — new top-level clients exposed on `IVapiClient`.
+- **Typed HTTP error exceptions** — `ConflictError` (409), `ForbiddenError` (403), `InternalServerError` (500), `PaymentRequiredError` (402), `ServiceUnavailableError` (503), and `UnauthorizedError` (401) now thrown for the corresponding non-2XX responses.
+- **`ListFilesRequest`** parameter added to `IFilesClient.ListAsync` for filtering by purpose; `CreateFileDto` gains optional `Purpose` and `Metadata` fields; `InsightRunDto` gains optional `AssistantId`; `EvalControllerGetPaginatedRequest` and `InsightControllerFindAllRequest` gain optional `SortBy` properties.
+
+### Added
+- **`KnowledgeBasesV2Client`** — new client for managing knowledge bases via the v2 API, supporting list, create, get, update, and delete operations.
+- **`KnowledgeBaseV2ControllerFilesGetAsync`**, **`KnowledgeBaseV2ControllerFileAttachAsync`**, **`KnowledgeBaseV2ControllerFileDetachAsync`**, and **`KnowledgeBaseV2ControllerFileRetryAsync`** — file management methods on `KnowledgeBasesV2Client` for attaching, detaching, and retrying files within a knowledge base.
+- **`CreateKnowledgeBaseV2Dto`**, **`UpdateKnowledgeBaseV2Dto`**, and **`AttachKnowledgeBaseV2FileDto`** — request/DTO types for the new knowledge base v2 endpoints.
+- **`ScorecardControllerGetPaginatedRequest.SortBy`** — new optional `SortBy` query parameter to control the sort column when paginating scorecards (defaults to `createdAt`).
+
+### Added
+- **`ISimulationPersonalitiesClient`** — new client for managing AI tester personalities used in simulations, with full CRUD support (`FindAll`, `Create`, `FindOne`, `Remove`, `Update`).
+- **`SortBy`** optional property added to `PhoneNumberControllerFindAllPaginatedRequest`, `ProviderResourceControllerGetProviderResourcesPaginatedRequest`, `ListSessionsRequest`, and `PersonalityControllerFindAllRequest`, accepting `createdAt`, `duration`, or `cost`.
+- **`SquadOverrides`** and **`IdAny`** optional filter properties added to `ListSessionsRequest` for squad-based call filtering and multi-session ID lookups.
+- **New `SortBy` enums** (`PhoneNumberControllerFindAllPaginatedRequestSortBy`, `ProviderResourceControllerGetProviderResourcesPaginatedRequestSortBy`, `ListSessionsRequestSortBy`, `ScorecardControllerGetPaginatedRequestSortBy`) added to support the new sort column parameter across paginated endpoints.
+
+### Added
+- **`SimulationPersonalitiesClient`** — new client for managing simulation personalities (AI tester configurations), supporting list, create, get, update, and delete operations.
+- **`ISimulationRunsClient`** — new client interface for managing simulation runs, including starting runs, cancelling runs and individual items, listing run items, and generating AI improvement suggestions.
+- **`SimulationRunControllerFindAllRequest`** and **`SimulationRunControllerFindItemsRequest`** — rich request types with filtering by status, target type, date ranges, and pagination controls.
+- **`PersonalityControllerFindAllRequestSortBy`** and **`PersonalityControllerFindAllRequestSortOrder`** — new enums for sorting personality list results.
+
+### Added
+- **`SimulationRunsClient`** — new client for managing simulation runs against assistants and squads, supporting list, create, get, cancel (group and item), and AI suggestion generation operations.
+- **`SimulationRunControllerFindAllRequestFilterStatus`** — new enum for filtering simulation runs by status (`Passed`, `Failed`, `Running`).
+- **`SimulationRunControllerFindAllRequestSortBy`** — new enum for sorting simulation runs by `CreatedAt`, `Duration`, or `Cost`.
+- **`SimulationRunControllerFindAllRequestSortOrder`** — new enum for specifying sort direction (`Asc`, `Desc`) when listing simulation runs.
+
+### Added
+- **`ISimulationScenariosClient`** — new client interface for managing simulation scenarios, exposing find-all, create, find-one, update, and delete operations.
+- **`ScenarioControllerFindAllRequest`** — new request record with rich filtering options (name search, pagination, date range filters) for listing scenarios.
+- **`ScenarioControllerFindOneRequest`** and **`ScenarioControllerRemoveRequest`** — new request records for single-scenario retrieval and deletion.
+- **New `SimulationRuns` filter and sort enums** — `SimulationRunControllerFindAllRequestStatus`, `SimulationRunControllerFindAllRequestTargetType`, `SimulationRunControllerFindItemsRequestStatus`, `SimulationRunControllerFindItemsRequestSortBy`, and `SimulationRunControllerFindItemsRequestSortOrder` for filtering and sorting simulation run list endpoints.
+
+### Added
+- **`SimulationScenariosClient`** — new client for managing simulation scenarios, with `ScenarioControllerFindAllAsync`, `ScenarioControllerCreateAsync`, `ScenarioControllerFindOneAsync`, `ScenarioControllerRemoveAsync`, and `ScenarioControllerUpdateAsync` methods.
+- **`ISimulationSuitesClient`** — new client interface for managing simulation suites, supporting FindAll, Create, Duplicate, FindOne, Remove, and Update operations.
+- **`ScenarioControllerFindAllRequestSortBy`** and **`ScenarioControllerFindAllRequestSortOrder`** — new enums for sorting scenario list results.
+- **`SimulationSuiteControllerFindAllRequest`** and related request types — new request records with pagination, filtering, and sorting support for simulation suite queries.
+
+### Added
+- **`SimulationSuitesClient`** — new client for managing simulation suites, with `SimulationSuiteControllerFindAllAsync`, `SimulationSuiteControllerCreateAsync`, `SimulationSuiteControllerDuplicateAsync`, `SimulationSuiteControllerFindOneAsync`, `SimulationSuiteControllerRemoveAsync`, and `SimulationSuiteControllerUpdateAsync` methods.
+- **`ISimulationsClient`** — new interface exposing simulation management including scenario generation (`SimulationGenerateControllerGenerateAsync`), concurrency querying (`SimulationControllerGetConcurrencyAsync`), and full CRUD operations.
+- **`GenerateScenariosDto`** — new request type for AI-driven scenario generation, accepting optional `AssistantId` and `SquadId`.
+- **`SimulationControllerFindAllRequest`** — new paginated list request type with filtering by date ranges, sort order, and standalone-only flag.
+- **`SimulationSuiteControllerFindAllRequestSortBy`** and **`SimulationSuiteControllerFindAllRequestSortOrder`** — new enums for controlling sort behavior on simulation suite list queries.
+
+### Added
+- **`SimulationsClient`** — new client for managing simulations, supporting scenario generation, CRUD operations, and concurrency limit queries via the `eval/simulation` endpoints.
+- **`SimulationControllerFindAllRequestSortBy`** and **`SimulationControllerFindAllRequestSortOrder`** — new enums for sorting simulation list results by `createdAt`, `duration`, or `cost` in ascending or descending order.
+- **`StructuredOutputControllerFindAllRequestSortBy`** — new enum and `SortBy` property on `StructuredOutputControllerFindAllRequest` for sorting structured output results.
+- **`ListSquadsRequest.IdAny`** — new optional property to filter squads by a set of IDs.
+- **`StructuredOutputControllerRunResponseOne`** — new response type exposing a `Skipped` map of structured outputs that were gated by conditions and not extracted.
+
+### Added
+- **`TrafficAllocationsClient`** — new client for managing assistant traffic splitting (beta), supporting paginated history, create, latest, and find-by-id operations via `TrafficAllocationControllerFindAllPaginatedAsync`, `TrafficAllocationControllerCreateAsync`, `TrafficAllocationControllerLatestGetAsync`, and `TrafficAllocationControllerFindOneAsync`.
+- **`CreateTrafficAllocationDto`** — new request type for creating a traffic allocation, with `AssistantId`, `AllocationIntent`, `Targets`, `ExpectedCurrentAllocationId`, and `Description` properties.
+- **`CreateTrafficAllocationDtoAllocationIntent`** — new enum with `FollowLatest` and `Explicit` values for controlling traffic split behavior.
+- **`TrafficAllocationControllerFindAllPaginatedRequestSortOrder`** — new enum (`Asc`, `Desc`) for controlling pagination sort order on the allocation history endpoint.
+
+### Changed
+- **`ToolsClient`** — `CreateAsync` and `UpdateAsync` now throw `ConflictError` on HTTP 409 responses instead of a generic `VapiClientApiException`.
+
+### Added
+- **`AnthropicBedrockModelFallbackModelsItem`** — new enum for specifying fallback model options on Anthropic Bedrock model configurations.
+- **`AssemblyAiTranscriberLanguageCodesItem`** and **`AssemblyAiTranscriberMode`** — new enums for configuring AssemblyAI transcriber language codes and accuracy/latency mode.
+- **New enum values** across `AnthropicBedrockCredentialRegion` (`EuCentral1`), `AnthropicBedrockModelModel` (`GlobalAnthropicClaudeHaiku4520251001V10`), `AnthropicModelModel` (`ClaudeSonnet5`), and `AssemblyAiTranscriberSpeechModel` (`Universal35Pro`, `Universal36Pro`).
+- **`Assistant.LatestVersion`** and **`Assistant.ModelDeprecations`** — new optional properties exposing the assistant's latest version label and any model deprecation notices at response time.
+- **`AssistantActivation.AssistantVersion`** and **`AssistantActivation.SquadVersion`** — new optional properties recording which assistant and squad versions were active when an activation was logged; **`AnalysisCost.StructuredOutputBreakdown`** exposes per-structured-output cost rows.
+
+### Added
+- **`AssistantDraft`** — new record representing a versioned draft of an assistant, with full configuration properties and required identity fields (`Id`, `OrgId`, `AssistantId`, `BaseVersion`, `CreatedAt`, `UpdatedAt`).
+- **`AssistantDraftPaginatedResponse`** and **`AssistantDraftPaginatedMetadata`** — new records for paginated listing of assistant drafts.
+- **`AssistantDraftConflictResponseDto`** — new record surfacing conflict error details (including `ExistingDraftId`) when a draft creation conflicts with an existing draft.
+- **New supporting enums** — `AssistantDraftFirstMessageMode`, `AssistantDraftClientMessagesItem`, and `AssistantDraftBackgroundSoundZero` for configuring draft assistant behavior.
+
+### Added
+- **`AssistantVersion`** — new record representing a versioned snapshot of an assistant's full configuration, including metadata fields such as `Id`, `OrgId`, `AssistantId`, `Version`, `ConfigHash`, `ParentVersion`, and `ModelDeprecations`.
+- **`AssistantDraftServerMessagesItem`** — new enum covering all server message event types for assistant drafts, including `call.artifact.upload`.
+- **`AssistantPinnedConflictResponseDto`** and **`AssistantPinnedConflictResponseDtoError`** — new types returned when a delete is rejected because the assistant is pinned to an active resource.
+- **`CallArtifactUpload`** enum value added to `AssistantServerMessagesItem` and `AssistantOverridesServerMessagesItem`, enabling subscription to `call.artifact.upload` server events.
+
+### Added
+- **`AssistantVersionPaginatedMetadata`** — new record for paginated assistant version list responses, exposing `NextCursor`, `HasNextPage`, and `Limit`.
+- **`AssistantVersionBackgroundSoundZero`**, **`AssistantVersionClientMessagesItem`**, **`AssistantVersionFirstMessageMode`**, **`AssistantVersionServerMessagesItem`**, and **`AssistantVersionVoicemailDetectionZero`** — new enums supporting assistant version configuration.
+- **`AudioFormat`** — new record describing call audio format, sample rate, and optional container type, along with supporting enums `AudioFormatFormat` and `AudioFormatContainer`.
+- **`AzureCredentialRegion`** — new values `Switzerlandnorth` and `Switzerlandwest` added to the Azure region enum.
+- **`AzureOpenAiCredentialModelsItem`** — new model values added: `Gpt56Luna20260709`, `Gpt56Terra20260709`, `Gpt56Sol20260709`, `Gpt4O`, `Gpt41`, and `Gpt54Mini20260317`.
+
+### Added
+- **`Board`**, **`BoardInsightItem`**, **`BoardMetricWidgetItem`**, **`BoardLayout`**, **`BoardItemPosition`**, **`BoardItemSize`**, and **`BoardPaginatedResponse`** — new types for creating and managing dashboard boards with positioned insight and metric widgets.
+- **`BackgroundSoundUrlValidationResult`** and **`BackgroundSoundUrlValidationResultReason`** — new types for validating whether a background sound URL serves a live audio file and surfacing the failure reason when it does not.
+- **`BooleanComparatorScorecardMetricCondition`** — new type for defining boolean equality conditions in scorecard metrics, with supporting `BooleanComparatorScorecardMetricConditionComparator` and `BooleanComparatorScorecardMetricConditionType` enums.
+- **`AzureOpenAiCredentialRegion.Switzerlandnorth`** and **`AzureOpenAiCredentialRegion.Switzerlandwest`** — two new Azure region values for Switzerland North and Switzerland West.
+- **`BotMessage.AssistantName`** and **`BotMessage.AssistantId`** — new optional properties identifying the sub-agent that produced a message in squad or handoff calls; **`BarInsight.SystemKey`** — new optional stable server-owned identifier for system-created insights.
+
+### Added
+- **`CallArtifactUploadItemType`** — new enum representing the type of artifact uploaded at the end of a call (e.g. `EndOfCallReport`, `RecordingMono`, `RecordingStereo`, `Log`, `Pcap`).
+- **`CampaignCallMetrics`** — new record exposing `Dialed` and `Connected` counts for a campaign.
+- **`CampaignContact`** — new record representing a contact entry within a campaign, including optional `AssistantOverrides` and `SquadOverrides`.
+- **`CallEndedReason`** — ~50 new enum values covering xAI and Microsoft voice/transcriber failures, Vapi transcriber and voice failures, Cartesia transcriber failures, ElevenLabs concurrent-request and voice-disabled-by-owner errors, SIP outbound unallocated-number and carrier-released-call scenarios, call-forwarding no-answer, assistant/squad version validation errors, and config-fault model/transport errors.
+
+### Added
+- **`CampaignContactCounters`** — new record exposing per-status contact counts (`Pending`, `Dispatched`, `Completed`, `Failed`, `Skipped`, `PredialFailed`) for a campaign.
+- **`CampaignContactWithOutcome`** and **`CampaignContactPaginatedResponse`** — new types for retrieving paginated contact-level results with call outcomes.
+- **`CampaignSummary`** and **`CampaignSummaryPaginatedResponse`** — new types for listing campaigns with aggregated metrics, contact counters, and schedule details.
+- **`CampaignPredialPlan`** — new type enabling the blocking `campaign.predial` eligibility webhook; set on a campaign to gate each contact before dialing.
+- **`CampaignStatus.Cancelled`** and **`CampaignStatus.Archived`** — two new enum values reflecting additional campaign lifecycle states; **`CampaignServerMessagesItem`** and **`CampaignContactWithOutcomeStatus`** enums added for webhook event and contact status modeling; **`CartesiaCredential.ApiUrl`** added to support on-premises Cartesia deployments.
+
+### Added
+- **`AssistantVersion`** — new optional `string?` property on all `ClientMessage*` types that surfaces the version label (e.g. `v3`) of the assistant configured for the call.
+- **`ClientInboundMessageAppendContext`** — new record for injecting commentary, thinking, or instructions into an active call, with the accompanying **`ClientInboundMessageAppendContextKind`** enum (`Commentary`, `Thinking`, `Instructions`).
+- **`ClientMessageTranscript.Confidence`** and **`ClientMessageTranscript.ConfidenceSource`** — new optional properties that expose the transcriber's confidence score and its origin (`Provider` or `Derived`), along with the new **`ClientMessageTranscriptConfidenceSource`** enum.
+- **`ClientMessageTranscript.AssistantId`** and **`ClientMessageTranscript.AssistantName`** — new optional properties identifying the assistant that produced a transcript on assistant-role events.
+- **`CartesiaVoiceModel.Sonic35`** and **`CartesiaVoiceModel.Sonic3520260504`** — new enum values for the Cartesia Sonic 3.5 voice model and its dated snapshot variant.
+
+### Added
+- **`CreateAssistantDraftDto`** — new record for creating assistant drafts, supporting the full assistant configuration surface including a `BaseVersion` pointer to the published version the draft was forked from.
+- **`CreateAssistantDraftDtoBackgroundSoundZero`**, **`CreateAssistantDraftDtoClientMessagesItem`**, and **`CreateAssistantDraftDtoFirstMessageMode`** — supporting enums for the new draft DTO.
+- **`CreateAnthropicBedrockCredentialDtoRegion.EuCentral1`** — adds the `eu-central-1` AWS region as a valid option for Anthropic Bedrock credentials.
+- **`ClientMessageWorkflowNodeStarted.AssistantVersion`** — new optional property exposing the version label (e.g. `v3`) of the assistant configured for the call.
+- XML doc comments added to `CloudflareR2BucketPlan`, `CompliancePlan`, `ConversationNode`, `Compliance`, `Condition`, `CostBreakdown`, and many other types for improved IntelliSense discoverability.
+
+### Added
+- **`CreateCampaignDto`** — new type for configuring outbound calling campaigns, supporting assistant, squad, or workflow targeting with dial plans, schedules, customer lists, predial webhooks, and concurrency controls.
+- **`CreateAssistantDraftDtoServerMessagesItem`** and **`CreateAssistantDraftDtoVoicemailDetectionZero`** — new enum types for assistant draft configuration.
+- **`CallArtifactUpload`** — new value added to `CreateAssistantDtoServerMessagesItem` enum to subscribe to artifact upload server messages.
+- **New Azure regions** `Switzerlandnorth` and `Switzerlandwest` added to `CreateAzureCredentialDtoRegion` and `CreateAzureOpenAiCredentialDtoRegion`.
+- **New Azure OpenAI model values** added to `CreateAzureOpenAiCredentialDtoModelsItem`, including `gpt-5.6-luna-2026-07-09`, `gpt-5.6-terra-2026-07-09`, `gpt-5.6-sol-2026-07-09`, `gpt-4o`, `gpt-4.1`, and `gpt-5.4-mini-2026-03-17`.
+
+### Added
+- **`CreateS3CompatibleCredentialDto`** — new credential type for storing call artifacts in any S3-compatible bucket, with `BucketPlan`, `FallbackIndex`, and `Name` properties.
+- **`CreateElevenLabsCredentialDtoApiUrl`** — new enum for selecting the ElevenLabs global or EU data residency endpoint; exposed as the optional `ApiUrl` property on `CreateElevenLabsCredentialDto`.
+- **`CreateCampaignDtoServerMessagesItem`** — new enum covering campaign and contact lifecycle events (e.g. `CampaignStarted`, `ContactDispatched`, `CampaignJobContinued`).
+- **`CreateCustomerDto.SquadOverrides`** — new optional `AssistantOverrides` property for applying overrides when a call targets a `squadId` instead of a single assistant.
+- **`CreateCartesiaCredentialDto.ApiUrl`** — new optional string property for pointing to an on-premises Cartesia instance.
+
+### Added
+- **`CreateSimulationRunResponse`** — new record representing the response from creating a simulation run, including status, timing, item counts, and a dashboard URL.
+- **`CreateSimulationRunResponseStatus`** — new enum with values `Queued`, `Running`, and `Ended` for tracking simulation run lifecycle.
+- **`CreateToolDraftDto`** — new record for creating tool drafts, supporting all tool variants (api-request, code, computer, sip-request, mcp, handoff, etc.) with associated `CreateToolDraftDtoMethod` and `CreateToolDraftDtoVerb` enums.
+- **`CreateSonioxCredentialDto.ApiUrl`** — new optional property for specifying a custom Soniox WebSocket endpoint (e.g. an EU-region server).
+- **`CreateStructuredOutputDto.Conditions`** — new optional property for gating structured output execution with AND-semantics conditions; send `null` to clear a previously saved gate.
+
+### Added
+- **`CreateToolDraftDtoType`** and **`CreateToolDraftDtoVerb`** — new enums for configuring tool draft type and verb values.
+- **`CreateTrafficAllocationTargetDto`** — new record for defining traffic splits across published assistant versions, with `AssistantVersion` and `Percentage` required properties.
+- **`CustomerSpeechTimeoutOptionsTriggerResetMode`** and **`DeepgramTranscriberRedactionItem`** — new enums for speech timeout reset behavior and Deepgram transcription redaction categories.
+- **`AssistantVersion`** and **`SquadVersion`** — new optional properties on `CreateWebCallDto` to pin a web call to a specific published assistant or squad version.
+- **New enum values** added to `DeepSeekModelModel` (`DeepseekFlash`, `DeepseekFlashThinking`), `DeepgramVoiceModel` (`Flux`), and `DeepgramVoiceId` (43 new voice IDs including `Viktoria`, `Kara`, `Hannah`, and more).
+
+### Added
+- **`EndedReasonCondition`** and **`EndedReasonConditionOperator`** — new types for filtering structured outputs based on a call's ended reason using `oneOf` / `notOneOf` membership operators.
+- **`ElevenLabsCredentialApiUrl`** enum and **`ElevenLabsCredential.ApiUrl`** optional property — enables selecting the global or EU data residency ElevenLabs API endpoint per credential.
+- **New model enum values** — `ElevenLabsVoiceModel.ElevenV4Turbo`, `EvalAnthropicModelModel.ClaudeSonnet5`, `EvalGoogleModelModel.Gemini35Flash` and `Gemini31FlashLite`, and dozens of new `EvalOpenAiModelModel` values covering GPT-5.x, GPT-6, and region-specific Azure deployments.
+- **`ExportChatDto.IdAny`** and **`ExportChatDto.SortBy`** — new optional properties for filtering chats by multiple IDs and controlling sort column in CSV exports.
+- **XML doc comments** added to `DeveloperMessage`, `DialPlanEntry`, `Edge`, `Eval`, `EvalPaginatedResponse`, `EvalRunPaginatedResponse`, and many other public types for improved IntelliSense support.
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`CartesiaExperimentalControlsSpeedZero`** has been renamed to **`CartesiaSpeedControlZero`**; update all references and the type argument in `CartesiaExperimentalControls.Speed` (`OneOf<CartesiaSpeedControlZero, double>?`).
