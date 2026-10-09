@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for transcribing speech with OpenAI, including model and language.
+/// </summary>
 [Serializable]
 public record FallbackOpenAiTranscriber : IJsonOnDeserialized
 {

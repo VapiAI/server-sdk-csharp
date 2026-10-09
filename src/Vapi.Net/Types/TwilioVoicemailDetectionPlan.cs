@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for Twilio answering-machine detection, including recognized outcomes, enablement, timeout, speech thresholds, and silence timeout.
+/// </summary>
 [Serializable]
 public record TwilioVoicemailDetectionPlan : IJsonOnDeserialized
 {

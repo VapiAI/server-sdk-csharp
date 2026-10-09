@@ -18,10 +18,11 @@ public partial class InsightClient : IInsightClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 13)
             .Add("id", request.Id)
             .Add("page", request.Page)
             .Add("sortOrder", request.SortOrder)
+            .Add("sortBy", request.SortBy)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -505,6 +506,9 @@ public partial class InsightClient : IInsightClient
         }
     }
 
+    /// <summary>
+    /// Returns saved reporting insights for the authenticated organization. Filter results by ID or creation and update timestamps.
+    /// </summary>
     public WithRawResponseTask<InsightPaginatedResponse> InsightControllerFindAllAsync(
         InsightControllerFindAllRequest request,
         RequestOptions? options = null,
@@ -516,6 +520,9 @@ public partial class InsightClient : IInsightClient
         );
     }
 
+    /// <summary>
+    /// Creates a saved reporting insight that queries call data and presents the results as a bar chart, pie chart, line chart, or text value.
+    /// </summary>
     public WithRawResponseTask<object> InsightControllerCreateAsync(
         object request,
         RequestOptions? options = null,
@@ -527,6 +534,9 @@ public partial class InsightClient : IInsightClient
         );
     }
 
+    /// <summary>
+    /// Returns the reporting insight identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> InsightControllerFindOneAsync(
         string id,
         InsightControllerFindOneRequest request,
@@ -539,6 +549,9 @@ public partial class InsightClient : IInsightClient
         );
     }
 
+    /// <summary>
+    /// Deletes the reporting insight identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> InsightControllerRemoveAsync(
         string id,
         InsightControllerRemoveRequest request,
@@ -551,6 +564,9 @@ public partial class InsightClient : IInsightClient
         );
     }
 
+    /// <summary>
+    /// Updates the reporting insight identified by its ID.
+    /// </summary>
     public WithRawResponseTask<object> InsightControllerUpdateAsync(
         string id,
         InsightControllerUpdateRequest request,
@@ -563,6 +579,9 @@ public partial class InsightClient : IInsightClient
         );
     }
 
+    /// <summary>
+    /// Runs a saved reporting insight, optionally overriding its time range and response format.
+    /// </summary>
     public WithRawResponseTask<InsightRunResponse> InsightControllerRunAsync(
         string id,
         InsightRunDto request,
@@ -575,6 +594,9 @@ public partial class InsightClient : IInsightClient
         );
     }
 
+    /// <summary>
+    /// Runs an insight definition without first saving it, returning a preview of the resulting chart or text value.
+    /// </summary>
     public WithRawResponseTask<InsightRunResponse> InsightControllerPreviewAsync(
         object request,
         RequestOptions? options = null,

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for generating assistant responses with Inflection AI, including model, prompts, tools, knowledge-base access, and generation settings.
+/// </summary>
 [Serializable]
 public record InflectionAiModel : IJsonOnDeserialized
 {
@@ -34,6 +37,15 @@ public record InflectionAiModel : IJsonOnDeserialized
     public IEnumerable<string>? ToolIds { get; set; }
 
     /// <summary>
+    /// These are version-pinned references to tools. Each entry pins a specific
+    /// version of a tool by `(toolId, version)`. When the same `toolId` appears
+    /// in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+    /// `toolIds` entry is dropped at write time).
+    /// </summary>
+    [JsonPropertyName("toolRefs")]
+    public IEnumerable<ToolRef>? ToolRefs { get; set; }
+
+    /// <summary>
     /// These are the options for the knowledge base.
     /// </summary>
     [JsonPropertyName("knowledgeBase")]
@@ -46,13 +58,13 @@ public record InflectionAiModel : IJsonOnDeserialized
     public required InflectionAiModelModel Model { get; set; }
 
     /// <summary>
-    /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
+    /// This is the temperature that will be used for calls. Default is 0.5.
     /// </summary>
     [JsonPropertyName("temperature")]
     public double? Temperature { get; set; }
 
     /// <summary>
-    /// This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250.
+    /// This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. On gpt-6-luna no cap is applied unless you set one, because reasoning uses output tokens and a small cap can leave the reply empty.
     /// </summary>
     [JsonPropertyName("maxTokens")]
     public double? MaxTokens { get; set; }

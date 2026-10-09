@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An SPKI public key in PEM format used to encrypt sensitive request data.
+/// </summary>
 [Serializable]
 public record SpkiPemPublicKeyConfig : IJsonOnDeserialized
 {

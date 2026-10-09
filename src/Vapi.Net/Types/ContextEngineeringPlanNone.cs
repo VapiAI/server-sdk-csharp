@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Excludes prior conversation messages when constructing context for a handoff.
+/// </summary>
 [Serializable]
 public record ContextEngineeringPlanNone : IJsonOnDeserialized
 {

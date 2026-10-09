@@ -4,12 +4,27 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Language-model cost for a call, including model, token usage, and amount.
+/// </summary>
 [Serializable]
 public record ModelCost : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// Provider-reported billable duration in seconds. Currently supplied for GPT-Live; omitted for token-billed models.
+    /// </summary>
+    [JsonPropertyName("seconds")]
+    public double? Seconds { get; set; }
+
+    /// <summary>
+    /// Whether the reported usage is complete. False means the cost reflects missing or partial usage and may understate provider spend. Omitted when the provider integration does not report completeness.
+    /// </summary>
+    [JsonPropertyName("usageComplete")]
+    public bool? UsageComplete { get; set; }
 
     /// <summary>
     /// This is the model that was used during the call.
@@ -42,6 +57,14 @@ public record ModelCost : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("cachedPromptTokens")]
     public double? CachedPromptTokens { get; set; }
+
+    /// <summary>
+    /// This is the number of reasoning tokens generated in the call. This is only applicable to reasoning models (e.g., OpenAI o-series, GPT-5) on providers that report them.
+    ///
+    /// This is a **subset of `completionTokens`**, not an addition to it: reasoning tokens are already counted in `completionTokens` and are already billed at the output-token rate. It is reported separately for visibility only and does not affect `cost`.
+    /// </summary>
+    [JsonPropertyName("reasoningTokens")]
+    public double? ReasoningTokens { get; set; }
 
     /// <summary>
     /// This is the cost of the component in USD.

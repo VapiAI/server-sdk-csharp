@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A simulated assistant tool call with the tool name and optional arguments.
+/// </summary>
 [Serializable]
 public record ChatEvalAssistantMessageMockToolCall : IJsonOnDeserialized
 {

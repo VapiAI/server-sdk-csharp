@@ -11,6 +11,9 @@ public record UpdateLangfuseCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateLangfuseCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// The public key for Langfuse project. Eg: pk-lf-...
     /// </summary>

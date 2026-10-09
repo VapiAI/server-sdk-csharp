@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// JSON Schema definition used to describe structured data for extraction, validation, or model output.
+/// </summary>
 [Serializable]
 public record JsonSchema : IJsonOnDeserialized
 {

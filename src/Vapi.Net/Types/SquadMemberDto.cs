@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An assistant member of a squad. Reference a saved assistant or provide a transient assistant, then configure member-specific overrides and destinations for transfers.
+/// </summary>
 [Serializable]
 public record SquadMemberDto : IJsonOnDeserialized
 {
@@ -12,6 +15,17 @@ public record SquadMemberDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// This is the assistant version (e.g. `v3`) to pin for this squad member. When set, the call uses
+    /// the snapshot from `assistant_version` (by `(assistantId, version)`) instead of the latest. Valid
+    /// only with `assistantId`; rejected with inline `assistant`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
+    /// Assistants this squad member can route the conversation to through a transfer or handoff.
+    /// </summary>
     [JsonPropertyName("assistantDestinations")]
     public IEnumerable<
         OneOf<TransferDestinationAssistant, HandoffDestinationAssistant>
