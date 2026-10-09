@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating transcription requests with Gladia.
+/// </summary>
 [Serializable]
 public record CreateGladiaCredentialDto : IJsonOnDeserialized
 {

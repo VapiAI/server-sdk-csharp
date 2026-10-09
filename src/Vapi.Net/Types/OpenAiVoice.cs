@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for synthesizing assistant speech with OpenAI, including voice and model selection, delivery instructions, speed, chunking, caching, and fallback settings.
+/// </summary>
 [Serializable]
 public record OpenAiVoice : IJsonOnDeserialized
 {
@@ -20,7 +23,8 @@ public record OpenAiVoice : IJsonOnDeserialized
 
     /// <summary>
     /// This is the provider-specific ID that will be used.
-    /// Please note that ash, ballad, coral, sage, and verse may only be used with realtime models.
+    /// Voice availability depends on the selected model.
+    /// quartz, ripple, vesper, willow, stone, gleam, meridian, bossa, tempo, beacon, delta, cinder are only supported with GPT-Live models.
     /// </summary>
     [JsonPropertyName("voiceId")]
     public required OneOf<OpenAiVoiceIdEnum, string> VoiceId { get; set; }

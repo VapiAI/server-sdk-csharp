@@ -45,6 +45,9 @@ public enum AnthropicModelModel
     [EnumMember(Value = "claude-sonnet-4-6")]
     ClaudeSonnet46,
 
+    [EnumMember(Value = "claude-sonnet-5")]
+    ClaudeSonnet5,
+
     [EnumMember(Value = "claude-haiku-4-5-20251001")]
     ClaudeHaiku4520251001,
 }
@@ -70,6 +73,7 @@ internal class AnthropicModelModelSerializer
         { "claude-sonnet-4-20250514", AnthropicModelModel.ClaudeSonnet420250514 },
         { "claude-sonnet-4-5-20250929", AnthropicModelModel.ClaudeSonnet4520250929 },
         { "claude-sonnet-4-6", AnthropicModelModel.ClaudeSonnet46 },
+        { "claude-sonnet-5", AnthropicModelModel.ClaudeSonnet5 },
         { "claude-haiku-4-5-20251001", AnthropicModelModel.ClaudeHaiku4520251001 },
     };
 
@@ -91,6 +95,7 @@ internal class AnthropicModelModelSerializer
         { AnthropicModelModel.ClaudeSonnet420250514, "claude-sonnet-4-20250514" },
         { AnthropicModelModel.ClaudeSonnet4520250929, "claude-sonnet-4-5-20250929" },
         { AnthropicModelModel.ClaudeSonnet46, "claude-sonnet-4-6" },
+        { AnthropicModelModel.ClaudeSonnet5, "claude-sonnet-5" },
         { AnthropicModelModel.ClaudeHaiku4520251001, "claude-haiku-4-5-20251001" },
     };
 

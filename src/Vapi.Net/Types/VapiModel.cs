@@ -34,13 +34,39 @@ public record VapiModel : IJsonOnDeserialized
     public IEnumerable<string>? ToolIds { get; set; }
 
     /// <summary>
+    /// These are version-pinned references to tools. Each entry pins a specific
+    /// version of a tool by `(toolId, version)`. When the same `toolId` appears
+    /// in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+    /// `toolIds` entry is dropped at write time).
+    /// </summary>
+    [JsonPropertyName("toolRefs")]
+    public IEnumerable<ToolRef>? ToolRefs { get; set; }
+
+    /// <summary>
     /// These are the options for the knowledge base.
     /// </summary>
     [JsonPropertyName("knowledgeBase")]
     public CreateCustomKnowledgeBaseDto? KnowledgeBase { get; set; }
 
-    [JsonPropertyName("provider")]
-    public required VapiModelProvider Provider { get; set; }
+    /// <summary>
+    /// White-label Vapi models are selected by `version`, not a model name, so
+    /// `model` is optional here (the runtime already accepts a version-only Vapi
+    /// payload). Overriding the required `ModelBase.model`: the declared type stays
+    /// `string` to match the base (avoids TS2416) and the `= undefined!` initializer
+    /// satisfies TS2612 for the field override, while `@IsOptional` +
+    /// `@ApiPropertyOptional` make validation and the generated OpenAPI schema treat
+    /// it as optional (so `VapiModel.required` is `['provider']`).
+    /// </summary>
+    [JsonPropertyName("model")]
+    public string? Model { get; set; }
+
+    /// <summary>
+    /// Vapi-managed model version (update channel). When set, this is a Vapi-managed
+    /// LLM routed by the registry; when absent, this is the legacy workflow form
+    /// below (`steps` / `workflow`).
+    /// </summary>
+    [JsonPropertyName("version")]
+    public VapiModelVersion? Version { get; set; }
 
     /// <summary>
     /// This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.
@@ -55,22 +81,10 @@ public record VapiModel : IJsonOnDeserialized
     public WorkflowUserEditable? Workflow { get; set; }
 
     /// <summary>
-    /// This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
-    /// </summary>
-    [JsonPropertyName("model")]
-    public required string Model { get; set; }
-
-    /// <summary>
-    /// This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency.
+    /// This is the temperature that will be used for calls. Default is 0.5.
     /// </summary>
     [JsonPropertyName("temperature")]
     public double? Temperature { get; set; }
-
-    /// <summary>
-    /// This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250.
-    /// </summary>
-    [JsonPropertyName("maxTokens")]
-    public double? MaxTokens { get; set; }
 
     /// <summary>
     /// This determines whether we detect user's emotion while they speak and send it as an additional info to model.

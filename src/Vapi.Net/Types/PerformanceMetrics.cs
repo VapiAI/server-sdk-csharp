@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Call performance measurements, including per-turn and average provider, endpointing, transport, and interruption metrics.
+/// </summary>
 [Serializable]
 public record PerformanceMetrics : IJsonOnDeserialized
 {

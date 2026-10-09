@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A tool invocation requested by the assistant, including its identifier, type, and function details.
+/// </summary>
 [Serializable]
 public record ToolCall : IJsonOnDeserialized
 {

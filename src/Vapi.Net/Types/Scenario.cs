@@ -74,6 +74,16 @@ public record Scenario : IJsonOnDeserialized
     public IEnumerable<ScenarioToolMock>? ToolMocks { get; set; }
 
     /// <summary>
+    /// Latency ceilings for voice simulations. Each expectation aggregates the
+    /// target call's per-turn latencies and fails the simulation (when required)
+    /// if the aggregated value exceeds its threshold. Skipped for chat simulations
+    /// and GPT Live targets; on any other voice simulation, a metric that no turn
+    /// measured fails.
+    /// </summary>
+    [JsonPropertyName("latencyExpectations")]
+    public IEnumerable<LatencyExpectation>? LatencyExpectations { get; set; }
+
+    /// <summary>
     /// Optional folder path for organizing scenarios.
     /// Supports up to 3 levels (e.g., "dept/feature/variant").
     /// Maps to GitOps resource folder structure.

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating Vapi integrations with Make, including team, region, and API key.
+/// </summary>
 [Serializable]
 public record CreateMakeCredentialDto : IJsonOnDeserialized
 {

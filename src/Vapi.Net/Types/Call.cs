@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A call record returned by Vapi. It contains the configuration and resources used for the call, its lifecycle status and timestamps, conversation messages, artifacts, analysis, and costs.
+/// </summary>
 [Serializable]
 public record Call : IJsonOnDeserialized
 {
@@ -24,6 +27,9 @@ public record Call : IJsonOnDeserialized
     [JsonPropertyName("costs")]
     public IEnumerable<object>? Costs { get; set; }
 
+    /// <summary>
+    /// Messages exchanged during the call, including user, assistant, system, tool-call, and tool-result messages.
+    /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<
         OneOf<UserMessage, SystemMessage, BotMessage, ToolCallMessage, ToolCallResultMessage>
@@ -68,6 +74,34 @@ public record Call : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("destination")]
     public object? Destination { get; set; }
+
+    /// <summary>
+    /// This is the assistant version to use for this call. Supported only with
+    /// direct `assistantId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
+    /// This is the squad version to use for this call. Supported only with
+    /// direct `squadId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("squadVersion")]
+    public string? SquadVersion { get; set; }
+
+    /// <summary>
+    /// This is the transport of the call.
+    /// </summary>
+    [JsonPropertyName("transport")]
+    public object? Transport { get; set; }
+
+    /// <summary>
+    /// This is the phone number that will be used for the call. To use an existing number, use `phoneNumberId` instead.
+    ///
+    /// Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
+    /// </summary>
+    [JsonPropertyName("phoneNumber")]
+    public TransientTwilioPhoneNumber? PhoneNumber { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the call.
@@ -255,14 +289,6 @@ public record Call : IJsonOnDeserialized
     public string? PhoneNumberId { get; set; }
 
     /// <summary>
-    /// This is the phone number that will be used for the call. To use an existing number, use `phoneNumberId` instead.
-    ///
-    /// Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
-    /// </summary>
-    [JsonPropertyName("phoneNumber")]
-    public ImportTwilioPhoneNumberDto? PhoneNumber { get; set; }
-
-    /// <summary>
     /// This is the customer that will be called. To call a transient customer , use `customer` instead.
     ///
     /// Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
@@ -289,18 +315,6 @@ public record Call : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("schedulePlan")]
     public SchedulePlan? SchedulePlan { get; set; }
-
-    /// <summary>
-    /// This is the transport of the call.
-    /// </summary>
-    [JsonPropertyName("transport")]
-    public object? Transport { get; set; }
-
-    /// <summary>
-    /// These are the subscription limits for the org at the time of the call. Includes concurrency limit information.
-    /// </summary>
-    [JsonPropertyName("subscriptionLimits")]
-    public SubscriptionLimits? SubscriptionLimits { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

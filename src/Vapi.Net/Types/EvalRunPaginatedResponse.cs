@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A paginated collection of eval runs and metadata describing the result set.
+/// </summary>
 [Serializable]
 public record EvalRunPaginatedResponse : IJsonOnDeserialized
 {
@@ -11,9 +14,15 @@ public record EvalRunPaginatedResponse : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// The eval runs returned for the current page.
+    /// </summary>
     [JsonPropertyName("results")]
     public IEnumerable<EvalRun> Results { get; set; } = new List<EvalRun>();
 
+    /// <summary>
+    /// Pagination metadata for the eval-run result set.
+    /// </summary>
     [JsonPropertyName("metadata")]
     public required PaginationMeta Metadata { get; set; }
 

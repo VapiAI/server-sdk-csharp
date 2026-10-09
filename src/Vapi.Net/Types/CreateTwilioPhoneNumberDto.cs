@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to import a Twilio phone number into Vapi with its account credentials and routing settings.
+/// </summary>
 [Serializable]
 public record CreateTwilioPhoneNumberDto : IJsonOnDeserialized
 {

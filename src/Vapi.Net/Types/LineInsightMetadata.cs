@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Display settings for a line insight, including chart name, axis labels, and optional y-axis bounds.
+/// </summary>
 [Serializable]
 public record LineInsightMetadata : IJsonOnDeserialized
 {
@@ -11,18 +14,33 @@ public record LineInsightMetadata : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Label displayed on the chart's x-axis.
+    /// </summary>
     [JsonPropertyName("xAxisLabel")]
     public string? XAxisLabel { get; set; }
 
+    /// <summary>
+    /// Label displayed on the chart's y-axis.
+    /// </summary>
     [JsonPropertyName("yAxisLabel")]
     public string? YAxisLabel { get; set; }
 
+    /// <summary>
+    /// Minimum value displayed on the chart's y-axis.
+    /// </summary>
     [JsonPropertyName("yAxisMin")]
     public double? YAxisMin { get; set; }
 
+    /// <summary>
+    /// Maximum value displayed on the chart's y-axis.
+    /// </summary>
     [JsonPropertyName("yAxisMax")]
     public double? YAxisMax { get; set; }
 
+    /// <summary>
+    /// Display name for the insight chart.
+    /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Runs configured transfer or message actions when a call ends with a matching assistant-request failure reason.
+/// </summary>
 [Serializable]
 public record PhoneNumberHookCallEnding : IJsonOnDeserialized
 {

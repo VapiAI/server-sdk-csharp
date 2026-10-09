@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Result of the recording-consent flow, including consent type and the time consent was granted.
+/// </summary>
 [Serializable]
 public record RecordingConsent : IJsonOnDeserialized
 {
@@ -15,7 +18,7 @@ public record RecordingConsent : IJsonOnDeserialized
     /// This is the type of recording consent.
     /// </summary>
     [JsonPropertyName("type")]
-    public object Type { get; set; } = new Dictionary<string, object?>();
+    public required RecordingConsentType Type { get; set; }
 
     /// <summary>
     /// This is the date and time the recording consent was granted.

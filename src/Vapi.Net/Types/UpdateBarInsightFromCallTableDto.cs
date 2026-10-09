@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update a bar-chart insight, including its queries, formulas, grouping, time range, metadata, and name.
+/// </summary>
 [Serializable]
 public record UpdateBarInsightFromCallTableDto : IJsonOnDeserialized
 {
@@ -44,6 +47,9 @@ public record UpdateBarInsightFromCallTableDto : IJsonOnDeserialized
     [JsonPropertyName("metadata")]
     public BarInsightMetadata? Metadata { get; set; }
 
+    /// <summary>
+    /// The time range and interval used to aggregate the bar-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRangeWithStep? TimeRange { get; set; }
 

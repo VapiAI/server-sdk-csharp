@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a structured-output definition that extracts validated data from calls using an AI model or regular expression.
+/// </summary>
 [Serializable]
 public record CreateStructuredOutputDto : IJsonOnDeserialized
 {
@@ -24,6 +27,15 @@ public record CreateStructuredOutputDto : IJsonOnDeserialized
 
     /// <summary>
     /// This is the regex pattern to match against the transcript.
+    ///
+    /// Simulation evaluations use a canonical transcript built from recorded messages:
+    /// User: and AI: dialogue, AI: tool_calls: JSON name/arguments records, and
+    /// AI: tool_call_results: JSON results. System messages are excluded. These
+    /// fixed labels apply even when custom artifact transcript labels are configured.
+    /// Tool payloads participate in first-match and all-match extraction in event order.
+    /// An empty message array falls back to the supplied transcript verbatim.
+    /// Production-call extraction and call preview use their existing transcripts,
+    /// so previewing the same output on a simulation's call can return a different result.
     ///
     /// Only used when type is 'regex'. Supports both raw patterns (e.g. '\d+') and
     /// regex literal format (e.g. '/\d+/gi'). Uses RE2 syntax for safety.
@@ -60,6 +72,12 @@ public record CreateStructuredOutputDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("compliancePlan")]
     public ComplianceOverride? CompliancePlan { get; set; }
+
+    /// <summary>
+    /// These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate.
+    /// </summary>
+    [JsonPropertyName("conditions")]
+    public IEnumerable<object>? Conditions { get; set; }
 
     /// <summary>
     /// This is the name of the structured output.

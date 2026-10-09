@@ -8,6 +8,9 @@ public enum FallbackCartesiaTranscriberModel
 {
     [EnumMember(Value = "ink-whisper")]
     InkWhisper,
+
+    [EnumMember(Value = "ink-2")]
+    Ink2,
 }
 
 internal class FallbackCartesiaTranscriberModelSerializer
@@ -16,12 +19,20 @@ internal class FallbackCartesiaTranscriberModelSerializer
     private static readonly global::System.Collections.Generic.Dictionary<
         string,
         FallbackCartesiaTranscriberModel
-    > _stringToEnum = new() { { "ink-whisper", FallbackCartesiaTranscriberModel.InkWhisper } };
+    > _stringToEnum = new()
+    {
+        { "ink-whisper", FallbackCartesiaTranscriberModel.InkWhisper },
+        { "ink-2", FallbackCartesiaTranscriberModel.Ink2 },
+    };
 
     private static readonly global::System.Collections.Generic.Dictionary<
         FallbackCartesiaTranscriberModel,
         string
-    > _enumToString = new() { { FallbackCartesiaTranscriberModel.InkWhisper, "ink-whisper" } };
+    > _enumToString = new()
+    {
+        { FallbackCartesiaTranscriberModel.InkWhisper, "ink-whisper" },
+        { FallbackCartesiaTranscriberModel.Ink2, "ink-2" },
+    };
 
     public override FallbackCartesiaTranscriberModel Read(
         ref global::System.Text.Json.Utf8JsonReader reader,

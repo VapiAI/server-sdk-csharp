@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for transcribing speech with Gladia, including language behavior, audio processing, endpointing, vocabulary, and region.
+/// </summary>
 [Serializable]
 public record FallbackGladiaTranscriber : IJsonOnDeserialized
 {
@@ -33,7 +36,7 @@ public record FallbackGladiaTranscriber : IJsonOnDeserialized
     /// Defines the languages to use for the transcription. Required when languageBehaviour is 'manual'.
     /// </summary>
     [JsonPropertyName("languages")]
-    public FallbackGladiaTranscriberLanguages? Languages { get; set; }
+    public IEnumerable<FallbackGladiaTranscriberLanguagesItem>? Languages { get; set; }
 
     /// <summary>
     /// Provides a custom vocabulary to the model to improve accuracy of transcribing context specific words, technical terms, names, etc. If empty, this argument is ignored.

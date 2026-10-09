@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for transcribing speech with Deepgram, including model, language, formatting, endpointing, and vocabulary.
+/// </summary>
 [Serializable]
 public record FallbackDeepgramTranscriber : IJsonOnDeserialized
 {
@@ -32,7 +35,7 @@ public record FallbackDeepgramTranscriber : IJsonOnDeserialized
     /// <summary>
     /// If set to true, this will add mip_opt_out=true as a query parameter of all API requests. See https://developers.deepgram.com/docs/the-deepgram-model-improvement-partnership-program#want-to-opt-out
     ///
-    /// This will only be used if you are using your own Deepgram API key.
+    /// This only applies to your own Deepgram API key. Requests on Vapi's key always opt out, whatever this is set to.
     ///
     /// @default false
     /// </summary>
@@ -56,18 +59,29 @@ public record FallbackDeepgramTranscriber : IJsonOnDeserialized
     public bool? ProfanityFilter { get; set; }
 
     /// <summary>
+    /// Enables redaction of sensitive information from transcripts.
+    ///
+    /// Options include:
+    /// - "pci": Redacts credit card numbers, expiration dates, and CVV.
+    /// - "pii": Redacts personally identifiable information (names, locations, identifying numbers, etc.).
+    /// - "phi": Redacts protected health information (medical conditions, drugs, injuries, etc.).
+    /// - "numbers": Redacts numerical and identifying entities (dates, account numbers, SSNs, etc.).
+    ///
+    /// Multiple values can be provided to redact different categories simultaneously.
+    /// Redacted content is replaced with entity labels like [CREDIT_CARD_1], [SSN_1], etc.
+    ///
+    /// See https://developers.deepgram.com/docs/redaction for details.
+    /// </summary>
+    [JsonPropertyName("redaction")]
+    public IEnumerable<FallbackDeepgramTranscriberRedactionItem>? Redaction { get; set; }
+
+    /// <summary>
     /// Transcripts below this confidence threshold will be discarded.
     ///
     /// @default 0.4
     /// </summary>
     [JsonPropertyName("confidenceThreshold")]
     public double? ConfidenceThreshold { get; set; }
-
-    /// <summary>
-    /// Eager end-of-turn confidence required to fire a eager end-of-turn event. Setting a value here will enable EagerEndOfTurn and SpeechResumed events. It is disabled by default. Only used with Flux models.
-    /// </summary>
-    [JsonPropertyName("eagerEotThreshold")]
-    public double? EagerEotThreshold { get; set; }
 
     /// <summary>
     /// End-of-turn confidence required to finish a turn. Only used with Flux models.
@@ -84,6 +98,14 @@ public record FallbackDeepgramTranscriber : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("eotTimeoutMs")]
     public double? EotTimeoutMs { get; set; }
+
+    /// <summary>
+    /// Language hints to bias Flux Multilingual (`flux-general-multi`) toward specific languages.
+    /// Provide BCP-47 language codes (e.g. "en", "es", "fr"). Multiple hints can be given for
+    /// multilingual or code-switching scenarios. Omit for auto-detection. Only used with `flux-general-multi`.
+    /// </summary>
+    [JsonPropertyName("languages")]
+    public IEnumerable<string>? Languages { get; set; }
 
     /// <summary>
     /// These keywords are passed to the transcription model to help it pick up use-case specific words. Anything that may not be a common word, like your company name, should be added here.

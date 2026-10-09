@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a tool that hands a conversation to another assistant, squad, or dynamically selected destination.
+/// </summary>
 [Serializable]
 public record CreateHandoffToolDto : IJsonOnDeserialized
 {
@@ -12,9 +15,7 @@ public record CreateHandoffToolDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// These are the messages that will be spoken to the user as the tool is running.
-    ///
-    /// For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
+    /// Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates.
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
