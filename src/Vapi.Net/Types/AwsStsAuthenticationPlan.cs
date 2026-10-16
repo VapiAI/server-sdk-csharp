@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// AWS Security Token Service role-assumption configuration used to authenticate requests.
+/// </summary>
 [Serializable]
 public record AwsStsAuthenticationPlan : IJsonOnDeserialized
 {

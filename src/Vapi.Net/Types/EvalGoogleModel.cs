@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Google model configuration for an LLM judge, including its messages and generation settings.
+/// </summary>
 [Serializable]
 public record EvalGoogleModel : IJsonOnDeserialized
 {

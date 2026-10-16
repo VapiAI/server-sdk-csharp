@@ -11,6 +11,12 @@ public enum FallbackAssemblyAiTranscriberSpeechModel
 
     [EnumMember(Value = "universal-streaming-multilingual")]
     UniversalStreamingMultilingual,
+
+    [EnumMember(Value = "universal-3-5-pro")]
+    Universal35Pro,
+
+    [EnumMember(Value = "universal-3-6-pro")]
+    Universal36Pro,
 }
 
 internal class FallbackAssemblyAiTranscriberSpeechModelSerializer
@@ -29,6 +35,8 @@ internal class FallbackAssemblyAiTranscriberSpeechModelSerializer
             "universal-streaming-multilingual",
             FallbackAssemblyAiTranscriberSpeechModel.UniversalStreamingMultilingual
         },
+        { "universal-3-5-pro", FallbackAssemblyAiTranscriberSpeechModel.Universal35Pro },
+        { "universal-3-6-pro", FallbackAssemblyAiTranscriberSpeechModel.Universal36Pro },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -44,6 +52,8 @@ internal class FallbackAssemblyAiTranscriberSpeechModelSerializer
             FallbackAssemblyAiTranscriberSpeechModel.UniversalStreamingMultilingual,
             "universal-streaming-multilingual"
         },
+        { FallbackAssemblyAiTranscriberSpeechModel.Universal35Pro, "universal-3-5-pro" },
+        { FallbackAssemblyAiTranscriberSpeechModel.Universal36Pro, "universal-3-6-pro" },
     };
 
     public override FallbackAssemblyAiTranscriberSpeechModel Read(

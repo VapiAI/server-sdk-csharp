@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Matches the call's ended reason against configured assistant-request failure reasons before an ending hook runs.
+/// </summary>
 [Serializable]
 public record PhoneNumberCallEndingHookFilter : IJsonOnDeserialized
 {

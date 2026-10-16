@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for storing call artifacts in Amazon S3, including access keys, region, bucket, path prefix, and upload fallback order.
+/// </summary>
 [Serializable]
 public record CreateS3CredentialDto : IJsonOnDeserialized
 {

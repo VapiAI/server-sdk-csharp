@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A hook action that invokes an inline tool or an existing tool when the hook triggers.
+/// </summary>
 [Serializable]
 public record ToolCallHookAction : IJsonOnDeserialized
 {

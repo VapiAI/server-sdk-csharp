@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved structured-output definition containing its extraction schema, execution method, model or regular expression, linked resources, and lifecycle metadata.
+/// </summary>
 [Serializable]
 public record StructuredOutput : IJsonOnDeserialized
 {
@@ -23,6 +26,15 @@ public record StructuredOutput : IJsonOnDeserialized
     /// <summary>
     /// This is the regex pattern to match against the transcript.
     ///
+    /// Simulation evaluations use a canonical transcript built from recorded messages:
+    /// User: and AI: dialogue, AI: tool_calls: JSON name/arguments records, and
+    /// AI: tool_call_results: JSON results. System messages are excluded. These
+    /// fixed labels apply even when custom artifact transcript labels are configured.
+    /// Tool payloads participate in first-match and all-match extraction in event order.
+    /// An empty message array falls back to the supplied transcript verbatim.
+    /// Production-call extraction and call preview use their existing transcripts,
+    /// so previewing the same output on a simulation's call can return a different result.
+    ///
     /// Only used when type is 'regex'. Supports both raw patterns (e.g. '\d+') and
     /// regex literal format (e.g. '/\d+/gi'). Uses RE2 syntax for safety.
     ///
@@ -39,7 +51,8 @@ public record StructuredOutput : IJsonOnDeserialized
     /// This is the model that will be used to extract the structured output.
     ///
     /// To provide your own custom system and user prompts for structured output extraction, populate the messages array with your system and user messages. You can specify liquid templating in your system and user messages.
-    /// Between the system or user messages, you must reference either 'transcript' or 'messages' with the `{{}}` syntax to access the conversation history.
+    /// For text extraction, you must reference 'transcript', 'messages', or 'messagesWithConfidence' with the `{{}}` syntax to access the conversation history.
+    /// In structured outputs, `{{messages}}` includes conversation text and tool calls/results but omits caller transcription-confidence fields. Text extraction can use `{{messagesWithConfidence}}` when the output needs the original message history with transcription confidence. These variables also apply in structured-output schema descriptions. Audio-targeted (`messages-with-audio`) extraction ignores custom messages. Stored call artifacts and API messages retain their confidence data.
     /// Between the system or user messages, you must reference a variation of the structured output with the `{{}}` syntax to access the structured output definition.
     /// i.e.:
     /// `{{structuredOutput}}`
@@ -58,6 +71,12 @@ public record StructuredOutput : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("compliancePlan")]
     public ComplianceOverride? CompliancePlan { get; set; }
+
+    /// <summary>
+    /// These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate.
+    /// </summary>
+    [JsonPropertyName("conditions")]
+    public IEnumerable<object>? Conditions { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the structured output.

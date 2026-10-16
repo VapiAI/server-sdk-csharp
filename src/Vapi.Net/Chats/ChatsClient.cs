@@ -19,15 +19,17 @@ public partial class ChatsClient : IChatsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 17)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 19)
             .Add("id", request.Id)
             .Add("assistantId", request.AssistantId)
             .Add("assistantIdAny", request.AssistantIdAny)
             .Add("squadId", request.SquadId)
             .Add("sessionId", request.SessionId)
             .Add("previousChatId", request.PreviousChatId)
+            .Add("idAny", request.IdAny)
             .Add("page", request.Page)
             .Add("sortOrder", request.SortOrder)
+            .Add("sortBy", request.SortBy)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)

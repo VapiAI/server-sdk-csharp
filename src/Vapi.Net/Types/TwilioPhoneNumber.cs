@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A Twilio phone number connected to Vapi, including its Twilio account details, SMS configuration, routing, hooks, server settings, and lifecycle metadata.
+/// </summary>
 [Serializable]
 public record TwilioPhoneNumber : IJsonOnDeserialized
 {

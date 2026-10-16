@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved line-chart insight containing its call-data queries, formulas, grouping, stepped time range, metadata, and lifecycle information.
+/// </summary>
 [Serializable]
 public record LineInsight : IJsonOnDeserialized
 {
@@ -44,6 +47,9 @@ public record LineInsight : IJsonOnDeserialized
     [JsonPropertyName("metadata")]
     public LineInsightMetadata? Metadata { get; set; }
 
+    /// <summary>
+    /// The time range and interval used to aggregate the line-chart data.
+    /// </summary>
     [JsonPropertyName("timeRange")]
     public InsightTimeRangeWithStep? TimeRange { get; set; }
 
@@ -97,6 +103,12 @@ public record LineInsight : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Stable server-owned identifier for system-created insights.
+    /// </summary>
+    [JsonPropertyName("systemKey")]
+    public string? SystemKey { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

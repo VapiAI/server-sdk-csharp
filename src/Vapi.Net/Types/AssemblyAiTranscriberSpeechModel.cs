@@ -11,6 +11,12 @@ public enum AssemblyAiTranscriberSpeechModel
 
     [EnumMember(Value = "universal-streaming-multilingual")]
     UniversalStreamingMultilingual,
+
+    [EnumMember(Value = "universal-3-5-pro")]
+    Universal35Pro,
+
+    [EnumMember(Value = "universal-3-6-pro")]
+    Universal36Pro,
 }
 
 internal class AssemblyAiTranscriberSpeechModelSerializer
@@ -29,6 +35,8 @@ internal class AssemblyAiTranscriberSpeechModelSerializer
             "universal-streaming-multilingual",
             AssemblyAiTranscriberSpeechModel.UniversalStreamingMultilingual
         },
+        { "universal-3-5-pro", AssemblyAiTranscriberSpeechModel.Universal35Pro },
+        { "universal-3-6-pro", AssemblyAiTranscriberSpeechModel.Universal36Pro },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -44,6 +52,8 @@ internal class AssemblyAiTranscriberSpeechModelSerializer
             AssemblyAiTranscriberSpeechModel.UniversalStreamingMultilingual,
             "universal-streaming-multilingual"
         },
+        { AssemblyAiTranscriberSpeechModel.Universal35Pro, "universal-3-5-pro" },
+        { AssemblyAiTranscriberSpeechModel.Universal36Pro, "universal-3-6-pro" },
     };
 
     public override AssemblyAiTranscriberSpeechModel Read(

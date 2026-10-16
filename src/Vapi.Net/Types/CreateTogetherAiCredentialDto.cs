@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating assistant model requests with Together AI.
+/// </summary>
 [Serializable]
 public record CreateTogetherAiCredentialDto : IJsonOnDeserialized
 {

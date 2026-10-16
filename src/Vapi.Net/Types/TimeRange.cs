@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Start, end, timezone, and time step used for analytics aggregation.
+/// </summary>
 [Serializable]
 public record TimeRange : IJsonOnDeserialized
 {

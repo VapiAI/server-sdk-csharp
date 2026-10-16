@@ -60,6 +60,12 @@ public record GetSessionPaginatedDto : IJsonOnDeserialized
     public string? CustomerNumberAny { get; set; }
 
     /// <summary>
+    /// Filter by multiple session IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonPropertyName("idAny")]
+    public string? IdAny { get; set; }
+
+    /// <summary>
     /// This will return sessions with the specified phoneNumberId.
     /// </summary>
     [JsonPropertyName("phoneNumberId")]
@@ -82,6 +88,12 @@ public record GetSessionPaginatedDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("sortOrder")]
     public GetSessionPaginatedDtoSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonPropertyName("sortBy")]
+    public GetSessionPaginatedDtoSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

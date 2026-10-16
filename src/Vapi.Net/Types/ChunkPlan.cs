@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls how model output is split into chunks before voice synthesis, including minimum length, punctuation boundaries, and formatting.
+/// </summary>
 [Serializable]
 public record ChunkPlan : IJsonOnDeserialized
 {

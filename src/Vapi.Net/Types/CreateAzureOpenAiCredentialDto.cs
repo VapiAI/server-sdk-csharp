@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating assistant model requests with Azure OpenAI, including region, endpoint, and available models.
+/// </summary>
 [Serializable]
 public record CreateAzureOpenAiCredentialDto : IJsonOnDeserialized
 {
@@ -11,9 +14,15 @@ public record CreateAzureOpenAiCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Azure region that hosts the OpenAI resource.
+    /// </summary>
     [JsonPropertyName("region")]
     public required CreateAzureOpenAiCredentialDtoRegion Region { get; set; }
 
+    /// <summary>
+    /// Azure OpenAI models available through this credential.
+    /// </summary>
     [JsonPropertyName("models")]
     public IEnumerable<CreateAzureOpenAiCredentialDtoModelsItem> Models { get; set; } =
         new List<CreateAzureOpenAiCredentialDtoModelsItem>();
@@ -30,6 +39,9 @@ public record CreateAzureOpenAiCredentialDto : IJsonOnDeserialized
     [JsonPropertyName("ocpApimSubscriptionKey")]
     public string? OcpApimSubscriptionKey { get; set; }
 
+    /// <summary>
+    /// Endpoint URL for the Azure OpenAI resource.
+    /// </summary>
     [JsonPropertyName("openAIEndpoint")]
     public required string OpenAiEndpoint { get; set; }
 

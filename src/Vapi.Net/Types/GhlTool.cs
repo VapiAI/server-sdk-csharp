@@ -11,19 +11,21 @@ public record GhlTool : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("latestVersion")]
+    public string? LatestVersion { get; set; }
+
     /// <summary>
-    /// These are the messages that will be spoken to the user as the tool is running.
-    ///
-    /// For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
+    /// Display-only baseline label returned by the tool list before a version is stored. Fetch version history to initialize it before using it as a pin.
+    /// </summary>
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [JsonPropertyName("baselineVersion")]
+    public string? BaselineVersion { get; set; }
+
+    /// <summary>
+    /// Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates.
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
-
-    /// <summary>
-    /// The type of tool. "ghl" for GHL tool.
-    /// </summary>
-    [JsonPropertyName("type")]
-    public required GhlToolType Type { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the tool.

@@ -21,6 +21,12 @@ public record ElevenLabsCredential : IJsonOnDeserialized
     public required string ApiKey { get; set; }
 
     /// <summary>
+    /// ElevenLabs-only API environment for this key: the global endpoint or the EU data residency endpoint. In EU deployments, new credentials must explicitly use the EU data residency endpoint; existing credentials may omit this field on update to retain their saved endpoint. Outside EU deployments, Vapi detects an omitted endpoint automatically and null on update clears and re-detects the endpoint.
+    /// </summary>
+    [JsonPropertyName("apiUrl")]
+    public ElevenLabsCredentialApiUrl? ApiUrl { get; set; }
+
+    /// <summary>
     /// This is the unique identifier for the credential.
     /// </summary>
     [JsonPropertyName("id")]

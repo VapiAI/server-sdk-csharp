@@ -3,3 +3,6 @@
 .gitignore
 README.md
 changelog.md
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A Gladia custom vocabulary word or phrase with optional pronunciations, intensity, and language.
+/// </summary>
 [Serializable]
 public record GladiaVocabularyItemDto : IJsonOnDeserialized
 {

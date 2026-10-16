@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A custom endpointing rule that matches the customer's current speech and applies a configured timeout.
+/// </summary>
 [Serializable]
 public record CustomerCustomEndpointingRule : IJsonOnDeserialized
 {

@@ -6,6 +6,9 @@ namespace Vapi.Net;
 [Serializable]
 public record ScorecardControllerGetPaginatedRequest
 {
+    /// <summary>
+    /// Filters scorecards by ID.
+    /// </summary>
     [JsonIgnore]
     public string? Id { get; set; }
 
@@ -20,6 +23,12 @@ public record ScorecardControllerGetPaginatedRequest
     /// </summary>
     [JsonIgnore]
     public ScorecardControllerGetPaginatedRequestSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonIgnore]
+    public ScorecardControllerGetPaginatedRequestSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

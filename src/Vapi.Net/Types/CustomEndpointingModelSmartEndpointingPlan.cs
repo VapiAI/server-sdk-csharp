@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for using a custom endpointing model, including its provider identifier and server connection.
+/// </summary>
 [Serializable]
 public record CustomEndpointingModelSmartEndpointingPlan : IJsonOnDeserialized
 {

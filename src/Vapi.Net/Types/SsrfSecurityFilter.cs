@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters potential server-side request forgery (SSRF) patterns from transcripts.
+/// </summary>
 [Serializable]
 public record SsrfSecurityFilter : IJsonOnDeserialized
 {

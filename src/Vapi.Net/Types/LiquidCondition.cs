@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Evaluates a Liquid template that must return `true` or `false`.
+/// </summary>
 [Serializable]
 public record LiquidCondition : IJsonOnDeserialized
 {

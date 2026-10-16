@@ -9,8 +9,14 @@ public enum RimeAiVoiceModel
     [EnumMember(Value = "arcana")]
     Arcana,
 
+    [EnumMember(Value = "coda")]
+    Coda,
+
     [EnumMember(Value = "mistv2")]
     Mistv2,
+
+    [EnumMember(Value = "mistv3")]
+    Mistv3,
 
     [EnumMember(Value = "mist")]
     Mist,
@@ -25,7 +31,9 @@ internal class RimeAiVoiceModelSerializer
     > _stringToEnum = new()
     {
         { "arcana", RimeAiVoiceModel.Arcana },
+        { "coda", RimeAiVoiceModel.Coda },
         { "mistv2", RimeAiVoiceModel.Mistv2 },
+        { "mistv3", RimeAiVoiceModel.Mistv3 },
         { "mist", RimeAiVoiceModel.Mist },
     };
 
@@ -35,7 +43,9 @@ internal class RimeAiVoiceModelSerializer
     > _enumToString = new()
     {
         { RimeAiVoiceModel.Arcana, "arcana" },
+        { RimeAiVoiceModel.Coda, "coda" },
         { RimeAiVoiceModel.Mistv2, "mistv2" },
+        { RimeAiVoiceModel.Mistv3, "mistv3" },
         { RimeAiVoiceModel.Mist, "mist" },
     };
 

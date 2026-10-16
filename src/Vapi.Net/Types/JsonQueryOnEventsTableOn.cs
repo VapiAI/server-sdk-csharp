@@ -99,6 +99,12 @@ public enum JsonQueryOnEventsTableOn
     [EnumMember(Value = "call.hookFailed")]
     CallHookFailed,
 
+    [EnumMember(Value = "serverMessage.requestSucceeded")]
+    ServerMessageRequestSucceeded,
+
+    [EnumMember(Value = "serverMessage.requestFailed")]
+    ServerMessageRequestFailed,
+
     [EnumMember(Value = "call.statusReceived")]
     CallStatusReceived,
 
@@ -171,6 +177,9 @@ public enum JsonQueryOnEventsTableOn
     [EnumMember(Value = "assistant.model.requestAttemptFailed")]
     AssistantModelRequestAttemptFailed,
 
+    [EnumMember(Value = "assistant.knowledgeBase.requestSucceeded")]
+    AssistantKnowledgeBaseRequestSucceeded,
+
     [EnumMember(Value = "assistant.model.connectionOpened")]
     AssistantModelConnectionOpened,
 
@@ -188,6 +197,9 @@ public enum JsonQueryOnEventsTableOn
 
     [EnumMember(Value = "assistant.model.responseFailed")]
     AssistantModelResponseFailed,
+
+    [EnumMember(Value = "assistant.model.responseEmpty")]
+    AssistantModelResponseEmpty,
 
     [EnumMember(Value = "assistant.model.toolCallsReceived")]
     AssistantModelToolCallsReceived,
@@ -258,8 +270,20 @@ public enum JsonQueryOnEventsTableOn
     [EnumMember(Value = "assistant.transcriber.languageSwitched")]
     AssistantTranscriberLanguageSwitched,
 
+    [EnumMember(Value = "assistant.analysis.structuredOutputRequest")]
+    AssistantAnalysisStructuredOutputRequest,
+
+    [EnumMember(Value = "assistant.analysis.structuredOutputResponse")]
+    AssistantAnalysisStructuredOutputResponse,
+
+    [EnumMember(Value = "assistant.analysis.structuredOutputError")]
+    AssistantAnalysisStructuredOutputError,
+
     [EnumMember(Value = "assistant.analysis.structuredOutputGenerated")]
     AssistantAnalysisStructuredOutputGenerated,
+
+    [EnumMember(Value = "assistant.analysis.structuredOutputSkipped")]
+    AssistantAnalysisStructuredOutputSkipped,
 
     [EnumMember(Value = "pipeline.turnStarted")]
     PipelineTurnStarted,
@@ -287,6 +311,9 @@ public enum JsonQueryOnEventsTableOn
 
     [EnumMember(Value = "pipeline.firstMessageCompleted")]
     PipelineFirstMessageCompleted,
+
+    [EnumMember(Value = "pipeline.denoiserFailed")]
+    PipelineDenoiserFailed,
 }
 
 internal class JsonQueryOnEventsTableOnSerializer
@@ -328,6 +355,11 @@ internal class JsonQueryOnEventsTableOnSerializer
         { "call.hookTriggered", JsonQueryOnEventsTableOn.CallHookTriggered },
         { "call.hookSucceeded", JsonQueryOnEventsTableOn.CallHookSucceeded },
         { "call.hookFailed", JsonQueryOnEventsTableOn.CallHookFailed },
+        {
+            "serverMessage.requestSucceeded",
+            JsonQueryOnEventsTableOn.ServerMessageRequestSucceeded
+        },
+        { "serverMessage.requestFailed", JsonQueryOnEventsTableOn.ServerMessageRequestFailed },
         { "call.statusReceived", JsonQueryOnEventsTableOn.CallStatusReceived },
         { "call.silenceTimeout", JsonQueryOnEventsTableOn.CallSilenceTimeout },
         { "call.microphoneTimeout", JsonQueryOnEventsTableOn.CallMicrophoneTimeout },
@@ -386,6 +418,10 @@ internal class JsonQueryOnEventsTableOnSerializer
             JsonQueryOnEventsTableOn.AssistantModelRequestAttemptFailed
         },
         {
+            "assistant.knowledgeBase.requestSucceeded",
+            JsonQueryOnEventsTableOn.AssistantKnowledgeBaseRequestSucceeded
+        },
+        {
             "assistant.model.connectionOpened",
             JsonQueryOnEventsTableOn.AssistantModelConnectionOpened
         },
@@ -403,6 +439,7 @@ internal class JsonQueryOnEventsTableOnSerializer
             JsonQueryOnEventsTableOn.AssistantModelResponseSucceeded
         },
         { "assistant.model.responseFailed", JsonQueryOnEventsTableOn.AssistantModelResponseFailed },
+        { "assistant.model.responseEmpty", JsonQueryOnEventsTableOn.AssistantModelResponseEmpty },
         {
             "assistant.model.toolCallsReceived",
             JsonQueryOnEventsTableOn.AssistantModelToolCallsReceived
@@ -469,8 +506,24 @@ internal class JsonQueryOnEventsTableOnSerializer
             JsonQueryOnEventsTableOn.AssistantTranscriberLanguageSwitched
         },
         {
+            "assistant.analysis.structuredOutputRequest",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputRequest
+        },
+        {
+            "assistant.analysis.structuredOutputResponse",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputResponse
+        },
+        {
+            "assistant.analysis.structuredOutputError",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputError
+        },
+        {
             "assistant.analysis.structuredOutputGenerated",
             JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputGenerated
+        },
+        {
+            "assistant.analysis.structuredOutputSkipped",
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputSkipped
         },
         { "pipeline.turnStarted", JsonQueryOnEventsTableOn.PipelineTurnStarted },
         { "pipeline.cleared", JsonQueryOnEventsTableOn.PipelineCleared },
@@ -484,6 +537,7 @@ internal class JsonQueryOnEventsTableOnSerializer
             "pipeline.firstMessageCompleted",
             JsonQueryOnEventsTableOn.PipelineFirstMessageCompleted
         },
+        { "pipeline.denoiserFailed", JsonQueryOnEventsTableOn.PipelineDenoiserFailed },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -522,6 +576,11 @@ internal class JsonQueryOnEventsTableOnSerializer
         { JsonQueryOnEventsTableOn.CallHookTriggered, "call.hookTriggered" },
         { JsonQueryOnEventsTableOn.CallHookSucceeded, "call.hookSucceeded" },
         { JsonQueryOnEventsTableOn.CallHookFailed, "call.hookFailed" },
+        {
+            JsonQueryOnEventsTableOn.ServerMessageRequestSucceeded,
+            "serverMessage.requestSucceeded"
+        },
+        { JsonQueryOnEventsTableOn.ServerMessageRequestFailed, "serverMessage.requestFailed" },
         { JsonQueryOnEventsTableOn.CallStatusReceived, "call.statusReceived" },
         { JsonQueryOnEventsTableOn.CallSilenceTimeout, "call.silenceTimeout" },
         { JsonQueryOnEventsTableOn.CallMicrophoneTimeout, "call.microphoneTimeout" },
@@ -580,6 +639,10 @@ internal class JsonQueryOnEventsTableOnSerializer
             "assistant.model.requestAttemptFailed"
         },
         {
+            JsonQueryOnEventsTableOn.AssistantKnowledgeBaseRequestSucceeded,
+            "assistant.knowledgeBase.requestSucceeded"
+        },
+        {
             JsonQueryOnEventsTableOn.AssistantModelConnectionOpened,
             "assistant.model.connectionOpened"
         },
@@ -597,6 +660,7 @@ internal class JsonQueryOnEventsTableOnSerializer
             "assistant.model.responseSucceeded"
         },
         { JsonQueryOnEventsTableOn.AssistantModelResponseFailed, "assistant.model.responseFailed" },
+        { JsonQueryOnEventsTableOn.AssistantModelResponseEmpty, "assistant.model.responseEmpty" },
         {
             JsonQueryOnEventsTableOn.AssistantModelToolCallsReceived,
             "assistant.model.toolCallsReceived"
@@ -663,8 +727,24 @@ internal class JsonQueryOnEventsTableOnSerializer
             "assistant.transcriber.languageSwitched"
         },
         {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputRequest,
+            "assistant.analysis.structuredOutputRequest"
+        },
+        {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputResponse,
+            "assistant.analysis.structuredOutputResponse"
+        },
+        {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputError,
+            "assistant.analysis.structuredOutputError"
+        },
+        {
             JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputGenerated,
             "assistant.analysis.structuredOutputGenerated"
+        },
+        {
+            JsonQueryOnEventsTableOn.AssistantAnalysisStructuredOutputSkipped,
+            "assistant.analysis.structuredOutputSkipped"
         },
         { JsonQueryOnEventsTableOn.PipelineTurnStarted, "pipeline.turnStarted" },
         { JsonQueryOnEventsTableOn.PipelineCleared, "pipeline.cleared" },
@@ -678,6 +758,7 @@ internal class JsonQueryOnEventsTableOnSerializer
             JsonQueryOnEventsTableOn.PipelineFirstMessageCompleted,
             "pipeline.firstMessageCompleted"
         },
+        { JsonQueryOnEventsTableOn.PipelineDenoiserFailed, "pipeline.denoiserFailed" },
     };
 
     public override JsonQueryOnEventsTableOn Read(

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A phone-number hook action that transfers the call to a phone number or SIP destination.
+/// </summary>
 [Serializable]
 public record TransferPhoneNumberHookAction : IJsonOnDeserialized
 {

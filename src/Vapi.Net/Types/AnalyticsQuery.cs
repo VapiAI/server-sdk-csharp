@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A named analytics query against call or subscription data, including grouping, time range, and aggregation operations.
+/// </summary>
 [Serializable]
 public record AnalyticsQuery : IJsonOnDeserialized
 {

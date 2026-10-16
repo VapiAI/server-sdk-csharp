@@ -7,19 +7,19 @@ namespace Vapi.Net;
 public record EvalControllerGetRunsPaginatedRequest
 {
     [JsonIgnore]
+    public EvalControllerGetRunsPaginatedRequestSortBy? SortBy { get; set; }
+
+    /// <summary>
+    /// Literal, case-insensitive search across eval and assistant names.
+    /// </summary>
+    [JsonIgnore]
+    public string? Search { get; set; }
+
+    /// <summary>
+    /// Filters eval runs by ID.
+    /// </summary>
+    [JsonIgnore]
     public string? Id { get; set; }
-
-    /// <summary>
-    /// This is the page number to return. Defaults to 1.
-    /// </summary>
-    [JsonIgnore]
-    public double? Page { get; set; }
-
-    /// <summary>
-    /// This is the sort order for pagination. Defaults to 'DESC'.
-    /// </summary>
-    [JsonIgnore]
-    public EvalControllerGetRunsPaginatedRequestSortOrder? SortOrder { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.
@@ -74,6 +74,18 @@ public record EvalControllerGetRunsPaginatedRequest
     /// </summary>
     [JsonIgnore]
     public DateTime? UpdatedAtLe { get; set; }
+
+    /// <summary>
+    /// This is the page number to return. Defaults to 1.
+    /// </summary>
+    [JsonIgnore]
+    public double? Page { get; set; }
+
+    /// <summary>
+    /// This is the sort order for pagination. Defaults to 'DESC'.
+    /// </summary>
+    [JsonIgnore]
+    public EvalControllerGetRunsPaginatedRequestSortOrder? SortOrder { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

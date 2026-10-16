@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls smart and Fourier denoising applied to customer audio before transcription.
+/// </summary>
 [Serializable]
 public record BackgroundSpeechDenoisingPlan : IJsonOnDeserialized
 {

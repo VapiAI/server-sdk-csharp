@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with ElevenLabs, including voice and model selection, language, voice tuning, streaming, Speech Synthesis Markup Language parsing, pronunciation dictionaries, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackElevenLabsVoice : IJsonOnDeserialized
 {
@@ -31,37 +34,37 @@ public record FallbackElevenLabsVoice : IJsonOnDeserialized
     public double? Stability { get; set; }
 
     /// <summary>
-    /// Defines the similarity boost for voice settings.
+    /// Defines the similarity boost for voice settings. Ignored by `eleven_v4_turbo`.
     /// </summary>
     [JsonPropertyName("similarityBoost")]
     public double? SimilarityBoost { get; set; }
 
     /// <summary>
-    /// Defines the style for voice settings.
+    /// Defines the style for voice settings. Ignored by `eleven_v4_turbo`.
     /// </summary>
     [JsonPropertyName("style")]
     public double? Style { get; set; }
 
     /// <summary>
-    /// Defines the use speaker boost for voice settings.
+    /// Defines the use speaker boost for voice settings. Ignored by `eleven_v4_turbo`.
     /// </summary>
     [JsonPropertyName("useSpeakerBoost")]
     public bool? UseSpeakerBoost { get; set; }
 
     /// <summary>
-    /// Defines the speed for voice settings.
+    /// Defines the speed for voice settings. Ignored by `eleven_v4_turbo`.
     /// </summary>
     [JsonPropertyName("speed")]
     public double? Speed { get; set; }
 
     /// <summary>
-    /// Defines the optimize streaming latency for voice settings. Defaults to 3.
+    /// Defines the optimize streaming latency for voice settings. Defaults to 3. Ignored by `eleven_v4_turbo`.
     /// </summary>
     [JsonPropertyName("optimizeStreamingLatency")]
     public double? OptimizeStreamingLatency { get; set; }
 
     /// <summary>
-    /// This enables the use of https://elevenlabs.io/docs/speech-synthesis/prompting#pronunciation. Defaults to false to save latency.
+    /// This enables the use of https://elevenlabs.io/docs/speech-synthesis/prompting#pronunciation. Defaults to false to save latency. Ignored by `eleven_v4_turbo`.
     ///
     /// @default false
     /// </summary>
@@ -69,7 +72,7 @@ public record FallbackElevenLabsVoice : IJsonOnDeserialized
     public bool? EnableSsmlParsing { get; set; }
 
     /// <summary>
-    /// Defines the auto mode for voice settings. Defaults to false.
+    /// Defines the auto mode for voice settings. Defaults to false. Ignored by `eleven_v4_turbo`.
     /// </summary>
     [JsonPropertyName("autoMode")]
     public bool? AutoMode { get; set; }
@@ -81,7 +84,7 @@ public record FallbackElevenLabsVoice : IJsonOnDeserialized
     public FallbackElevenLabsVoiceModel? Model { get; set; }
 
     /// <summary>
-    /// This is the language (ISO 639-1) that is enforced for the model. Currently only Turbo v2.5 supports language enforcement. For other models, an error will be returned if language code is provided.
+    /// This is the language (ISO 639-1) that is enforced for the model. Currently only Turbo v2.5, Flash v2.5 and v4 Turbo support language enforcement; other models ignore it.
     /// </summary>
     [JsonPropertyName("language")]
     public string? Language { get; set; }

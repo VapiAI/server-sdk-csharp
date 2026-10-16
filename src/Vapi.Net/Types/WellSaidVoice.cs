@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for synthesizing assistant speech with WellSaid, including voice and model selection, Speech Synthesis Markup Language support, voice libraries, chunking, caching, and fallback settings.
+/// </summary>
 [Serializable]
 public record WellSaidVoice : IJsonOnDeserialized
 {

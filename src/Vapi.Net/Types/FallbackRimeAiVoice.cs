@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Rime AI, including voice and model selection, language, speed, pauses, phonemization, latency, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackRimeAiVoice : IJsonOnDeserialized
 {

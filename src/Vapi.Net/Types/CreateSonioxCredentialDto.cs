@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating transcription requests with Soniox.
+/// </summary>
 [Serializable]
 public record CreateSonioxCredentialDto : IJsonOnDeserialized
 {
@@ -16,6 +19,12 @@ public record CreateSonioxCredentialDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("apiKey")]
     public required string ApiKey { get; set; }
+
+    /// <summary>
+    /// Custom Soniox WebSocket endpoint (e.g. EU server wss://stt-rt.eu.soniox.com/transcribe-websocket). Defaults to the region-appropriate endpoint when omitted.
+    /// </summary>
+    [JsonPropertyName("apiUrl")]
+    public string? ApiUrl { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

@@ -12,14 +12,13 @@ public record CreatePersonalityDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This is the name of the personality (e.g., "Confused Carl", "Rude Rob").
+    /// The display name of the personality, for example `Impatient customer`.
     /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
     /// <summary>
-    /// This is the full assistant configuration for this personality.
-    /// It defines the tester's voice, model, behavior via system prompt, and other settings.
+    /// The assistant configuration for the AI tester: the model, voice, and system prompt that determine how the AI tester behaves during the conversation.
     /// </summary>
     [JsonPropertyName("assistant")]
     public required CreateAssistantDto Assistant { get; set; }

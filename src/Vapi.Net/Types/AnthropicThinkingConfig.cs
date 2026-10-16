@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Enables Anthropic extended thinking with a maximum thinking-token budget.
+/// </summary>
 [Serializable]
 public record AnthropicThinkingConfig : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record AnthropicThinkingConfig : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Enables Anthropic extended thinking.
+    /// </summary>
     [JsonPropertyName("type")]
     public required AnthropicThinkingConfigType Type { get; set; }
 

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a tool that connects an assistant to a Model Context Protocol server and exposes its available tools.
+/// </summary>
 [Serializable]
 public record CreateMcpToolDto : IJsonOnDeserialized
 {
@@ -12,9 +15,7 @@ public record CreateMcpToolDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// These are the messages that will be spoken to the user as the tool is running.
-    ///
-    /// For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
+    /// Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates.
     /// </summary>
     [JsonPropertyName("messages")]
     public IEnumerable<object>? Messages { get; set; }
@@ -38,6 +39,9 @@ public record CreateMcpToolDto : IJsonOnDeserialized
     [JsonPropertyName("toolMessages")]
     public IEnumerable<McpToolMessages>? ToolMessages { get; set; }
 
+    /// <summary>
+    /// Connection metadata for the MCP server, including its communication protocol.
+    /// </summary>
     [JsonPropertyName("metadata")]
     public McpToolMetadata? Metadata { get; set; }
 

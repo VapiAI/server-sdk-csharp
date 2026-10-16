@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for using Tavus as the assistant's voice provider, including persona, callback, context, greeting, conversation properties, chunking, caching, and fallback settings.
+/// </summary>
 [Serializable]
 public record TavusVoice : IJsonOnDeserialized
 {

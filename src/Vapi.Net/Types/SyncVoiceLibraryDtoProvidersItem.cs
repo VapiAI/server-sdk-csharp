@@ -62,6 +62,12 @@ public enum SyncVoiceLibraryDtoProvidersItem
 
     [EnumMember(Value = "orpheus")]
     Orpheus,
+
+    [EnumMember(Value = "xai")]
+    Xai,
+
+    [EnumMember(Value = "microsoft")]
+    Microsoft,
 }
 
 internal class SyncVoiceLibraryDtoProvidersItemSerializer
@@ -91,6 +97,8 @@ internal class SyncVoiceLibraryDtoProvidersItemSerializer
         { "minimax", SyncVoiceLibraryDtoProvidersItem.Minimax },
         { "wellsaid", SyncVoiceLibraryDtoProvidersItem.Wellsaid },
         { "orpheus", SyncVoiceLibraryDtoProvidersItem.Orpheus },
+        { "xai", SyncVoiceLibraryDtoProvidersItem.Xai },
+        { "microsoft", SyncVoiceLibraryDtoProvidersItem.Microsoft },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -117,6 +125,8 @@ internal class SyncVoiceLibraryDtoProvidersItemSerializer
         { SyncVoiceLibraryDtoProvidersItem.Minimax, "minimax" },
         { SyncVoiceLibraryDtoProvidersItem.Wellsaid, "wellsaid" },
         { SyncVoiceLibraryDtoProvidersItem.Orpheus, "orpheus" },
+        { SyncVoiceLibraryDtoProvidersItem.Xai, "xai" },
+        { SyncVoiceLibraryDtoProvidersItem.Microsoft, "microsoft" },
     };
 
     public override SyncVoiceLibraryDtoProvidersItem Read(

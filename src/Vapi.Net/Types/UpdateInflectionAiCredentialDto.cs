@@ -12,6 +12,12 @@ public record UpdateInflectionAiCredentialDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// This is the api key for Pi in InflectionAI's console. Get it from here: https://developers.inflection.ai/keys, billing will need to be setup
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public UpdateInflectionAiCredentialDtoProvider? Provider { get; set; }
+
+    /// <summary>
     /// This is not returned in the API.
     /// </summary>
     [JsonPropertyName("apiKey")]
