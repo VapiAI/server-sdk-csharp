@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved assistant configuration returned by the Vapi API. It defines how the assistant listens, reasons, speaks, handles conversations, sends events, and produces artifacts and analysis.
+/// </summary>
 [Serializable]
 public record Assistant : IJsonOnDeserialized
 {
@@ -38,6 +41,9 @@ public record Assistant : IJsonOnDeserialized
     [JsonPropertyName("firstMessage")]
     public string? FirstMessage { get; set; }
 
+    /// <summary>
+    /// Set to `true` to allow the user to interrupt the assistant while it speaks the first message. Default is `false`.
+    /// </summary>
     [JsonPropertyName("firstMessageInterruptionsEnabled")]
     public bool? FirstMessageInterruptionsEnabled { get; set; }
 
@@ -137,6 +143,21 @@ public record Assistant : IJsonOnDeserialized
     >? Hooks { get; set; }
 
     /// <summary>
+    /// This is the latest version label (e.g. `v3`) of the assistant in the
+    /// version history. `null` while the org is not yet
+    /// onboarded to versioning, or for assistants that have not yet been
+    /// published under it.
+    /// </summary>
+    [JsonPropertyName("latestVersion")]
+    public string? LatestVersion { get; set; }
+
+    /// <summary>
+    /// Read-only. Present only when a model this configuration uses is deprecated or retired in Vapi's model deprecation registry, judged on the day of the response. Each entry names the slot (for example `model` or `model.fallbackModels[1]`), provider, stored model, and deprecation and retirement dates as `YYYY-MM-DD` in UTC. `replacementStatus` is `available` with a `replacementModel` when a replacement can be recommended, or `manual-action-required` with no replacement model when eligibility is unknown or no eligible replacement exists. `manual-action-required` can be transient when compliance context is unavailable; re-fetch before acting. HIPAA-required configurations, sparse drafts, and squads with unresolved assistant references currently require manual action. HIPAA requirements include the organization and assistant settings, including HIPAA with data retention. Recommendations reflect the response-time decision; they do not confirm a swap or authorize future execution. Examples: an available recommendation includes `{"replacementStatus":"available","replacementModel":"gpt-5"}`; a blocked recommendation includes `{"replacementStatus":"manual-action-required"}`. Ignored if sent back in a create or update request.
+    /// </summary>
+    [JsonPropertyName("modelDeprecations")]
+    public IEnumerable<ModelDeprecationNotice>? ModelDeprecations { get; set; }
+
+    /// <summary>
     /// This is the name of the assistant.
     ///
     /// This is required when you want to transfer between assistants in a call.
@@ -166,6 +187,9 @@ public record Assistant : IJsonOnDeserialized
     [JsonPropertyName("endCallPhrases")]
     public IEnumerable<string>? EndCallPhrases { get; set; }
 
+    /// <summary>
+    /// Compliance settings for the assistant, including HIPAA and PCI behavior, security filtering, and recording consent.
+    /// </summary>
     [JsonPropertyName("compliancePlan")]
     public CompliancePlan? CompliancePlan { get; set; }
 
@@ -256,6 +280,9 @@ public record Assistant : IJsonOnDeserialized
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
 
+    /// <summary>
+    /// Configuration for collecting and processing DTMF keypad input during calls.
+    /// </summary>
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }
 

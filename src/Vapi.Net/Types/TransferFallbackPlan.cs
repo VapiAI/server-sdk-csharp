@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls the message and end-call behavior used when a call transfer fails.
+/// </summary>
 [Serializable]
 public record TransferFallbackPlan : IJsonOnDeserialized
 {

@@ -87,6 +87,9 @@ public enum CartesiaVoiceLanguage
     [EnumMember(Value = "no")]
     No,
 
+    [EnumMember(Value = "or")]
+    Or,
+
     [EnumMember(Value = "pa")]
     Pa,
 
@@ -125,6 +128,9 @@ public enum CartesiaVoiceLanguage
 
     [EnumMember(Value = "uk")]
     Uk,
+
+    [EnumMember(Value = "ur")]
+    Ur,
 
     [EnumMember(Value = "vi")]
     Vi,
@@ -168,6 +174,7 @@ internal class CartesiaVoiceLanguageSerializer
         { "ms", CartesiaVoiceLanguage.Ms },
         { "nl", CartesiaVoiceLanguage.Nl },
         { "no", CartesiaVoiceLanguage.No },
+        { "or", CartesiaVoiceLanguage.Or },
         { "pa", CartesiaVoiceLanguage.Pa },
         { "pl", CartesiaVoiceLanguage.Pl },
         { "pt", CartesiaVoiceLanguage.Pt },
@@ -181,6 +188,7 @@ internal class CartesiaVoiceLanguageSerializer
         { "tl", CartesiaVoiceLanguage.Tl },
         { "tr", CartesiaVoiceLanguage.Tr },
         { "uk", CartesiaVoiceLanguage.Uk },
+        { "ur", CartesiaVoiceLanguage.Ur },
         { "vi", CartesiaVoiceLanguage.Vi },
         { "zh", CartesiaVoiceLanguage.Zh },
     };
@@ -217,6 +225,7 @@ internal class CartesiaVoiceLanguageSerializer
         { CartesiaVoiceLanguage.Ms, "ms" },
         { CartesiaVoiceLanguage.Nl, "nl" },
         { CartesiaVoiceLanguage.No, "no" },
+        { CartesiaVoiceLanguage.Or, "or" },
         { CartesiaVoiceLanguage.Pa, "pa" },
         { CartesiaVoiceLanguage.Pl, "pl" },
         { CartesiaVoiceLanguage.Pt, "pt" },
@@ -230,6 +239,7 @@ internal class CartesiaVoiceLanguageSerializer
         { CartesiaVoiceLanguage.Tl, "tl" },
         { CartesiaVoiceLanguage.Tr, "tr" },
         { CartesiaVoiceLanguage.Uk, "uk" },
+        { CartesiaVoiceLanguage.Ur, "ur" },
         { CartesiaVoiceLanguage.Vi, "vi" },
         { CartesiaVoiceLanguage.Zh, "zh" },
     };

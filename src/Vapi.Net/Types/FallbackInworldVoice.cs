@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Inworld, including voice and model selection, language, temperature, speaking rate, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackInworldVoice : IJsonOnDeserialized
 {

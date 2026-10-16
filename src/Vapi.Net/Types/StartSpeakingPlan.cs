@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls when the assistant begins speaking after customer speech, including the minimum wait, endpointing strategy, and custom endpointing rules.
+/// </summary>
 [Serializable]
 public record StartSpeakingPlan : IJsonOnDeserialized
 {

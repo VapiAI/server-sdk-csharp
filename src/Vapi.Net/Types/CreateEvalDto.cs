@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a reusable eval containing a mock conversation and checkpoints for assessing assistant responses and tool calls.
+/// </summary>
 [Serializable]
 public record CreateEvalDto : IJsonOnDeserialized
 {

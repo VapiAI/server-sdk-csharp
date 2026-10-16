@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Uses a webhook response to select the handoff destination at runtime.
+/// </summary>
 [Serializable]
 public record HandoffDestinationDynamic : IJsonOnDeserialized
 {

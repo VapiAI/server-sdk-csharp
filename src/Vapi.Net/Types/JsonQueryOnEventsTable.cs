@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// VapiQL JSON query that counts or calculates the percentage of matching events using optional typed event-data filters.
+/// </summary>
 [Serializable]
 public record JsonQueryOnEventsTable : IJsonOnDeserialized
 {

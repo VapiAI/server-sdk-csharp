@@ -19,7 +19,7 @@ public record SimulationRunItemResults : IJsonOnDeserialized
         new List<StructuredOutputEvaluationResult>();
 
     /// <summary>
-    /// This indicates whether all required evaluations passed.
+    /// This indicates whether all required, non-skipped structured output evaluations and latency expectations passed.
     /// </summary>
     [JsonPropertyName("passed")]
     public required bool Passed { get; set; }
@@ -29,6 +29,13 @@ public record SimulationRunItemResults : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("latencyMetrics")]
     public LatencyMetrics? LatencyMetrics { get; set; }
+
+    /// <summary>
+    /// This is the list of results from the scenario's latency expectations.
+    /// Absent when the scenario has no latency expectations.
+    /// </summary>
+    [JsonPropertyName("latencyEvaluations")]
+    public IEnumerable<LatencyEvaluationResult>? LatencyEvaluations { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

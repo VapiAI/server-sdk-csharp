@@ -11,6 +11,9 @@ public record UpdateWebhookCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateWebhookCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication.
     /// </summary>

@@ -29,6 +29,57 @@ public enum FallbackOpenAiVoiceIdEnum
 
     [EnumMember(Value = "cedar")]
     Cedar,
+
+    [EnumMember(Value = "ash")]
+    Ash,
+
+    [EnumMember(Value = "ballad")]
+    Ballad,
+
+    [EnumMember(Value = "beacon")]
+    Beacon,
+
+    [EnumMember(Value = "bossa")]
+    Bossa,
+
+    [EnumMember(Value = "cinder")]
+    Cinder,
+
+    [EnumMember(Value = "coral")]
+    Coral,
+
+    [EnumMember(Value = "delta")]
+    Delta,
+
+    [EnumMember(Value = "gleam")]
+    Gleam,
+
+    [EnumMember(Value = "meridian")]
+    Meridian,
+
+    [EnumMember(Value = "quartz")]
+    Quartz,
+
+    [EnumMember(Value = "ripple")]
+    Ripple,
+
+    [EnumMember(Value = "sage")]
+    Sage,
+
+    [EnumMember(Value = "stone")]
+    Stone,
+
+    [EnumMember(Value = "tempo")]
+    Tempo,
+
+    [EnumMember(Value = "verse")]
+    Verse,
+
+    [EnumMember(Value = "vesper")]
+    Vesper,
+
+    [EnumMember(Value = "willow")]
+    Willow,
 }
 
 internal class FallbackOpenAiVoiceIdEnumSerializer
@@ -47,6 +98,23 @@ internal class FallbackOpenAiVoiceIdEnumSerializer
         { "shimmer", FallbackOpenAiVoiceIdEnum.Shimmer },
         { "marin", FallbackOpenAiVoiceIdEnum.Marin },
         { "cedar", FallbackOpenAiVoiceIdEnum.Cedar },
+        { "ash", FallbackOpenAiVoiceIdEnum.Ash },
+        { "ballad", FallbackOpenAiVoiceIdEnum.Ballad },
+        { "beacon", FallbackOpenAiVoiceIdEnum.Beacon },
+        { "bossa", FallbackOpenAiVoiceIdEnum.Bossa },
+        { "cinder", FallbackOpenAiVoiceIdEnum.Cinder },
+        { "coral", FallbackOpenAiVoiceIdEnum.Coral },
+        { "delta", FallbackOpenAiVoiceIdEnum.Delta },
+        { "gleam", FallbackOpenAiVoiceIdEnum.Gleam },
+        { "meridian", FallbackOpenAiVoiceIdEnum.Meridian },
+        { "quartz", FallbackOpenAiVoiceIdEnum.Quartz },
+        { "ripple", FallbackOpenAiVoiceIdEnum.Ripple },
+        { "sage", FallbackOpenAiVoiceIdEnum.Sage },
+        { "stone", FallbackOpenAiVoiceIdEnum.Stone },
+        { "tempo", FallbackOpenAiVoiceIdEnum.Tempo },
+        { "verse", FallbackOpenAiVoiceIdEnum.Verse },
+        { "vesper", FallbackOpenAiVoiceIdEnum.Vesper },
+        { "willow", FallbackOpenAiVoiceIdEnum.Willow },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -62,6 +130,23 @@ internal class FallbackOpenAiVoiceIdEnumSerializer
         { FallbackOpenAiVoiceIdEnum.Shimmer, "shimmer" },
         { FallbackOpenAiVoiceIdEnum.Marin, "marin" },
         { FallbackOpenAiVoiceIdEnum.Cedar, "cedar" },
+        { FallbackOpenAiVoiceIdEnum.Ash, "ash" },
+        { FallbackOpenAiVoiceIdEnum.Ballad, "ballad" },
+        { FallbackOpenAiVoiceIdEnum.Beacon, "beacon" },
+        { FallbackOpenAiVoiceIdEnum.Bossa, "bossa" },
+        { FallbackOpenAiVoiceIdEnum.Cinder, "cinder" },
+        { FallbackOpenAiVoiceIdEnum.Coral, "coral" },
+        { FallbackOpenAiVoiceIdEnum.Delta, "delta" },
+        { FallbackOpenAiVoiceIdEnum.Gleam, "gleam" },
+        { FallbackOpenAiVoiceIdEnum.Meridian, "meridian" },
+        { FallbackOpenAiVoiceIdEnum.Quartz, "quartz" },
+        { FallbackOpenAiVoiceIdEnum.Ripple, "ripple" },
+        { FallbackOpenAiVoiceIdEnum.Sage, "sage" },
+        { FallbackOpenAiVoiceIdEnum.Stone, "stone" },
+        { FallbackOpenAiVoiceIdEnum.Tempo, "tempo" },
+        { FallbackOpenAiVoiceIdEnum.Verse, "verse" },
+        { FallbackOpenAiVoiceIdEnum.Vesper, "vesper" },
+        { FallbackOpenAiVoiceIdEnum.Willow, "willow" },
     };
 
     public override FallbackOpenAiVoiceIdEnum Read(

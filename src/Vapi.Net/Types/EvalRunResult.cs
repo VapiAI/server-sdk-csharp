@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// The pass or fail result of an evaluation run, including its conversation messages and timing.
+/// </summary>
 [Serializable]
 public record EvalRunResult : IJsonOnDeserialized
 {

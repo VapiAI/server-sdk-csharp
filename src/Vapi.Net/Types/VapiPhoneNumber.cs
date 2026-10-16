@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A Vapi-managed phone number or SIP URI, including its authentication, routing, hooks, server settings, and lifecycle metadata.
+/// </summary>
 [Serializable]
 public record VapiPhoneNumber : IJsonOnDeserialized
 {

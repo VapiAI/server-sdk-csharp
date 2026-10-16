@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating assistant model, transcription, and voice synthesis requests with OpenAI.
+/// </summary>
 [Serializable]
 public record CreateOpenAiCredentialDto : IJsonOnDeserialized
 {

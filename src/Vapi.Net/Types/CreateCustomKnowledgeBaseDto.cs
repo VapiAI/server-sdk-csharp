@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for connecting a custom knowledge-base implementation through a customer-hosted server.
+/// </summary>
 [Serializable]
 public record CreateCustomKnowledgeBaseDto : IJsonOnDeserialized
 {

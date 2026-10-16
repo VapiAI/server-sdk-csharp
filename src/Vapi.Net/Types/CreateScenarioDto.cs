@@ -12,20 +12,19 @@ public record CreateScenarioDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This is the name of the scenario.
+    /// The display name of the scenario, for example `Book an appointment`.
     /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
     /// <summary>
-    /// This is the script/instructions for the tester to follow during the simulation.
+    /// What the AI tester should try to accomplish in the conversation. Write it as the AI tester's goal, for example `Book an appointment for next week and confirm the time.`
     /// </summary>
     [JsonPropertyName("instructions")]
     public required string Instructions { get; set; }
 
     /// <summary>
-    /// This is the structured output-based evaluation plan for the simulation.
-    /// Each item defines a structured output to extract and evaluate against an expected value.
+    /// The checks that decide whether a run passes. Each evaluation compares a structured output against an expected value. At least one evaluation is required to run.
     /// </summary>
     [JsonPropertyName("evaluations")]
     public IEnumerable<EvaluationPlanItem> Evaluations { get; set; } =
@@ -44,10 +43,20 @@ public record CreateScenarioDto : IJsonOnDeserialized
     public AssistantOverrides? TargetOverrides { get; set; }
 
     /// <summary>
-    /// Scenario-level tool call mocks to use during simulations.
+    /// Mock results for the assistant or squad's tools during the simulation, so the run stays deterministic without calling real services.
     /// </summary>
     [JsonPropertyName("toolMocks")]
     public IEnumerable<ScenarioToolMock>? ToolMocks { get; set; }
+
+    /// <summary>
+    /// Latency ceilings for voice simulations. Each expectation aggregates the
+    /// target call's per-turn latencies and fails the simulation (when required)
+    /// if the aggregated value exceeds its threshold. Skipped for chat simulations
+    /// and GPT Live targets; on any other voice simulation, a metric that no turn
+    /// measured fails.
+    /// </summary>
+    [JsonPropertyName("latencyExpectations")]
+    public IEnumerable<LatencyExpectation>? LatencyExpectations { get; set; }
 
     /// <summary>
     /// Optional folder path for organizing scenarios.

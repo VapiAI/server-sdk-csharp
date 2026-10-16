@@ -21,6 +21,12 @@ public record SonioxCredential : IJsonOnDeserialized
     public required string ApiKey { get; set; }
 
     /// <summary>
+    /// Custom Soniox WebSocket endpoint (e.g. EU server wss://stt-rt.eu.soniox.com/transcribe-websocket). Defaults to the region-appropriate endpoint when omitted.
+    /// </summary>
+    [JsonPropertyName("apiUrl")]
+    public string? ApiUrl { get; set; }
+
+    /// <summary>
     /// This is the unique identifier for the credential.
     /// </summary>
     [JsonPropertyName("id")]

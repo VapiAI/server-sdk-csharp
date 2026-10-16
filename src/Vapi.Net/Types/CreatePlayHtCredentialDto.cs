@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating voice synthesis requests with PlayHT, including the PlayHT user identifier.
+/// </summary>
 [Serializable]
 public record CreatePlayHtCredentialDto : IJsonOnDeserialized
 {
@@ -17,6 +20,9 @@ public record CreatePlayHtCredentialDto : IJsonOnDeserialized
     [JsonPropertyName("apiKey")]
     public required string ApiKey { get; set; }
 
+    /// <summary>
+    /// PlayHT user identifier associated with the API key.
+    /// </summary>
     [JsonPropertyName("userId")]
     public required string UserId { get; set; }
 

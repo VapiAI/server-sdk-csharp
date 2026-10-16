@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Includes a configured number of the most recent messages when constructing context for a handoff.
+/// </summary>
 [Serializable]
 public record ContextEngineeringPlanLastNMessages : IJsonOnDeserialized
 {

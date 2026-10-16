@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A simulated assistant turn in an evaluation conversation, with optional message content and tool calls.
+/// </summary>
 [Serializable]
 public record ChatEvalAssistantMessageMock : IJsonOnDeserialized
 {

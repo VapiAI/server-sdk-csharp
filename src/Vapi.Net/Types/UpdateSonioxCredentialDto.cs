@@ -11,11 +11,20 @@ public record UpdateSonioxCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateSonioxCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is not returned in the API.
     /// </summary>
     [JsonPropertyName("apiKey")]
     public string? ApiKey { get; set; }
+
+    /// <summary>
+    /// Custom Soniox WebSocket endpoint (e.g. EU server wss://stt-rt.eu.soniox.com/transcribe-websocket). Defaults to the region-appropriate endpoint when omitted.
+    /// </summary>
+    [JsonPropertyName("apiUrl")]
+    public string? ApiUrl { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

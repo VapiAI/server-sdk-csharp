@@ -7,6 +7,12 @@ namespace Vapi.Net;
 public record ListSquadsRequest
 {
     /// <summary>
+    /// Return only squads matching the provided ids
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> IdAny { get; set; } = new List<string>();
+
+    /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.
     /// </summary>
     [JsonIgnore]

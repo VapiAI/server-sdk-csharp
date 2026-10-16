@@ -50,6 +50,12 @@ public record CartesiaCredential : IJsonOnDeserialized
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
+    /// <summary>
+    /// This can be used to point to an onprem Cartesia instance. Defaults to api.cartesia.ai.
+    /// </summary>
+    [JsonPropertyName("apiUrl")]
+    public string? ApiUrl { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

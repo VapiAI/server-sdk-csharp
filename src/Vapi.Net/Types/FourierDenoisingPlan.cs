@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for Fourier denoising, including media detection, thresholds, baseline calculation, and analysis window.
+/// </summary>
 [Serializable]
 public record FourierDenoisingPlan : IJsonOnDeserialized
 {

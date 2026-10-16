@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Conditions evaluated to determine whether a requested tool call should be rejected.
+/// </summary>
 [Serializable]
 public record ToolRejectionPlan : IJsonOnDeserialized
 {

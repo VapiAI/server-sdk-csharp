@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Evaluates an assistant message using case-insensitive exact content matching and expected tool calls.
+/// </summary>
 [Serializable]
 public record AssistantMessageJudgePlanExact : IJsonOnDeserialized
 {

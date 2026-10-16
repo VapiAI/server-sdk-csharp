@@ -36,9 +36,6 @@ public enum EvalGroqModelModel
     [EnumMember(Value = "moonshotai/kimi-k2-instruct-0905")]
     MoonshotaiKimiK2Instruct0905,
 
-    [EnumMember(Value = "meta-llama/llama-4-maverick-17b-128e-instruct")]
-    MetaLlamaLlama4Maverick17B128EInstruct,
-
     [EnumMember(Value = "meta-llama/llama-4-scout-17b-16e-instruct")]
     MetaLlamaLlama4Scout17B16EInstruct,
 
@@ -71,10 +68,6 @@ internal class EvalGroqModelModelSerializer
         { "gemma2-9b-it", EvalGroqModelModel.Gemma29BIt },
         { "moonshotai/kimi-k2-instruct-0905", EvalGroqModelModel.MoonshotaiKimiK2Instruct0905 },
         {
-            "meta-llama/llama-4-maverick-17b-128e-instruct",
-            EvalGroqModelModel.MetaLlamaLlama4Maverick17B128EInstruct
-        },
-        {
             "meta-llama/llama-4-scout-17b-16e-instruct",
             EvalGroqModelModel.MetaLlamaLlama4Scout17B16EInstruct
         },
@@ -98,10 +91,6 @@ internal class EvalGroqModelModelSerializer
         { EvalGroqModelModel.Llama370B8192, "llama3-70b-8192" },
         { EvalGroqModelModel.Gemma29BIt, "gemma2-9b-it" },
         { EvalGroqModelModel.MoonshotaiKimiK2Instruct0905, "moonshotai/kimi-k2-instruct-0905" },
-        {
-            EvalGroqModelModel.MetaLlamaLlama4Maverick17B128EInstruct,
-            "meta-llama/llama-4-maverick-17b-128e-instruct"
-        },
         {
             EvalGroqModelModel.MetaLlamaLlama4Scout17B16EInstruct,
             "meta-llama/llama-4-scout-17b-16e-instruct"

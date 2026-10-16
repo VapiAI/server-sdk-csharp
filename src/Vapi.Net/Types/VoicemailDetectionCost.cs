@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Voicemail-detection model cost, including provider, model, multimodal token usage, and amount.
+/// </summary>
 [Serializable]
 public record VoicemailDetectionCost : IJsonOnDeserialized
 {
