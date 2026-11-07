@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Message spoken when a tool call exceeds a configured response delay, with optional language variants and argument conditions.
+/// </summary>
 [Serializable]
 public record ToolMessageDelayed : IJsonOnDeserialized
 {
@@ -24,7 +27,7 @@ public record ToolMessageDelayed : IJsonOnDeserialized
     public IEnumerable<TextContent>? Contents { get; set; }
 
     /// <summary>
-    /// The number of milliseconds to wait for the server response before saying this message.
+    /// The number of milliseconds to wait for the server response before saying this delayed message.
     /// </summary>
     [JsonPropertyName("timingMilliseconds")]
     public double? TimingMilliseconds { get; set; }

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Cloudflare R2 bucket configuration for call-artifact storage, including access keys, base URL, bucket name, and path.
+/// </summary>
 [Serializable]
 public record CloudflareR2BucketPlan : IJsonOnDeserialized
 {

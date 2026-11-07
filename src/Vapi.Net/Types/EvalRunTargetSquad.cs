@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A squad evaluation target provided as a saved squad ID or a transient squad, with optional assistant overrides.
+/// </summary>
 [Serializable]
 public record EvalRunTargetSquad : IJsonOnDeserialized
 {

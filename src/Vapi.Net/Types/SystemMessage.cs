@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A system-authored entry in the call message history, including its content and timing.
+/// </summary>
 [Serializable]
 public record SystemMessage : IJsonOnDeserialized
 {

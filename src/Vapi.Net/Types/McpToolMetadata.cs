@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Protocol metadata used to communicate with an MCP server.
+/// </summary>
 [Serializable]
 public record McpToolMetadata : IJsonOnDeserialized
 {

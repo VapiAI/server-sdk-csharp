@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating assistant model requests with Anyscale.
+/// </summary>
 [Serializable]
 public record CreateAnyscaleCredentialDto : IJsonOnDeserialized
 {

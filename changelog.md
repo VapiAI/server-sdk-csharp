@@ -1,3 +1,25 @@
+## [3.0.0] - 2026-11-07
+### Breaking Changes
+- **`CreateCampaignDto`, `CreateTrieveKnowledgeBaseDto`, `FallbackDeepgramTranscriberLanguage/Model`, `GladiaTranscriberLanguages`, `VapiVoiceVoiceId`, `FallbackGladiaTranscriberLanguages`, `FallbackTavusVoice`, `FallbackVapiVoiceVoiceId`, `TavusConversationProperties`, `TrieveKnowledgeBaseChunkPlan/SearchPlan`, `UpdateTrieveKnowledgeBaseDto`, `ByoSipTrunkCredential.SbcConfiguration`** — multiple types, enums, and properties removed; remove all references and migrate to replacement APIs.
+- **`CreateCallDto.Assistant`** — type changed from `CreateAssistantDto` to `TransientAssistantDto`; update all assignments to use `TransientAssistantDto`.
+- **`IStructuredOutputsClient.StructuredOutputControllerRunAsync`** — return type changed from `WithRawResponseTask<StructuredOutput>` to `WithRawResponseTask<OneOf<StructuredOutputRerunResponse, StructuredOutputControllerRunResponseOne>>`; update callers to handle the union type.
+- **`FilesClient.ListAsync`** — now requires a `ListFilesRequest` parameter; pass `new ListFilesRequest()` to preserve existing behavior.
+- **`CerebrasModelModel.Llama3370B`, `EvalGroqModelModel.MetaLlamaLlama4Maverick17B128EInstruct`, `GroqModelModel.MetaLlamaLlama4Maverick17B128EInstruct`** — enum values removed; update switch expressions and comparisons to use available alternatives.
+
+### Added
+- **New simulation management clients** — `SimulationsClient`, `SimulationRunsClient`, `SimulationScenariosClient`, `SimulationSuitesClient`, and `SimulationPersonalitiesClient` added for full simulation lifecycle management including AI-assisted onboarding.
+- **`BoardClient`** and **`TrafficAllocationsClient`** — new clients for managing reporting boards and per-assistant traffic splitting across published versions.
+- **`GuardrailPacksClient`** and `IGuardrailRulesClient`** — new clients for managing guardrail packs and rules.
+- **`KnowledgeBasesV2Client`** — new client with full CRUD and file-management support for V2 knowledge bases.
+- **New typed HTTP exception classes** — `BadGatewayError`, `ConflictError`, `ForbiddenError`, `GatewayTimeoutError`, `InternalServerError`, `PaymentRequiredError`, `ServiceUnavailableError`, `TooManyRequestsError`, `UnauthorizedError`, and `UnprocessableEntityError` now thrown for their respective non-2xx responses.
+- See full changelog for all changes
+
+### Changed
+- **`AssistantsClient`** — now throws `ConflictError` on HTTP 409 instead of a generic `VapiClientApiException`; callers catching `VapiClientApiException` for conflict scenarios should also handle `ConflictError`.
+- **`FilesClient.CreateAsync`** — now includes `purpose` and `metadata` fields in the multipart form upload request body.
+- **XML documentation** — doc comments added across numerous public types and client members for improved IntelliSense discoverability.
+- See full changelog for all changes
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`CartesiaExperimentalControlsSpeedZero`** has been renamed to **`CartesiaSpeedControlZero`**; update all references and the type argument in `CartesiaExperimentalControls.Speed` (`OneOf<CartesiaSpeedControlZero, double>?`).

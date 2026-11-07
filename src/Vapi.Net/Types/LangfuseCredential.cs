@@ -33,6 +33,12 @@ public record LangfuseCredential : IJsonOnDeserialized
     public required string ApiUrl { get; set; }
 
     /// <summary>
+    /// The semver version of your Langfuse server, e.g. 3.63.0, as its /api/public/health endpoint reports it. Optional.
+    /// </summary>
+    [JsonPropertyName("serverVersion")]
+    public string? ServerVersion { get; set; }
+
+    /// <summary>
     /// This is the unique identifier for the credential.
     /// </summary>
     [JsonPropertyName("id")]

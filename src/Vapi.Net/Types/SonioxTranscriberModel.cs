@@ -8,6 +8,9 @@ public enum SonioxTranscriberModel
 {
     [EnumMember(Value = "stt-rt-v4")]
     SttRtV4,
+
+    [EnumMember(Value = "stt-rt-v5")]
+    SttRtV5,
 }
 
 internal class SonioxTranscriberModelSerializer
@@ -16,12 +19,20 @@ internal class SonioxTranscriberModelSerializer
     private static readonly global::System.Collections.Generic.Dictionary<
         string,
         SonioxTranscriberModel
-    > _stringToEnum = new() { { "stt-rt-v4", SonioxTranscriberModel.SttRtV4 } };
+    > _stringToEnum = new()
+    {
+        { "stt-rt-v4", SonioxTranscriberModel.SttRtV4 },
+        { "stt-rt-v5", SonioxTranscriberModel.SttRtV5 },
+    };
 
     private static readonly global::System.Collections.Generic.Dictionary<
         SonioxTranscriberModel,
         string
-    > _enumToString = new() { { SonioxTranscriberModel.SttRtV4, "stt-rt-v4" } };
+    > _enumToString = new()
+    {
+        { SonioxTranscriberModel.SttRtV4, "stt-rt-v4" },
+        { SonioxTranscriberModel.SttRtV5, "stt-rt-v5" },
+    };
 
     public override SonioxTranscriberModel Read(
         ref global::System.Text.Json.Utf8JsonReader reader,

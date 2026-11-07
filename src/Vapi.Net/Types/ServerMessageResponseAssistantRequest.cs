@@ -39,7 +39,7 @@ public record ServerMessageResponseAssistantRequest : IJsonOnDeserialized
     /// - Workflow, use `workflow`
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// These are the overrides for the `assistant` or `assistantId`'s settings and template variables.

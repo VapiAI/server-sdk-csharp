@@ -11,6 +11,9 @@ public enum SubscriptionStatus
 
     [EnumMember(Value = "frozen")]
     Frozen,
+
+    [EnumMember(Value = "blocked")]
+    Blocked,
 }
 
 internal class SubscriptionStatusSerializer
@@ -23,6 +26,7 @@ internal class SubscriptionStatusSerializer
     {
         { "active", SubscriptionStatus.Active },
         { "frozen", SubscriptionStatus.Frozen },
+        { "blocked", SubscriptionStatus.Blocked },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +36,7 @@ internal class SubscriptionStatusSerializer
     {
         { SubscriptionStatus.Active, "active" },
         { SubscriptionStatus.Frozen, "frozen" },
+        { SubscriptionStatus.Blocked, "blocked" },
     };
 
     public override SubscriptionStatus Read(

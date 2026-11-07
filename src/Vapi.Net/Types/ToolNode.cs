@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A workflow node that invokes an inline tool or an existing saved tool.
+/// </summary>
 [Serializable]
 public record ToolNode : IJsonOnDeserialized
 {
@@ -23,6 +26,9 @@ public record ToolNode : IJsonOnDeserialized
     [JsonPropertyName("toolId")]
     public string? ToolId { get; set; }
 
+    /// <summary>
+    /// Unique name used to identify this workflow node.
+    /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 

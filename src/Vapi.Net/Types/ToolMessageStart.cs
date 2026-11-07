@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Message spoken when a tool call starts, with optional language variants, argument conditions, and blocking behavior.
+/// </summary>
 [Serializable]
 public record ToolMessageStart : IJsonOnDeserialized
 {

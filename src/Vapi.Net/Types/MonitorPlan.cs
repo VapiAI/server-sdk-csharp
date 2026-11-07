@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls real-time listening and control for assistant calls, authentication requirements for monitor URLs, and attached monitors.
+/// </summary>
 [Serializable]
 public record MonitorPlan : IJsonOnDeserialized
 {
@@ -54,11 +57,7 @@ public record MonitorPlan : IJsonOnDeserialized
     public bool? ControlAuthenticationEnabled { get; set; }
 
     /// <summary>
-    /// This the set of monitor ids that are attached to the assistant.
-    /// The source of truth for the monitor ids is the assistant_monitor join table.
-    /// This field can be used for transient assistants and to update assistants with new monitor ids.
-    ///
-    /// @default []
+    /// IDs of the monitors attached to the assistant. Use this field for transient assistants or to update the monitors attached to an existing assistant. Defaults to an empty array.
     /// </summary>
     [JsonPropertyName("monitorIds")]
     public IEnumerable<string>? MonitorIds { get; set; }

@@ -11,6 +11,9 @@ public record UpdateGcpCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateGcpCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order.
     /// </summary>
