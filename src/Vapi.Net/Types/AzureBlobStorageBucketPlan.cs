@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Azure Blob Storage container configuration for call artifacts, including its connection string, container name, and storage path.
+/// </summary>
 [Serializable]
 public record AzureBlobStorageBucketPlan : IJsonOnDeserialized
 {

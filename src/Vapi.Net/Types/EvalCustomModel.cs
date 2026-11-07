@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// OpenAI-compatible custom model configuration for an LLM judge, including its endpoint, headers, messages, and generation settings.
+/// </summary>
 [Serializable]
 public record EvalCustomModel : IJsonOnDeserialized
 {

@@ -1,5 +1,6 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -10,6 +11,9 @@ public record VoiceLibraryVoiceResponse : IJsonOnDeserialized
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("age")]
+    public OneOf<string, double>? Age { get; set; }
 
     [JsonPropertyName("voiceId")]
     public required string VoiceId { get; set; }
@@ -25,9 +29,6 @@ public record VoiceLibraryVoiceResponse : IJsonOnDeserialized
 
     [JsonPropertyName("gender")]
     public string? Gender { get; set; }
-
-    [JsonPropertyName("age")]
-    public object? Age { get; set; }
 
     [JsonPropertyName("accent")]
     public string? Accent { get; set; }

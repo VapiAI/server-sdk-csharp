@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Artifacts generated during a call, including messages, recordings, transcript, logs, packet capture, workflow-node data, variables, performance metrics, structured outputs, scorecards, and transfers.
+/// </summary>
 [Serializable]
 public record Artifact : IJsonOnDeserialized
 {
@@ -25,6 +28,19 @@ public record Artifact : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("messagesOpenAIFormatted")]
     public IEnumerable<OpenAiMessage>? MessagesOpenAiFormatted { get; set; }
+
+    /// <summary>
+    /// Structured outputs skipped because their conditions were not met, keyed by saved or runtime output ID.
+    /// </summary>
+    [JsonPropertyName("skippedStructuredOutputs")]
+    public Dictionary<string, SkippedStructuredOutput>? SkippedStructuredOutputs { get; set; }
+
+    /// <summary>
+    /// These are the transfer records for the call's transfer attempts (warm and blind), including
+    /// destination, mode, and status. Warm transfer records also include transcripts and messages.
+    /// </summary>
+    [JsonPropertyName("transfers")]
+    public IEnumerable<TransferArtifact>? Transfers { get; set; }
 
     /// <summary>
     /// This is the recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`.
@@ -113,16 +129,72 @@ public record Artifact : IJsonOnDeserialized
     public object? Scorecards { get; set; }
 
     /// <summary>
-    /// These are the transfer records from warm transfers, including destinations, transcripts, and status.
-    /// </summary>
-    [JsonPropertyName("transfers")]
-    public IEnumerable<string>? Transfers { get; set; }
-
-    /// <summary>
     /// This is when the structured outputs were last updated
     /// </summary>
     [JsonPropertyName("structuredOutputsLastUpdatedAt")]
     public DateTime? StructuredOutputsLastUpdatedAt { get; set; }
+
+    /// <summary>
+    /// This is a presigned URL to download the mono recording without
+    /// authentication. Populated on API responses and server messages; never
+    /// stored. Expires at `presignedUrlsExpiresAt` — after that, use
+    /// `GET /call/{id}/mono-recording`.
+    /// </summary>
+    [JsonPropertyName("presignedMonoUrl")]
+    public string? PresignedMonoUrl { get; set; }
+
+    /// <summary>
+    /// This is a presigned URL to download the stereo recording without
+    /// authentication. Expires at `presignedUrlsExpiresAt` — after that, use
+    /// `GET /call/{id}/stereo-recording`.
+    /// </summary>
+    [JsonPropertyName("presignedStereoUrl")]
+    public string? PresignedStereoUrl { get; set; }
+
+    /// <summary>
+    /// This is a presigned URL to download the video recording without
+    /// authentication. Expires at `presignedUrlsExpiresAt` — after that, use
+    /// `GET /call/{id}/video-recording`.
+    /// </summary>
+    [JsonPropertyName("presignedVideoUrl")]
+    public string? PresignedVideoUrl { get; set; }
+
+    /// <summary>
+    /// This is a presigned URL to download the assistant-channel mono recording
+    /// without authentication. Expires at `presignedUrlsExpiresAt`.
+    /// </summary>
+    [JsonPropertyName("presignedAssistantUrl")]
+    public string? PresignedAssistantUrl { get; set; }
+
+    /// <summary>
+    /// This is a presigned URL to download the customer-channel mono recording
+    /// without authentication. Expires at `presignedUrlsExpiresAt`.
+    /// </summary>
+    [JsonPropertyName("presignedCustomerUrl")]
+    public string? PresignedCustomerUrl { get; set; }
+
+    /// <summary>
+    /// This is a presigned URL to download the packet capture without
+    /// authentication. Expires at `presignedUrlsExpiresAt`.
+    /// </summary>
+    [JsonPropertyName("presignedPcapUrl")]
+    public string? PresignedPcapUrl { get; set; }
+
+    /// <summary>
+    /// This is a presigned URL to download the call logs without
+    /// authentication. Expires at `presignedUrlsExpiresAt`.
+    /// </summary>
+    [JsonPropertyName("presignedLogUrl")]
+    public string? PresignedLogUrl { get; set; }
+
+    /// <summary>
+    /// This is when the presigned URLs above expire, as an ISO 8601 timestamp.
+    /// The raw `*Url` fields remain the stable identifiers and do not expire.
+    /// Presigned URLs are regenerated per response and per webhook delivery, so
+    /// values differ across retries.
+    /// </summary>
+    [JsonPropertyName("presignedUrlsExpiresAt")]
+    public string? PresignedUrlsExpiresAt { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

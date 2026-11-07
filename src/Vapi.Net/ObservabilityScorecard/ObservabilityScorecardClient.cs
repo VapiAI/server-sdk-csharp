@@ -229,10 +229,11 @@ public partial class ObservabilityScorecardClient : IObservabilityScorecardClien
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 13)
             .Add("id", request.Id)
             .Add("page", request.Page)
             .Add("sortOrder", request.SortOrder)
+            .Add("sortBy", request.SortBy)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -370,6 +371,9 @@ public partial class ObservabilityScorecardClient : IObservabilityScorecardClien
         }
     }
 
+    /// <summary>
+    /// Returns the scorecard identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Scorecard> ScorecardControllerGetAsync(
         string id,
         ScorecardControllerGetRequest request,
@@ -382,6 +386,9 @@ public partial class ObservabilityScorecardClient : IObservabilityScorecardClien
         );
     }
 
+    /// <summary>
+    /// Deletes the scorecard identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Scorecard> ScorecardControllerRemoveAsync(
         string id,
         ScorecardControllerRemoveRequest request,
@@ -394,6 +401,9 @@ public partial class ObservabilityScorecardClient : IObservabilityScorecardClien
         );
     }
 
+    /// <summary>
+    /// Updates the scorecard identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Scorecard> ScorecardControllerUpdateAsync(
         string id,
         UpdateScorecardDto request,
@@ -406,6 +416,9 @@ public partial class ObservabilityScorecardClient : IObservabilityScorecardClien
         );
     }
 
+    /// <summary>
+    /// Returns scorecards for the authenticated organization. Filter results by ID or creation and update timestamps.
+    /// </summary>
     public WithRawResponseTask<ScorecardPaginatedResponse> ScorecardControllerGetPaginatedAsync(
         ScorecardControllerGetPaginatedRequest request,
         RequestOptions? options = null,
@@ -417,6 +430,9 @@ public partial class ObservabilityScorecardClient : IObservabilityScorecardClien
         );
     }
 
+    /// <summary>
+    /// Creates a scorecard containing metrics, scoring conditions, and optional links to assistants whose calls should be evaluated.
+    /// </summary>
     public WithRawResponseTask<Scorecard> ScorecardControllerCreateAsync(
         CreateScorecardDto request,
         RequestOptions? options = null,

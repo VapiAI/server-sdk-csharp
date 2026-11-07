@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls voicemail-detection retry timing, including when retries start, retry frequency, and maximum attempts.
+/// </summary>
 [Serializable]
 public record VoicemailDetectionBackoffPlan : IJsonOnDeserialized
 {

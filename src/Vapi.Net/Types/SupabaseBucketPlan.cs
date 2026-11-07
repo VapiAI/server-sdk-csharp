@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Supabase S3-compatible bucket configuration for call artifacts, including region, endpoint, access keys, bucket name, and path.
+/// </summary>
 [Serializable]
 public record SupabaseBucketPlan : IJsonOnDeserialized
 {

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Call performance measurements, including per-turn and average provider, endpointing, transport, and interruption metrics.
+/// </summary>
 [Serializable]
 public record PerformanceMetrics : IJsonOnDeserialized
 {
@@ -12,19 +15,22 @@ public record PerformanceMetrics : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// These are the individual latencies for each turn.
+    /// These are the individual latencies for each turn, in milliseconds, measured on Vapi's servers without network or playback time.
+    /// A turn is recorded only when the assistant replies to the user. A first message the assistant speaks first is not recorded; with `assistant-waits-for-user` it is recorded, with `endpointingLatency` 0. A component that was not measured on a turn is 0.
     /// </summary>
     [JsonPropertyName("turnLatencies")]
     public IEnumerable<TurnLatency>? TurnLatencies { get; set; }
 
     /// <summary>
-    /// This is the average latency for the model to output the first token.
+    /// This is the average `modelLatency` across `turnLatencies`, in milliseconds.
+    /// Turns that recorded 0 because the model latency was not measured are included in the average.
     /// </summary>
     [JsonPropertyName("modelLatencyAverage")]
     public double? ModelLatencyAverage { get; set; }
 
     /// <summary>
-    /// This is the average latency for the text to speech.
+    /// This is the average `voiceLatency` across `turnLatencies`, in milliseconds.
+    /// Turns that recorded 0 because the voice latency was not measured are included in the average.
     /// </summary>
     [JsonPropertyName("voiceLatencyAverage")]
     public double? VoiceLatencyAverage { get; set; }

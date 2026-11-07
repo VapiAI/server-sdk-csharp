@@ -11,6 +11,9 @@ public record UpdateCartesiaCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateCartesiaCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is not returned in the API.
     /// </summary>
@@ -22,6 +25,12 @@ public record UpdateCartesiaCredentialDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
+
+    /// <summary>
+    /// This can be used to point to an onprem Cartesia instance. Defaults to api.cartesia.ai.
+    /// </summary>
+    [JsonPropertyName("apiUrl")]
+    public string? ApiUrl { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

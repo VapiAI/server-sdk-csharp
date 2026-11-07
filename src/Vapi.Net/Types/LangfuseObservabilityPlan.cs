@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for sending assistant call traces to Langfuse, including prompt version linkage, trace naming, tags, and metadata.
+/// </summary>
 [Serializable]
 public record LangfuseObservabilityPlan : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record LangfuseObservabilityPlan : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Routes assistant call observability data to Langfuse.
+    /// </summary>
     [JsonPropertyName("provider")]
     public required LangfuseObservabilityPlanProvider Provider { get; set; }
 

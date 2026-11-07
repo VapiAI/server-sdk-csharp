@@ -60,6 +60,12 @@ public enum AzureOpenAiCredentialRegion
     [EnumMember(Value = "switzerland")]
     Switzerland,
 
+    [EnumMember(Value = "switzerlandnorth")]
+    Switzerlandnorth,
+
+    [EnumMember(Value = "switzerlandwest")]
+    Switzerlandwest,
+
     [EnumMember(Value = "uaenorth")]
     Uaenorth,
 
@@ -102,6 +108,8 @@ internal class AzureOpenAiCredentialRegionSerializer
         { "spaincentral", AzureOpenAiCredentialRegion.Spaincentral },
         { "swedencentral", AzureOpenAiCredentialRegion.Swedencentral },
         { "switzerland", AzureOpenAiCredentialRegion.Switzerland },
+        { "switzerlandnorth", AzureOpenAiCredentialRegion.Switzerlandnorth },
+        { "switzerlandwest", AzureOpenAiCredentialRegion.Switzerlandwest },
         { "uaenorth", AzureOpenAiCredentialRegion.Uaenorth },
         { "uk", AzureOpenAiCredentialRegion.Uk },
         { "westeurope", AzureOpenAiCredentialRegion.Westeurope },
@@ -132,6 +140,8 @@ internal class AzureOpenAiCredentialRegionSerializer
         { AzureOpenAiCredentialRegion.Spaincentral, "spaincentral" },
         { AzureOpenAiCredentialRegion.Swedencentral, "swedencentral" },
         { AzureOpenAiCredentialRegion.Switzerland, "switzerland" },
+        { AzureOpenAiCredentialRegion.Switzerlandnorth, "switzerlandnorth" },
+        { AzureOpenAiCredentialRegion.Switzerlandwest, "switzerlandwest" },
         { AzureOpenAiCredentialRegion.Uaenorth, "uaenorth" },
         { AzureOpenAiCredentialRegion.Uk, "uk" },
         { AzureOpenAiCredentialRegion.Westeurope, "westeurope" },

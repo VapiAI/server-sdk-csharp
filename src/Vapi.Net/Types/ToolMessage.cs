@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A tool-result message associated with a specific tool call.
+/// </summary>
 [Serializable]
 public record ToolMessage : IJsonOnDeserialized
 {

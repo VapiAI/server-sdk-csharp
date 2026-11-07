@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for transcribing speech during assistant conversations with Talkscriber, including model, language, and fallback settings.
+/// </summary>
 [Serializable]
 public record TalkscriberTranscriber : IJsonOnDeserialized
 {

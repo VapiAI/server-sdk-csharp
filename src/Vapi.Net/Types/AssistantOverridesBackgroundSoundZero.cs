@@ -11,6 +11,18 @@ public enum AssistantOverridesBackgroundSoundZero
 
     [EnumMember(Value = "office")]
     Office,
+
+    [EnumMember(Value = "white-noise")]
+    WhiteNoise,
+
+    [EnumMember(Value = "city")]
+    City,
+
+    [EnumMember(Value = "crowd")]
+    Crowd,
+
+    [EnumMember(Value = "farm")]
+    Farm,
 }
 
 internal class AssistantOverridesBackgroundSoundZeroSerializer
@@ -23,6 +35,10 @@ internal class AssistantOverridesBackgroundSoundZeroSerializer
     {
         { "off", AssistantOverridesBackgroundSoundZero.Off },
         { "office", AssistantOverridesBackgroundSoundZero.Office },
+        { "white-noise", AssistantOverridesBackgroundSoundZero.WhiteNoise },
+        { "city", AssistantOverridesBackgroundSoundZero.City },
+        { "crowd", AssistantOverridesBackgroundSoundZero.Crowd },
+        { "farm", AssistantOverridesBackgroundSoundZero.Farm },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +48,10 @@ internal class AssistantOverridesBackgroundSoundZeroSerializer
     {
         { AssistantOverridesBackgroundSoundZero.Off, "off" },
         { AssistantOverridesBackgroundSoundZero.Office, "office" },
+        { AssistantOverridesBackgroundSoundZero.WhiteNoise, "white-noise" },
+        { AssistantOverridesBackgroundSoundZero.City, "city" },
+        { AssistantOverridesBackgroundSoundZero.Crowd, "crowd" },
+        { AssistantOverridesBackgroundSoundZero.Farm, "farm" },
     };
 
     public override AssistantOverridesBackgroundSoundZero Read(

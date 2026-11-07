@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls generation of a post-call summary, including prompt messages, enablement, and request timeout.
+/// </summary>
 [Serializable]
 public record SummaryPlan : IJsonOnDeserialized
 {
