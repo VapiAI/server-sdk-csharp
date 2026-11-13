@@ -11,6 +11,9 @@ public record UpdateInworldCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateInworldCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is the Inworld Basic (Base64) authentication token. This is not returned in the API.
     /// </summary>

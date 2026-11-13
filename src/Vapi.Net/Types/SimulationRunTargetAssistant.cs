@@ -21,7 +21,7 @@ public record SimulationRunTargetAssistant : IJsonOnDeserialized
     /// Inline assistant configuration to test against. Cannot be combined with assistantId.
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

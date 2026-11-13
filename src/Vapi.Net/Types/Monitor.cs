@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Live monitoring data for a call, including attached monitor results and listening and control URLs.
+/// </summary>
 [Serializable]
 public record Monitor : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record Monitor : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Results produced by monitors attached to the call.
+    /// </summary>
     [JsonPropertyName("monitors")]
     public IEnumerable<MonitorResult>? Monitors { get; set; }
 

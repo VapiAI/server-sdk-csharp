@@ -11,6 +11,18 @@ public enum TransferAssistantBackgroundSoundZero
 
     [EnumMember(Value = "office")]
     Office,
+
+    [EnumMember(Value = "white-noise")]
+    WhiteNoise,
+
+    [EnumMember(Value = "city")]
+    City,
+
+    [EnumMember(Value = "crowd")]
+    Crowd,
+
+    [EnumMember(Value = "farm")]
+    Farm,
 }
 
 internal class TransferAssistantBackgroundSoundZeroSerializer
@@ -23,6 +35,10 @@ internal class TransferAssistantBackgroundSoundZeroSerializer
     {
         { "off", TransferAssistantBackgroundSoundZero.Off },
         { "office", TransferAssistantBackgroundSoundZero.Office },
+        { "white-noise", TransferAssistantBackgroundSoundZero.WhiteNoise },
+        { "city", TransferAssistantBackgroundSoundZero.City },
+        { "crowd", TransferAssistantBackgroundSoundZero.Crowd },
+        { "farm", TransferAssistantBackgroundSoundZero.Farm },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +48,10 @@ internal class TransferAssistantBackgroundSoundZeroSerializer
     {
         { TransferAssistantBackgroundSoundZero.Off, "off" },
         { TransferAssistantBackgroundSoundZero.Office, "office" },
+        { TransferAssistantBackgroundSoundZero.WhiteNoise, "white-noise" },
+        { TransferAssistantBackgroundSoundZero.City, "city" },
+        { TransferAssistantBackgroundSoundZero.Crowd, "crowd" },
+        { TransferAssistantBackgroundSoundZero.Farm, "farm" },
     };
 
     public override TransferAssistantBackgroundSoundZero Read(

@@ -1,0 +1,99 @@
+using global::System.Runtime.Serialization;
+using global::System.Text.Json.Serialization;
+
+namespace Vapi.Net;
+
+[JsonConverter(typeof(LatencyExpectationMetricSerializer))]
+public enum LatencyExpectationMetric
+{
+    [EnumMember(Value = "turn")]
+    Turn,
+
+    [EnumMember(Value = "model")]
+    Model,
+
+    [EnumMember(Value = "voice")]
+    Voice,
+
+    [EnumMember(Value = "transcriber")]
+    Transcriber,
+
+    [EnumMember(Value = "endpointing")]
+    Endpointing,
+}
+
+internal class LatencyExpectationMetricSerializer
+    : global::System.Text.Json.Serialization.JsonConverter<LatencyExpectationMetric>
+{
+    private static readonly global::System.Collections.Generic.Dictionary<
+        string,
+        LatencyExpectationMetric
+    > _stringToEnum = new()
+    {
+        { "turn", LatencyExpectationMetric.Turn },
+        { "model", LatencyExpectationMetric.Model },
+        { "voice", LatencyExpectationMetric.Voice },
+        { "transcriber", LatencyExpectationMetric.Transcriber },
+        { "endpointing", LatencyExpectationMetric.Endpointing },
+    };
+
+    private static readonly global::System.Collections.Generic.Dictionary<
+        LatencyExpectationMetric,
+        string
+    > _enumToString = new()
+    {
+        { LatencyExpectationMetric.Turn, "turn" },
+        { LatencyExpectationMetric.Model, "model" },
+        { LatencyExpectationMetric.Voice, "voice" },
+        { LatencyExpectationMetric.Transcriber, "transcriber" },
+        { LatencyExpectationMetric.Endpointing, "endpointing" },
+    };
+
+    public override LatencyExpectationMetric Read(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception("The JSON value could not be read as a string.");
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void Write(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        LatencyExpectationMetric value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WriteStringValue(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : null
+        );
+    }
+
+    public override LatencyExpectationMetric ReadAsPropertyName(
+        ref global::System.Text.Json.Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        var stringValue =
+            reader.GetString()
+            ?? throw new global::System.Exception(
+                "The JSON property name could not be read as a string."
+            );
+        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+    }
+
+    public override void WriteAsPropertyName(
+        global::System.Text.Json.Utf8JsonWriter writer,
+        LatencyExpectationMetric value,
+        global::System.Text.Json.JsonSerializerOptions options
+    )
+    {
+        writer.WritePropertyName(
+            _enumToString.TryGetValue(value, out var stringValue) ? stringValue : value.ToString()
+        );
+    }
+}

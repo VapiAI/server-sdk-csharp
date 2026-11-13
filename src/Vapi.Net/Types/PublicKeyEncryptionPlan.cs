@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for encrypting sensitive outbound request data with a public key.
+/// </summary>
 [Serializable]
 public record PublicKeyEncryptionPlan : IJsonOnDeserialized
 {

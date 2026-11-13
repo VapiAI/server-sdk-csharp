@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls text normalization before voice synthesis, including built-in formatters, number handling, and custom replacements.
+/// </summary>
 [Serializable]
 public record FormatPlan : IJsonOnDeserialized
 {

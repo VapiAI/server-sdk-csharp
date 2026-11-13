@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Post-call analysis results, including summary, structured data, and success evaluation outputs.
+/// </summary>
 [Serializable]
 public record Analysis : IJsonOnDeserialized
 {

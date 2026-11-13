@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Google Cloud service-account key used to authenticate access to Google Cloud resources.
+/// </summary>
 [Serializable]
 public record GcpKey : IJsonOnDeserialized
 {

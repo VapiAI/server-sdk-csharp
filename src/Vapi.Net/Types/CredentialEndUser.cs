@@ -18,7 +18,7 @@ public record CredentialEndUser : IJsonOnDeserialized
     public required string EndUserId { get; set; }
 
     [JsonPropertyName("organizationId")]
-    public required string OrganizationId { get; set; }
+    public string? OrganizationId { get; set; }
 
     [JsonPropertyName("tags")]
     public object? Tags { get; set; }

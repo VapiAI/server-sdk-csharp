@@ -6,6 +6,9 @@ namespace Vapi.Net;
 [Serializable]
 public record InsightRunDto
 {
+    /// <summary>
+    /// Output-formatting instructions applied to the insight run.
+    /// </summary>
     [JsonPropertyName("formatPlan")]
     public InsightRunFormatPlan? FormatPlan { get; set; }
 
@@ -20,6 +23,13 @@ public record InsightRunDto
     /// </summary>
     [JsonPropertyName("timeRangeOverride")]
     public InsightTimeRangeWithStep? TimeRangeOverride { get; set; }
+
+    /// <summary>
+    /// Optional runtime assistant scope for dashboards.
+    /// This is applied to call-table queries without mutating the saved insight.
+    /// </summary>
+    [JsonPropertyName("assistantId")]
+    public string? AssistantId { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

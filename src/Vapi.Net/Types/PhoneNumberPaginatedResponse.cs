@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A paginated collection of phone numbers and metadata describing the result set.
+/// </summary>
 [Serializable]
 public record PhoneNumberPaginatedResponse : IJsonOnDeserialized
 {

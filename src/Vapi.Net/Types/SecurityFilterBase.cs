@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Base configuration for a security filter applied to transcripts before model processing.
+/// </summary>
 [Serializable]
 public record SecurityFilterBase : IJsonOnDeserialized
 {

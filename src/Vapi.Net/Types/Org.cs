@@ -19,6 +19,19 @@ public record Org : IJsonOnDeserialized
     [JsonPropertyName("hipaaEnabled")]
     public bool? HipaaEnabled { get; set; }
 
+    /// <summary>
+    /// The org was created locally, but WorkOS access is still being repaired.
+    /// Clients should keep the current session/org and refresh the org list.
+    /// </summary>
+    [JsonPropertyName("workosRepairPending")]
+    public bool? WorkosRepairPending { get; set; }
+
+    /// <summary>
+    /// Whether the pending WorkOS repair was accepted by Kafka.
+    /// </summary>
+    [JsonPropertyName("workosRepairQueued")]
+    public bool? WorkosRepairQueued { get; set; }
+
     [JsonPropertyName("subscription")]
     public Subscription? Subscription { get; set; }
 

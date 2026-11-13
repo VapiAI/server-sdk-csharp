@@ -11,6 +11,9 @@ public record UpdateAnthropicBedrockCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateAnthropicBedrockCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// AWS region where Bedrock is configured.
     /// </summary>

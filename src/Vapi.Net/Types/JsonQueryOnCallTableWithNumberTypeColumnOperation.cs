@@ -6,6 +6,9 @@ namespace Vapi.Net;
 [JsonConverter(typeof(JsonQueryOnCallTableWithNumberTypeColumnOperationSerializer))]
 public enum JsonQueryOnCallTableWithNumberTypeColumnOperation
 {
+    [EnumMember(Value = "count")]
+    Count,
+
     [EnumMember(Value = "average")]
     Average,
 
@@ -27,6 +30,7 @@ internal class JsonQueryOnCallTableWithNumberTypeColumnOperationSerializer
         JsonQueryOnCallTableWithNumberTypeColumnOperation
     > _stringToEnum = new()
     {
+        { "count", JsonQueryOnCallTableWithNumberTypeColumnOperation.Count },
         { "average", JsonQueryOnCallTableWithNumberTypeColumnOperation.Average },
         { "sum", JsonQueryOnCallTableWithNumberTypeColumnOperation.Sum },
         { "min", JsonQueryOnCallTableWithNumberTypeColumnOperation.Min },
@@ -38,6 +42,7 @@ internal class JsonQueryOnCallTableWithNumberTypeColumnOperationSerializer
         string
     > _enumToString = new()
     {
+        { JsonQueryOnCallTableWithNumberTypeColumnOperation.Count, "count" },
         { JsonQueryOnCallTableWithNumberTypeColumnOperation.Average, "average" },
         { JsonQueryOnCallTableWithNumberTypeColumnOperation.Sum, "sum" },
         { JsonQueryOnCallTableWithNumberTypeColumnOperation.Min, "min" },

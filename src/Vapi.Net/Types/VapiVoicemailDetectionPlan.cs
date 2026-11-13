@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for detecting voicemail with Vapi, including detection type, maximum beep wait, and retry backoff.
+/// </summary>
 [Serializable]
 public record VapiVoicemailDetectionPlan : IJsonOnDeserialized
 {

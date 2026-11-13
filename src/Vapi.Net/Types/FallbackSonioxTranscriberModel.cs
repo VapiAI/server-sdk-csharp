@@ -8,6 +8,12 @@ public enum FallbackSonioxTranscriberModel
 {
     [EnumMember(Value = "stt-rt-v4")]
     SttRtV4,
+
+    [EnumMember(Value = "stt-rt-v5")]
+    SttRtV5,
+
+    [EnumMember(Value = "stt-rt-v6")]
+    SttRtV6,
 }
 
 internal class FallbackSonioxTranscriberModelSerializer
@@ -16,12 +22,22 @@ internal class FallbackSonioxTranscriberModelSerializer
     private static readonly global::System.Collections.Generic.Dictionary<
         string,
         FallbackSonioxTranscriberModel
-    > _stringToEnum = new() { { "stt-rt-v4", FallbackSonioxTranscriberModel.SttRtV4 } };
+    > _stringToEnum = new()
+    {
+        { "stt-rt-v4", FallbackSonioxTranscriberModel.SttRtV4 },
+        { "stt-rt-v5", FallbackSonioxTranscriberModel.SttRtV5 },
+        { "stt-rt-v6", FallbackSonioxTranscriberModel.SttRtV6 },
+    };
 
     private static readonly global::System.Collections.Generic.Dictionary<
         FallbackSonioxTranscriberModel,
         string
-    > _enumToString = new() { { FallbackSonioxTranscriberModel.SttRtV4, "stt-rt-v4" } };
+    > _enumToString = new()
+    {
+        { FallbackSonioxTranscriberModel.SttRtV4, "stt-rt-v4" },
+        { FallbackSonioxTranscriberModel.SttRtV5, "stt-rt-v5" },
+        { FallbackSonioxTranscriberModel.SttRtV6, "stt-rt-v6" },
+    };
 
     public override FallbackSonioxTranscriberModel Read(
         ref global::System.Text.Json.Utf8JsonReader reader,

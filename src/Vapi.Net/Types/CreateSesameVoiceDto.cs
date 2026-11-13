@@ -12,16 +12,25 @@ public record CreateSesameVoiceDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// This is the audio file of the utterance to clone the voice from.
+    /// Consumed by multer via FileInterceptor('file'), so it never reaches
+    /// class-validator; declared here (like CreateFileDTO.file) so the OpenAPI
+    /// spec is truthful about the multipart request body.
+    /// </summary>
+    [JsonPropertyName("file")]
+    public required string File { get; set; }
+
+    /// <summary>
     /// The name of the voice.
     /// </summary>
     [JsonPropertyName("voiceName")]
-    public string? VoiceName { get; set; }
+    public required string VoiceName { get; set; }
 
     /// <summary>
     /// The transcript of the utterance.
     /// </summary>
     [JsonPropertyName("transcription")]
-    public string? Transcription { get; set; }
+    public required string Transcription { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

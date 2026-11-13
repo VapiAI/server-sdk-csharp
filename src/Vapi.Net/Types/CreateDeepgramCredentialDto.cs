@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating speech recognition and voice synthesis requests with Deepgram, with an optional API URL for an on-premises instance.
+/// </summary>
 [Serializable]
 public record CreateDeepgramCredentialDto : IJsonOnDeserialized
 {

@@ -17,7 +17,7 @@ public record OpenAiResponsesRequest
     /// This is the assistant that will be used for the chat. To use an existing assistant, use `assistantId` instead.
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// These are the variable values that will be used to replace template variables in the assistant messages.
