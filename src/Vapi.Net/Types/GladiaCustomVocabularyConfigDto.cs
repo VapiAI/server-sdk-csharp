@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Custom vocabulary configuration for Gladia transcription, including vocabulary items and default recognition intensity.
+/// </summary>
 [Serializable]
 public record GladiaCustomVocabularyConfigDto : IJsonOnDeserialized
 {

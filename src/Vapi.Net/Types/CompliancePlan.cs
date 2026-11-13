@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls HIPAA and PCI requirements, transcript security filtering, and recording-consent handling for assistant calls.
+/// </summary>
 [Serializable]
 public record CompliancePlan : IJsonOnDeserialized
 {
@@ -30,6 +33,9 @@ public record CompliancePlan : IJsonOnDeserialized
     [JsonPropertyName("securityFilterPlan")]
     public SecurityFilterPlan? SecurityFilterPlan { get; set; }
 
+    /// <summary>
+    /// Controls how recording consent is requested before the assistant joins the call.
+    /// </summary>
     [JsonPropertyName("recordingConsentPlan")]
     public object? RecordingConsentPlan { get; set; }
 

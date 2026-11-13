@@ -155,6 +155,27 @@ public enum FallbackRimeAiVoiceIdEnum
 
     [EnumMember(Value = "parapet")]
     Parapet,
+
+    [EnumMember(Value = "clementine")]
+    Clementine,
+
+    [EnumMember(Value = "walnut")]
+    Walnut,
+
+    [EnumMember(Value = "eyre")]
+    Eyre,
+
+    [EnumMember(Value = "bancroft")]
+    Bancroft,
+
+    [EnumMember(Value = "hesse")]
+    Hesse,
+
+    [EnumMember(Value = "beatty")]
+    Beatty,
+
+    [EnumMember(Value = "godfrey")]
+    Godfrey,
 }
 
 internal class FallbackRimeAiVoiceIdEnumSerializer
@@ -215,6 +236,13 @@ internal class FallbackRimeAiVoiceIdEnumSerializer
         { "masonry", FallbackRimeAiVoiceIdEnum.Masonry },
         { "albion", FallbackRimeAiVoiceIdEnum.Albion },
         { "parapet", FallbackRimeAiVoiceIdEnum.Parapet },
+        { "clementine", FallbackRimeAiVoiceIdEnum.Clementine },
+        { "walnut", FallbackRimeAiVoiceIdEnum.Walnut },
+        { "eyre", FallbackRimeAiVoiceIdEnum.Eyre },
+        { "bancroft", FallbackRimeAiVoiceIdEnum.Bancroft },
+        { "hesse", FallbackRimeAiVoiceIdEnum.Hesse },
+        { "beatty", FallbackRimeAiVoiceIdEnum.Beatty },
+        { "godfrey", FallbackRimeAiVoiceIdEnum.Godfrey },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -272,6 +300,13 @@ internal class FallbackRimeAiVoiceIdEnumSerializer
         { FallbackRimeAiVoiceIdEnum.Masonry, "masonry" },
         { FallbackRimeAiVoiceIdEnum.Albion, "albion" },
         { FallbackRimeAiVoiceIdEnum.Parapet, "parapet" },
+        { FallbackRimeAiVoiceIdEnum.Clementine, "clementine" },
+        { FallbackRimeAiVoiceIdEnum.Walnut, "walnut" },
+        { FallbackRimeAiVoiceIdEnum.Eyre, "eyre" },
+        { FallbackRimeAiVoiceIdEnum.Bancroft, "bancroft" },
+        { FallbackRimeAiVoiceIdEnum.Hesse, "hesse" },
+        { FallbackRimeAiVoiceIdEnum.Beatty, "beatty" },
+        { FallbackRimeAiVoiceIdEnum.Godfrey, "godfrey" },
     };
 
     public override FallbackRimeAiVoiceIdEnum Read(

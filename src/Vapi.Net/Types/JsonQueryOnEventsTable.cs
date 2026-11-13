@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// VapiQL JSON query that counts or calculates the percentage of matching events using optional typed event-data filters.
+/// </summary>
 [Serializable]
 public record JsonQueryOnEventsTable : IJsonOnDeserialized
 {
@@ -30,6 +33,12 @@ public record JsonQueryOnEventsTable : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("on")]
     public required JsonQueryOnEventsTableOn On { get; set; }
+
+    /// <summary>
+    /// The structured output an evaluation monitor tracks, as artifact.structuredOutputs[OutputID]
+    /// </summary>
+    [JsonPropertyName("column")]
+    public string? Column { get; set; }
 
     /// <summary>
     /// This is the operation to perform on matching events.

@@ -1,3 +1,23 @@
+## [3.0.0] - 2026-11-13
+### Breaking Changes
+- **`CreateCampaignDto`, `CreateTrieveKnowledgeBaseDto`, `FallbackTavusVoice`, `TavusConversationProperties`, `TrieveKnowledgeBaseChunkPlan`, `TrieveKnowledgeBaseSearchPlan`, and `UpdateTrieveKnowledgeBaseDto`** — these types have been removed; delete all references and migrate to replacement APIs.
+- **`GladiaTranscriberLanguages`, `FallbackGladiaTranscriberLanguages`, `VapiVoiceVoiceId`, `FallbackVapiVoiceVoiceId`, `FallbackDeepgramTranscriberLanguage`, `FallbackDeepgramTranscriberModel`** — these enums have been removed; remove all references.
+- **`IStructuredOutputsClient.StructuredOutputControllerRunAsync`** — return type changed from `WithRawResponseTask<StructuredOutput>` to `WithRawResponseTask<OneOf<StructuredOutputRerunResponse, StructuredOutputControllerRunResponseOne>>`; unwrap the `OneOf` union before accessing the result.
+- **`CreateCallDto.Assistant`** — type changed from `CreateAssistantDto?` to `TransientAssistantDto?`; update all assignments accordingly.
+- **`IFilesClient.ListAsync`** — now requires a `ListFilesRequest` as its first argument; add `new ListFilesRequest()` to all existing call sites.
+
+### Added
+- **`BoardClient`, `TrafficAllocationsClient`, `KnowledgeBasesV2Client`, `SimulationsClient`, `SimulationPersonalitiesClient`, `SimulationScenariosClient`, `SimulationRunsClient`, and `SimulationSuitesClient`** — eight new top-level clients exposed on `IVapiClient` for boards, traffic splitting, v2 knowledge bases, and simulation management.
+- **`ICallsClient`** — seven new artifact download methods (`CallArtifactControllerMonoRecordingDownloadAsync`, stereo, video, customer, assistant, pcap, and call-logs variants) plus typed HTTP error exceptions (`BadRequestError`, `UnauthorizedError`, `NotFoundError`, etc.) across all endpoints.
+- **New typed HTTP exception classes** — `UnauthorizedError`, `PaymentRequiredError`, `ForbiddenError`, `ConflictError`, `UnprocessableEntityError`, `TooManyRequestsError`, `InternalServerError`, `BadGatewayError`, `ServiceUnavailableError`, and `GatewayTimeoutError` are now thrown for their respective non-2XX responses.
+- **New model and transcriber values** — `CartesiaTranscriberModel.Ink2`, `FallbackCartesiaTranscriberModel.Ink2`, `SonioxTranscriberModel.SttRtV5`/`SttRtV6`, new Claude and Anthropic Bedrock model values, and new AssemblyAI transcriber modes and speech models.
+- **`AssistantDraft`, `AssistantVersion`, `AssistantGoalDto`** and related supporting types — new records for assistant draft management, versioned snapshots, and goal lifecycle tracking.
+- See full changelog for all changes
+
+### Changed
+- **`ElevenLabsVoice` and `FallbackElevenLabsVoice`** — property docs for `SimilarityBoost`, `Style`, `UseSpeakerBoost`, `Speed`, `OptimizeStreamingLatency`, `EnableSsmlParsing`, and `AutoMode` now note these fields are ignored by `eleven_v4_turbo` and `eleven_v3_conversational` models.
+- **XML documentation** — comprehensive `<summary>` doc comments added to public types, client interfaces (`IStructuredOutputsClient`, `ISquadsClient`, `AssistantsClient`, and more), and all `Update*ToolDto` types for improved IDE discoverability.
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`CartesiaExperimentalControlsSpeedZero`** has been renamed to **`CartesiaSpeedControlZero`**; update all references and the type argument in `CartesiaExperimentalControls.Speed` (`OneOf<CartesiaSpeedControlZero, double>?`).

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials and optional SIP REGISTER settings used to authenticate outbound calls with a SIP trunk.
+/// </summary>
 [Serializable]
 public record SipTrunkOutboundAuthenticationPlan : IJsonOnDeserialized
 {
@@ -17,14 +20,17 @@ public record SipTrunkOutboundAuthenticationPlan : IJsonOnDeserialized
     [JsonPropertyName("authPassword")]
     public string? AuthPassword { get; set; }
 
-    [JsonPropertyName("authUsername")]
-    public string? AuthUsername { get; set; }
-
     /// <summary>
-    /// This can be used to configure if SIP register is required by the SIP trunk. If not provided, no SIP registration will be attempted.
+    /// This can be used to configure if SIP register is required by the SIP trunk. On creation, omission disables registration. On update, omission preserves it; null disables it.
     /// </summary>
     [JsonPropertyName("sipRegisterPlan")]
     public SipTrunkOutboundSipRegisterPlan? SipRegisterPlan { get; set; }
+
+    /// <summary>
+    /// Username used to authenticate outbound SIP requests.
+    /// </summary>
+    [JsonPropertyName("authUsername")]
+    public string? AuthUsername { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

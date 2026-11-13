@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Azure, including voice selection, speed, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackAzureVoice : IJsonOnDeserialized
 {

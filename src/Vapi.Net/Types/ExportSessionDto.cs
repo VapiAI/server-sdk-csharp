@@ -60,6 +60,12 @@ public record ExportSessionDto : IJsonOnDeserialized
     public string? CustomerNumberAny { get; set; }
 
     /// <summary>
+    /// Filter by multiple session IDs. Provide as comma-separated values.
+    /// </summary>
+    [JsonPropertyName("idAny")]
+    public string? IdAny { get; set; }
+
+    /// <summary>
     /// Columns to include in the CSV export
     /// </summary>
     [JsonPropertyName("columns")]
@@ -103,6 +109,12 @@ public record ExportSessionDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("sortOrder")]
     public ExportSessionDtoSortOrder? SortOrder { get; set; }
+
+    /// <summary>
+    /// This is the column to sort by. Defaults to 'createdAt'.
+    /// </summary>
+    [JsonPropertyName("sortBy")]
+    public ExportSessionDtoSortBy? SortBy { get; set; }
 
     /// <summary>
     /// This is the maximum number of items to return. Defaults to 100.

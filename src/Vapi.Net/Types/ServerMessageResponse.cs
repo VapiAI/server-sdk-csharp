@@ -25,7 +25,8 @@ public record ServerMessageResponse : IJsonOnDeserialized
         ServerMessageResponseToolCalls,
         ServerMessageResponseTransferDestinationRequest,
         ServerMessageResponseVoiceRequest,
-        ServerMessageResponseCallEndpointingRequest
+        ServerMessageResponseCallEndpointingRequest,
+        ServerMessageResponseCampaignPredial
     > MessageResponse { get; set; }
 
     [JsonIgnore]

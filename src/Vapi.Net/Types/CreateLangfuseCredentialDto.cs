@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for sending assistant call traces to a Langfuse project, including its public key, secret key, and host URL.
+/// </summary>
 [Serializable]
 public record CreateLangfuseCredentialDto : IJsonOnDeserialized
 {
@@ -28,6 +31,12 @@ public record CreateLangfuseCredentialDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("apiUrl")]
     public required string ApiUrl { get; set; }
+
+    /// <summary>
+    /// The semver version of your Langfuse server, e.g. 3.63.0, as its /api/public/health endpoint reports it. Optional.
+    /// </summary>
+    [JsonPropertyName("serverVersion")]
+    public string? ServerVersion { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

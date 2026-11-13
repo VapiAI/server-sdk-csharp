@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Runs configured actions when a call is ending, optionally only when its filters match.
+/// </summary>
 [Serializable]
 public record CallHookCallEnding : IJsonOnDeserialized
 {

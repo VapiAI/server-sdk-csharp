@@ -14,6 +14,12 @@ public enum CampaignStatus
 
     [EnumMember(Value = "ended")]
     Ended,
+
+    [EnumMember(Value = "cancelled")]
+    Cancelled,
+
+    [EnumMember(Value = "archived")]
+    Archived,
 }
 
 internal class CampaignStatusSerializer
@@ -27,6 +33,8 @@ internal class CampaignStatusSerializer
         { "scheduled", CampaignStatus.Scheduled },
         { "in-progress", CampaignStatus.InProgress },
         { "ended", CampaignStatus.Ended },
+        { "cancelled", CampaignStatus.Cancelled },
+        { "archived", CampaignStatus.Archived },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -37,6 +45,8 @@ internal class CampaignStatusSerializer
         { CampaignStatus.Scheduled, "scheduled" },
         { CampaignStatus.InProgress, "in-progress" },
         { CampaignStatus.Ended, "ended" },
+        { CampaignStatus.Cancelled, "cancelled" },
+        { CampaignStatus.Archived, "archived" },
     };
 
     public override CampaignStatus Read(

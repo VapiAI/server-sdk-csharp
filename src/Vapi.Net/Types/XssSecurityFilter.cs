@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters potential cross-site scripting (XSS) patterns from transcripts.
+/// </summary>
 [Serializable]
 public record XssSecurityFilter : IJsonOnDeserialized
 {

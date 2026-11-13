@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Anthropic model configuration for an LLM judge, including its messages, generation settings, and optional extended thinking.
+/// </summary>
 [Serializable]
 public record EvalAnthropicModel : IJsonOnDeserialized
 {
@@ -18,7 +21,16 @@ public record EvalAnthropicModel : IJsonOnDeserialized
     public required EvalAnthropicModelModel Model { get; set; }
 
     /// <summary>
+    /// Reasoning effort for the judge on claude-haiku-5-5. `none` turns thinking
+    /// off. `low` to `max` let the judge think before it submits its verdict.
+    /// Unset means `none`. Rejected for every other model.
+    /// </summary>
+    [JsonPropertyName("reasoningEffort")]
+    public EvalAnthropicModelReasoningEffort? ReasoningEffort { get; set; }
+
+    /// <summary>
     /// This is the optional configuration for Anthropic's thinking feature.
+    /// claude-haiku-5-5 uses `reasoningEffort` instead.
     ///
     /// - If provided, `maxTokens` must be greater than `thinking.budgetTokens`.
     /// </summary>

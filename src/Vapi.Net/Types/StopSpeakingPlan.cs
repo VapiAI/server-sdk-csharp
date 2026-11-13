@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls when the assistant stops speaking after a customer interruption, including word and voice thresholds, restart delay, and phrase exceptions.
+/// </summary>
 [Serializable]
 public record StopSpeakingPlan : IJsonOnDeserialized
 {

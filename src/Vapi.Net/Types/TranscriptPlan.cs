@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls whether the call transcript is stored and the speaker names used in the transcript.
+/// </summary>
 [Serializable]
 public record TranscriptPlan : IJsonOnDeserialized
 {

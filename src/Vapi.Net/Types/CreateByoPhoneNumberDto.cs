@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to connect a bring-your-own phone number to Vapi with a stored telephony credential and routing settings.
+/// </summary>
 [Serializable]
 public record CreateByoPhoneNumberDto : IJsonOnDeserialized
 {

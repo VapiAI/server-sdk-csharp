@@ -12,6 +12,12 @@ public record UpdateXAiCredentialDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// This is the api key for Grok in XAi's console. Get it from here: https://console.x.ai
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public UpdateXAiCredentialDtoProvider? Provider { get; set; }
+
+    /// <summary>
     /// This is not returned in the API.
     /// </summary>
     [JsonPropertyName("apiKey")]

@@ -11,6 +11,18 @@ public enum WorkflowUserEditableBackgroundSoundZero
 
     [EnumMember(Value = "office")]
     Office,
+
+    [EnumMember(Value = "white-noise")]
+    WhiteNoise,
+
+    [EnumMember(Value = "city")]
+    City,
+
+    [EnumMember(Value = "crowd")]
+    Crowd,
+
+    [EnumMember(Value = "farm")]
+    Farm,
 }
 
 internal class WorkflowUserEditableBackgroundSoundZeroSerializer
@@ -23,6 +35,10 @@ internal class WorkflowUserEditableBackgroundSoundZeroSerializer
     {
         { "off", WorkflowUserEditableBackgroundSoundZero.Off },
         { "office", WorkflowUserEditableBackgroundSoundZero.Office },
+        { "white-noise", WorkflowUserEditableBackgroundSoundZero.WhiteNoise },
+        { "city", WorkflowUserEditableBackgroundSoundZero.City },
+        { "crowd", WorkflowUserEditableBackgroundSoundZero.Crowd },
+        { "farm", WorkflowUserEditableBackgroundSoundZero.Farm },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +48,10 @@ internal class WorkflowUserEditableBackgroundSoundZeroSerializer
     {
         { WorkflowUserEditableBackgroundSoundZero.Off, "off" },
         { WorkflowUserEditableBackgroundSoundZero.Office, "office" },
+        { WorkflowUserEditableBackgroundSoundZero.WhiteNoise, "white-noise" },
+        { WorkflowUserEditableBackgroundSoundZero.City, "city" },
+        { WorkflowUserEditableBackgroundSoundZero.Crowd, "crowd" },
+        { WorkflowUserEditableBackgroundSoundZero.Farm, "farm" },
     };
 
     public override WorkflowUserEditableBackgroundSoundZero Read(
