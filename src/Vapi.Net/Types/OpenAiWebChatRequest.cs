@@ -22,7 +22,7 @@ public record OpenAiWebChatRequest : IJsonOnDeserialized
     /// This is the transient assistant configuration for this chat. To use an existing assistant, use `assistantId` instead.
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// This is the ID of the session that will be used for the chat.

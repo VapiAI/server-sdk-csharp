@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A paginated collection of saved reporting insights and metadata describing the result set.
+/// </summary>
 [Serializable]
 public record InsightPaginatedResponse : IJsonOnDeserialized
 {
@@ -11,9 +14,15 @@ public record InsightPaginatedResponse : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// The reporting insights returned for the current page.
+    /// </summary>
     [JsonPropertyName("results")]
     public IEnumerable<Insight> Results { get; set; } = new List<Insight>();
 
+    /// <summary>
+    /// Pagination metadata for the insight result set.
+    /// </summary>
     [JsonPropertyName("metadata")]
     public required PaginationMeta Metadata { get; set; }
 

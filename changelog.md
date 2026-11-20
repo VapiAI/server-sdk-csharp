@@ -1,3 +1,24 @@
+## [3.0.0] - 2026-11-20
+### Breaking Changes
+- **`CreateCampaignDto`, `CreateTrieveKnowledgeBaseDto`, `FallbackTavusVoice`, and several other types** have been removed; migrate to their documented replacements (e.g. `TransientAssistantDto` for `CreateAssistantDto?` fields, `CampaignControllerUpdateRequest` for `UpdateCampaignDto`).
+- **`GladiaTranscriberLanguages`, `VapiVoiceVoiceId`, `FallbackGladiaTranscriberLanguages`, `FallbackVapiVoiceVoiceId`, `FallbackDeepgramTranscriberLanguage/Model`** enums have been removed; remove all references to these types.
+- **`IFilesClient.ListAsync` / `FilesClient.ListAsync`** now requires a `ListFilesRequest` parameter; update all call sites to pass `new ListFilesRequest()`.
+- **`IStructuredOutputsClient.StructuredOutputControllerRunAsync`** now returns `WithRawResponseTask<OneOf<StructuredOutputRerunResponse, StructuredOutputControllerRunResponseOne>>` instead of `WithRawResponseTask<StructuredOutput>`; update callers to switch on the `OneOf` union result.
+- **`CallEndedReason`** has new enum values; exhaustive `switch` expressions over this type will fail to compile — add `case` branches or a discard arm for the new members.
+- See full changelog for all changes
+
+### Added
+- **V2 campaign endpoints** — `CampaignControllerFindAllV2Async`, `CampaignControllerCreateV2Async`, `CampaignControllerFindOneV2Async`, `CampaignControllerRemoveV2Async`, `CampaignControllerUpdateV2Async`, and `CampaignControllerGetCampaignV2ContactsAsync` added to `CampaignsClient` and `ICampaignsClient`.
+- **New simulation clients** — `ISimulationPersonalitiesClient`, `ISimulationScenariosClient`, `ISimulationRunsClient`, `ISimulationSuitesClient`, and `ISimulationsClient` added to `IVapiClient` with full CRUD and AI-assisted onboarding support.
+- **`BoardClient` / `IBoardClient`** — new client for managing reporting boards with list, create, get, update, delete, and metrics-overview operations.
+- **`KnowledgeBasesV2Client` / `IKnowledgeBasesV2Client`** and **`TrafficAllocationsClient` / `ITrafficAllocationsClient`** — new top-level clients for v2 knowledge bases and per-assistant traffic splitting.
+- **New typed exception classes** — `BadGatewayError`, `ConflictError`, `ForbiddenError`, `GatewayTimeoutError`, `InternalServerError`, `PaymentRequiredError`, `ServiceUnavailableError`, `TooManyRequestsError`, `UnauthorizedError`, and `UnprocessableEntityError` are now thrown for their respective HTTP status codes.
+- See full changelog for all changes
+
+### Changed
+- **`ElevenLabsVoice` and `FallbackElevenLabsVoice`** — several voice properties are now documented as ignored by `eleven_v4_turbo` and `eleven_v3_conversational` models; `Language` enforcement now also applies to Flash v2.5 and Text to Dialogue models.
+- **`EvalClient`** now throws a typed `ForbiddenError` on HTTP 403 instead of a generic `VapiClientApiException`.
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`CartesiaExperimentalControlsSpeedZero`** has been renamed to **`CartesiaSpeedControlZero`**; update all references and the type argument in `CartesiaExperimentalControls.Speed` (`OneOf<CartesiaSpeedControlZero, double>?`).

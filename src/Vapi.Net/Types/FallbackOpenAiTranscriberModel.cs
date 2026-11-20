@@ -11,6 +11,9 @@ public enum FallbackOpenAiTranscriberModel
 
     [EnumMember(Value = "gpt-4o-mini-transcribe")]
     Gpt4OMiniTranscribe,
+
+    [EnumMember(Value = "gpt-transcribe")]
+    GptTranscribe,
 }
 
 internal class FallbackOpenAiTranscriberModelSerializer
@@ -23,6 +26,7 @@ internal class FallbackOpenAiTranscriberModelSerializer
     {
         { "gpt-4o-transcribe", FallbackOpenAiTranscriberModel.Gpt4OTranscribe },
         { "gpt-4o-mini-transcribe", FallbackOpenAiTranscriberModel.Gpt4OMiniTranscribe },
+        { "gpt-transcribe", FallbackOpenAiTranscriberModel.GptTranscribe },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +36,7 @@ internal class FallbackOpenAiTranscriberModelSerializer
     {
         { FallbackOpenAiTranscriberModel.Gpt4OTranscribe, "gpt-4o-transcribe" },
         { FallbackOpenAiTranscriberModel.Gpt4OMiniTranscribe, "gpt-4o-mini-transcribe" },
+        { FallbackOpenAiTranscriberModel.GptTranscribe, "gpt-transcribe" },
     };
 
     public override FallbackOpenAiTranscriberModel Read(

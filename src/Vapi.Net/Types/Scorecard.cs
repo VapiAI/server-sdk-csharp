@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A saved scorecard containing its evaluation metrics, scoring conditions, assistant associations, descriptive metadata, and lifecycle information.
+/// </summary>
 [Serializable]
 public record Scorecard : IJsonOnDeserialized
 {

@@ -64,14 +64,16 @@ public record PieInsightFromCallTable : IJsonOnDeserialized
         OneOf<
             JsonQueryOnCallTableWithStringTypeColumn,
             JsonQueryOnCallTableWithNumberTypeColumn,
-            JsonQueryOnCallTableWithStructuredOutputColumn
+            JsonQueryOnCallTableWithStructuredOutputColumn,
+            JsonQueryOnEventsTable
         >
     > Queries { get; set; } =
         new List<
             OneOf<
                 JsonQueryOnCallTableWithStringTypeColumn,
                 JsonQueryOnCallTableWithNumberTypeColumn,
-                JsonQueryOnCallTableWithStructuredOutputColumn
+                JsonQueryOnCallTableWithStructuredOutputColumn,
+                JsonQueryOnEventsTable
             >
         >();
 

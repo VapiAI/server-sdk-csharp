@@ -29,6 +29,84 @@ public enum OpenAiVoiceIdEnum
 
     [EnumMember(Value = "cedar")]
     Cedar,
+
+    [EnumMember(Value = "ash")]
+    Ash,
+
+    [EnumMember(Value = "ballad")]
+    Ballad,
+
+    [EnumMember(Value = "beacon")]
+    Beacon,
+
+    [EnumMember(Value = "bossa")]
+    Bossa,
+
+    [EnumMember(Value = "brise")]
+    Brise,
+
+    [EnumMember(Value = "cinder")]
+    Cinder,
+
+    [EnumMember(Value = "coral")]
+    Coral,
+
+    [EnumMember(Value = "delta")]
+    Delta,
+
+    [EnumMember(Value = "flitz")]
+    Flitz,
+
+    [EnumMember(Value = "gleam")]
+    Gleam,
+
+    [EnumMember(Value = "harema")]
+    Harema,
+
+    [EnumMember(Value = "juni")]
+    Juni,
+
+    [EnumMember(Value = "meridian")]
+    Meridian,
+
+    [EnumMember(Value = "nira")]
+    Nira,
+
+    [EnumMember(Value = "noeul")]
+    Noeul,
+
+    [EnumMember(Value = "nuri")]
+    Nuri,
+
+    [EnumMember(Value = "quartz")]
+    Quartz,
+
+    [EnumMember(Value = "ripple")]
+    Ripple,
+
+    [EnumMember(Value = "sage")]
+    Sage,
+
+    [EnumMember(Value = "shida")]
+    Shida,
+
+    [EnumMember(Value = "sillage")]
+    Sillage,
+
+    [EnumMember(Value = "stone")]
+    Stone,
+
+    [EnumMember(Value = "tempo")]
+    Tempo,
+
+    [EnumMember(Value = "verse")]
+    Verse,
+
+    [EnumMember(Value = "vesper")]
+    Vesper,
+
+    [EnumMember(Value = "willow")]
+    Willow,
 }
 
 internal class OpenAiVoiceIdEnumSerializer
@@ -47,6 +125,32 @@ internal class OpenAiVoiceIdEnumSerializer
         { "shimmer", OpenAiVoiceIdEnum.Shimmer },
         { "marin", OpenAiVoiceIdEnum.Marin },
         { "cedar", OpenAiVoiceIdEnum.Cedar },
+        { "ash", OpenAiVoiceIdEnum.Ash },
+        { "ballad", OpenAiVoiceIdEnum.Ballad },
+        { "beacon", OpenAiVoiceIdEnum.Beacon },
+        { "bossa", OpenAiVoiceIdEnum.Bossa },
+        { "brise", OpenAiVoiceIdEnum.Brise },
+        { "cinder", OpenAiVoiceIdEnum.Cinder },
+        { "coral", OpenAiVoiceIdEnum.Coral },
+        { "delta", OpenAiVoiceIdEnum.Delta },
+        { "flitz", OpenAiVoiceIdEnum.Flitz },
+        { "gleam", OpenAiVoiceIdEnum.Gleam },
+        { "harema", OpenAiVoiceIdEnum.Harema },
+        { "juni", OpenAiVoiceIdEnum.Juni },
+        { "meridian", OpenAiVoiceIdEnum.Meridian },
+        { "nira", OpenAiVoiceIdEnum.Nira },
+        { "noeul", OpenAiVoiceIdEnum.Noeul },
+        { "nuri", OpenAiVoiceIdEnum.Nuri },
+        { "quartz", OpenAiVoiceIdEnum.Quartz },
+        { "ripple", OpenAiVoiceIdEnum.Ripple },
+        { "sage", OpenAiVoiceIdEnum.Sage },
+        { "shida", OpenAiVoiceIdEnum.Shida },
+        { "sillage", OpenAiVoiceIdEnum.Sillage },
+        { "stone", OpenAiVoiceIdEnum.Stone },
+        { "tempo", OpenAiVoiceIdEnum.Tempo },
+        { "verse", OpenAiVoiceIdEnum.Verse },
+        { "vesper", OpenAiVoiceIdEnum.Vesper },
+        { "willow", OpenAiVoiceIdEnum.Willow },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -62,6 +166,32 @@ internal class OpenAiVoiceIdEnumSerializer
         { OpenAiVoiceIdEnum.Shimmer, "shimmer" },
         { OpenAiVoiceIdEnum.Marin, "marin" },
         { OpenAiVoiceIdEnum.Cedar, "cedar" },
+        { OpenAiVoiceIdEnum.Ash, "ash" },
+        { OpenAiVoiceIdEnum.Ballad, "ballad" },
+        { OpenAiVoiceIdEnum.Beacon, "beacon" },
+        { OpenAiVoiceIdEnum.Bossa, "bossa" },
+        { OpenAiVoiceIdEnum.Brise, "brise" },
+        { OpenAiVoiceIdEnum.Cinder, "cinder" },
+        { OpenAiVoiceIdEnum.Coral, "coral" },
+        { OpenAiVoiceIdEnum.Delta, "delta" },
+        { OpenAiVoiceIdEnum.Flitz, "flitz" },
+        { OpenAiVoiceIdEnum.Gleam, "gleam" },
+        { OpenAiVoiceIdEnum.Harema, "harema" },
+        { OpenAiVoiceIdEnum.Juni, "juni" },
+        { OpenAiVoiceIdEnum.Meridian, "meridian" },
+        { OpenAiVoiceIdEnum.Nira, "nira" },
+        { OpenAiVoiceIdEnum.Noeul, "noeul" },
+        { OpenAiVoiceIdEnum.Nuri, "nuri" },
+        { OpenAiVoiceIdEnum.Quartz, "quartz" },
+        { OpenAiVoiceIdEnum.Ripple, "ripple" },
+        { OpenAiVoiceIdEnum.Sage, "sage" },
+        { OpenAiVoiceIdEnum.Shida, "shida" },
+        { OpenAiVoiceIdEnum.Sillage, "sillage" },
+        { OpenAiVoiceIdEnum.Stone, "stone" },
+        { OpenAiVoiceIdEnum.Tempo, "tempo" },
+        { OpenAiVoiceIdEnum.Verse, "verse" },
+        { OpenAiVoiceIdEnum.Vesper, "vesper" },
+        { OpenAiVoiceIdEnum.Willow, "willow" },
     };
 
     public override OpenAiVoiceIdEnum Read(

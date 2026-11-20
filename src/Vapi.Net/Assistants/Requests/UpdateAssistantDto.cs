@@ -33,6 +33,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("firstMessage")]
     public string? FirstMessage { get; set; }
 
+    /// <summary>
+    /// Set to `true` to allow the user to interrupt the assistant while it speaks the first message. Default is `false`.
+    /// </summary>
     [JsonPropertyName("firstMessageInterruptionsEnabled")]
     public bool? FirstMessageInterruptionsEnabled { get; set; }
 
@@ -84,6 +87,7 @@ public record UpdateAssistantDto
 
     /// <summary>
     /// This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
+    /// Bundled sounds: 'office', 'white-noise', 'city', 'crowd' and 'farm'. GPT Live assistants don't play 'office'.
     /// You can also provide a custom sound by providing a URL to an audio file.
     /// </summary>
     [JsonPropertyName("backgroundSound")]
@@ -148,9 +152,7 @@ public record UpdateAssistantDto
     public string? VoicemailMessage { get; set; }
 
     /// <summary>
-    /// This is the message that the assistant will say if it ends the call.
-    ///
-    /// If unspecified, it will hang up without saying anything.
+    /// The message the assistant says when it ends the call with the Hang Up tool (`endCall`) and that tool has no messages. If the tool has a `request-start` message, the assistant says that message instead. If this field is unspecified or empty, the assistant says "Goodbye" in the transcriber's language. When an assistant hook runs `endCall`, this field isn't used and the assistant says "Goodbye" in English.
     /// </summary>
     [JsonPropertyName("endCallMessage")]
     public string? EndCallMessage { get; set; }
@@ -161,6 +163,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("endCallPhrases")]
     public IEnumerable<string>? EndCallPhrases { get; set; }
 
+    /// <summary>
+    /// Compliance settings for the assistant, including HIPAA and PCI behavior, security filtering, and recording consent.
+    /// </summary>
     [JsonPropertyName("compliancePlan")]
     public CompliancePlan? CompliancePlan { get; set; }
 
@@ -251,6 +256,9 @@ public record UpdateAssistantDto
     [JsonPropertyName("server")]
     public Server? Server { get; set; }
 
+    /// <summary>
+    /// Configuration for collecting and processing DTMF keypad input during calls.
+    /// </summary>
     [JsonPropertyName("keypadInputPlan")]
     public KeypadInputPlan? KeypadInputPlan { get; set; }
 

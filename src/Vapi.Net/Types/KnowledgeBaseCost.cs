@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Knowledge-base model cost, including model, token usage, and amount.
+/// </summary>
 [Serializable]
 public record KnowledgeBaseCost : IJsonOnDeserialized
 {

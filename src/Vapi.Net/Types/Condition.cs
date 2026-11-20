@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Compares a named parameter with a value using the selected comparison operator.
+/// </summary>
 [Serializable]
 public record Condition : IJsonOnDeserialized
 {

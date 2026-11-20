@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Defines structured variables to extract and optional aliases made available during and after a call.
+/// </summary>
 [Serializable]
 public record VariableExtractionPlan : IJsonOnDeserialized
 {

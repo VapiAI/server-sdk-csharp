@@ -11,8 +11,39 @@ public record CreateWebCallDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// This is the assistant version to use for this call. Supported only with
+    /// direct `assistantId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
+    /// This is the squad version to use for this call. Supported only with
+    /// direct `squadId`. Omit to follow the latest version.
+    /// </summary>
+    [JsonPropertyName("squadVersion")]
+    public string? SquadVersion { get; set; }
+
     [JsonPropertyName("roomDeleteOnUserLeaveEnabled")]
     public bool? RoomDeleteOnUserLeaveEnabled { get; set; }
+
+    /// <summary>
+    /// This determines who starts the video recording. Only applies when video
+    /// recording is enabled (`artifactPlan.videoRecordingEnabled`).
+    ///
+    /// - `client`: the web client starts the recording when it joins.
+    /// - `server`: Vapi starts the recording once when the user first joins, so a
+    ///   weak client connection can't stop it from starting. The returned
+    ///   `transport.callToken` doesn't start the recording, and the client should
+    ///   not start it either. If Vapi can't set up the server-side start, no token
+    ///   is returned. If the start itself fails, the client is told during the
+    ///   call.
+    ///
+    /// Defaults to `client`.
+    /// </summary>
+    [JsonPropertyName("videoRecordingStartMode")]
+    public CreateWebCallDtoVideoRecordingStartMode? VideoRecordingStartMode { get; set; }
 
     /// <summary>
     /// This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.
@@ -34,7 +65,7 @@ public record CreateWebCallDto : IJsonOnDeserialized
     /// - Workflow, use `workflow`
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// These are the overrides for the `assistant` or `assistantId`'s settings and template variables.

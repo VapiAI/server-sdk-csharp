@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A record of an eval execution, including its target, status, results, costs, completion details, and lifecycle timestamps.
+/// </summary>
 [Serializable]
 public record EvalRun : IJsonOnDeserialized
 {
@@ -41,18 +44,33 @@ public record EvalRun : IJsonOnDeserialized
     [JsonPropertyName("target")]
     public required object Target { get; set; }
 
+    /// <summary>
+    /// The unique identifier for the eval run.
+    /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
+    /// <summary>
+    /// The unique identifier for the organization that owns the run.
+    /// </summary>
     [JsonPropertyName("orgId")]
     public required string OrgId { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval run was created.
+    /// </summary>
     [JsonPropertyName("createdAt")]
     public required DateTime CreatedAt { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval run started.
+    /// </summary>
     [JsonPropertyName("startedAt")]
     public required DateTime StartedAt { get; set; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp when the eval run ended.
+    /// </summary>
     [JsonPropertyName("endedAt")]
     public required DateTime EndedAt { get; set; }
 
@@ -63,20 +81,19 @@ public record EvalRun : IJsonOnDeserialized
     public string? EndedMessage { get; set; }
 
     /// <summary>
-    /// This is the results of the eval or suite run.
-    /// The array will have a single item for an eval run, and multiple items each corresponding to the an eval in a suite run in the same order as the evals in the suite.
+    /// Results for this individual Eval. Check them after status is ended. An Eval that finishes normally contains one result; it passes only when all judged checkpoints pass. Grouping multiple Evals requires your own orchestration, not an Eval suite.
     /// </summary>
     [JsonPropertyName("results")]
     public IEnumerable<EvalRunResult> Results { get; set; } = new List<EvalRunResult>();
 
     /// <summary>
-    /// This is the cost of the eval or suite run in USD.
+    /// The cost of this Eval run in USD.
     /// </summary>
     [JsonPropertyName("cost")]
     public required double Cost { get; set; }
 
     /// <summary>
-    /// This is the break up of costs of the eval or suite run.
+    /// The cost breakdown for this Eval run.
     /// </summary>
     [JsonPropertyName("costs")]
     public IEnumerable<object> Costs { get; set; } = new List<object>();

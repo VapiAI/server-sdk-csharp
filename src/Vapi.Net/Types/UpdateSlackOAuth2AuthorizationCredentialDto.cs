@@ -11,6 +11,9 @@ public record UpdateSlackOAuth2AuthorizationCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateSlackOAuth2AuthorizationCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// The authorization ID for the OAuth2 authorization
     /// </summary>

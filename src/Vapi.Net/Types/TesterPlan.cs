@@ -17,7 +17,7 @@ public record TesterPlan : IJsonOnDeserialized
     /// Make sure to write a detailed system prompt for a test assistant, and use the {{test.script}} variable to access the test script.
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// Pass an assistant id that can be access

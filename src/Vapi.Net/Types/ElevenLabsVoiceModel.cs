@@ -26,6 +26,12 @@ public enum ElevenLabsVoiceModel
 
     [EnumMember(Value = "eleven_v3")]
     ElevenV3,
+
+    [EnumMember(Value = "eleven_v4_turbo")]
+    ElevenV4Turbo,
+
+    [EnumMember(Value = "eleven_v3_conversational")]
+    ElevenV3Conversational,
 }
 
 internal class ElevenLabsVoiceModelSerializer
@@ -43,6 +49,8 @@ internal class ElevenLabsVoiceModelSerializer
         { "eleven_flash_v2_5", ElevenLabsVoiceModel.ElevenFlashV25 },
         { "eleven_monolingual_v1", ElevenLabsVoiceModel.ElevenMonolingualV1 },
         { "eleven_v3", ElevenLabsVoiceModel.ElevenV3 },
+        { "eleven_v4_turbo", ElevenLabsVoiceModel.ElevenV4Turbo },
+        { "eleven_v3_conversational", ElevenLabsVoiceModel.ElevenV3Conversational },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -57,6 +65,8 @@ internal class ElevenLabsVoiceModelSerializer
         { ElevenLabsVoiceModel.ElevenFlashV25, "eleven_flash_v2_5" },
         { ElevenLabsVoiceModel.ElevenMonolingualV1, "eleven_monolingual_v1" },
         { ElevenLabsVoiceModel.ElevenV3, "eleven_v3" },
+        { ElevenLabsVoiceModel.ElevenV4Turbo, "eleven_v4_turbo" },
+        { ElevenLabsVoiceModel.ElevenV3Conversational, "eleven_v3_conversational" },
     };
 
     public override ElevenLabsVoiceModel Read(

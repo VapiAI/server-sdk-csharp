@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Cartesia, including voice and model selection, language, generation controls, pronunciation dictionaries, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackCartesiaVoice : IJsonOnDeserialized
 {

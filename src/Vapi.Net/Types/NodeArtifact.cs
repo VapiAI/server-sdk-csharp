@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Messages and variable values captured while a workflow node was active.
+/// </summary>
 [Serializable]
 public record NodeArtifact : IJsonOnDeserialized
 {

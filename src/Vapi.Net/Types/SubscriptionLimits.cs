@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Subscription concurrency limits and remaining concurrent call capacity.
+/// </summary>
 [Serializable]
 public record SubscriptionLimits : IJsonOnDeserialized
 {
@@ -18,7 +21,7 @@ public record SubscriptionLimits : IJsonOnDeserialized
     public bool? ConcurrencyBlocked { get; set; }
 
     /// <summary>
-    /// Account Call Concurrency limit
+    /// The total concurrent call limit for the subscription.
     /// </summary>
     [JsonPropertyName("concurrencyLimit")]
     public double? ConcurrencyLimit { get; set; }

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for authenticating Vapi integrations with GoHighLevel.
+/// </summary>
 [Serializable]
 public record CreateGoHighLevelCredentialDto : IJsonOnDeserialized
 {

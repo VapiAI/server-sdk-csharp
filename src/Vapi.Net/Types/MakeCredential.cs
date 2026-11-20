@@ -21,16 +21,16 @@ public record MakeCredential : IJsonOnDeserialized
     public required string TeamId { get; set; }
 
     /// <summary>
-    /// Region of your application. For example: eu1, eu2, us1, us2
-    /// </summary>
-    [JsonPropertyName("region")]
-    public required string Region { get; set; }
-
-    /// <summary>
     /// This is not returned in the API.
     /// </summary>
     [JsonPropertyName("apiKey")]
     public required string ApiKey { get; set; }
+
+    /// <summary>
+    /// Region of your application. For example: eu1, eu2, us1, us2
+    /// </summary>
+    [JsonPropertyName("region")]
+    public required string Region { get; set; }
 
     /// <summary>
     /// This is the unique identifier for the credential.

@@ -12,6 +12,30 @@ public record SimulationRunItemResults : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Retention-permitted target extraction values, present only when enabled.
+    /// </summary>
+    [JsonPropertyName("structuredOutputs")]
+    public Dictionary<
+        string,
+        SimulationRunItemResultsStructuredOutputsValue
+    >? StructuredOutputs { get; set; }
+
+    /// <summary>
+    /// Condition-gated outputs or audio outputs unsupported by chat.
+    /// </summary>
+    [JsonPropertyName("skippedStructuredOutputs")]
+    public Dictionary<
+        string,
+        SimulationRunItemResultsSkippedStructuredOutputsValue
+    >? SkippedStructuredOutputs { get; set; }
+
+    /// <summary>
+    /// Sanitized diagnostic; optional target extraction never changes pass/fail.
+    /// </summary>
+    [JsonPropertyName("structuredOutputError")]
+    public string? StructuredOutputError { get; set; }
+
+    /// <summary>
     /// This is the list of results from structured output evaluations.
     /// </summary>
     [JsonPropertyName("evaluations")]
@@ -19,7 +43,7 @@ public record SimulationRunItemResults : IJsonOnDeserialized
         new List<StructuredOutputEvaluationResult>();
 
     /// <summary>
-    /// This indicates whether all required evaluations passed.
+    /// This indicates whether all required, non-skipped structured output evaluations and latency expectations passed.
     /// </summary>
     [JsonPropertyName("passed")]
     public required bool Passed { get; set; }
@@ -29,6 +53,13 @@ public record SimulationRunItemResults : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("latencyMetrics")]
     public LatencyMetrics? LatencyMetrics { get; set; }
+
+    /// <summary>
+    /// This is the list of results from the scenario's latency expectations.
+    /// Absent when the scenario has no latency expectations.
+    /// </summary>
+    [JsonPropertyName("latencyEvaluations")]
+    public IEnumerable<LatencyEvaluationResult>? LatencyEvaluations { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

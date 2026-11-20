@@ -6,6 +6,15 @@ namespace Vapi.Net;
 [JsonConverter(typeof(KnowledgeBaseModelSerializer))]
 public enum KnowledgeBaseModel
 {
+    [EnumMember(Value = "gemini-3.8-flash")]
+    Gemini38Flash,
+
+    [EnumMember(Value = "gemini-3.5-flash")]
+    Gemini35Flash,
+
+    [EnumMember(Value = "gemini-3.1-flash-lite")]
+    Gemini31FlashLite,
+
     [EnumMember(Value = "gemini-3-flash-preview")]
     Gemini3FlashPreview,
 
@@ -60,6 +69,9 @@ internal class KnowledgeBaseModelSerializer
         KnowledgeBaseModel
     > _stringToEnum = new()
     {
+        { "gemini-3.8-flash", KnowledgeBaseModel.Gemini38Flash },
+        { "gemini-3.5-flash", KnowledgeBaseModel.Gemini35Flash },
+        { "gemini-3.1-flash-lite", KnowledgeBaseModel.Gemini31FlashLite },
         { "gemini-3-flash-preview", KnowledgeBaseModel.Gemini3FlashPreview },
         { "gemini-2.5-pro", KnowledgeBaseModel.Gemini25Pro },
         { "gemini-2.5-flash", KnowledgeBaseModel.Gemini25Flash },
@@ -82,6 +94,9 @@ internal class KnowledgeBaseModelSerializer
         string
     > _enumToString = new()
     {
+        { KnowledgeBaseModel.Gemini38Flash, "gemini-3.8-flash" },
+        { KnowledgeBaseModel.Gemini35Flash, "gemini-3.5-flash" },
+        { KnowledgeBaseModel.Gemini31FlashLite, "gemini-3.1-flash-lite" },
         { KnowledgeBaseModel.Gemini3FlashPreview, "gemini-3-flash-preview" },
         { KnowledgeBaseModel.Gemini25Pro, "gemini-2.5-pro" },
         { KnowledgeBaseModel.Gemini25Flash, "gemini-2.5-flash" },

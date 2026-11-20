@@ -11,6 +11,9 @@ public enum FallbackDeepgramVoiceModel
 
     [EnumMember(Value = "aura-2")]
     Aura2,
+
+    [EnumMember(Value = "flux")]
+    Flux,
 }
 
 internal class FallbackDeepgramVoiceModelSerializer
@@ -23,6 +26,7 @@ internal class FallbackDeepgramVoiceModelSerializer
     {
         { "aura", FallbackDeepgramVoiceModel.Aura },
         { "aura-2", FallbackDeepgramVoiceModel.Aura2 },
+        { "flux", FallbackDeepgramVoiceModel.Flux },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +36,7 @@ internal class FallbackDeepgramVoiceModelSerializer
     {
         { FallbackDeepgramVoiceModel.Aura, "aura" },
         { FallbackDeepgramVoiceModel.Aura2, "aura-2" },
+        { FallbackDeepgramVoiceModel.Flux, "flux" },
     };
 
     public override FallbackDeepgramVoiceModel Read(
