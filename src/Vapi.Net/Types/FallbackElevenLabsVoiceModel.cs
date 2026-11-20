@@ -26,6 +26,12 @@ public enum FallbackElevenLabsVoiceModel
 
     [EnumMember(Value = "eleven_v3")]
     ElevenV3,
+
+    [EnumMember(Value = "eleven_v4_turbo")]
+    ElevenV4Turbo,
+
+    [EnumMember(Value = "eleven_v3_conversational")]
+    ElevenV3Conversational,
 }
 
 internal class FallbackElevenLabsVoiceModelSerializer
@@ -43,6 +49,8 @@ internal class FallbackElevenLabsVoiceModelSerializer
         { "eleven_flash_v2_5", FallbackElevenLabsVoiceModel.ElevenFlashV25 },
         { "eleven_monolingual_v1", FallbackElevenLabsVoiceModel.ElevenMonolingualV1 },
         { "eleven_v3", FallbackElevenLabsVoiceModel.ElevenV3 },
+        { "eleven_v4_turbo", FallbackElevenLabsVoiceModel.ElevenV4Turbo },
+        { "eleven_v3_conversational", FallbackElevenLabsVoiceModel.ElevenV3Conversational },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -57,6 +65,8 @@ internal class FallbackElevenLabsVoiceModelSerializer
         { FallbackElevenLabsVoiceModel.ElevenFlashV25, "eleven_flash_v2_5" },
         { FallbackElevenLabsVoiceModel.ElevenMonolingualV1, "eleven_monolingual_v1" },
         { FallbackElevenLabsVoiceModel.ElevenV3, "eleven_v3" },
+        { FallbackElevenLabsVoiceModel.ElevenV4Turbo, "eleven_v4_turbo" },
+        { FallbackElevenLabsVoiceModel.ElevenV3Conversational, "eleven_v3_conversational" },
     };
 
     public override FallbackElevenLabsVoiceModel Read(

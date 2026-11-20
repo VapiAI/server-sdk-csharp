@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Aggregated call costs and usage, including transport, transcription, model, voice, Vapi, analysis, token, and character totals.
+/// </summary>
 [Serializable]
 public record CostBreakdown : IJsonOnDeserialized
 {

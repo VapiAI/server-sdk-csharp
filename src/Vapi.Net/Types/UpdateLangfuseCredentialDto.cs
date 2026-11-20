@@ -11,6 +11,9 @@ public record UpdateLangfuseCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateLangfuseCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// The public key for Langfuse project. Eg: pk-lf-...
     /// </summary>
@@ -28,6 +31,12 @@ public record UpdateLangfuseCredentialDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("apiUrl")]
     public string? ApiUrl { get; set; }
+
+    /// <summary>
+    /// The semver version of your Langfuse server, e.g. 3.63.0. Detected from your server's /api/public/health endpoint at save time whenever possible, and a detected version always wins; supply it only when that endpoint is not reachable from Vapi.
+    /// </summary>
+    [JsonPropertyName("serverVersion")]
+    public string? ServerVersion { get; set; }
 
     /// <summary>
     /// This is the name of credential. This is just for your reference.

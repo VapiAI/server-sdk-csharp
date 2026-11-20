@@ -12,6 +12,12 @@ public record SimulationRunConfiguration : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Generate directly attached target structured outputs. Default false. Enabled extraction may incur additional model charges.
+    /// </summary>
+    [JsonPropertyName("includeTargetStructuredOutputs")]
+    public bool? IncludeTargetStructuredOutputs { get; set; }
+
+    /// <summary>
     /// Transport configuration for the simulation run
     /// </summary>
     [JsonPropertyName("transport")]

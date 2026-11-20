@@ -280,6 +280,18 @@ public partial class AssistantsClient : IAssistantsClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 409:
+                        throw new ConflictError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -348,6 +360,18 @@ public partial class AssistantsClient : IAssistantsClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 409:
+                        throw new ConflictError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -356,6 +380,9 @@ public partial class AssistantsClient : IAssistantsClient
         }
     }
 
+    /// <summary>
+    /// Returns assistants for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+    /// </summary>
     public WithRawResponseTask<IEnumerable<Assistant>> ListAsync(
         ListAssistantsRequest request,
         RequestOptions? options = null,
@@ -367,6 +394,9 @@ public partial class AssistantsClient : IAssistantsClient
         );
     }
 
+    /// <summary>
+    /// Creates a reusable assistant configuration containing the model, voice, transcriber, tools, prompts, and call behavior.
+    /// </summary>
     public WithRawResponseTask<Assistant> CreateAsync(
         CreateAssistantDto request,
         RequestOptions? options = null,
@@ -378,6 +408,9 @@ public partial class AssistantsClient : IAssistantsClient
         );
     }
 
+    /// <summary>
+    /// Returns the assistant identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Assistant> GetAsync(
         string id,
         GetAssistantsRequest request,
@@ -390,6 +423,9 @@ public partial class AssistantsClient : IAssistantsClient
         );
     }
 
+    /// <summary>
+    /// Deletes the assistant identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Assistant> DeleteAsync(
         string id,
         DeleteAssistantsRequest request,
@@ -402,6 +438,9 @@ public partial class AssistantsClient : IAssistantsClient
         );
     }
 
+    /// <summary>
+    /// Updates the specified fields of the assistant identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Assistant> UpdateAsync(
         string id,
         UpdateAssistantDto request,

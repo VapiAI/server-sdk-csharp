@@ -18,6 +18,15 @@ public record ServerMessageVoiceRequest : IJsonOnDeserialized
     public object? PhoneNumber { get; set; }
 
     /// <summary>
+    /// This is the version label (e.g. `v3`) of the assistant the call was
+    /// configured with. `null` for inline assistants, squad/workflow calls,
+    /// pre-resolution assistant-request messages, and orgs not on
+    /// assistant versioning.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
     /// This is the type of the message. "voice-request" is sent when using `assistant.voice={ "type": "custom-voice" }`.
     ///
     /// Here is what the request will look like:

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to create a squad. Provide an ordered list of assistant members and optional overrides that control how the squad handles a conversation and transfers between assistants.
+/// </summary>
 [Serializable]
 public record CreateSquadDto : IJsonOnDeserialized
 {

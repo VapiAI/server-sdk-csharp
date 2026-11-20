@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls post-call success evaluation, including the rubric, prompt messages, enablement, and request timeout.
+/// </summary>
 [Serializable]
 public record SuccessEvaluationPlan : IJsonOnDeserialized
 {

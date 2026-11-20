@@ -22,11 +22,12 @@ public partial class ProviderResourcesClient : IProviderResourcesClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 13)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 14)
             .Add("id", request.Id)
             .Add("resourceId", request.ResourceId)
             .Add("page", request.Page)
             .Add("sortOrder", request.SortOrder)
+            .Add("sortBy", request.SortBy)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -438,6 +439,9 @@ public partial class ProviderResourcesClient : IProviderResourcesClient
         }
     }
 
+    /// <summary>
+    /// Returns a paginated list of provider resources for the authenticated organization. Filter pronunciation dictionaries by provider, resource ID, or creation and update timestamps.
+    /// </summary>
     public WithRawResponseTask<ProviderResourcePaginatedResponse> ProviderResourceControllerGetProviderResourcesPaginatedAsync(
         ProviderResourceControllerGetProviderResourcesPaginatedRequestProvider provider,
         ProviderResourceControllerGetProviderResourcesPaginatedRequestResourceName resourceName,
@@ -457,6 +461,9 @@ public partial class ProviderResourcesClient : IProviderResourcesClient
         );
     }
 
+    /// <summary>
+    /// Creates a pronunciation-dictionary resource for a supported provider, currently Cartesia or ElevenLabs.
+    /// </summary>
     public WithRawResponseTask<ProviderResource> ProviderResourceControllerCreateProviderResourceAsync(
         ProviderResourceControllerCreateProviderResourceRequestProvider provider,
         ProviderResourceControllerCreateProviderResourceRequestResourceName resourceName,
@@ -476,6 +483,9 @@ public partial class ProviderResourcesClient : IProviderResourcesClient
         );
     }
 
+    /// <summary>
+    /// Returns the provider resource identified by its Vapi resource ID.
+    /// </summary>
     public WithRawResponseTask<ProviderResource> ProviderResourceControllerGetProviderResourceAsync(
         ProviderResourceControllerGetProviderResourceRequestProvider provider,
         ProviderResourceControllerGetProviderResourceRequestResourceName resourceName,
@@ -497,6 +507,9 @@ public partial class ProviderResourcesClient : IProviderResourcesClient
         );
     }
 
+    /// <summary>
+    /// Deletes the provider resource identified by its Vapi resource ID.
+    /// </summary>
     public WithRawResponseTask<ProviderResource> ProviderResourceControllerDeleteProviderResourceAsync(
         ProviderResourceControllerDeleteProviderResourceRequestProvider provider,
         ProviderResourceControllerDeleteProviderResourceRequestResourceName resourceName,
@@ -518,6 +531,9 @@ public partial class ProviderResourcesClient : IProviderResourcesClient
         );
     }
 
+    /// <summary>
+    /// Updates the provider resource identified by its Vapi resource ID.
+    /// </summary>
     public WithRawResponseTask<ProviderResource> ProviderResourceControllerUpdateProviderResourceAsync(
         ProviderResourceControllerUpdateProviderResourceRequestProvider provider,
         ProviderResourceControllerUpdateProviderResourceRequestResourceName resourceName,

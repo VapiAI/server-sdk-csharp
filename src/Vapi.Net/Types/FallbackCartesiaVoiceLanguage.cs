@@ -87,6 +87,9 @@ public enum FallbackCartesiaVoiceLanguage
     [EnumMember(Value = "no")]
     No,
 
+    [EnumMember(Value = "or")]
+    Or,
+
     [EnumMember(Value = "pa")]
     Pa,
 
@@ -125,6 +128,9 @@ public enum FallbackCartesiaVoiceLanguage
 
     [EnumMember(Value = "uk")]
     Uk,
+
+    [EnumMember(Value = "ur")]
+    Ur,
 
     [EnumMember(Value = "vi")]
     Vi,
@@ -168,6 +174,7 @@ internal class FallbackCartesiaVoiceLanguageSerializer
         { "ms", FallbackCartesiaVoiceLanguage.Ms },
         { "nl", FallbackCartesiaVoiceLanguage.Nl },
         { "no", FallbackCartesiaVoiceLanguage.No },
+        { "or", FallbackCartesiaVoiceLanguage.Or },
         { "pa", FallbackCartesiaVoiceLanguage.Pa },
         { "pl", FallbackCartesiaVoiceLanguage.Pl },
         { "pt", FallbackCartesiaVoiceLanguage.Pt },
@@ -181,6 +188,7 @@ internal class FallbackCartesiaVoiceLanguageSerializer
         { "tl", FallbackCartesiaVoiceLanguage.Tl },
         { "tr", FallbackCartesiaVoiceLanguage.Tr },
         { "uk", FallbackCartesiaVoiceLanguage.Uk },
+        { "ur", FallbackCartesiaVoiceLanguage.Ur },
         { "vi", FallbackCartesiaVoiceLanguage.Vi },
         { "zh", FallbackCartesiaVoiceLanguage.Zh },
     };
@@ -217,6 +225,7 @@ internal class FallbackCartesiaVoiceLanguageSerializer
         { FallbackCartesiaVoiceLanguage.Ms, "ms" },
         { FallbackCartesiaVoiceLanguage.Nl, "nl" },
         { FallbackCartesiaVoiceLanguage.No, "no" },
+        { FallbackCartesiaVoiceLanguage.Or, "or" },
         { FallbackCartesiaVoiceLanguage.Pa, "pa" },
         { FallbackCartesiaVoiceLanguage.Pl, "pl" },
         { FallbackCartesiaVoiceLanguage.Pt, "pt" },
@@ -230,6 +239,7 @@ internal class FallbackCartesiaVoiceLanguageSerializer
         { FallbackCartesiaVoiceLanguage.Tl, "tl" },
         { FallbackCartesiaVoiceLanguage.Tr, "tr" },
         { FallbackCartesiaVoiceLanguage.Uk, "uk" },
+        { FallbackCartesiaVoiceLanguage.Ur, "ur" },
         { FallbackCartesiaVoiceLanguage.Vi, "vi" },
         { FallbackCartesiaVoiceLanguage.Zh, "zh" },
     };

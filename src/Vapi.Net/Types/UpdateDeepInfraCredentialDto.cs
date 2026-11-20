@@ -11,6 +11,9 @@ public record UpdateDeepInfraCredentialDto : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateDeepInfraCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// This is not returned in the API.
     /// </summary>

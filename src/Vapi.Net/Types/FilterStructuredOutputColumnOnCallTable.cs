@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters a structured-output value stored on a call using comparison, membership, containment, or emptiness operators.
+/// </summary>
 [Serializable]
 public record FilterStructuredOutputColumnOnCallTable : IJsonOnDeserialized
 {

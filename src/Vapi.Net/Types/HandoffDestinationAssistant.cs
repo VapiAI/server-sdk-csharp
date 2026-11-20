@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Routes a handoff to a saved or transient assistant, with optional context engineering, variable extraction, and assistant overrides.
+/// </summary>
 [Serializable]
 public record HandoffDestinationAssistant : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record HandoffDestinationAssistant : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Selects an assistant as the handoff destination.
+    /// </summary>
     [JsonPropertyName("type")]
     public required HandoffDestinationAssistantType Type { get; set; }
 
@@ -36,7 +42,7 @@ public record HandoffDestinationAssistant : IJsonOnDeserialized
     /// This is a transient assistant to transfer the call to. You may provide a transient assistant in the response  `handoff-destination-request` in a dynamic handoff.
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// This is the variable extraction plan for the handoff tool.

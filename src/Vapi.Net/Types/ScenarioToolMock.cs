@@ -12,19 +12,19 @@ public record ScenarioToolMock : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This is the tool call function name to mock (must match `toolCall.function.name`).
+    /// The name of the assistant or squad's tool to mock. Must match the tool's name exactly.
     /// </summary>
     [JsonPropertyName("toolName")]
     public required string ToolName { get; set; }
 
     /// <summary>
-    /// This is the result content to return for this tool call.
+    /// The result string returned to the assistant or squad in place of calling the real tool.
     /// </summary>
     [JsonPropertyName("result")]
     public string? Result { get; set; }
 
     /// <summary>
-    /// This is whether this mock is enabled. Defaults to true when omitted.
+    /// Set to `true` to apply this mock during the simulation. Defaults to `true`.
     /// </summary>
     [JsonPropertyName("enabled")]
     public bool? Enabled { get; set; }

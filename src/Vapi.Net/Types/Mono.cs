@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Mono recording URLs for the combined call and isolated assistant and customer audio.
+/// </summary>
 [Serializable]
 public record Mono : IJsonOnDeserialized
 {

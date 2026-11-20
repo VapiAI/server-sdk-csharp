@@ -9,8 +9,14 @@ public enum FallbackRimeAiVoiceModel
     [EnumMember(Value = "arcana")]
     Arcana,
 
+    [EnumMember(Value = "coda")]
+    Coda,
+
     [EnumMember(Value = "mistv2")]
     Mistv2,
+
+    [EnumMember(Value = "mistv3")]
+    Mistv3,
 
     [EnumMember(Value = "mist")]
     Mist,
@@ -25,7 +31,9 @@ internal class FallbackRimeAiVoiceModelSerializer
     > _stringToEnum = new()
     {
         { "arcana", FallbackRimeAiVoiceModel.Arcana },
+        { "coda", FallbackRimeAiVoiceModel.Coda },
         { "mistv2", FallbackRimeAiVoiceModel.Mistv2 },
+        { "mistv3", FallbackRimeAiVoiceModel.Mistv3 },
         { "mist", FallbackRimeAiVoiceModel.Mist },
     };
 
@@ -35,7 +43,9 @@ internal class FallbackRimeAiVoiceModelSerializer
     > _enumToString = new()
     {
         { FallbackRimeAiVoiceModel.Arcana, "arcana" },
+        { FallbackRimeAiVoiceModel.Coda, "coda" },
         { FallbackRimeAiVoiceModel.Mistv2, "mistv2" },
+        { FallbackRimeAiVoiceModel.Mistv3, "mistv3" },
         { FallbackRimeAiVoiceModel.Mist, "mist" },
     };
 

@@ -15,7 +15,7 @@ public partial class VapiClient : IVapiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Vapi.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Vapi.Net/2.0.0" },
+                { "User-Agent", "Vapi.Net/0.0.0-fern-placeholder" },
             }
         );
         foreach (var header in platformHeaders)
@@ -40,11 +40,19 @@ public partial class VapiClient : IVapiClient
         Chats = new ChatsClient(_client);
         Campaigns = new CampaignsClient(_client);
         Sessions = new SessionsClient(_client);
+        TrafficAllocations = new TrafficAllocationsClient(_client);
         PhoneNumbers = new PhoneNumbersClient(_client);
         Tools = new ToolsClient(_client);
         Files = new FilesClient(_client);
+        KnowledgeBasesV2 = new KnowledgeBasesV2Client(_client);
         StructuredOutputs = new StructuredOutputsClient(_client);
+        SimulationPersonalities = new SimulationPersonalitiesClient(_client);
+        SimulationScenarios = new SimulationScenariosClient(_client);
+        SimulationRuns = new SimulationRunsClient(_client);
+        SimulationSuites = new SimulationSuitesClient(_client);
+        Simulations = new SimulationsClient(_client);
         Insight = new InsightClient(_client);
+        Board = new BoardClient(_client);
         Eval = new EvalClient(_client);
         ObservabilityScorecard = new ObservabilityScorecardClient(_client);
         ProviderResources = new ProviderResourcesClient(_client);
@@ -63,15 +71,31 @@ public partial class VapiClient : IVapiClient
 
     public ISessionsClient Sessions { get; }
 
+    public ITrafficAllocationsClient TrafficAllocations { get; }
+
     public IPhoneNumbersClient PhoneNumbers { get; }
 
     public IToolsClient Tools { get; }
 
     public IFilesClient Files { get; }
 
+    public IKnowledgeBasesV2Client KnowledgeBasesV2 { get; }
+
     public IStructuredOutputsClient StructuredOutputs { get; }
 
+    public ISimulationPersonalitiesClient SimulationPersonalities { get; }
+
+    public ISimulationScenariosClient SimulationScenarios { get; }
+
+    public ISimulationRunsClient SimulationRuns { get; }
+
+    public ISimulationSuitesClient SimulationSuites { get; }
+
+    public ISimulationsClient Simulations { get; }
+
     public IInsightClient Insight { get; }
+
+    public IBoardClient Board { get; }
 
     public IEvalClient Eval { get; }
 

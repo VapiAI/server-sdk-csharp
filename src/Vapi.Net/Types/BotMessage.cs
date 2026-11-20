@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// An assistant-authored entry in the call message history, including content, timing, source, and duration.
+/// </summary>
 [Serializable]
 public record BotMessage : IJsonOnDeserialized
 {
@@ -52,6 +55,21 @@ public record BotMessage : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("duration")]
     public double? Duration { get; set; }
+
+    /// <summary>
+    /// The name of the assistant that produced this message. In a squad or
+    /// handoff call this is the specific sub-agent active when the message was
+    /// spoken, letting the transcript label each message by speaker.
+    /// </summary>
+    [JsonPropertyName("assistantName")]
+    public string? AssistantName { get; set; }
+
+    /// <summary>
+    /// The ID of the assistant that produced this message. Stable reference for
+    /// the assistant named in `assistantName`.
+    /// </summary>
+    [JsonPropertyName("assistantId")]
+    public string? AssistantId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

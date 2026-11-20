@@ -5,6 +5,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// VapiQL JSON query that aggregates or counts a structured-output value stored on call records.
+/// </summary>
 [Serializable]
 public record JsonQueryOnCallTableWithStructuredOutputColumn : IJsonOnDeserialized
 {
