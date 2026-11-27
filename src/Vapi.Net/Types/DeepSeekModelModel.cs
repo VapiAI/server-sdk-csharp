@@ -11,6 +11,12 @@ public enum DeepSeekModelModel
 
     [EnumMember(Value = "deepseek-reasoner")]
     DeepseekReasoner,
+
+    [EnumMember(Value = "deepseek-flash")]
+    DeepseekFlash,
+
+    [EnumMember(Value = "deepseek-flash-thinking")]
+    DeepseekFlashThinking,
 }
 
 internal class DeepSeekModelModelSerializer
@@ -23,6 +29,8 @@ internal class DeepSeekModelModelSerializer
     {
         { "deepseek-chat", DeepSeekModelModel.DeepseekChat },
         { "deepseek-reasoner", DeepSeekModelModel.DeepseekReasoner },
+        { "deepseek-flash", DeepSeekModelModel.DeepseekFlash },
+        { "deepseek-flash-thinking", DeepSeekModelModel.DeepseekFlashThinking },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +40,8 @@ internal class DeepSeekModelModelSerializer
     {
         { DeepSeekModelModel.DeepseekChat, "deepseek-chat" },
         { DeepSeekModelModel.DeepseekReasoner, "deepseek-reasoner" },
+        { DeepSeekModelModel.DeepseekFlash, "deepseek-flash" },
+        { DeepSeekModelModel.DeepseekFlashThinking, "deepseek-flash-thinking" },
     };
 
     public override DeepSeekModelModel Read(

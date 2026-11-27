@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Function definition exposed to a language model, including its name, purpose, parameter schema, and strict-schema behavior.
+/// </summary>
 [Serializable]
 public record OpenAiFunction : IJsonOnDeserialized
 {
@@ -12,20 +15,20 @@ public record OpenAiFunction : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This is a boolean that controls whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the parameters field. Only a subset of JSON Schema is supported when strict is true. Learn more about Structured Outputs in the [OpenAI guide](https://openai.com/index/introducing-structured-outputs-in-the-api/).
-    ///
-    /// @default false
-    /// </summary>
-    [JsonPropertyName("strict")]
-    public bool? Strict { get; set; }
-
-    /// <summary>
     /// This is the the name of the function to be called.
     ///
     /// Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
     /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
+
+    /// <summary>
+    /// This is a boolean that controls whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the parameters field. Only a subset of JSON Schema is supported when strict is true. Learn more about Structured Outputs in the [OpenAI guide](https://openai.com/index/introducing-structured-outputs-in-the-api/).
+    ///
+    /// @default false
+    /// </summary>
+    [JsonPropertyName("strict")]
+    public bool? Strict { get; set; }
 
     /// <summary>
     /// This is the description of what the function does, used by the AI to choose when and how to call the function.

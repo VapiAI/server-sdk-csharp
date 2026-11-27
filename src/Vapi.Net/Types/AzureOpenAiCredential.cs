@@ -63,6 +63,12 @@ public record AzureOpenAiCredential : IJsonOnDeserialized
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
+    /// <summary>
+    /// These are the names of your Azure deployments, one entry for every model in `models`. Omit the field when every deployment is named after its model; once it has any entry, a model with no entry is rejected, so a deployment named after its model takes `{ "model": "&lt;model&gt;", "name": "&lt;model&gt;" }`. Requests use the first of the org's keys that matches the region (on a live call, also the model), so an org holding two keys for the same region and model should pin `credentialIds` on its assistants.
+    /// </summary>
+    [JsonPropertyName("deployments")]
+    public IEnumerable<AzureOpenAiDeployment>? Deployments { get; set; }
+
     [JsonPropertyName("openAIEndpoint")]
     public required string OpenAiEndpoint { get; set; }
 

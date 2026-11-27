@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Message spoken when a tool call fails, with optional language variants, argument conditions, and end-call behavior.
+/// </summary>
 [Serializable]
 public record ToolMessageFailed : IJsonOnDeserialized
 {
@@ -24,7 +27,27 @@ public record ToolMessageFailed : IJsonOnDeserialized
     public IEnumerable<TextContent>? Contents { get; set; }
 
     /// <summary>
+    /// This is optional and defaults to "assistant".
+    ///
+    /// When role=assistant, `content` is said out loud when the tool call fails.
+    ///
+    /// When role=system, `content` is passed to the model as a system message
+    /// along with the failure result, and the model's generated response is
+    /// spoken. Example:
+    ///     assistant: tool called
+    ///     tool: error from your server
+    ///     &lt;--- system prompt as hint
+    ///     ---&gt; model generates response which is spoken
+    /// This is useful when you want the model to generate an error-aware
+    /// response instead of speaking a fixed failure message.
+    /// </summary>
+    [JsonPropertyName("role")]
+    public ToolMessageFailedRole? Role { get; set; }
+
+    /// <summary>
     /// This is an optional boolean that if true, the call will end after the message is spoken. Default is false.
+    ///
+    /// This is ignored if `role` is set to `system`.
     ///
     /// @default false
     /// </summary>

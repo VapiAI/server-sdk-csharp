@@ -19,6 +19,15 @@ public record ServerMessageCallEndpointingRequest : IJsonOnDeserialized
     public object? PhoneNumber { get; set; }
 
     /// <summary>
+    /// This is the version label (e.g. `v3`) of the assistant the call was
+    /// configured with. `null` for inline assistants, squad/workflow calls,
+    /// pre-resolution assistant-request messages, and orgs not on
+    /// assistant versioning.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
     /// This is the type of the message. "call.endpointing.request" is sent when using `assistant.startSpeakingPlan.smartEndpointingPlan={ "provider": "custom-endpointing-model" }`.
     ///
     /// Here is what the request will look like:

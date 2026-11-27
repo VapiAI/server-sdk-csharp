@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Customer details used for call delivery and assistant personalization, including phone or SIP destination, contact identifiers, extension, and assistant overrides.
+/// </summary>
 [Serializable]
 public record CreateCustomerDto : IJsonOnDeserialized
 {
@@ -37,6 +40,14 @@ public record CreateCustomerDto : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("assistantOverrides")]
     public AssistantOverrides? AssistantOverrides { get; set; }
+
+    /// <summary>
+    /// These are the overrides applied when the call targets a `squadId`. Mirrors
+    /// the call-level `squadOverrides` — use this instead of `assistantOverrides`
+    /// when the campaign or call is squad-based.
+    /// </summary>
+    [JsonPropertyName("squadOverrides")]
+    public AssistantOverrides? SquadOverrides { get; set; }
 
     /// <summary>
     /// This is the number of the customer.

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Speech-to-text cost for a call, including transcriber, billable minutes, and amount.
+/// </summary>
 [Serializable]
 public record TranscriberCost : IJsonOnDeserialized
 {

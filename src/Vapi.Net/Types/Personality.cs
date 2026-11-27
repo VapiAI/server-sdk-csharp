@@ -47,7 +47,7 @@ public record Personality : IJsonOnDeserialized
     /// It defines the tester's voice, model, behavior via system prompt, and other settings.
     /// </summary>
     [JsonPropertyName("assistant")]
-    public required CreateAssistantDto Assistant { get; set; }
+    public required TransientAssistantDto Assistant { get; set; }
 
     /// <summary>
     /// Optional folder path for organizing personalities.

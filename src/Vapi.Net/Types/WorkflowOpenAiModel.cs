@@ -4,12 +4,30 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Workflow model configuration for OpenAI, including model selection, temperature, and maximum output tokens.
+/// </summary>
 [Serializable]
 public record WorkflowOpenAiModel : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// These are the messages used to customize the prompt used for structured output extraction.
+    ///
+    /// When provided, these messages replace the default prompts. For text extraction, message contents support LiquidJS templating with the following variables:
+    /// - `{{transcript}}`, `{{messages}}`, or `{{messagesWithConfidence}}` to reference the conversation (one is required)
+    /// - `{{structuredOutput.name}}`, `{{structuredOutput.description}}`, or `{{structuredOutput.schema}}` to reference the structured output definition (one is required)
+    /// - `{{systemPrompt}}`, `{{callEndedReason}}`, `{{duration}}`, `{{startedAt}}`, `{{endedAt}}`, and any `assistantOverrides.variableValues`
+    ///
+    /// In structured outputs, `{{messages}}` includes conversation text and tool calls/results, but omits caller transcription-confidence fields. For text extraction, `{{messagesWithConfidence}}` includes the original message history with transcription confidence for outputs that explicitly need it. These variables also apply in structured-output schema descriptions. Audio-targeted (`messages-with-audio`) extraction ignores custom messages. Stored call artifacts and API messages retain their confidence data. `{{transcript}}` is the spoken text only, which uses significantly fewer tokens.
+    ///
+    /// If not provided, default system and user prompts are used.
+    /// </summary>
+    [JsonPropertyName("messages")]
+    public IEnumerable<OpenAiMessage>? Messages { get; set; }
 
     /// <summary>
     /// This is the OpenAI model that will be used.
@@ -19,6 +37,16 @@ public record WorkflowOpenAiModel : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("model")]
     public required WorkflowOpenAiModelModel Model { get; set; }
+
+    /// <summary>
+    /// This is the reasoning effort for structured output extraction. It applies to the primary extraction attempt only; the GPT-4.1 and Gemini fallbacks run without it. Other features that use this model type ignore it.
+    ///
+    /// Only reasoning models accept it, and each accepts only the efforts OpenAI supports for it (for example `none` and `xhigh` on gpt-5.6, `minimal` on gpt-5). When unset, OpenAI's default effort for the model applies, except on GPT-6 models, which Vapi sends with `none`.
+    ///
+    /// Reasoning tokens are billed as output tokens.
+    /// </summary>
+    [JsonPropertyName("reasoningEffort")]
+    public WorkflowOpenAiModelReasoningEffort? ReasoningEffort { get; set; }
 
     /// <summary>
     /// This is the temperature of the model.

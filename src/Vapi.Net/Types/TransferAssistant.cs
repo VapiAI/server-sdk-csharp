@@ -47,6 +47,7 @@ public record TransferAssistant : IJsonOnDeserialized
 
     /// <summary>
     /// This is the background sound in the transfer assistant call. Default for phone calls is 'office' and default for web calls is 'off'.
+    /// Bundled sounds: 'office', 'white-noise', 'city', 'crowd' and 'farm'. GPT Live assistants don't play 'office'.
     /// You can also provide a custom sound by providing a URL to an audio file.
     /// </summary>
     [JsonPropertyName("backgroundSound")]
@@ -82,6 +83,26 @@ public record TransferAssistant : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("maxDurationSeconds")]
     public double? MaxDurationSeconds { get; set; }
+
+    /// <summary>
+    /// This decides whether the transfer assistant runs the main assistant's hooks on the operator leg of a `warm-transfer-experimental` transfer. The operator is the "customer" there. When unset or `true`, the transfer assistant runs all of the main assistant's hooks, plus `hooks`. When `false`, it runs only `hooks`, plus the main assistant's `call.ending` hooks. An `endCall` in an inherited `customer.speech.timeout` hook ends the whole call when the operator is silent, so set this to `false` to stop that.
+    /// </summary>
+    [JsonPropertyName("assistantHooksInheritEnabled")]
+    public bool? AssistantHooksInheritEnabled { get; set; }
+
+    /// <summary>
+    /// These are the hooks the transfer assistant runs on the operator leg of a `warm-transfer-experimental` transfer. The operator is the "customer" there, so `customer.speech.timeout` fires on operator silence. Whether the main assistant's other hooks also run on the operator leg depends on `assistantHooksInheritEnabled`. These hooks run after them. `call.ending` and `call.timeElapsed` are not allowed here. The main assistant's `call.ending` hooks are kept automatically. Time-elapsed hooks are not armed on the operator leg. An `endCall` tool in these hooks ends the whole call, not only the operator leg. A `tool` action must carry an inline `tool`, because `toolId` is not resolved for the transfer assistant.
+    /// </summary>
+    [JsonPropertyName("hooks")]
+    public IEnumerable<
+        OneOf<
+            CallHookAssistantSpeechInterrupted,
+            CallHookCustomerSpeechInterrupted,
+            CallHookCustomerSpeechTimeout,
+            CallHookModelResponseTimeout,
+            CallHookTranscriberEndpointedSpeechLowConfidence
+        >
+    >? Hooks { get; set; }
 
     /// <summary>
     /// This enables filtering of noise and background speech while the user is talking.

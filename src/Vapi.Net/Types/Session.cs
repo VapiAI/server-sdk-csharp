@@ -77,7 +77,7 @@ public record Session : IJsonOnDeserialized
     /// If assistantId is provided, this will be ignored.
     /// </summary>
     [JsonPropertyName("assistant")]
-    public CreateAssistantDto? Assistant { get; set; }
+    public TransientAssistantDto? Assistant { get; set; }
 
     /// <summary>
     /// These are the overrides for the assistant configuration.

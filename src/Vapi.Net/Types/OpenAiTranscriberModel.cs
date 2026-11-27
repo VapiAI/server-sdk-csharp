@@ -11,6 +11,9 @@ public enum OpenAiTranscriberModel
 
     [EnumMember(Value = "gpt-4o-mini-transcribe")]
     Gpt4OMiniTranscribe,
+
+    [EnumMember(Value = "gpt-transcribe")]
+    GptTranscribe,
 }
 
 internal class OpenAiTranscriberModelSerializer
@@ -23,6 +26,7 @@ internal class OpenAiTranscriberModelSerializer
     {
         { "gpt-4o-transcribe", OpenAiTranscriberModel.Gpt4OTranscribe },
         { "gpt-4o-mini-transcribe", OpenAiTranscriberModel.Gpt4OMiniTranscribe },
+        { "gpt-transcribe", OpenAiTranscriberModel.GptTranscribe },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -32,6 +36,7 @@ internal class OpenAiTranscriberModelSerializer
     {
         { OpenAiTranscriberModel.Gpt4OTranscribe, "gpt-4o-transcribe" },
         { OpenAiTranscriberModel.Gpt4OMiniTranscribe, "gpt-4o-mini-transcribe" },
+        { OpenAiTranscriberModel.GptTranscribe, "gpt-transcribe" },
     };
 
     public override OpenAiTranscriberModel Read(

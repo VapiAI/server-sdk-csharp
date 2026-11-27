@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Speech-output configuration for Gemini Multimodal Live.
+/// </summary>
 [Serializable]
 public record GeminiMultimodalLiveSpeechConfig : IJsonOnDeserialized
 {
@@ -11,6 +14,9 @@ public record GeminiMultimodalLiveSpeechConfig : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Voice configuration used for Gemini Multimodal Live speech output.
+    /// </summary>
     [JsonPropertyName("voiceConfig")]
     public required GeminiMultimodalLiveVoiceConfig VoiceConfig { get; set; }
 

@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Destination configuration for sending Vapi alerts to an email address.
+/// </summary>
 [Serializable]
 public record CreateEmailCredentialDto : IJsonOnDeserialized
 {

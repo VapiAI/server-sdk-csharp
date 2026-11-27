@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Direct AWS IAM credentials used to authenticate requests.
+/// </summary>
 [Serializable]
 public record AwsiamCredentialsAuthenticationPlan : IJsonOnDeserialized
 {

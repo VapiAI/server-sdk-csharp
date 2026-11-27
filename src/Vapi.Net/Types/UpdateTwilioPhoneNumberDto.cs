@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fields used to update a Twilio phone number, including its account credentials, SMS configuration, routing, hooks, and server settings.
+/// </summary>
 [Serializable]
 public record UpdateTwilioPhoneNumberDto : IJsonOnDeserialized
 {

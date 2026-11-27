@@ -90,7 +90,7 @@ public partial class AssistantsClient : IAssistantsClient
         }
     }
 
-    private async Task<WithRawResponse<Assistant>> CreateAsyncCore(
+    private async Task<WithRawResponse<AssistantSaveResponse>> CreateAsyncCore(
         CreateAssistantDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -122,8 +122,8 @@ public partial class AssistantsClient : IAssistantsClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<Assistant>(responseBody)!;
-                return new WithRawResponse<Assistant>()
+                var responseData = JsonUtils.Deserialize<AssistantSaveResponse>(responseBody)!;
+                return new WithRawResponse<AssistantSaveResponse>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -280,6 +280,18 @@ public partial class AssistantsClient : IAssistantsClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 409:
+                        throw new ConflictError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -288,7 +300,7 @@ public partial class AssistantsClient : IAssistantsClient
         }
     }
 
-    private async Task<WithRawResponse<Assistant>> UpdateAsyncCore(
+    private async Task<WithRawResponse<AssistantSaveResponse>> UpdateAsyncCore(
         string id,
         UpdateAssistantDto request,
         RequestOptions? options = null,
@@ -322,8 +334,8 @@ public partial class AssistantsClient : IAssistantsClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<Assistant>(responseBody)!;
-                return new WithRawResponse<Assistant>()
+                var responseData = JsonUtils.Deserialize<AssistantSaveResponse>(responseBody)!;
+                return new WithRawResponse<AssistantSaveResponse>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -348,6 +360,18 @@ public partial class AssistantsClient : IAssistantsClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 409:
+                        throw new ConflictError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -356,6 +380,9 @@ public partial class AssistantsClient : IAssistantsClient
         }
     }
 
+    /// <summary>
+    /// Returns assistants for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+    /// </summary>
     public WithRawResponseTask<IEnumerable<Assistant>> ListAsync(
         ListAssistantsRequest request,
         RequestOptions? options = null,
@@ -367,17 +394,23 @@ public partial class AssistantsClient : IAssistantsClient
         );
     }
 
-    public WithRawResponseTask<Assistant> CreateAsync(
+    /// <summary>
+    /// Creates a reusable assistant configuration containing the model, voice, transcriber, tools, prompts, and call behavior.
+    /// </summary>
+    public WithRawResponseTask<AssistantSaveResponse> CreateAsync(
         CreateAssistantDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<Assistant>(
+        return new WithRawResponseTask<AssistantSaveResponse>(
             CreateAsyncCore(request, options, cancellationToken)
         );
     }
 
+    /// <summary>
+    /// Returns the assistant identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Assistant> GetAsync(
         string id,
         GetAssistantsRequest request,
@@ -390,6 +423,9 @@ public partial class AssistantsClient : IAssistantsClient
         );
     }
 
+    /// <summary>
+    /// Deletes the assistant identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Assistant> DeleteAsync(
         string id,
         DeleteAssistantsRequest request,
@@ -402,14 +438,17 @@ public partial class AssistantsClient : IAssistantsClient
         );
     }
 
-    public WithRawResponseTask<Assistant> UpdateAsync(
+    /// <summary>
+    /// Updates the specified fields of the assistant identified by its ID.
+    /// </summary>
+    public WithRawResponseTask<AssistantSaveResponse> UpdateAsync(
         string id,
         UpdateAssistantDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<Assistant>(
+        return new WithRawResponseTask<AssistantSaveResponse>(
             UpdateAsyncCore(id, request, options, cancellationToken)
         );
     }

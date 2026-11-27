@@ -6,6 +6,18 @@ namespace Vapi.Net;
 [JsonConverter(typeof(CartesiaVoiceModelSerializer))]
 public enum CartesiaVoiceModel
 {
+    [EnumMember(Value = "sonic-3.5")]
+    Sonic35,
+
+    [EnumMember(Value = "sonic-3.5-2026-05-04")]
+    Sonic3520260504,
+
+    [EnumMember(Value = "sonic-3.6")]
+    Sonic36,
+
+    [EnumMember(Value = "sonic-3.6-2026-08-27")]
+    Sonic3620260827,
+
     [EnumMember(Value = "sonic-3")]
     Sonic3,
 
@@ -42,6 +54,10 @@ internal class CartesiaVoiceModelSerializer
         CartesiaVoiceModel
     > _stringToEnum = new()
     {
+        { "sonic-3.5", CartesiaVoiceModel.Sonic35 },
+        { "sonic-3.5-2026-05-04", CartesiaVoiceModel.Sonic3520260504 },
+        { "sonic-3.6", CartesiaVoiceModel.Sonic36 },
+        { "sonic-3.6-2026-08-27", CartesiaVoiceModel.Sonic3620260827 },
         { "sonic-3", CartesiaVoiceModel.Sonic3 },
         { "sonic-3-2026-01-12", CartesiaVoiceModel.Sonic320260112 },
         { "sonic-3-2025-10-27", CartesiaVoiceModel.Sonic320251027 },
@@ -58,6 +74,10 @@ internal class CartesiaVoiceModelSerializer
         string
     > _enumToString = new()
     {
+        { CartesiaVoiceModel.Sonic35, "sonic-3.5" },
+        { CartesiaVoiceModel.Sonic3520260504, "sonic-3.5-2026-05-04" },
+        { CartesiaVoiceModel.Sonic36, "sonic-3.6" },
+        { CartesiaVoiceModel.Sonic3620260827, "sonic-3.6-2026-08-27" },
         { CartesiaVoiceModel.Sonic3, "sonic-3" },
         { CartesiaVoiceModel.Sonic320260112, "sonic-3-2026-01-12" },
         { CartesiaVoiceModel.Sonic320251027, "sonic-3-2025-10-27" },

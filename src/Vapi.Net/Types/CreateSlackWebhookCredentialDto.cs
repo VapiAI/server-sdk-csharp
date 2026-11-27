@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Credentials for sending Vapi alerts through a Slack incoming webhook.
+/// </summary>
 [Serializable]
 public record CreateSlackWebhookCredentialDto : IJsonOnDeserialized
 {

@@ -14,6 +14,9 @@ public enum FallbackElevenLabsTranscriberModel
 
     [EnumMember(Value = "scribe_v2_realtime")]
     ScribeV2Realtime,
+
+    [EnumMember(Value = "scribe_v3_live")]
+    ScribeV3Live,
 }
 
 internal class FallbackElevenLabsTranscriberModelSerializer
@@ -27,6 +30,7 @@ internal class FallbackElevenLabsTranscriberModelSerializer
         { "scribe_v1", FallbackElevenLabsTranscriberModel.ScribeV1 },
         { "scribe_v2", FallbackElevenLabsTranscriberModel.ScribeV2 },
         { "scribe_v2_realtime", FallbackElevenLabsTranscriberModel.ScribeV2Realtime },
+        { "scribe_v3_live", FallbackElevenLabsTranscriberModel.ScribeV3Live },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -37,6 +41,7 @@ internal class FallbackElevenLabsTranscriberModelSerializer
         { FallbackElevenLabsTranscriberModel.ScribeV1, "scribe_v1" },
         { FallbackElevenLabsTranscriberModel.ScribeV2, "scribe_v2" },
         { FallbackElevenLabsTranscriberModel.ScribeV2Realtime, "scribe_v2_realtime" },
+        { FallbackElevenLabsTranscriberModel.ScribeV3Live, "scribe_v3_live" },
     };
 
     public override FallbackElevenLabsTranscriberModel Read(
