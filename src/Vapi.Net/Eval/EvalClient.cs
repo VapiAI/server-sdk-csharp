@@ -18,10 +18,11 @@ public partial class EvalClient : IEvalClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 13)
             .Add("id", request.Id)
             .Add("page", request.Page)
             .Add("sortOrder", request.SortOrder)
+            .Add("sortBy", request.SortBy)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -85,6 +86,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -151,6 +164,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -217,6 +242,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -283,6 +320,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -351,6 +400,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -417,6 +478,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -483,6 +556,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -499,10 +584,10 @@ public partial class EvalClient : IEvalClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+        var _queryString = new Vapi.Net.Core.QueryStringBuilder.Builder(capacity: 14)
+            .Add("sortBy", request.SortBy)
+            .Add("search", request.Search)
             .Add("id", request.Id)
-            .Add("page", request.Page)
-            .Add("sortOrder", request.SortOrder)
             .Add("limit", request.Limit)
             .Add("createdAtGt", request.CreatedAtGt)
             .Add("createdAtLt", request.CreatedAtLt)
@@ -512,6 +597,8 @@ public partial class EvalClient : IEvalClient
             .Add("updatedAtLt", request.UpdatedAtLt)
             .Add("updatedAtGe", request.UpdatedAtGe)
             .Add("updatedAtLe", request.UpdatedAtLe)
+            .Add("page", request.Page)
+            .Add("sortOrder", request.SortOrder)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Vapi.Net.Core.HeadersBuilder.Builder()
@@ -566,6 +653,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -633,6 +732,18 @@ public partial class EvalClient : IEvalClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 403:
+                        throw new ForbiddenError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new VapiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -641,6 +752,9 @@ public partial class EvalClient : IEvalClient
         }
     }
 
+    /// <summary>
+    /// Returns eval definitions for the authenticated organization. Filter results by ID or creation and update timestamps.
+    /// </summary>
     public WithRawResponseTask<EvalPaginatedResponse> EvalControllerGetPaginatedAsync(
         EvalControllerGetPaginatedRequest request,
         RequestOptions? options = null,
@@ -652,6 +766,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Creates a reusable eval that defines a mock conversation and checkpoints for evaluating assistant responses and tool calls.
+    /// </summary>
     public WithRawResponseTask<Eval> EvalControllerCreateAsync(
         CreateEvalDto request,
         RequestOptions? options = null,
@@ -663,6 +780,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Returns the eval definition identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Eval> EvalControllerGetAsync(
         string id,
         EvalControllerGetRequest request,
@@ -675,6 +795,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Deletes the eval definition identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Eval> EvalControllerRemoveAsync(
         string id,
         EvalControllerRemoveRequest request,
@@ -687,6 +810,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Updates the eval definition identified by its ID.
+    /// </summary>
     public WithRawResponseTask<Eval> EvalControllerUpdateAsync(
         string id,
         UpdateEvalDto request,
@@ -699,6 +825,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Returns the eval run identified by its ID.
+    /// </summary>
     public WithRawResponseTask<EvalRun> EvalControllerGetRunAsync(
         string id,
         EvalControllerGetRunRequest request,
@@ -711,6 +840,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Deletes the eval run identified by its ID.
+    /// </summary>
     public WithRawResponseTask<EvalRun> EvalControllerRemoveRunAsync(
         string id,
         EvalControllerRemoveRunRequest request,
@@ -723,6 +855,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Returns eval runs for the authenticated organization. Filter results by ID or creation and update timestamps.
+    /// </summary>
     public WithRawResponseTask<EvalRunPaginatedResponse> EvalControllerGetRunsPaginatedAsync(
         EvalControllerGetRunsPaginatedRequest request,
         RequestOptions? options = null,
@@ -734,6 +869,9 @@ public partial class EvalClient : IEvalClient
         );
     }
 
+    /// <summary>
+    /// Runs a saved or transient eval against an assistant or squad and creates an eval-run record containing the results.
+    /// </summary>
     public WithRawResponseTask<object> EvalControllerRunAsync(
         CreateEvalRunDto request,
         RequestOptions? options = null,

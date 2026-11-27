@@ -6,6 +6,24 @@ namespace Vapi.Net;
 [JsonConverter(typeof(AzureOpenAiCredentialModelsItemSerializer))]
 public enum AzureOpenAiCredentialModelsItem
 {
+    [EnumMember(Value = "gpt-6-luna")]
+    Gpt6Luna,
+
+    [EnumMember(Value = "gpt-6-luna-2026-09-22")]
+    Gpt6Luna20260922,
+
+    [EnumMember(Value = "gpt-5.6-luna-2026-07-09")]
+    Gpt56Luna20260709,
+
+    [EnumMember(Value = "gpt-5.6-terra-2026-07-09")]
+    Gpt56Terra20260709,
+
+    [EnumMember(Value = "gpt-5.6-sol-2026-07-09")]
+    Gpt56Sol20260709,
+
+    [EnumMember(Value = "gpt-5.5")]
+    Gpt55,
+
     [EnumMember(Value = "gpt-5.4")]
     Gpt54,
 
@@ -74,6 +92,15 @@ public enum AzureOpenAiCredentialModelsItem
 
     [EnumMember(Value = "gpt-35-turbo-1106")]
     Gpt35Turbo1106,
+
+    [EnumMember(Value = "gpt-4o")]
+    Gpt4O,
+
+    [EnumMember(Value = "gpt-4.1")]
+    Gpt41,
+
+    [EnumMember(Value = "gpt-5.4-mini-2026-03-17")]
+    Gpt54Mini20260317,
 }
 
 internal class AzureOpenAiCredentialModelsItemSerializer
@@ -84,6 +111,12 @@ internal class AzureOpenAiCredentialModelsItemSerializer
         AzureOpenAiCredentialModelsItem
     > _stringToEnum = new()
     {
+        { "gpt-6-luna", AzureOpenAiCredentialModelsItem.Gpt6Luna },
+        { "gpt-6-luna-2026-09-22", AzureOpenAiCredentialModelsItem.Gpt6Luna20260922 },
+        { "gpt-5.6-luna-2026-07-09", AzureOpenAiCredentialModelsItem.Gpt56Luna20260709 },
+        { "gpt-5.6-terra-2026-07-09", AzureOpenAiCredentialModelsItem.Gpt56Terra20260709 },
+        { "gpt-5.6-sol-2026-07-09", AzureOpenAiCredentialModelsItem.Gpt56Sol20260709 },
+        { "gpt-5.5", AzureOpenAiCredentialModelsItem.Gpt55 },
         { "gpt-5.4", AzureOpenAiCredentialModelsItem.Gpt54 },
         { "gpt-5.4-mini", AzureOpenAiCredentialModelsItem.Gpt54Mini },
         { "gpt-5.4-nano", AzureOpenAiCredentialModelsItem.Gpt54Nano },
@@ -107,6 +140,9 @@ internal class AzureOpenAiCredentialModelsItemSerializer
         { "gpt-4-0613", AzureOpenAiCredentialModelsItem.Gpt40613 },
         { "gpt-35-turbo-0125", AzureOpenAiCredentialModelsItem.Gpt35Turbo0125 },
         { "gpt-35-turbo-1106", AzureOpenAiCredentialModelsItem.Gpt35Turbo1106 },
+        { "gpt-4o", AzureOpenAiCredentialModelsItem.Gpt4O },
+        { "gpt-4.1", AzureOpenAiCredentialModelsItem.Gpt41 },
+        { "gpt-5.4-mini-2026-03-17", AzureOpenAiCredentialModelsItem.Gpt54Mini20260317 },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -114,6 +150,12 @@ internal class AzureOpenAiCredentialModelsItemSerializer
         string
     > _enumToString = new()
     {
+        { AzureOpenAiCredentialModelsItem.Gpt6Luna, "gpt-6-luna" },
+        { AzureOpenAiCredentialModelsItem.Gpt6Luna20260922, "gpt-6-luna-2026-09-22" },
+        { AzureOpenAiCredentialModelsItem.Gpt56Luna20260709, "gpt-5.6-luna-2026-07-09" },
+        { AzureOpenAiCredentialModelsItem.Gpt56Terra20260709, "gpt-5.6-terra-2026-07-09" },
+        { AzureOpenAiCredentialModelsItem.Gpt56Sol20260709, "gpt-5.6-sol-2026-07-09" },
+        { AzureOpenAiCredentialModelsItem.Gpt55, "gpt-5.5" },
         { AzureOpenAiCredentialModelsItem.Gpt54, "gpt-5.4" },
         { AzureOpenAiCredentialModelsItem.Gpt54Mini, "gpt-5.4-mini" },
         { AzureOpenAiCredentialModelsItem.Gpt54Nano, "gpt-5.4-nano" },
@@ -137,6 +179,9 @@ internal class AzureOpenAiCredentialModelsItemSerializer
         { AzureOpenAiCredentialModelsItem.Gpt40613, "gpt-4-0613" },
         { AzureOpenAiCredentialModelsItem.Gpt35Turbo0125, "gpt-35-turbo-0125" },
         { AzureOpenAiCredentialModelsItem.Gpt35Turbo1106, "gpt-35-turbo-1106" },
+        { AzureOpenAiCredentialModelsItem.Gpt4O, "gpt-4o" },
+        { AzureOpenAiCredentialModelsItem.Gpt41, "gpt-4.1" },
+        { AzureOpenAiCredentialModelsItem.Gpt54Mini20260317, "gpt-5.4-mini-2026-03-17" },
     };
 
     public override AzureOpenAiCredentialModelsItem Read(

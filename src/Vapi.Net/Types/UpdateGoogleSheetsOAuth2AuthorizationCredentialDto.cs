@@ -11,6 +11,9 @@ public record UpdateGoogleSheetsOAuth2AuthorizationCredentialDto : IJsonOnDeseri
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("provider")]
+    public UpdateGoogleSheetsOAuth2AuthorizationCredentialDtoProvider? Provider { get; set; }
+
     /// <summary>
     /// The authorization ID for the OAuth2 authorization
     /// </summary>

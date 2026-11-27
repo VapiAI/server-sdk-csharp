@@ -170,6 +170,135 @@ public enum DeepgramVoiceId
 
     [EnumMember(Value = "javier")]
     Javier,
+
+    [EnumMember(Value = "viktoria")]
+    Viktoria,
+
+    [EnumMember(Value = "kara")]
+    Kara,
+
+    [EnumMember(Value = "fabian")]
+    Fabian,
+
+    [EnumMember(Value = "julius")]
+    Julius,
+
+    [EnumMember(Value = "lara")]
+    Lara,
+
+    [EnumMember(Value = "elara")]
+    Elara,
+
+    [EnumMember(Value = "aurelia")]
+    Aurelia,
+
+    [EnumMember(Value = "hannah")]
+    Hannah,
+
+    [EnumMember(Value = "kit")]
+    Kit,
+
+    [EnumMember(Value = "alexis")]
+    Alexis,
+
+    [EnumMember(Value = "cliff")]
+    Cliff,
+
+    [EnumMember(Value = "sienna")]
+    Sienna,
+
+    [EnumMember(Value = "cole")]
+    Cole,
+
+    [EnumMember(Value = "brooke")]
+    Brooke,
+
+    [EnumMember(Value = "colin")]
+    Colin,
+
+    [EnumMember(Value = "gemma")]
+    Gemma,
+
+    [EnumMember(Value = "haley")]
+    Haley,
+
+    [EnumMember(Value = "heather")]
+    Heather,
+
+    [EnumMember(Value = "miles")]
+    Miles,
+
+    [EnumMember(Value = "sean")]
+    Sean,
+
+    [EnumMember(Value = "bree")]
+    Bree,
+
+    [EnumMember(Value = "brittany")]
+    Brittany,
+
+    [EnumMember(Value = "bruce")]
+    Bruce,
+
+    [EnumMember(Value = "conor")]
+    Conor,
+
+    [EnumMember(Value = "donovan")]
+    Donovan,
+
+    [EnumMember(Value = "drew")]
+    Drew,
+
+    [EnumMember(Value = "elise")]
+    Elise,
+
+    [EnumMember(Value = "jack")]
+    Jack,
+
+    [EnumMember(Value = "kai")]
+    Kai,
+
+    [EnumMember(Value = "kelsey")]
+    Kelsey,
+
+    [EnumMember(Value = "maeve")]
+    Maeve,
+
+    [EnumMember(Value = "marcelo")]
+    Marcelo,
+
+    [EnumMember(Value = "marcus")]
+    Marcus,
+
+    [EnumMember(Value = "meena")]
+    Meena,
+
+    [EnumMember(Value = "meghan")]
+    Meghan,
+
+    [EnumMember(Value = "naveen")]
+    Naveen,
+
+    [EnumMember(Value = "paige")]
+    Paige,
+
+    [EnumMember(Value = "priya")]
+    Priya,
+
+    [EnumMember(Value = "rufus")]
+    Rufus,
+
+    [EnumMember(Value = "sharon")]
+    Sharon,
+
+    [EnumMember(Value = "tanner")]
+    Tanner,
+
+    [EnumMember(Value = "wade")]
+    Wade,
+
+    [EnumMember(Value = "wes")]
+    Wes,
 }
 
 internal class DeepgramVoiceIdSerializer
@@ -235,6 +364,49 @@ internal class DeepgramVoiceIdSerializer
         { "aquila", DeepgramVoiceId.Aquila },
         { "selena", DeepgramVoiceId.Selena },
         { "javier", DeepgramVoiceId.Javier },
+        { "viktoria", DeepgramVoiceId.Viktoria },
+        { "kara", DeepgramVoiceId.Kara },
+        { "fabian", DeepgramVoiceId.Fabian },
+        { "julius", DeepgramVoiceId.Julius },
+        { "lara", DeepgramVoiceId.Lara },
+        { "elara", DeepgramVoiceId.Elara },
+        { "aurelia", DeepgramVoiceId.Aurelia },
+        { "hannah", DeepgramVoiceId.Hannah },
+        { "kit", DeepgramVoiceId.Kit },
+        { "alexis", DeepgramVoiceId.Alexis },
+        { "cliff", DeepgramVoiceId.Cliff },
+        { "sienna", DeepgramVoiceId.Sienna },
+        { "cole", DeepgramVoiceId.Cole },
+        { "brooke", DeepgramVoiceId.Brooke },
+        { "colin", DeepgramVoiceId.Colin },
+        { "gemma", DeepgramVoiceId.Gemma },
+        { "haley", DeepgramVoiceId.Haley },
+        { "heather", DeepgramVoiceId.Heather },
+        { "miles", DeepgramVoiceId.Miles },
+        { "sean", DeepgramVoiceId.Sean },
+        { "bree", DeepgramVoiceId.Bree },
+        { "brittany", DeepgramVoiceId.Brittany },
+        { "bruce", DeepgramVoiceId.Bruce },
+        { "conor", DeepgramVoiceId.Conor },
+        { "donovan", DeepgramVoiceId.Donovan },
+        { "drew", DeepgramVoiceId.Drew },
+        { "elise", DeepgramVoiceId.Elise },
+        { "jack", DeepgramVoiceId.Jack },
+        { "kai", DeepgramVoiceId.Kai },
+        { "kelsey", DeepgramVoiceId.Kelsey },
+        { "maeve", DeepgramVoiceId.Maeve },
+        { "marcelo", DeepgramVoiceId.Marcelo },
+        { "marcus", DeepgramVoiceId.Marcus },
+        { "meena", DeepgramVoiceId.Meena },
+        { "meghan", DeepgramVoiceId.Meghan },
+        { "naveen", DeepgramVoiceId.Naveen },
+        { "paige", DeepgramVoiceId.Paige },
+        { "priya", DeepgramVoiceId.Priya },
+        { "rufus", DeepgramVoiceId.Rufus },
+        { "sharon", DeepgramVoiceId.Sharon },
+        { "tanner", DeepgramVoiceId.Tanner },
+        { "wade", DeepgramVoiceId.Wade },
+        { "wes", DeepgramVoiceId.Wes },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -297,6 +469,49 @@ internal class DeepgramVoiceIdSerializer
         { DeepgramVoiceId.Aquila, "aquila" },
         { DeepgramVoiceId.Selena, "selena" },
         { DeepgramVoiceId.Javier, "javier" },
+        { DeepgramVoiceId.Viktoria, "viktoria" },
+        { DeepgramVoiceId.Kara, "kara" },
+        { DeepgramVoiceId.Fabian, "fabian" },
+        { DeepgramVoiceId.Julius, "julius" },
+        { DeepgramVoiceId.Lara, "lara" },
+        { DeepgramVoiceId.Elara, "elara" },
+        { DeepgramVoiceId.Aurelia, "aurelia" },
+        { DeepgramVoiceId.Hannah, "hannah" },
+        { DeepgramVoiceId.Kit, "kit" },
+        { DeepgramVoiceId.Alexis, "alexis" },
+        { DeepgramVoiceId.Cliff, "cliff" },
+        { DeepgramVoiceId.Sienna, "sienna" },
+        { DeepgramVoiceId.Cole, "cole" },
+        { DeepgramVoiceId.Brooke, "brooke" },
+        { DeepgramVoiceId.Colin, "colin" },
+        { DeepgramVoiceId.Gemma, "gemma" },
+        { DeepgramVoiceId.Haley, "haley" },
+        { DeepgramVoiceId.Heather, "heather" },
+        { DeepgramVoiceId.Miles, "miles" },
+        { DeepgramVoiceId.Sean, "sean" },
+        { DeepgramVoiceId.Bree, "bree" },
+        { DeepgramVoiceId.Brittany, "brittany" },
+        { DeepgramVoiceId.Bruce, "bruce" },
+        { DeepgramVoiceId.Conor, "conor" },
+        { DeepgramVoiceId.Donovan, "donovan" },
+        { DeepgramVoiceId.Drew, "drew" },
+        { DeepgramVoiceId.Elise, "elise" },
+        { DeepgramVoiceId.Jack, "jack" },
+        { DeepgramVoiceId.Kai, "kai" },
+        { DeepgramVoiceId.Kelsey, "kelsey" },
+        { DeepgramVoiceId.Maeve, "maeve" },
+        { DeepgramVoiceId.Marcelo, "marcelo" },
+        { DeepgramVoiceId.Marcus, "marcus" },
+        { DeepgramVoiceId.Meena, "meena" },
+        { DeepgramVoiceId.Meghan, "meghan" },
+        { DeepgramVoiceId.Naveen, "naveen" },
+        { DeepgramVoiceId.Paige, "paige" },
+        { DeepgramVoiceId.Priya, "priya" },
+        { DeepgramVoiceId.Rufus, "rufus" },
+        { DeepgramVoiceId.Sharon, "sharon" },
+        { DeepgramVoiceId.Tanner, "tanner" },
+        { DeepgramVoiceId.Wade, "wade" },
+        { DeepgramVoiceId.Wes, "wes" },
     };
 
     public override DeepgramVoiceId Read(

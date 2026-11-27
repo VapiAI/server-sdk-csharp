@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for transcribing speech during assistant conversations with ElevenLabs, including model, language, speech thresholds, and fallback settings.
+/// </summary>
 [Serializable]
 public record ElevenLabsTranscriber : IJsonOnDeserialized
 {
@@ -18,10 +21,22 @@ public record ElevenLabsTranscriber : IJsonOnDeserialized
     public ElevenLabsTranscriberModel? Model { get; set; }
 
     /// <summary>
-    /// This is the language that will be used for the transcription.
+    /// Language for transcription. `multi` enables automatic code-switching on scribe_v3_live.
     /// </summary>
     [JsonPropertyName("language")]
     public ElevenLabsTranscriberLanguage? Language { get; set; }
+
+    /// <summary>
+    /// Language detection hints for scribe_v3_live. Duplicates are removed; [] explicitly clears inherited hints.
+    /// </summary>
+    [JsonPropertyName("languages")]
+    public IEnumerable<ElevenLabsTranscriberLanguagesItem>? Languages { get; set; }
+
+    /// <summary>
+    /// Words or phrases to bias the transcription towards, such as product names. Supported on scribe_v2 (up to 100 terms of 50 characters each) and scribe_v2_realtime or scribe_v3_live (up to 50 terms of 20 characters each). Each term has at most 5 words and none of `&lt; &gt; { } [ ] \`. Adds ElevenLabs' keyterm prompting rate to the transcriber cost.
+    /// </summary>
+    [JsonPropertyName("keyterms")]
+    public IEnumerable<string>? Keyterms { get; set; }
 
     /// <summary>
     /// This is the number of seconds of silence before VAD commits (0.3-3.0).

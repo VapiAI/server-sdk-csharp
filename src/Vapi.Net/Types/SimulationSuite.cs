@@ -61,6 +61,13 @@ public record SimulationSuite : IJsonOnDeserialized
     [JsonPropertyName("simulationIds")]
     public IEnumerable<string> SimulationIds { get; set; } = new List<string>();
 
+    /// <summary>
+    /// This is the ordered list of assistant or squad assignments for the suite.
+    /// </summary>
+    [JsonPropertyName("targetAssignments")]
+    public IEnumerable<SimulationSuiteTargetAssignment> TargetAssignments { get; set; } =
+        new List<SimulationSuiteTargetAssignment>();
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

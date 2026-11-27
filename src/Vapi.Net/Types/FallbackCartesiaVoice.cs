@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Fallback configuration for synthesizing assistant speech with Cartesia, including voice and model selection, language, generation controls, pronunciation dictionaries, chunking, and caching.
+/// </summary>
 [Serializable]
 public record FallbackCartesiaVoice : IJsonOnDeserialized
 {
@@ -30,7 +33,7 @@ public record FallbackCartesiaVoice : IJsonOnDeserialized
     public FallbackCartesiaVoiceModel? Model { get; set; }
 
     /// <summary>
-    /// This is the language that will be used. This is optional and will default to the correct language for the voiceId.
+    /// This is the language the voice speaks. When omitted, Vapi uses the voice's native language if it has one on record for that voice; otherwise no language is sent to Cartesia. Regional codes such as `es-MX` require the `sonic-3.6` model.
     /// </summary>
     [JsonPropertyName("language")]
     public FallbackCartesiaVoiceLanguage? Language { get; set; }

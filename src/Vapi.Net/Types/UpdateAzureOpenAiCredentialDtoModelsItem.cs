@@ -6,6 +6,24 @@ namespace Vapi.Net;
 [JsonConverter(typeof(UpdateAzureOpenAiCredentialDtoModelsItemSerializer))]
 public enum UpdateAzureOpenAiCredentialDtoModelsItem
 {
+    [EnumMember(Value = "gpt-6-luna")]
+    Gpt6Luna,
+
+    [EnumMember(Value = "gpt-6-luna-2026-09-22")]
+    Gpt6Luna20260922,
+
+    [EnumMember(Value = "gpt-5.6-luna-2026-07-09")]
+    Gpt56Luna20260709,
+
+    [EnumMember(Value = "gpt-5.6-terra-2026-07-09")]
+    Gpt56Terra20260709,
+
+    [EnumMember(Value = "gpt-5.6-sol-2026-07-09")]
+    Gpt56Sol20260709,
+
+    [EnumMember(Value = "gpt-5.5")]
+    Gpt55,
+
     [EnumMember(Value = "gpt-5.4")]
     Gpt54,
 
@@ -74,6 +92,15 @@ public enum UpdateAzureOpenAiCredentialDtoModelsItem
 
     [EnumMember(Value = "gpt-35-turbo-1106")]
     Gpt35Turbo1106,
+
+    [EnumMember(Value = "gpt-4o")]
+    Gpt4O,
+
+    [EnumMember(Value = "gpt-4.1")]
+    Gpt41,
+
+    [EnumMember(Value = "gpt-5.4-mini-2026-03-17")]
+    Gpt54Mini20260317,
 }
 
 internal class UpdateAzureOpenAiCredentialDtoModelsItemSerializer
@@ -84,6 +111,12 @@ internal class UpdateAzureOpenAiCredentialDtoModelsItemSerializer
         UpdateAzureOpenAiCredentialDtoModelsItem
     > _stringToEnum = new()
     {
+        { "gpt-6-luna", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt6Luna },
+        { "gpt-6-luna-2026-09-22", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt6Luna20260922 },
+        { "gpt-5.6-luna-2026-07-09", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt56Luna20260709 },
+        { "gpt-5.6-terra-2026-07-09", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt56Terra20260709 },
+        { "gpt-5.6-sol-2026-07-09", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt56Sol20260709 },
+        { "gpt-5.5", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt55 },
         { "gpt-5.4", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54 },
         { "gpt-5.4-mini", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54Mini },
         { "gpt-5.4-nano", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54Nano },
@@ -107,6 +140,9 @@ internal class UpdateAzureOpenAiCredentialDtoModelsItemSerializer
         { "gpt-4-0613", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt40613 },
         { "gpt-35-turbo-0125", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt35Turbo0125 },
         { "gpt-35-turbo-1106", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt35Turbo1106 },
+        { "gpt-4o", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt4O },
+        { "gpt-4.1", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt41 },
+        { "gpt-5.4-mini-2026-03-17", UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54Mini20260317 },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -114,6 +150,12 @@ internal class UpdateAzureOpenAiCredentialDtoModelsItemSerializer
         string
     > _enumToString = new()
     {
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt6Luna, "gpt-6-luna" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt6Luna20260922, "gpt-6-luna-2026-09-22" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt56Luna20260709, "gpt-5.6-luna-2026-07-09" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt56Terra20260709, "gpt-5.6-terra-2026-07-09" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt56Sol20260709, "gpt-5.6-sol-2026-07-09" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt55, "gpt-5.5" },
         { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54, "gpt-5.4" },
         { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54Mini, "gpt-5.4-mini" },
         { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54Nano, "gpt-5.4-nano" },
@@ -137,6 +179,9 @@ internal class UpdateAzureOpenAiCredentialDtoModelsItemSerializer
         { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt40613, "gpt-4-0613" },
         { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt35Turbo0125, "gpt-35-turbo-0125" },
         { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt35Turbo1106, "gpt-35-turbo-1106" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt4O, "gpt-4o" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt41, "gpt-4.1" },
+        { UpdateAzureOpenAiCredentialDtoModelsItem.Gpt54Mini20260317, "gpt-5.4-mini-2026-03-17" },
     };
 
     public override UpdateAzureOpenAiCredentialDtoModelsItem Read(

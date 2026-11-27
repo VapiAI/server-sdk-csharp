@@ -14,6 +14,9 @@ public enum ElevenLabsTranscriberModel
 
     [EnumMember(Value = "scribe_v2_realtime")]
     ScribeV2Realtime,
+
+    [EnumMember(Value = "scribe_v3_live")]
+    ScribeV3Live,
 }
 
 internal class ElevenLabsTranscriberModelSerializer
@@ -27,6 +30,7 @@ internal class ElevenLabsTranscriberModelSerializer
         { "scribe_v1", ElevenLabsTranscriberModel.ScribeV1 },
         { "scribe_v2", ElevenLabsTranscriberModel.ScribeV2 },
         { "scribe_v2_realtime", ElevenLabsTranscriberModel.ScribeV2Realtime },
+        { "scribe_v3_live", ElevenLabsTranscriberModel.ScribeV3Live },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -37,6 +41,7 @@ internal class ElevenLabsTranscriberModelSerializer
         { ElevenLabsTranscriberModel.ScribeV1, "scribe_v1" },
         { ElevenLabsTranscriberModel.ScribeV2, "scribe_v2" },
         { ElevenLabsTranscriberModel.ScribeV2Realtime, "scribe_v2_realtime" },
+        { ElevenLabsTranscriberModel.ScribeV3Live, "scribe_v3_live" },
     };
 
     public override ElevenLabsTranscriberModel Read(

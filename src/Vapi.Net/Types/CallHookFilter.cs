@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Matches a call field against one or more allowed values to determine whether a hook runs.
+/// </summary>
 [Serializable]
 public record CallHookFilter : IJsonOnDeserialized
 {

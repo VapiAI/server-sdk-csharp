@@ -1,5 +1,6 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
+using OneOf;
 using Vapi.Net.Core;
 
 namespace Vapi.Net;
@@ -15,7 +16,7 @@ public record UpdateUserRoleDto : IJsonOnDeserialized
     public required string UserId { get; set; }
 
     [JsonPropertyName("role")]
-    public required UpdateUserRoleDtoRole Role { get; set; }
+    public required OneOf<UpdateUserRoleDtoRoleZero, string> Role { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

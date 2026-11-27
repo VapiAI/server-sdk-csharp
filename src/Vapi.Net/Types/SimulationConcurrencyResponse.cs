@@ -32,6 +32,12 @@ public record SimulationConcurrencyResponse : IJsonOnDeserialized
     [JsonPropertyName("availableToStart")]
     public required double AvailableToStart { get; set; }
 
+    /// <summary>
+    /// Max chat simulations that can run at once. A count of simulations, not call slots: chat simulations use none.
+    /// </summary>
+    [JsonPropertyName("chatConcurrencyLimit")]
+    public required double ChatConcurrencyLimit { get; set; }
+
     [JsonPropertyName("createdAt")]
     public DateTime? CreatedAt { get; set; }
 

@@ -70,14 +70,16 @@ public record LineInsightFromCallTable : IJsonOnDeserialized
         OneOf<
             JsonQueryOnCallTableWithStringTypeColumn,
             JsonQueryOnCallTableWithNumberTypeColumn,
-            JsonQueryOnCallTableWithStructuredOutputColumn
+            JsonQueryOnCallTableWithStructuredOutputColumn,
+            JsonQueryOnEventsTable
         >
     > Queries { get; set; } =
         new List<
             OneOf<
                 JsonQueryOnCallTableWithStringTypeColumn,
                 JsonQueryOnCallTableWithNumberTypeColumn,
-                JsonQueryOnCallTableWithStructuredOutputColumn
+                JsonQueryOnCallTableWithStructuredOutputColumn,
+                JsonQueryOnEventsTable
             >
         >();
 

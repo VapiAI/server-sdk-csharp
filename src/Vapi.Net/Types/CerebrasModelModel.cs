@@ -8,9 +8,6 @@ public enum CerebrasModelModel
 {
     [EnumMember(Value = "llama3.1-8b")]
     Llama318B,
-
-    [EnumMember(Value = "llama-3.3-70b")]
-    Llama3370B,
 }
 
 internal class CerebrasModelModelSerializer
@@ -19,20 +16,12 @@ internal class CerebrasModelModelSerializer
     private static readonly global::System.Collections.Generic.Dictionary<
         string,
         CerebrasModelModel
-    > _stringToEnum = new()
-    {
-        { "llama3.1-8b", CerebrasModelModel.Llama318B },
-        { "llama-3.3-70b", CerebrasModelModel.Llama3370B },
-    };
+    > _stringToEnum = new() { { "llama3.1-8b", CerebrasModelModel.Llama318B } };
 
     private static readonly global::System.Collections.Generic.Dictionary<
         CerebrasModelModel,
         string
-    > _enumToString = new()
-    {
-        { CerebrasModelModel.Llama318B, "llama3.1-8b" },
-        { CerebrasModelModel.Llama3370B, "llama-3.3-70b" },
-    };
+    > _enumToString = new() { { CerebrasModelModel.Llama318B, "llama3.1-8b" } };
 
     public override CerebrasModelModel Read(
         ref global::System.Text.Json.Utf8JsonReader reader,

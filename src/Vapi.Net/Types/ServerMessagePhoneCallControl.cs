@@ -18,6 +18,15 @@ public record ServerMessagePhoneCallControl : IJsonOnDeserialized
     public object? PhoneNumber { get; set; }
 
     /// <summary>
+    /// This is the version label (e.g. `v3`) of the assistant the call was
+    /// configured with. `null` for inline assistants, squad/workflow calls,
+    /// pre-resolution assistant-request messages, and orgs not on
+    /// assistant versioning.
+    /// </summary>
+    [JsonPropertyName("assistantVersion")]
+    public string? AssistantVersion { get; set; }
+
+    /// <summary>
     /// This is the type of the message. "phone-call-control" is an advanced type of message.
     ///
     /// When it is requested in `assistant.serverMessages`, the hangup and forwarding responsibilities are delegated to your server. Vapi will no longer do the actual transfer and hangup.

@@ -12,6 +12,12 @@ public record UpdateCloudflareCredentialDto : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Credential provider. Only allowed value is cloudflare
+    /// </summary>
+    [JsonPropertyName("provider")]
+    public UpdateCloudflareCredentialDtoProvider? Provider { get; set; }
+
+    /// <summary>
     /// Cloudflare Account Id.
     /// </summary>
     [JsonPropertyName("accountId")]

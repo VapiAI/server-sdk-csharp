@@ -560,6 +560,9 @@ public enum ElevenLabsTranscriberLanguage
 
     [EnumMember(Value = "zu")]
     Zu,
+
+    [EnumMember(Value = "multi")]
+    Multi,
 }
 
 internal class ElevenLabsTranscriberLanguageSerializer
@@ -755,6 +758,7 @@ internal class ElevenLabsTranscriberLanguageSerializer
         { "za", ElevenLabsTranscriberLanguage.Za },
         { "zh", ElevenLabsTranscriberLanguage.Zh },
         { "zu", ElevenLabsTranscriberLanguage.Zu },
+        { "multi", ElevenLabsTranscriberLanguage.Multi },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -947,6 +951,7 @@ internal class ElevenLabsTranscriberLanguageSerializer
         { ElevenLabsTranscriberLanguage.Za, "za" },
         { ElevenLabsTranscriberLanguage.Zh, "zh" },
         { ElevenLabsTranscriberLanguage.Zu, "zu" },
+        { ElevenLabsTranscriberLanguage.Multi, "multi" },
     };
 
     public override ElevenLabsTranscriberLanguage Read(

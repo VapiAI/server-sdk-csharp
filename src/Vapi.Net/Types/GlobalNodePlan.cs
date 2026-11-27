@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Controls whether a conversation node can be entered globally and the condition evaluated before that node runs.
+/// </summary>
 [Serializable]
 public record GlobalNodePlan : IJsonOnDeserialized
 {

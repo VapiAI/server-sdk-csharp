@@ -17,6 +17,13 @@ public record SimulationRunSuiteEntry : IJsonOnDeserialized
     [JsonPropertyName("simulationSuiteId")]
     public string? SimulationSuiteId { get; set; }
 
+    /// <summary>
+    /// Historical suite name captured when the run was created
+    /// </summary>
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
     [JsonPropertyName("suiteId")]
     public string? SuiteId { get; set; }
 

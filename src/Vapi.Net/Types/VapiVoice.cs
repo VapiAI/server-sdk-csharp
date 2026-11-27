@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration for synthesizing assistant speech with Vapi, including voice selection, speed, pronunciation dictionary, chunking, caching, and fallback settings.
+/// </summary>
 [Serializable]
 public record VapiVoice : IJsonOnDeserialized
 {
@@ -18,10 +21,16 @@ public record VapiVoice : IJsonOnDeserialized
     public bool? CachingEnabled { get; set; }
 
     /// <summary>
-    /// The voices provided by Vapi
+    /// The voice to use: a built-in Vapi voice name, or a cloned voice id (used with version 2).
     /// </summary>
     [JsonPropertyName("voiceId")]
-    public required VapiVoiceVoiceId VoiceId { get; set; }
+    public required string VoiceId { get; set; }
+
+    /// <summary>
+    /// The Vapi voice routing generation. `latest` auto-updates to the newest generation; version 1 uses legacy mappings; version 2 can use xAI-backed voices when available. When omitted, Version 1 is used. Accepts the string channel ('latest', '1', '2'); legacy numeric values (1, 2) are also accepted and coerced to their string form.
+    /// </summary>
+    [JsonPropertyName("version")]
+    public VapiVoiceVersion? Version { get; set; }
 
     /// <summary>
     /// This is the speed multiplier that will be used.
@@ -30,6 +39,12 @@ public record VapiVoice : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("speed")]
     public double? Speed { get; set; }
+
+    /// <summary>
+    /// Language for Vapi voice synthesis. For Version 2, omit this field or set `auto` for automatic language detection. Version 1 supports legacy Vapi language values.
+    /// </summary>
+    [JsonPropertyName("language")]
+    public VapiVoiceLanguage? Language { get; set; }
 
     /// <summary>
     /// List of pronunciation dictionary locators for custom word pronunciations.
@@ -42,12 +57,6 @@ public record VapiVoice : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("chunkPlan")]
     public ChunkPlan? ChunkPlan { get; set; }
-
-    /// <summary>
-    /// This is the plan for voice provider fallbacks in the event that the primary voice provider fails.
-    /// </summary>
-    [JsonPropertyName("fallbackPlan")]
-    public FallbackPlan? FallbackPlan { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

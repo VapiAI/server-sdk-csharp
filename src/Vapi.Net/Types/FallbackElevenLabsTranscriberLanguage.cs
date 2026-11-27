@@ -560,6 +560,9 @@ public enum FallbackElevenLabsTranscriberLanguage
 
     [EnumMember(Value = "zu")]
     Zu,
+
+    [EnumMember(Value = "multi")]
+    Multi,
 }
 
 internal class FallbackElevenLabsTranscriberLanguageSerializer
@@ -755,6 +758,7 @@ internal class FallbackElevenLabsTranscriberLanguageSerializer
         { "za", FallbackElevenLabsTranscriberLanguage.Za },
         { "zh", FallbackElevenLabsTranscriberLanguage.Zh },
         { "zu", FallbackElevenLabsTranscriberLanguage.Zu },
+        { "multi", FallbackElevenLabsTranscriberLanguage.Multi },
     };
 
     private static readonly global::System.Collections.Generic.Dictionary<
@@ -947,6 +951,7 @@ internal class FallbackElevenLabsTranscriberLanguageSerializer
         { FallbackElevenLabsTranscriberLanguage.Za, "za" },
         { FallbackElevenLabsTranscriberLanguage.Zh, "zh" },
         { FallbackElevenLabsTranscriberLanguage.Zu, "zu" },
+        { FallbackElevenLabsTranscriberLanguage.Multi, "multi" },
     };
 
     public override FallbackElevenLabsTranscriberLanguage Read(

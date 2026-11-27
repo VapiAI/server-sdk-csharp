@@ -42,14 +42,13 @@ public record Scenario : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// This is the script/instructions for the tester to follow during the simulation.
+    /// This is the script/instructions for the tester to follow during the simulation. Optional when `transcriptReplay` is set, which has no tester.
     /// </summary>
     [JsonPropertyName("instructions")]
     public required string Instructions { get; set; }
 
     /// <summary>
-    /// This is the structured output-based evaluation plan for the simulation.
-    /// Each item defines a structured output to extract and evaluate against an expected value.
+    /// This is the evaluation plan for the simulation. At least one is required. With `transcriptReplay`, only `metric` evaluations are allowed, and none are required.
     /// </summary>
     [JsonPropertyName("evaluations")]
     public IEnumerable<EvaluationPlanItem> Evaluations { get; set; } =
@@ -72,6 +71,24 @@ public record Scenario : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("toolMocks")]
     public IEnumerable<ScenarioToolMock>? ToolMocks { get; set; }
+
+    /// <summary>
+    /// Latency ceilings for voice simulations. Each expectation aggregates the
+    /// target call's per-turn latencies and fails the simulation (when required)
+    /// if the aggregated value exceeds its threshold. Skipped for chat simulations
+    /// and GPT Live targets; on any other voice simulation, a metric that no turn
+    /// measured fails.
+    /// </summary>
+    [JsonPropertyName("latencyExpectations")]
+    public IEnumerable<LatencyExpectation>? LatencyExpectations { get; set; }
+
+    /// <summary>
+    /// This turns the scenario into a transcription test: a recording is streamed
+    /// into the target's call in place of a simulated caller, and the target's
+    /// transcript is scored against an answer key.
+    /// </summary>
+    [JsonPropertyName("transcriptReplay")]
+    public TranscriptReplay? TranscriptReplay { get; set; }
 
     /// <summary>
     /// Optional folder path for organizing scenarios.

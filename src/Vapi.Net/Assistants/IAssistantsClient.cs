@@ -2,18 +2,27 @@ namespace Vapi.Net;
 
 public partial interface IAssistantsClient
 {
+    /// <summary>
+    /// Returns assistants for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+    /// </summary>
     WithRawResponseTask<IEnumerable<Assistant>> ListAsync(
         ListAssistantsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
-    WithRawResponseTask<Assistant> CreateAsync(
+    /// <summary>
+    /// Creates a reusable assistant configuration containing the model, voice, transcriber, tools, prompts, and call behavior.
+    /// </summary>
+    WithRawResponseTask<AssistantSaveResponse> CreateAsync(
         CreateAssistantDto request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
+    /// <summary>
+    /// Returns the assistant identified by its ID.
+    /// </summary>
     WithRawResponseTask<Assistant> GetAsync(
         string id,
         GetAssistantsRequest request,
@@ -21,6 +30,9 @@ public partial interface IAssistantsClient
         CancellationToken cancellationToken = default
     );
 
+    /// <summary>
+    /// Deletes the assistant identified by its ID.
+    /// </summary>
     WithRawResponseTask<Assistant> DeleteAsync(
         string id,
         DeleteAssistantsRequest request,
@@ -28,7 +40,10 @@ public partial interface IAssistantsClient
         CancellationToken cancellationToken = default
     );
 
-    WithRawResponseTask<Assistant> UpdateAsync(
+    /// <summary>
+    /// Updates the specified fields of the assistant identified by its ID.
+    /// </summary>
+    WithRawResponseTask<AssistantSaveResponse> UpdateAsync(
         string id,
         UpdateAssistantDto request,
         RequestOptions? options = null,

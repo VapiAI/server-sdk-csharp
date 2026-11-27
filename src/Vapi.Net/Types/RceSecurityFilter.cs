@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Filters potential remote code execution (RCE) patterns from transcripts.
+/// </summary>
 [Serializable]
 public record RceSecurityFilter : IJsonOnDeserialized
 {

@@ -30,6 +30,14 @@ public record Subscription : IJsonOnDeserialized
     public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
+    /// This is the display name for the subscription, used to tell subscriptions
+    /// apart in the dashboard. It is unique across all subscriptions and does not
+    /// appear on invoices, which use the company details on the invoice plan.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    /// <summary>
     /// This is the type / tier of the subscription.
     /// </summary>
     [JsonPropertyName("type")]
@@ -104,18 +112,6 @@ public record Subscription : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("stripePaymentMethodId")]
     public string? StripePaymentMethodId { get; set; }
-
-    /// <summary>
-    /// If this flag is true, then the user has purchased slack support.
-    /// </summary>
-    [JsonPropertyName("slackSupportEnabled")]
-    public bool? SlackSupportEnabled { get; set; }
-
-    /// <summary>
-    /// If this subscription has a slack support subscription, the slack channel's ID will be stored here.
-    /// </summary>
-    [JsonPropertyName("slackChannelId")]
-    public string? SlackChannelId { get; set; }
 
     /// <summary>
     /// This is the HIPAA enabled flag for the subscription. It determines whether orgs under this
@@ -277,6 +273,30 @@ public record Subscription : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("platformFee")]
     public double? PlatformFee { get; set; }
+
+    /// <summary>
+    /// This is how payment is collected for the subscription: charged to the card
+    /// on file, or invoiced.
+    /// </summary>
+    [JsonPropertyName("billingCollectionMethod")]
+    public SubscriptionBillingCollectionMethod? BillingCollectionMethod { get; set; }
+
+    /// <summary>
+    /// This is when the current or most recent demo on this subscription started,
+    /// either when Vapi created the account as a demo or when Vapi made an
+    /// existing pay-as-you-go account one. Not set if it was never a demo.
+    /// </summary>
+    [JsonPropertyName("demoStartedAt")]
+    public DateTime? DemoStartedAt { get; set; }
+
+    /// <summary>
+    /// This is when that demo ended, by an upgrade or by Vapi. Not set while the
+    /// demo is active, and cleared when an ended demo starts again. A demo is
+    /// active while `demoStartedAt` is set, this is not, and the subscription is
+    /// pay-as-you-go.
+    /// </summary>
+    [JsonPropertyName("demoEndedAt")]
+    public DateTime? DemoEndedAt { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

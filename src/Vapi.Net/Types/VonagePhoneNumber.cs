@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// A Vonage phone number connected to Vapi, including its credential, routing, hooks, server settings, and lifecycle metadata.
+/// </summary>
 [Serializable]
 public record VonagePhoneNumber : IJsonOnDeserialized
 {

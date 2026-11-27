@@ -4,6 +4,9 @@ using Vapi.Net.Core;
 
 namespace Vapi.Net;
 
+/// <summary>
+/// Configuration used to import a Telnyx phone number into Vapi with a stored credential and routing settings.
+/// </summary>
 [Serializable]
 public record CreateTelnyxPhoneNumberDto : IJsonOnDeserialized
 {
