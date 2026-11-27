@@ -1,3 +1,22 @@
+## [3.0.0] - 2026-11-27
+### Breaking Changes
+- **`CreateCampaignDto`, `CreateTrieveKnowledgeBaseDto`, `FallbackDeepgramTranscriberLanguage/Model`, `FallbackGladiaTranscriberLanguages`, `FallbackTavusVoice`, `FallbackVapiVoiceVoiceId`, `GladiaTranscriberLanguages`, `VapiVoiceVoiceId`, `TavusConversationProperties`, `TrieveKnowledgeBase*`, and related types** — removed entirely; migrate to replacement types described in the PR description.
+- **`AssistantUserEditable`** — renamed to `GuardrailPackImpact` with `ServerMessages` replaced by `AssistantIds`; update all references and property access.
+- **`TrieveKnowledgeBase` and `TavusVoice`** — replaced by `MicrosoftCredential` and `MicrosoftVoice` respectively with entirely different property sets; migrate any code referencing these types.
+- **`FilesClient.ListAsync`** — now requires a `ListFilesRequest` argument; pass `new ListFilesRequest()` to preserve previous default behavior.
+- **`StructuredOutputControllerRunAsync`** — return type changed from `WithRawResponseTask<StructuredOutput>` to `WithRawResponseTask<OneOf<StructuredOutputRerunResponse, StructuredOutputControllerRunResponseOne>>`; update call sites to handle the union result.
+
+### Added
+- **Simulation workflow clients** — `ISimulationPersonalitiesClient`, `ISimulationScenariosClient`, `ISimulationRunsClient`, `ISimulationSuitesClient`, and `ISimulationsClient` added to `IVapiClient` for full simulation CRUD, onboarding, and AI-assisted suite generation.
+- **`IBoardClient`, `IKnowledgeBasesV2Client`, and `ITrafficAllocationsClient`** — new top-level clients for dashboard boards, v2 knowledge bases, and per-assistant traffic splitting.
+- **Typed HTTP error exceptions** — `UnauthorizedError` (401), `PaymentRequiredError` (402), `ForbiddenError` (403), `ConflictError` (409), `UnprocessableEntityError` (422), `TooManyRequestsError` (429), `InternalServerError` (500), and gateway errors (502–504) are now thrown for non-2XX responses.
+- **New assistant types** — `AssistantDraft`, `AssistantVersion`, `AssistantSaveResponse`, `AssistantFallbackWarning`, `AssistantGoalDto`, and related supporting enums and paginated-response types added for versioning and draft workflows.
+- See full changelog for all changes
+
+### Changed
+- **`UpdateCampaignDtoStatus`** — moved from `Vapi.Net.Campaigns.Types` to `Vapi.Net.Types`; update explicit namespace references.
+- **`ElevenLabsVoice` and `FallbackElevenLabsVoice` doc comments** — clarify that several voice settings are ignored by `eleven_v4_turbo` and `eleven_v3_conversational` models; no API surface change.
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`CartesiaExperimentalControlsSpeedZero`** has been renamed to **`CartesiaSpeedControlZero`**; update all references and the type argument in `CartesiaExperimentalControls.Speed` (`OneOf<CartesiaSpeedControlZero, double>?`).
